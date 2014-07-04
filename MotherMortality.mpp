@@ -1,0 +1,35 @@
+parameters 
+{
+	//EN Annual hazard of death
+	double MortalityHazard;
+	/* NOTE(MortalityHazard, EN)
+		A constant hazard of death results in an exponential
+		survival function.
+	*/
+};
+
+actor Mother            //EN Individual
+{
+	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
+};
+
+// The time function of MortalityEvent
+TIME Mother::timeMortalityEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+
+	// Draw a random waiting time to death from an exponential distribution
+	// based on the constant hazard MortalityHazard.
+	tEventTime = WAIT( - TIME( log( RandUniform(1) ) / MortalityHazard ) );
+
+	return tEventTime;
+}
+
+// The implement function of MortalityEvent
+void Mother::MortalityEvent()
+{
+	alive = FALSE;
+
+	// Remove the actor from the simulation.
+	Finish();
+}

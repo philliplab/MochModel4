@@ -1,0 +1,81 @@
+//LABEL(MotherCore, EN) Core functionality of the Mother actor
+
+/* NOTE(MotherCore, EN)
+	This module contains the basic information which defines the Mother actor.
+*/
+
+parameters 
+{
+	//EN Starting population size
+	int		StartingPopulationSize;
+	/* NOTE(StartingPopulationSize, EN)
+		The population size may increase or decrease during the simulation.
+	*/
+};
+
+
+actor_set Mother asAllMother; //EN All Mother actors
+
+
+actor Mother            //EN Individual
+{
+	// The states time and age are automatically defined by Modgen.
+	// Model-specific labels and notes are supplied below.
+
+	//LABEL(Mother.time, EN) Time
+	/*NOTE(Mother.time, EN)
+		Time is a continuous quantity in this model.
+		A unit of time is a year.
+	*/
+
+	//LABEL(Mother.age, EN) Age
+	/*NOTE(Mother.age, EN)
+		Age is a continuous quantity in this model.
+		A unit of age is a year.
+	*/
+
+	//EN Report time
+	REPORT_TIME report_time = { 0 };
+
+	//EN Alive
+	logical alive = {TRUE};
+	/*NOTE(Mother.alive, EN)
+		Set to TRUE when the actor starts, and to FALSE just before the actor finishes.
+		Since the numeric value of TRUE is 1 and FALSE is 0, this variable
+		can also be used to count actors in tables.
+	*/
+
+	//LABEL(Mother.Start, EN) Starts the actor
+	void Start();
+
+	//LABEL(Mother.Finish, EN) Finishes the actor
+	void Finish();
+};
+
+/*NOTE(Mother.MortalityEvent, EN)
+	This event implements a constant hazard of death.
+*/
+
+/*NOTE(Mother.Start, EN)
+	The Start function initializes actor variables before simulation
+	of the actor commences.
+*/
+void Mother::Start()
+{
+	// Modgen initializes all actor variables
+	// before the code in this function is executed.
+
+	age = 0;
+	time = 0;
+
+	// After the code in this function is executed,
+	// Modgen initializes events and tables for the actor.
+	// Modgen also outputs starting values to the tracking file if requested.
+}
+
+/*NOTE(Mother.Finish, EN)
+	The Finish function terminates the simulation of an actor.
+*/
+void Mother::Finish()
+{
+}
