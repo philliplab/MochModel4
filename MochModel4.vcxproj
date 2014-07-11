@@ -100,6 +100,7 @@
     <None Include="MochModel4.mpp" />
     <None Include="ModelStrings.mpp" />
     <None Include="MotherCore.mpp" />
+    <None Include="MotherInfection.mpp" />
     <None Include="MotherMortality.mpp" />
     <None Include="MotherTables.mpp" />
     <None Include="parse.inf" />
@@ -111,6 +112,7 @@
     <ClCompile Include="MochModel4.cpp" />
     <ClCompile Include="ModelStrings.cpp" />
     <ClCompile Include="MotherCore.cpp" />
+    <ClCompile Include="MotherInfection.cpp" />
     <ClCompile Include="MotherMortality.cpp" />
     <ClCompile Include="MTables.cpp" />
     <ClCompile Include="Tabinit.cpp" />

@@ -1,0 +1,66 @@
+//LABEL(MotherInfection, EN) Infection events for Mothers
+
+/* NOTE(MotherInfection, EN)
+	This module contains all the incidence functions for the mothers. Infections
+	consists of two events. First a person must become infectible - this happens
+	at age 14. Once a person becomes infectible, an infection event is scheduled.
+
+	- Data requirements
+
+	A table containing the probability for a person without HIV to acquire it
+	in the year. The rates must be age, gender and time specific.
+
+	- Implementation details
+
+	Upon birth, the 'become infectible' event is scheduled 14 years into the future.
+	Once a person becomes infectible, infection is scheduled using the same
+	methodology used 
+*/
+
+range INCIDENCE_LIFE
+{
+	14, 59
+};
+
+/* NOTE (INCIDENCE_LIFE, EN)
+    According to the ASSA model someone can only be infected
+	between the ages of 14 and 60. Hence this range is needed
+	to index the incidence rate table
+*/
+
+parameters
+{
+	double IncidenceTable[GENDER][INCIDENCE_LIFE][MORT_TIME]; //EN Incidence Rates
+	double IncidenceMotherMultiplier; //EN Incidence Multiplier
+};
+
+/* NOTE (IncidenceTable, EN)
+    The probability of becoming infected in a year. This table
+	has dimensions for gender, current age and model year.
+*/
+
+/* NOTE (IncidenceMotherMultiplier, EN)
+    Multiply the incidence rates by this before using them.
+	Set to 1 for no change; Set to 0 to prevent all infections
+*/
+
+
+actor Mother            //EN Individual
+{
+	logical infectible = {FALSE};
+	event timeBecomeInfectibleEvent, BecomeInfectibleEvent;
+};
+
+TIME Mother::timeBecomeInfectibleEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	if (infectible == FALSE){
+			tEventTime = WAIT(14);
+	};
+	return(tEventTime);
+};
+
+void Mother::BecomeInfectibleEvent()
+{
+	infectible = TRUE;
+};
