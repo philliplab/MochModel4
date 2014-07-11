@@ -3,7 +3,7 @@ parameters {
 An arbitrarily selected value.
 */
 
-	int	ModelTime = 4; //EN Model Time
+	int	ModelTime = 10; //EN Model Time
 /* NOTE ( StartingPopulationSize, EN )
 An arbitrarily selected value.
 */
