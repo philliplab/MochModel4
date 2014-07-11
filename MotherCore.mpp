@@ -33,11 +33,20 @@ range LIFE
     Actors are only allowed to live to age 100
 */
 
+classification MDEATH_SCHED_STATE
+{
+	mdsHEALTHY,
+	mdsINFECTED,
+	mdsTREATED,
+	mdsDEAD
+};
+
 actor_set Mother asAllMother; //EN All Mother actors
 
 
 actor Mother            //EN Individual
 {
+	MDEATH_SCHED_STATE mdeath_sched_status = mdsHEALTHY;
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.
 
