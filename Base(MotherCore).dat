@@ -13,7 +13,7 @@ An arbitrarily selected value.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	HealthyMortalityMotherMultiplier = 3; //EN Multiplier for Mortality of Healthy Mothers
+	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
 /* NOTE ( HIVFreeMortality, EN )
     This table was obtained by extracting the input mortality rates
 	for the black population in the 2008 ASSA model. There rates covers

@@ -73,17 +73,14 @@ actor Mother            //EN Individual
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
 
-// The time function of MortalityEvent
-TIME Mother::timeMortalityEvent()
-{
-	TIME tEventTime = TIME_INFINITE;
-
+double mHealthyMortalityTime(LIFE v_integer_age){
 	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
+	double tEventTime = pow(10,10);
 	int capped_age;
-	if (integer_age > 91){
+	if (v_integer_age > 91){
 		capped_age = 91;
 	} else {
-		capped_age = integer_age;
+		capped_age = v_integer_age;
 	}
 
 	double prob_death = HIVFreeMortality[F][capped_age][ModelTime] * HealthyMortalityMotherMultiplier;
@@ -91,9 +88,20 @@ TIME Mother::timeMortalityEvent()
 	// Draw a random waiting time to death from an exponential distribution
 	// based on the constant hazard MortalityHazard.
 	if (prob_death >= 1) {
-	  	tEventTime = WAIT(0);
+	  	tEventTime = 0;
 	} else {
-		tEventTime = WAIT( - TIME( log( RandUniform(1) ) / prob_death) );
+		tEventTime = -( log( RandUniform(1) ) / prob_death);
+	}
+	return tEventTime;
+}
+
+// The time function of MortalityEvent
+TIME Mother::timeMortalityEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+
+	switch(mdeath_sched_status){
+	case mdsHEALTHY: {tEventTime = WAIT(mHealthyMortalityTime(integer_age));} break;
 	}
 
 	return tEventTime;
