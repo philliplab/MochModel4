@@ -11,8 +11,27 @@ parameters
 	/* NOTE(StartingPopulationSize, EN)
 		The population size may increase or decrease during the simulation.
 	*/
+
+	//EN Model Time
+	int		ModelTime;
+	/* NOTE(ModelTime, EN)
+		Which time period to use as reference for incidence numbers and mortality?
+		0 corresponds to 1985. Largest allowed value is 40.
+	*/
 };
 
+classification GENDER
+{
+	F, M
+};
+
+range LIFE
+{
+	0, 100
+};
+/* NOTE(LIFE, EN)
+    Actors are only allowed to live to age 100
+*/
 
 actor_set Mother asAllMother; //EN All Mother actors
 
@@ -28,15 +47,13 @@ actor Mother            //EN Individual
 		A unit of time is a year.
 	*/
 
+	REPORT_TIME report_time = { 0 };
 	//LABEL(Mother.age, EN) Age
 	/*NOTE(Mother.age, EN)
 		Age is a continuous quantity in this model.
 		A unit of age is a year.
 	*/
-
-	//EN Report time
-	REPORT_TIME report_time = { 0 };
-
+	LIFE integer_age = self_scheduling_int(age);
 	//EN Alive
 	logical alive = {TRUE};
 	/*NOTE(Mother.alive, EN)
@@ -51,10 +68,6 @@ actor Mother            //EN Individual
 	//LABEL(Mother.Finish, EN) Finishes the actor
 	void Finish();
 };
-
-/*NOTE(Mother.MortalityEvent, EN)
-	This event implements a constant hazard of death.
-*/
 
 /*NOTE(Mother.Start, EN)
 	The Start function initializes actor variables before simulation

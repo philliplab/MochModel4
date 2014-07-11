@@ -1,10 +1,70 @@
-parameters 
+//LABEL(MotherMortality, EN) Mortality functions for Mothers
+
+/* NOTE(MotherMortality, EN)
+	This module contains all the mortality functions for the mothers. There
+	are three different types of mortality implemented:
+
+	- Mortality for Healthy Mothers
+	- Mortality for Infected Mothers
+	- Mortality for Treated Mothers
+
+	Mortality for Healthy Mothers
+
+	- Data requirements
+
+    The q[x,y] values (probability of dying between ages x and x+1 given that you
+	survived until age x in the year y) by gender and time (model year). These
+	mortality rates must exclude mortality due to HIV. 
+
+	- Implementation Details
+
+	Mortality from the healthy state is implemented by asking the question: 
+	Given the mothers current age and the time specified in the model, when
+	will the mother die? This is (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])).
+
+	When the mother ages 1 year, the question is asked again, this time the
+	answer is (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])). This process
+	is continued until the mother leaves the healthy state (at which time another mortality
+	function will be used), or the mother dies before her next birth day.
+
+	The qstar[x,y] is q[x,y] value is multiplied by HealthyMortalityMotherMultiplier.
+*/
+
+range MORT_LIFE //EN Mortality Life Range
 {
-	//EN Annual hazard of death
-	double MortalityHazard;
-	/* NOTE(MortalityHazard, EN)
-		A constant hazard of death results in an exponential
-		survival function.
+	0,91
+};
+
+/* NOTE(MORT_LIFE, EN)
+    The range of ages that the mortality data spans.
+	This conforms to the data specifications of the
+	2008 ASSA model.
+*/
+
+range MORT_TIME //EN ASSA model Time Range
+{
+	0,40
+};
+
+/* NOTE(MORT_TIME, EN)
+    The time range for the mortality and incidence source data.
+	The original source for this data is the
+	2008 ASSA model's black population. This model was
+	designed for a time span of 40 years.
+*/
+
+parameters
+{
+	double HIVFreeMortality[GENDER][MORT_LIFE][MORT_TIME]; //EN HIV-Free Mortality
+	/* NOTE (HIVFreeMortality, EN)
+		The q[x,y] values (probability of dying between ages x and x+1 given that you
+		survived until age x in the year y) for the population being modelled by gender 
+		and time (model year).
+	*/
+
+	double HealthyMortalityMotherMultiplier; //EN Multiplier for Mortality of Healthy Mothers
+	/* NOTE (HealthyMortalityMotherMultiplier, EN)
+		A multiplier that allows finer control for testing and model exploration.
 	*/
 };
 
@@ -18,9 +78,23 @@ TIME Mother::timeMortalityEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 
+	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
+	int capped_age;
+	if (integer_age > 91){
+		capped_age = 91;
+	} else {
+		capped_age = integer_age;
+	}
+
+	double prob_death = HIVFreeMortality[F][capped_age][ModelTime] * HealthyMortalityMotherMultiplier;
+
 	// Draw a random waiting time to death from an exponential distribution
 	// based on the constant hazard MortalityHazard.
-	tEventTime = WAIT( - TIME( log( RandUniform(1) ) / MortalityHazard ) );
+	if (prob_death >= 1) {
+	  	tEventTime = WAIT(0);
+	} else {
+		tEventTime = WAIT( - TIME( log( RandUniform(1) ) / prob_death) );
+	}
 
 	return tEventTime;
 }
