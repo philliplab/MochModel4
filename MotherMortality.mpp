@@ -102,6 +102,7 @@ TIME Mother::timeMortalityEvent()
 
 	switch(mdeath_sched_status){
 	case mdsHEALTHY: {tEventTime = WAIT(mHealthyMortalityTime(integer_age));} break;
+	default: {tEventTime = WAIT(0);} break;
 	}
 
 	return tEventTime;

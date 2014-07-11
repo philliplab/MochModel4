@@ -49,6 +49,7 @@ actor Mother            //EN Individual
 {
 	logical infectible = {FALSE};
 	event timeBecomeInfectibleEvent, BecomeInfectibleEvent;
+	event timeInfectionEvent, InfectionEvent;
 };
 
 TIME Mother::timeBecomeInfectibleEvent()
@@ -63,4 +64,44 @@ TIME Mother::timeBecomeInfectibleEvent()
 void Mother::BecomeInfectibleEvent()
 {
 	infectible = TRUE;
+};
+
+double IncidenceTableDraw(double x)
+{
+	double infection_time = pow(10,10);
+	int indx = -1; //indx = 0 means incidence life = 14
+	double prev_not_hiv_prob = 1;
+	double not_hiv_prob = 1;
+	double curr_not_hiv_prob = 1;
+	int time_indx = 14;
+	while (x <= not_hiv_prob & indx < 45)
+	{
+		indx++;
+		time_indx++;
+		if (time_indx > 40){
+			time_indx = 40;
+		};
+		prev_not_hiv_prob = not_hiv_prob;
+		curr_not_hiv_prob = IncidenceTable[F][indx][time_indx];
+		not_hiv_prob = not_hiv_prob * (1 - IncidenceMotherMultiplier * curr_not_hiv_prob);
+	};
+	if (x > not_hiv_prob)
+	{
+		infection_time = indx + ((x - not_hiv_prob) / (prev_not_hiv_prob - not_hiv_prob));
+	};
+	return(infection_time);
+};
+
+TIME Mother::timeInfectionEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	if (mdeath_sched_status == mdsHEALTHY & infectible == TRUE){
+			tEventTime = WAIT(IncidenceTableDraw(RandUniform(2)));
+	};
+	return(tEventTime);
+};
+
+void Mother::InfectionEvent()
+{
+	mdeath_sched_status = mdsINFECTED;
 };

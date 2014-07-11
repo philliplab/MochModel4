@@ -17,15 +17,16 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE ( IncidenceMotherMultiplier, EN )
 Choose 1 to prevent any deviations from the ASSA model values.
 */
-	double IncidenceMotherMultiplier = 1; //EN Incidence Multiplier for Mothers
 
-	/* NOTE ( IncidenceTable, EN )
+	double	IncidenceMotherMultiplier = 0; //EN Incidence Multiplier
+/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
 		the number of HIV-FREE people there were at the start of the year.
 		(The ASSA model's years run from 1 of June). These rates are for the
 		black population only
 */
+
 
 	 //EN Incidence Rates
 	double	IncidenceTable[GENDER][INCIDENCE_LIFE][MORT_TIME] = {
@@ -124,7 +125,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 		0.00000568084, 0.0000118383, 0.0000231075, 0.0000476833, 0.0000999404, 0.000208306, 0.000426245, 0.000832569, 0.001529679, 0.00256068, 0.003911337, 0.005548148, 0.007328004, 0.00935068, 0.011223757, 0.012641467, 0.013321352, 0.013332813, 0.012757517, 0.011652116, 0.010300372, 0.008845186, 0.007398273, 0.006172363, 0.005205225, 0.004374259, 0.00379699, 0.003311457, 0.002903832, 0.002562027, 0.002273594, 0.002032473, 0.001830758, 0.001661724, 0.001519785, 0.001400375, 0.001299718, 0.001214757, 0.001143037, 0.001082622, 0.001032454, 
 		0.00000515174, 0.0000106255, 0.0000206421, 0.0000424712, 0.000088891, 0.000185222, 0.000378919, 0.000741415, 0.001365966, 0.00229434, 0.003515911, 0.005004631, 0.006627434, 0.008485615, 0.010228558, 0.01158599, 0.012286746, 0.01238545, 0.011943686, 0.01099585, 0.009795567, 0.008472394, 0.007132826, 0.005983431, 0.00506742, 0.00427194, 0.003715392, 0.003243015, 0.002843109, 0.002505254, 0.00221834, 0.001977201, 0.001774637, 0.001604406, 0.001461251, 0.001340724, 0.001239126, 0.001153347, 0.001080835, 0.001019522, 0.000967761, 
 	};
-	/* NOTE ( HIVFreeMortality, EN )
+/* NOTE ( HIVFreeMortality, EN )
     This table was obtained by extracting the input mortality rates
 	for the black population in the 2008 ASSA model. There rates covers
 	the period 1985 to 2007. This was expanded until 2025 with the

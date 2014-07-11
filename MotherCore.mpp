@@ -46,7 +46,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	MDEATH_SCHED_STATE mdeath_sched_status = mdsHEALTHY;
+	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.
 
