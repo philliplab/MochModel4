@@ -3,7 +3,7 @@ parameters {
 An arbitrarily selected value.
 */
 
-	int	ModelTime = 0; //EN Model Time
+	int	ModelTime = 4; //EN Model Time
 /* NOTE ( StartingPopulationSize, EN )
 An arbitrarily selected value.
 */
@@ -18,7 +18,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	IncidenceMotherMultiplier = 0; //EN Incidence Multiplier
+	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
 /* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to

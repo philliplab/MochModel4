@@ -66,37 +66,37 @@ void Mother::BecomeInfectibleEvent()
 	infectible = TRUE;
 };
 
-double IncidenceTableDraw(double x)
-{
-	double infection_time = pow(10,10);
-	int indx = -1; //indx = 0 means incidence life = 14
-	double prev_not_hiv_prob = 1;
-	double not_hiv_prob = 1;
-	double curr_not_hiv_prob = 1;
-	int time_indx = 14;
-	while (x <= not_hiv_prob & indx < 45)
-	{
-		indx++;
-		time_indx++;
-		if (time_indx > 40){
-			time_indx = 40;
-		};
-		prev_not_hiv_prob = not_hiv_prob;
-		curr_not_hiv_prob = IncidenceTable[F][indx][time_indx];
-		not_hiv_prob = not_hiv_prob * (1 - IncidenceMotherMultiplier * curr_not_hiv_prob);
-	};
-	if (x > not_hiv_prob)
-	{
-		infection_time = indx + ((x - not_hiv_prob) / (prev_not_hiv_prob - not_hiv_prob));
-	};
-	return(infection_time);
-};
+double mInfectionTime(LIFE v_integer_age){
+	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
+	double tEventTime = pow(10,10);
+	int capped_age;
+	if (v_integer_age > 59){
+		capped_age = 59 - 14;
+	} else {
+		capped_age = v_integer_age - 14;
+	}
+
+	double prob_infection = IncidenceTable[F][capped_age][ModelTime] * IncidenceMotherMultiplier;
+
+	// Draw a random waiting time to death from an exponential distribution
+	// based on the probability of infection in the next year
+	if (prob_infection == 0) {
+	    return(tEventTime);
+	}
+	if (prob_infection >= 1) {
+	  	tEventTime = 0;
+	} else {
+		tEventTime = -( log( RandUniform(2) ) / prob_infection);
+	}
+	return tEventTime;
+}
 
 TIME Mother::timeInfectionEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 	if (mdeath_sched_status == mdsHEALTHY & infectible == TRUE){
-			tEventTime = WAIT(IncidenceTableDraw(RandUniform(2)));
+			tEventTime = WAIT(mInfectionTime(integer_age));
+			//tEventTime = WAIT(IncidenceTableDraw(RandUniform(2)));
 	};
 	return(tEventTime);
 };
