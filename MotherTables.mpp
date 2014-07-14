@@ -13,12 +13,12 @@ table Mother DurationOfLife //EN Duration of Life
 	}	//EN Demographic characteristics
 };
 
-table Mother Incidence
+table Mother Incidence //EN Incidence amongst mothers
 {
-	integer_age *
+	integer_age * //EN Age
 	{
-		undergone_transition( infected, FALSE, TRUE), // Number of new infections
-		duration(), // Mother years in this age
-		10000 * (undergone_transition( infected, FALSE, TRUE) / unit) // Incidence times 10000
-	}
+		undergone_transition( infected, FALSE, TRUE), //EN Number of new infections
+		duration(), //EN Mother years in this age decimals=1
+		(undergone_transition( infected, FALSE, TRUE) / unit) //EN Incidence decimals=4
+	} //EN Infection Statistics
 };
