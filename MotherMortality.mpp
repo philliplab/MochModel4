@@ -23,11 +23,16 @@
 	will the mother die? This is (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])).
 
 	When the mother ages 1 year, the question is asked again, this time the
-	answer is (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])). This process
-	is continued until the mother leaves the healthy state (at which time another mortality
-	function will be used), or the mother dies before her next birth day.
+	answer is again (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])) (But 
+	integer_age is now one more). This process is continued until the mother leaves the 
+	healthy state (at which time another mortality function will be used), or the mother 
+	dies before her next birth day.
 
 	The qstar[x,y] is q[x,y] value is multiplied by HealthyMortalityMotherMultiplier.
+
+	Mortality for Infected Mothers
+
+	- Not implemented yet
 */
 
 range MORT_LIFE //EN Mortality Life Range
@@ -75,7 +80,7 @@ actor Mother            //EN Individual
 
 double mHealthyMortalityTime(LIFE v_integer_age){
 	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
-	double tEventTime = pow(10,10);
+	double t_event_time = pow(10,10);
 	int capped_age;
 	if (v_integer_age > 91){
 		capped_age = 91;
@@ -88,24 +93,24 @@ double mHealthyMortalityTime(LIFE v_integer_age){
 	// Draw a random waiting time to death from an exponential distribution
 	// based on the constant hazard MortalityHazard.
 	if (prob_death >= 1) {
-	  	tEventTime = 0;
+	  	t_event_time = 0;
 	} else {
-		tEventTime = -( log( RandUniform(1) ) / prob_death);
+		t_event_time = -( log( RandUniform(1) ) / prob_death);
 	}
-	return tEventTime;
+	return t_event_time;
 }
 
 // The time function of MortalityEvent
 TIME Mother::timeMortalityEvent()
 {
-	TIME tEventTime = TIME_INFINITE;
+	TIME t_event_time = TIME_INFINITE;
 
 	switch(mdeath_sched_status){
-	case mdsHEALTHY: {tEventTime = WAIT(mHealthyMortalityTime(integer_age));} break;
-	default: {tEventTime = WAIT(0);} break;
+	case mdsHEALTHY: {t_event_time = WAIT(mHealthyMortalityTime(integer_age));} break;
+	default: {t_event_time = WAIT(0);} break;
 	}
 
-	return tEventTime;
+	return t_event_time;
 }
 
 // The implement function of MortalityEvent

@@ -2,6 +2,8 @@
 
 /* NOTE(MotherCore, EN)
 	This module contains the basic information which defines the Mother actor.
+
+	Most of this information is used repeatedly by multiple modules.
 */
 
 parameters 
