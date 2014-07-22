@@ -55,11 +55,11 @@ actor Mother            //EN Individual
 
 TIME Mother::timeBecomeInfectibleEvent()
 {
-	TIME tEventTime = TIME_INFINITE;
+	TIME t_event_time = TIME_INFINITE;
 	if (infectible == FALSE){
-			tEventTime = WAIT(14);
+			t_event_time = WAIT(14);
 	};
-	return(tEventTime);
+	return(t_event_time);
 };
 
 void Mother::BecomeInfectibleEvent()
