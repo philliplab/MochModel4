@@ -1,0 +1,12 @@
+---
+title: "MochModel4 Tests"
+author: "Phillip Labuschagne"
+date: "Tuesday, July 22, 2014"
+output: html_document
+---
+
+```{r}
+library(modgenTester)
+run_scenario("C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base.scex",
+             "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/MochModel4.exe")
+```
