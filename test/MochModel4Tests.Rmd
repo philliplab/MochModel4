@@ -7,6 +7,46 @@ output: html_document
 
 ```{r}
 library(modgenTester)
-run_scenario("C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base.scex",
-             "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/MochModel4.exe")
+sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
+td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
+
+copy_model(sd, 'MochModel4.exe', td)
+copy_scenario(sd, 'Base.scex', 'Base(MotherCore).dat', td)
+```
+
+```{r}
+scenarios_to_create <- list(
+  '1' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'Small'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'int\tStartingPopulationSize = 10000;',
+                                       to = 'int\tStartingPopulationSize = 1000;')
+                            )
+             ),
+  '2' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'NoHIV'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 0')
+                            )
+             ))
+for (i in scenarios_to_create){
+  do.call(generate_scenario, i)
+}
+```
+
+```{r}
+available_scenarios <- list_all_scenarios(td, FALSE)
+```
+
+```{r}
+for (scenario in available_scenarios){
+  print(scenario)
+  run_scenario(td, scenario$scex,
+               td, "MochModel4.exe")
+}
 ```

@@ -1,0 +1,47 @@
+Fri Jul 25 13:25:52 2014
+
+Modgen Version: 11.1.0.0
+Model Name: MOCHMO~1
+Model Version: 1.0.0.0
+
+COMPUTERNAME=SASEMA429561
+USERNAME=Administrator
+NUMBER_OF_PROCESSORS=8
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+Processor Name=Intel(R) Core(TM) i7-2720QM CPU @ 2.20GHz
+Processor Speed=2195MHz
+
+Reading Parameters:
+
+Running Simulation:
+
+   1%, 
+   2%, Time to completion: 0.39s
+   3%, Time to completion: 0.39s
+   4%, Time to completion: 0.38s
+   5%, Time to completion: 0.36s
+   6%, Time to completion: 0.32s
+   7%, Time to completion: 0.28s
+   8%, Time to completion: 0.25s
+   9%, Time to completion: 0.23s
+   10%, Time to completion: 0.21s
+   11%, Time to completion: 0.20s
+   17%, Time to completion: 0.14s
+   22%, Time to completion: 0.12s
+   28%, Time to completion: 0.09s
+   37%, Time to completion: 0.07s
+   48%, Time to completion: 0.05s
+   60%, Time to completion: 0.03s
+   74%, Time to completion: 0.02s
+
+   Total:
+
+   Elapsed Time: 0.07s
+   CPU Time: 0.08s
+   CPU Utilization: 111.43%
+   Speed (replicates per CPU-second) : 12.820431
+   Events per replicate: 47681.00
+   Page Faults: 170
+
+Generating Reports:
+Done.
