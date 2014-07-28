@@ -6,6 +6,7 @@ output: html_document
 ---
 
 ```{r}
+rm(list = ls())
 library(modgenTester)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
@@ -43,10 +44,25 @@ for (i in scenarios_to_create){
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 
-```{r}
+```{r, eval=FALSE}
 for (scenario in available_scenarios){
   print(scenario)
   run_scenario(td, scenario$scex,
                td, "MochModel4.exe")
+}
+```
+
+```{r}
+all_results <- list_all_results(td)
+```
+
+```{r}
+for (i in all_results){
+  print(i)
+  db_channel <- access_database(i)
+  print('Parameter Tables:')
+  print(list_parameter_tables(db_channel))
+  print('Result Tables:')
+  print(list_result_tables(db_channel))
 }
 ```
