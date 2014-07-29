@@ -59,82 +59,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-<pre class="r"><code>rm(list = ls())
-library(modgenTester)</code></pre>
-<pre><code>## Loading required package: RODBC
-## Loading required package: ggplot2</code></pre>
-<pre><code>## Warning: package 'ggplot2' was built under R version 3.0.3</code></pre>
-<pre class="r"><code>sd &lt;- &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4&quot;
-td &lt;- &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test&quot;
-
-copy_model(sd, 'MochModel4.exe', td)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>copy_scenario(sd, 'Base.scex', 'Base(MotherCore).dat', td)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>scenarios_to_create &lt;- list(
-  '1' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'Small'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'int\tStartingPopulationSize = 10000;',
-                                       to = 'int\tStartingPopulationSize = 1000;')
-                            )
-             ),
-  '2' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'NoHIV'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'IncidenceMotherMultiplier = 1',
-                                       to = 'IncidenceMotherMultiplier = 0')
-                            )
-             ))
-for (i in scenarios_to_create){
-  do.call(generate_scenario, i)
-}</code></pre>
-<pre class="r"><code>available_scenarios &lt;- list_all_scenarios(td, FALSE)</code></pre>
-<pre class="r"><code>for (scenario in available_scenarios){
-  print(scenario)
-  run_scenario(td, scenario$scex,
-               td, &quot;MochModel4.exe&quot;)
-}</code></pre>
-<pre><code>## $scex
-## [1] &quot;Base.scex&quot;
-## 
-## $dat
-## [1] &quot;Base(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\Base.scex&quot;' had status 1</code></pre>
-<pre><code>## $scex
-## [1] &quot;NoHIV.scex&quot;
-## 
-## $dat
-## [1] &quot;NoHIV(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\NoHIV.scex&quot;' had status 1</code></pre>
-<pre><code>## $scex
-## [1] &quot;Small.scex&quot;
-## 
-## $dat
-## [1] &quot;Small(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\Small.scex&quot;' had status 1</code></pre>
-<pre class="r"><code>all_results &lt;- list_all_results(td)</code></pre>
-<pre class="r"><code>for (i in all_results){
-  print(i)
-  db_channel &lt;- access_database(i)
-  print('Parameter Tables:')
-  print(list_parameter_tables(db_channel))
-  print('Result Tables:')
-  print(list_result_tables(db_channel))
-}</code></pre>
+<div id="setup-and-run-model" class="section level1">
+<h1>Setup and Run Model</h1>
+<div id="folders-and-scenario-creation" class="section level2">
+<h2>Folders and scenario creation</h2>
+</div>
+<div id="run-modgen-on-all-scenarios" class="section level2">
+<h2>Run modgen on all scenarios</h2>
+</div>
+<div id="list-available-results" class="section level2">
+<h2>List available results</h2>
 <pre><code>## [1] &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb&quot;
 ## [1] &quot;Parameter Tables:&quot;
 ## [1] &quot;HealthyMortalityMotherMultiplier&quot; &quot;HIVFreeMortality&quot;                
@@ -156,6 +90,62 @@ for (i in scenarios_to_create){
 ## [5] &quot;ModelTime&quot;                        &quot;StartingPopulationSize&quot;          
 ## [1] &quot;Result Tables:&quot;
 ## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;</code></pre>
+</div>
+<div id="some-utility-functions-that-will-soon-be-merged-into-the-package" class="section level2">
+<h2>Some utility functions that will soon be merged into the package</h2>
+</div>
+</div>
+<div id="tests" class="section level1">
+<h1>Tests</h1>
+<div id="life-expectancy-healthy-mother" class="section level2">
+<h2><a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother</h2>
+<p>Scenario(s): NoHIV</p>
+<p>In the case of no sickness, we expect the mother’s life expectancy to be between 60 and 70</p>
+<pre><code>##                    metrics        Value CV SE
+## 1          Population size 10000.000000 NA NA
+## 2 Minimum duration of life     0.003029 NA NA
+## 3 Maximum duration of life    91.000000 NA NA
+## 4          Life expectancy    66.212037 NA NA</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
+<div id="mother-max-age" class="section level2">
+<h2><a name="MotherMaxAge"></a>Mother Max Age</h2>
+<p>Scenario(s): Base</p>
+<p>The max age of a mother cannot be greater than 91</p>
+<pre><code>##                    metrics        Value CV SE
+## 1          Population size 10000.000000 NA NA
+## 2 Minimum duration of life     0.003029 NA NA
+## 3 Maximum duration of life    91.000000 NA NA
+## 4          Life expectancy    45.438075 NA NA</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
+<div id="summary-of-all-tests" class="section level2">
+<h2>Summary of all tests</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Name</th>
+<th align="center">Result</th>
+<th align="center">Scenarios</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><a href="#LifeExpectancyHealthyMother">Life Expectancy Healthy Mother</a></td>
+<td align="center">TRUE</td>
+<td align="center">NoHIV</td>
+</tr>
+<tr class="even">
+<td align="center"><a href="#MotherMaxAge">Mother Max Age</a></td>
+<td align="center">TRUE</td>
+<td align="center">Base</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </div>

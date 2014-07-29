@@ -5,9 +5,16 @@ date: "Tuesday, July 22, 2014"
 output: html_document
 ---
 
-```{r}
+# Setup and Run Model
+
+## Folders and scenario creation
+
+```{r, include=FALSE}
+options(scipen=999)
 rm(list = ls())
 library(modgenTester)
+library(knitr)
+opts_chunk$set(echo = FALSE)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
 
@@ -44,6 +51,8 @@ for (i in scenarios_to_create){
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 
+## Run modgen on all scenarios
+
 ```{r, eval=FALSE}
 for (scenario in available_scenarios){
   print(scenario)
@@ -56,13 +65,106 @@ for (scenario in available_scenarios){
 all_results <- list_all_results(td)
 ```
 
+## List available results
+
 ```{r}
+db_channels <- list()
 for (i in all_results){
   print(i)
   db_channel <- access_database(i)
+  scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
+  db_channels[[scenario_name]] <- db_channel
   print('Parameter Tables:')
   print(list_parameter_tables(db_channel))
   print('Result Tables:')
   print(list_result_tables(db_channel))
 }
+```
+
+## Some utility functions that will soon be merged into the package
+```{r}
+test_results <- list()
+
+new_test <- function(test_results, name, scenarios = NULL, result = NULL, description = NULL){
+  anchor_link <- gsub(" ", "", name)
+  test_results[[name]] <- list(name = name,
+                               result = result,
+                               scenarios = scenarios, 
+                               anchor_link = anchor_link)
+  cat(paste0('## <a name="', anchor_link,'"></a>', name, "\n\n"))
+  cat(paste0("Scenario(s): ", scenarios, "\n\n"))
+  cat(paste0(description, '\n\n'))
+  return(test_results)
+}
+
+new_result <- function(test_results, name, result){
+  test_results[[name]][['result']] <- result
+  cat(paste0("**Result: ", result, "** \n\n"))
+  cat('---\n\n')
+  return(test_results)
+}
+
+print_test_results <- function(test_results){
+  cat("|Name|Result|Scenarios|\n")
+  cat("|:-:|:-:|:-:|\n")
+  for (i in test_results){
+    cat(paste0("|[", i$name, "](#", i$anchor_link, ")|", i$result, "|", paste(i$scenarios, collapse = ", "), " \n"))
+  }
+}
+```
+
+# Tests
+
+```{r, results='asis'}
+test_results <- new_test(test_results, 
+                         name = 'Life Expectancy Healthy Mother',
+                         scenarios = 'NoHIV',
+                         description = "In the case of no sickness, we expect the mother's life expectancy to be between 60 and 70")
+```
+
+```{r}
+DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channels$NoHIV))
+print(DurationOfLife)
+x <- subset(DurationOfLife, 
+            metrics == "Life expectancy", 
+            select = 'Value')[1,1]
+result <- x > 60 & x < 70
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = 'Life Expectancy Healthy Mother',
+                         result = result)
+```
+
+
+
+```{r, results='asis'}
+test_results <- new_test(test_results,
+                         name = 'Mother Max Age',
+                         scenarios = "Base",
+                         description = "The max age of a mother cannot be greater than 91")
+```
+
+```{r}
+DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channels$Base))
+print(DurationOfLife)
+x <- subset(DurationOfLife, 
+            metrics == "Maximum duration of life", 
+            select = 'Value')
+result <- x <= 91
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = 'Mother Max Age',
+                         result = result)
+```
+
+
+
+## Summary of all tests
+
+```{r, results='asis'}
+print_test_results(test_results)
 ```
