@@ -43,11 +43,38 @@ classification MDEATH_SCHED_STATE
 	mdsDEAD
 };
 
+partition VAN_DER_PAAL_AGES
+{
+	13, 25, 35, 45
+};
+
+/* NOTE(VAN_DER_PAAL_AGES, EN)
+    The survival curves presented in the Van der Paal article
+	is grouped in to 5 different groups bounded by 13, 25, 35, 45, and Infinity
+*/
+
+range VAN_DER_PAAL_INDX //EN Van der Paal Age Index
+{
+	0,4
+};
+
+/* NOTE(VAN_DER_PAAL_INDX, EN)
+    The survival curves presented in the Van der Paal article
+	is grouped in to 5 different groups bounded by 13, 25, 35, 45, and Infinity
+*/
+
 actor_set Mother asAllMother; //EN All Mother actors
 
 
 actor Mother            //EN Individual
 {
+	int model_version = {3};
+	/*NOTE(Mother.model_version, EN)
+	    By attaching the model_version to an actor and reporting it with a table
+		I can be 100% sure that the model version reported in the output can only be
+		produced by that version of the code (as opposed to just reading it from a dat file)
+	*/
+
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.
@@ -73,6 +100,25 @@ actor Mother            //EN Individual
 		can also be used to count actors in tables.
 	*/
 
+	double inf_mortality_draw = {-1}; //EN Random Draw for Mortality after Infection
+	/* NOTE (Mother.inf_mortality_draw, EN)
+		When a mother is created, her draw for mortality from the infected
+		state is immediately drawn and is placed on the Mother as a state variable.
+		This allows other events to also access this draw so that other events can be
+		correlated with this event
+	*/
+
+	VAN_DER_PAAL_INDX vdp_age_int = self_scheduling_split(age, VAN_DER_PAAL_AGES); //EN Van Der Paal Age Category
+	/* Note (Mother.vdp_age_int, EN)
+		Survival Curves were fitted to data in the Van Der Paal Article. To use those curves, 
+		age must be modified into those categories.
+	*/
+
+	VAN_DER_PAAL_INDX vdp_age_at_infection = {4}; //EN Van Der Paal Age Category at Infection
+	/* NOTE (Mother.vdp_age_at_infection, EN)
+		To schedule death from the infected state, the mother's age at infection (in Van Der Paal Category) must be known.
+	*/
+
 	//LABEL(Mother.Start, EN) Starts the actor
 	void Start();
 
@@ -92,9 +138,13 @@ void Mother::Start()
 	age = 0;
 	time = 0;
 
+	inf_mortality_draw = RandUniform(3);
+
 	// After the code in this function is executed,
 	// Modgen initializes events and tables for the actor.
 	// Modgen also outputs starting values to the tracking file if requested.
+
+
 }
 
 /*NOTE(Mother.Finish, EN)

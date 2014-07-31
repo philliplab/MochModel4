@@ -5,13 +5,14 @@ date: "Tuesday, July 22, 2014"
 output: html_document
 ---
 
-# Setup and Run Model
+## Setup and Run Model
 
-## Folders and scenario creation
+### Folders and scenario creation
 
 ```{r, include=FALSE}
-options(scipen=999)
 rm(list = ls())
+rerun_models <- FALSE
+options(scipen=999)
 library(modgenTester)
 library(knitr)
 opts_chunk$set(echo = FALSE)
@@ -51,9 +52,9 @@ for (i in scenarios_to_create){
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 
-## Run modgen on all scenarios
+### Run modgen on all scenarios
 
-```{r, eval=FALSE}
+```{r, eval=rerun_models}
 for (scenario in available_scenarios){
   print(scenario)
   run_scenario(td, scenario$scex,
@@ -65,7 +66,7 @@ for (scenario in available_scenarios){
 all_results <- list_all_results(td)
 ```
 
-## List available results
+### List available results
 
 ```{r}
 db_channels <- list()
@@ -81,7 +82,7 @@ for (i in all_results){
 }
 ```
 
-## Some utility functions that will soon be merged into the package
+### Some utility functions that will soon be merged into the package
 ```{r}
 test_results <- list()
 
@@ -91,7 +92,7 @@ new_test <- function(test_results, name, scenarios = NULL, result = NULL, descri
                                result = result,
                                scenarios = scenarios, 
                                anchor_link = anchor_link)
-  cat(paste0('## <a name="', anchor_link,'"></a>', name, "\n\n"))
+  cat(paste0('### <a name="', anchor_link,'"></a>', name, "\n\n"))
   cat(paste0("Scenario(s): ", scenarios, "\n\n"))
   cat(paste0(description, '\n\n'))
   return(test_results)
@@ -113,12 +114,29 @@ print_test_results <- function(test_results){
 }
 ```
 
-# Tests
+### Helper functions - should maybe be packaged?
+
+```{r}
+get_mother_population_size <- function(db_channel){
+  DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channel))
+  return(subset(DurationOfLife, 
+                metrics == "Population size", 
+                select = 'Value')[1,1])
+}
+```
+
+```{r}
+ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channels$NoHIV))$Value[1]
+```
+
+## Tests for Model Version `r ModelVersion`
 
 ```{r, results='asis'}
+ctest_name <- 'Life Expectancy Healthy Mother'
+cscenarios <- 'NoHIV'
 test_results <- new_test(test_results, 
-                         name = 'Life Expectancy Healthy Mother',
-                         scenarios = 'NoHIV',
+                         name = ctest_name,
+                         scenarios = cscenarios,
                          description = "In the case of no sickness, we expect the mother's life expectancy to be between 60 and 70")
 ```
 
@@ -133,17 +151,20 @@ result <- x > 60 & x < 70
 
 ```{r, results='asis'}
 test_results <- new_result(test_results,
-                         name = 'Life Expectancy Healthy Mother',
+                         name = ctest_name,
                          result = result)
+rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
 
 ```{r, results='asis'}
+ctest_name <- 'Mother Max Age'
+cscenarios <- 'Base'
 test_results <- new_test(test_results,
-                         name = 'Mother Max Age',
-                         scenarios = "Base",
-                         description = "The max age of a mother cannot be greater than 91")
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The max age of a mother cannot be greater than 92")
 ```
 
 ```{r}
@@ -152,14 +173,111 @@ print(DurationOfLife)
 x <- subset(DurationOfLife, 
             metrics == "Maximum duration of life", 
             select = 'Value')
-result <- x <= 91
+result <- x <= 92
 ```
 
 ```{r, results='asis'}
 test_results <- new_result(test_results,
-                         name = 'Mother Max Age',
+                         name = ctest_name,
                          result = result)
+rm('ctest_name', 'cscenarios', 'result')
 ```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'Percentage ever infected bounded'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The percentage of mothers ever infected in the base case should be between 40 and 50%")
+```
+
+```{r}
+Incidence <- as.data.frame(new_RTable("Incidence", db_channels$Base))
+new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
+total_infections <- sum(new_infections)
+total_population <- get_mother_population_size(db_channels$Base)
+percentage_ever_infected <- total_infections / total_population
+print(list(total_infections = total_infections,
+           total_population = total_population))
+result <- percentage_ever_infected > 0.4 & percentage_ever_infected < 0.5
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'Percentage ever infected zero in NoHIV'
+cscenarios <- 'NoHIV'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The number of mothers ever infected in the NoHIV case should be 0")
+```
+
+```{r}
+Incidence <- as.data.frame(new_RTable("Incidence", db_channels$NoHIV))
+new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
+total_infections <- sum(new_infections)
+print(list(total_infections = total_infections))
+result <- total_infections == 0
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'Infected vs Healthy Mortality'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The mortality of uninfected mothers must be lower than the mortality of uninfected mothers. Mortality is tricky to measure accurately thus a proxy is used. Total deaths from state is compared to the total years spent in the state for each state. Further refinements should be made to this test")
+```
+
+```{r}
+Mortality <- as.data.frame(new_RTable("Mortality", db_channels[[cscenarios]]))
+total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy Population", select = 'Value')$Value)
+total_time_in_infected <- sum(subset(Mortality, metrics == "Infected Population", select = 'Value')$Value)
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Death from Healthy State", select = 'Value')$Value)
+deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
+crude_healthy_mortality <- deaths_in_healthy / total_time_in_healthy
+crude_infected_mortality <- deaths_in_infected / total_time_in_infected
+
+print(list(
+total_time_in_healthy = total_time_in_healthy,
+total_time_in_infected = total_time_in_infected,
+deaths_in_healthy = deaths_in_healthy,
+deaths_in_infected = deaths_in_infected,
+crude_healthy_mortality = crude_healthy_mortality,
+crude_infected_mortality = crude_infected_mortality 
+))
+result <- crude_healthy_mortality < crude_infected_mortality
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
 
 
 

@@ -59,67 +59,122 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-<div id="setup-and-run-model" class="section level1">
-<h1>Setup and Run Model</h1>
-<div id="folders-and-scenario-creation" class="section level2">
-<h2>Folders and scenario creation</h2>
+<div id="setup-and-run-model" class="section level2">
+<h2>Setup and Run Model</h2>
+<div id="folders-and-scenario-creation" class="section level3">
+<h3>Folders and scenario creation</h3>
 </div>
-<div id="run-modgen-on-all-scenarios" class="section level2">
-<h2>Run modgen on all scenarios</h2>
+<div id="run-modgen-on-all-scenarios" class="section level3">
+<h3>Run modgen on all scenarios</h3>
 </div>
-<div id="list-available-results" class="section level2">
-<h2>List available results</h2>
+<div id="list-available-results" class="section level3">
+<h3>List available results</h3>
 <pre><code>## [1] &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb&quot;
 ## [1] &quot;Parameter Tables:&quot;
 ## [1] &quot;HealthyMortalityMotherMultiplier&quot; &quot;HIVFreeMortality&quot;                
 ## [3] &quot;IncidenceMotherMultiplier&quot;        &quot;IncidenceTable&quot;                  
-## [5] &quot;ModelTime&quot;                        &quot;StartingPopulationSize&quot;          
+## [5] &quot;MInfectedMortPhi&quot;                 &quot;MInfectedMortScale&quot;              
+## [7] &quot;MInfectedMortShape&quot;               &quot;ModelTime&quot;                       
+## [9] &quot;StartingPopulationSize&quot;          
 ## [1] &quot;Result Tables:&quot;
-## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;     
+## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;      &quot;Mortality&quot;      &quot;ModelVersion&quot;  
 ## [1] &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHIV(tbl).mdb&quot;
 ## [1] &quot;Parameter Tables:&quot;
 ## [1] &quot;HealthyMortalityMotherMultiplier&quot; &quot;HIVFreeMortality&quot;                
 ## [3] &quot;IncidenceMotherMultiplier&quot;        &quot;IncidenceTable&quot;                  
-## [5] &quot;ModelTime&quot;                        &quot;StartingPopulationSize&quot;          
+## [5] &quot;MInfectedMortPhi&quot;                 &quot;MInfectedMortScale&quot;              
+## [7] &quot;MInfectedMortShape&quot;               &quot;ModelTime&quot;                       
+## [9] &quot;StartingPopulationSize&quot;          
 ## [1] &quot;Result Tables:&quot;
-## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;     
+## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;      &quot;Mortality&quot;      &quot;ModelVersion&quot;  
 ## [1] &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb&quot;
 ## [1] &quot;Parameter Tables:&quot;
 ## [1] &quot;HealthyMortalityMotherMultiplier&quot; &quot;HIVFreeMortality&quot;                
 ## [3] &quot;IncidenceMotherMultiplier&quot;        &quot;IncidenceTable&quot;                  
-## [5] &quot;ModelTime&quot;                        &quot;StartingPopulationSize&quot;          
+## [5] &quot;MInfectedMortPhi&quot;                 &quot;MInfectedMortScale&quot;              
+## [7] &quot;MInfectedMortShape&quot;               &quot;ModelTime&quot;                       
+## [9] &quot;StartingPopulationSize&quot;          
 ## [1] &quot;Result Tables:&quot;
-## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;</code></pre>
+## [1] &quot;DurationOfLife&quot; &quot;Incidence&quot;      &quot;Mortality&quot;      &quot;ModelVersion&quot;</code></pre>
 </div>
-<div id="some-utility-functions-that-will-soon-be-merged-into-the-package" class="section level2">
-<h2>Some utility functions that will soon be merged into the package</h2>
+<div id="some-utility-functions-that-will-soon-be-merged-into-the-package" class="section level3">
+<h3>Some utility functions that will soon be merged into the package</h3>
+</div>
+<div id="helper-functions---should-maybe-be-packaged" class="section level3">
+<h3>Helper functions - should maybe be packaged?</h3>
 </div>
 </div>
-<div id="tests" class="section level1">
-<h1>Tests</h1>
-<div id="life-expectancy-healthy-mother" class="section level2">
-<h2><a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother</h2>
+<div id="tests-for-model-version-3" class="section level2">
+<h2>Tests for Model Version 3</h2>
+<div id="life-expectancy-healthy-mother" class="section level3">
+<h3><a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother</h3>
 <p>Scenario(s): NoHIV</p>
 <p>In the case of no sickness, we expect the mother’s life expectancy to be between 60 and 70</p>
 <pre><code>##                    metrics        Value CV SE
 ## 1          Population size 10000.000000 NA NA
-## 2 Minimum duration of life     0.003029 NA NA
-## 3 Maximum duration of life    91.000000 NA NA
-## 4          Life expectancy    66.212037 NA NA</code></pre>
+## 2 Minimum duration of life     0.001127 NA NA
+## 3 Maximum duration of life    91.999630 NA NA
+## 4          Life expectancy    66.008688 NA NA</code></pre>
 <p><strong>Result: TRUE</strong></p>
 <hr />
 </div>
-<div id="mother-max-age" class="section level2">
-<h2><a name="MotherMaxAge"></a>Mother Max Age</h2>
+<div id="mother-max-age" class="section level3">
+<h3><a name="MotherMaxAge"></a>Mother Max Age</h3>
 <p>Scenario(s): Base</p>
-<p>The max age of a mother cannot be greater than 91</p>
+<p>The max age of a mother cannot be greater than 92</p>
 <pre><code>##                    metrics        Value CV SE
 ## 1          Population size 10000.000000 NA NA
-## 2 Minimum duration of life     0.003029 NA NA
-## 3 Maximum duration of life    91.000000 NA NA
-## 4          Life expectancy    45.438075 NA NA</code></pre>
+## 2 Minimum duration of life     0.001127 NA NA
+## 3 Maximum duration of life    91.993240 NA NA
+## 4          Life expectancy    49.989346 NA NA</code></pre>
 <p><strong>Result: TRUE</strong></p>
 <hr />
+</div>
+<div id="percentage-ever-infected-bounded" class="section level3">
+<h3><a name="Percentageeverinfectedbounded"></a>Percentage ever infected bounded</h3>
+<p>Scenario(s): Base</p>
+<p>The percentage of mothers ever infected in the base case should be between 40 and 50%</p>
+<pre><code>## $total_infections
+## [1] 4498
+## 
+## $total_population
+## [1] 10000</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
+<div id="percentage-ever-infected-zero-in-nohiv" class="section level3">
+<h3><a name="PercentageeverinfectedzeroinNoHIV"></a>Percentage ever infected zero in NoHIV</h3>
+<p>Scenario(s): NoHIV</p>
+<p>The number of mothers ever infected in the NoHIV case should be 0</p>
+<pre><code>## $total_infections
+## [1] 0</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
+<div id="infected-vs-healthy-mortality" class="section level3">
+<h3><a name="InfectedvsHealthyMortality"></a>Infected vs Healthy Mortality</h3>
+<p>Scenario(s): Base</p>
+<p>The mortality of uninfected mothers must be lower than the mortality of uninfected mothers. Mortality is tricky to measure accurately thus a proxy is used. Total deaths from state is compared to the total years spent in the state for each state. Further refinements should be made to this test</p>
+<pre><code>## $total_time_in_healthy
+## [1] 452228
+## 
+## $total_time_in_infected
+## [1] 47666
+## 
+## $deaths_in_healthy
+## [1] 5502
+## 
+## $deaths_in_infected
+## [1] 4498
+## 
+## $crude_healthy_mortality
+## [1] 0.01217
+## 
+## $crude_infected_mortality
+## [1] 0.09437</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
 </div>
 <div id="summary-of-all-tests" class="section level2">
 <h2>Summary of all tests</h2>
@@ -142,9 +197,23 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <td align="center">TRUE</td>
 <td align="center">Base</td>
 </tr>
+<tr class="odd">
+<td align="center"><a href="#Percentageeverinfectedbounded">Percentage ever infected bounded</a></td>
+<td align="center">TRUE</td>
+<td align="center">Base</td>
+</tr>
+<tr class="even">
+<td align="center"><a href="#PercentageeverinfectedzeroinNoHIV">Percentage ever infected zero in NoHIV</a></td>
+<td align="center">TRUE</td>
+<td align="center">NoHIV</td>
+</tr>
+<tr class="odd">
+<td align="center"><a href="#InfectedvsHealthyMortality">Infected vs Healthy Mortality</a></td>
+<td align="center">TRUE</td>
+<td align="center">Base</td>
+</tr>
 </tbody>
 </table>
-</div>
 </div>
 
 

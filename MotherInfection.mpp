@@ -95,7 +95,7 @@ double mInfectionTime(LIFE v_integer_age){
 TIME Mother::timeInfectionEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if (mdeath_sched_status == mdsHEALTHY & infectible == TRUE){
+	if (mdeath_sched_status == mdsHEALTHY && infectible == TRUE){
 			t_event_time = WAIT(mInfectionTime(integer_age));
 			//tEventTime = WAIT(IncidenceTableDraw(RandUniform(2)));
 	};
@@ -104,6 +104,7 @@ TIME Mother::timeInfectionEvent()
 
 void Mother::InfectionEvent()
 {
+	vdp_age_at_infection = vdp_age_int; //Used for scheduling death from infection
 	mdeath_sched_status = mdsINFECTED;
 	infected = TRUE;
 };

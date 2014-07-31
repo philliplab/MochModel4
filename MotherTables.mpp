@@ -22,3 +22,23 @@ table Mother Incidence //EN Incidence amongst mothers
 		(undergone_transition( infected, FALSE, TRUE) / unit) //EN Incidence decimals=4
 	} //EN Infection Statistics
 };
+
+table Mother Mortality
+{
+	integer_age+ *
+	{
+		duration(), //EN Total Population
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Population
+		undergone_transition(mdeath_sched_status, mdsHEALTHY, mdsDEAD), //EN Death from Healthy State
+		duration(mdeath_sched_status, mdsINFECTED), //EN Infected Population
+		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD), //EN Death from Infected States
+		duration(mdeath_sched_status, mdsDEAD) //EN Dead Population
+	}
+};
+
+table Mother ModelVersion //EN Model Version
+{
+	{
+		min_value_out(model_version)
+	}
+};

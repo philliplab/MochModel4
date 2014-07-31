@@ -19,6 +19,49 @@ Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
+/* NOTE ( MInfectedMortShape, EN )
+	    The R package nls was used to obtain the following fit to 
+		Figure 2.b from the Van der Paal article.
+
+	    f(x) = exp(-(x/11.1123)^1.94344) 
+
+		From this formula, the choice for the shape parameter is 1.94344.
+		However, 2.5 was used instead since due to censoring in the data
+		the original fit yields low mortality at advanced ages.
+*/
+
+	double	MInfectedMortShape = 2.5; //EN Infected Mother Survival Curve Shape - kappa
+/* NOTE ( MInfectedMortScale, EN )
+	    The R package nls was used to obtain the following fit to 
+		Figure 2.b from the Van der Paal article.
+
+	    f(x) = exp(-(x/11.1123)^1.94344) 
+
+		 The scale parameter was extracted from this formula.
+*/
+
+	double	MInfectedMortScale = 11.1123; //EN Infected Mother Survival Curve Scale - lambda
+/* NOTE ( MInfectedMortPhi, EN )
+	The Van der Paal article only provides survival
+	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
+	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
+	that will instruct the function to not assign a death date to people younger than 13.
+	Future versions of the model will include a better implemenation of this mechanism.
+
+	The other values in this vector was obtained by fitting a curve of the form
+	
+	f(x) = exp(-(x/scale)^shape)
+
+	was fitted to each age groups survival function seperately. The scale value obtained from each fit 
+	was then divided by the scale of the pooled data to obtain the phi value. 
+	Note that the last entry is used for all ages above 44.
+*/
+
+
+	 //EN Infected Mother Survival Curve Age Modifier - phi
+	double	MInfectedMortPhi[VAN_DER_PAAL_INDX] = {
+		1000, 1.22398, 0.95143, 0.58661, 0.52447, 
+	};
 /* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to

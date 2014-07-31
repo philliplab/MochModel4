@@ -71,13 +71,37 @@ parameters
 	/* NOTE (HealthyMortalityMotherMultiplier, EN)
 		A multiplier that allows finer control for testing and model exploration.
 	*/
+
+	double MInfectedMortShape; //EN Infected Mother Survival Curve Shape - kappa
+	/* NOTE (MInfectedMortShape, EN)
+		The shape parameter for the Infected mother's survival curve
+	*/
+
+	double MInfectedMortScale; //EN Infected Mother Survival Curve Scale - lambda
+	/* NOTE (MInfectedMortScale, EN)
+		The scale parameter for Infected mother's survival curve
+	*/
+	
+	double MInfectedMortPhi[VAN_DER_PAAL_INDX]; //EN Infected Mother Survival Curve Age Modifier - phi
+	/* NOTE (MInfectedMortPhi, EN)
+		To accomodate different age groups, the scale parameter is multiplied by a this number. 
+		Each of the different age groups used in the Van der Paal article must have an entry in
+		this parameter.
+	*/
 };
+
+
+parameter_group Mother_Mortality
+{ //EN Mothers' Mortality Parameters
+	MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi
+};
+
 
 actor Mother            //EN Individual
 {
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
-
+/*
 double mHealthyMortalityTime(LIFE v_integer_age){
 	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
 	double t_event_time = pow(10,10);
@@ -99,14 +123,49 @@ double mHealthyMortalityTime(LIFE v_integer_age){
 	}
 	return t_event_time;
 }
+*/
+double InvWeibull(double y, double kappa, double lambda, double phi)
+{
+	// Lambda is Scale and Kappa is Shape
+	double x = 0;
+	if (phi == 1000){ // SIGH - this is not a pretty hack - no construct like R's Inf in C++?
+		x = pow(10, 10);
+	} else
+	{
+		x = (phi * lambda) * pow(-log(y), 1/kappa);
+	};
+	return(x);
+};
+
+double LifeTableDraw(double x)
+{
+	int indx = -1;
+	double prev_lx = 1;
+	double lx = 1;
+	//int time_indx = 0;
+	while (x <= lx)
+	{
+		indx++;
+//		time_indx = indx > 40 ? 40 : indx;
+		prev_lx = lx;
+//		lx = prev_lx * (1-HIVFreeMortality[F][indx][time_indx]);
+		lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime]);
+	};
+	if (indx == -1){
+		indx = 0;
+	}; // Small correction for when mother dies between ages 0 and 1.
+	return(indx + ((x - lx) / (prev_lx - lx)));
+};
 
 // The time function of MortalityEvent
 TIME Mother::timeMortalityEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
+	double draw = RandUniform(4);
 
 	switch(mdeath_sched_status){
-	case mdsHEALTHY: {t_event_time = WAIT(mHealthyMortalityTime(integer_age));} break;
+	case mdsHEALTHY: {t_event_time = WAIT(LifeTableDraw(draw));} break;
+	case mdsINFECTED: {t_event_time = WAIT(InvWeibull(inf_mortality_draw, MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi[vdp_age_at_infection]));} break;
 	default: {t_event_time = WAIT(0);} break;
 	}
 
@@ -116,6 +175,7 @@ TIME Mother::timeMortalityEvent()
 // The implement function of MortalityEvent
 void Mother::MortalityEvent()
 {
+	mdeath_sched_status = mdsDEAD;
 	alive = FALSE;
 
 	// Remove the actor from the simulation.
