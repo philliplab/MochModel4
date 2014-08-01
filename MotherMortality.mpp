@@ -7,6 +7,7 @@
 	- Mortality for Healthy Mothers
 	- Mortality for Infected Mothers
 	- Mortality for Treated Mothers
+	- Mortality for Mothers who stopped treatment
 
 	Mortality for Healthy Mothers
 
@@ -18,19 +19,58 @@
 
 	- Implementation Details
 
-	Mortality from the healthy state is implemented by asking the question: 
-	Given the mothers current age and the time specified in the model, when
-	will the mother die? This is (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])).
+	Using the mortality data, a survival curve S(a) is constructed for each mother.
+	Since death from the healthy state is only scheduled at the birth of the
+	mother, and all the mothers are assumed to be born simultaneously, all
+	mothers have exactly the same survival curve.
 
-	When the mother ages 1 year, the question is asked again, this time the
-	answer is again (-log(RandUniform()) / -log(1 - qstar[integer_age, model_time])) (But 
-	integer_age is now one more). This process is continued until the mother leaves the 
-	healthy state (at which time another mortality function will be used), or the mother 
-	dies before her next birth day.
+	The curve is constructed by setting the survival probability equal to 1
+	at age 0. The value of the survival curve at age 1 is then set to
+	S(1) = S(0) * (1 - qstar[0,y]). Similarly S2) = S(1) * (1 - qstar[1, y]).
+	A straight line was then used to connect
+	S(0) to S(1). Where y is the value of ModelTime and qstar[x,y] is q[x,y] 
+	value is multiplied by HealthyMortalityMotherMultiplier.
+	This process was continued until the value of the
+	survival curve reached 0. 
+	
+	To assign a time of death using this curve, the following is done:
+	A random uniform number is drawn for a mother. This random number is
+	placed on the y axis of the survival curve and the age of death
+	is read off from the x-axis.
 
-	The qstar[x,y] is q[x,y] value is multiplied by HealthyMortalityMotherMultiplier.
+	The actual implementation is a slight optimization of the above process.
+	The random uniform number is draw first and the curve is then constructed
+	until the value of the curve reaches the randomly drawn number.
 
 	Mortality for Infected Mothers
+
+	- Data requirements
+
+	The shape and scale for the weibull distribution whose CDF the survival curve is based on.
+	Furthermore, the surival is grouped in different age groups. For each age group, the
+	scale parameter is multiplied by a factor. This shifts the survival curve to the
+	right for younger mothers and to the left for older mothers.
+
+	- Implementation Details
+
+	The survival function is of the form: S(t) = (lambda) * pow(-log(t), 1/kappa) where
+	lambda is the scale parameter and kappa is the shape parameter and t is the time since infection.
+	Note that this is just 1 - the CDF of a weibull distribution.
+
+	Furthermore, to accomodate different age groups, the lamba parameter is multiplied by a factor 
+	called phi. Each of the different age groups used in the Van der Paal article must be given
+	a phi value.
+
+	To assign a time of death using this curve, the following is done:
+	A random uniform number is drawn for a mother. This random number is
+	placed on the y axis of the survival curve and the age of death
+	is read off from the x-axis.
+
+	A special note about the use of the phi factor. The Van der Paal article only provides survival
+	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
+	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
+	that will instruct the function to not assign a death date to people younger than 13.
+	Future versions of the model should include a better implemenation of this mechanism. 
 
 	- Not implemented yet
 */
@@ -101,29 +141,7 @@ actor Mother            //EN Individual
 {
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
-/*
-double mHealthyMortalityTime(LIFE v_integer_age){
-	// Life table only goes till age 91. Assume that mortality remains constant after age 91 at the value it was at age 91
-	double t_event_time = pow(10,10);
-	int capped_age;
-	if (v_integer_age > 91){
-		capped_age = 91;
-	} else {
-		capped_age = v_integer_age;
-	}
 
-	double prob_death = HIVFreeMortality[F][capped_age][ModelTime] * HealthyMortalityMotherMultiplier;
-
-	// Draw a random waiting time to death from an exponential distribution
-	// based on the constant hazard MortalityHazard.
-	if (prob_death >= 1) {
-	  	t_event_time = 0;
-	} else {
-		t_event_time = -( log( RandUniform(1) ) / prob_death);
-	}
-	return t_event_time;
-}
-*/
 double InvWeibull(double y, double kappa, double lambda, double phi)
 {
 	// Lambda is Scale and Kappa is Shape
@@ -139,6 +157,8 @@ double InvWeibull(double y, double kappa, double lambda, double phi)
 
 double LifeTableDraw(double x)
 {
+	// Old code that allowed model time to vary commented out
+	// Consider implementing the feature again in the future
 	int indx = -1;
 	double prev_lx = 1;
 	double lx = 1;
