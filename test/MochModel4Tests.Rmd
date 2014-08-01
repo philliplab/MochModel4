@@ -55,11 +55,32 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 ### Run modgen on all scenarios
 
 ```{r, eval=rerun_models}
-for (scenario in available_scenarios){
+library(foreach)
+library(doSNOW)
+cl <- makeCluster(6)
+clusterCall(cl, function() {
+  library(modgenTester)
+})
+clusterExport(cl, 'td')
+registerDoSNOW(cl)
+
+ptm <- proc.time()
+foreach(scenario = available_scenarios) %dopar% {
   print(scenario)
   run_scenario(td, scenario$scex,
                td, "MochModel4.exe")
 }
+print(proc.time() - ptm)
+
+#ptm <- proc.time()
+#for (scenario in available_scenarios) {
+#  print(scenario)
+#  run_scenario(td, scenario$scex,
+#               td, "MochModel4.exe")
+#}
+#proc.time() - ptm
+
+stopCluster(cl)
 ```
 
 ```{r}

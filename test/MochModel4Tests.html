@@ -66,33 +66,51 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 <div id="run-modgen-on-all-scenarios" class="section level3">
 <h3>Run modgen on all scenarios</h3>
-<pre><code>## $scex
-## [1] &quot;Base.scex&quot;
+<pre><code>## Warning: package 'foreach' was built under R version 3.0.3
+## Warning: package 'doSNOW' was built under R version 3.0.3</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre><code>## Warning: package 'iterators' was built under R version 3.0.3</code></pre>
+<pre><code>## Loading required package: snow</code></pre>
+<pre><code>## Warning: package 'snow' was built under R version 3.0.3</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;        
 ## 
-## $dat
-## [1] &quot;Base(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\Base.scex&quot;' had status 1</code></pre>
-<pre><code>## $scex
-## [1] &quot;NoHIV.scex&quot;
+## [[2]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;        
 ## 
-## $dat
-## [1] &quot;NoHIV(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\NoHIV.scex&quot;' had status 1</code></pre>
-<pre><code>## $scex
-## [1] &quot;Small.scex&quot;
+## [[3]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;        
 ## 
-## $dat
-## [1] &quot;Small(MotherCore).dat&quot;</code></pre>
-<pre><code>## Warning: running command '&quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\MochModel4.exe&quot; -sc
-## &quot;C:\Users\Administrator\Documents\Visual Studio
-## 2010\Projects\MochModel4\test\Small.scex&quot;' had status 1</code></pre>
+## [[4]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;        
+## 
+## [[5]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;        
+## 
+## [[6]]
+##  [1] &quot;modgenTester&quot; &quot;ggplot2&quot;      &quot;RODBC&quot;        &quot;snow&quot;        
+##  [5] &quot;methods&quot;      &quot;stats&quot;        &quot;graphics&quot;     &quot;grDevices&quot;   
+##  [9] &quot;utils&quot;        &quot;datasets&quot;     &quot;base&quot;</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;\&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\&quot; -sc \&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\&quot;&quot;
+## 
+## [[2]]
+## [1] &quot;\&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\&quot; -sc \&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\&quot;&quot;
+## 
+## [[3]]
+## [1] &quot;\&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\&quot; -sc \&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\&quot;&quot;</code></pre>
+<pre><code>##    user  system elapsed 
+##    0.05    0.00   14.07</code></pre>
 </div>
 <div id="list-available-results" class="section level3">
 <h3>List available results</h3>
