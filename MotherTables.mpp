@@ -1,8 +1,8 @@
-/*NOTE(DurationOfLife, EN)
-	This table contains statistics related to the duration of life.
+/*NOTE(MotherDurationOfLife, EN)
+	This table contains statistics related to the duration of life of Mothers.
 */
 
-table Mother DurationOfLife //EN Duration of Life
+table Mother MotherDurationOfLife //EN Mother Duration of Life
 {
 	{
 		value_in(alive),				//EN Population size
@@ -13,17 +13,28 @@ table Mother DurationOfLife //EN Duration of Life
 	}	//EN Demographic characteristics
 };
 
-table Mother Incidence //EN Incidence amongst mothers
+/*NOTE(MotherIncidence, EN)
+	The incidence amongst mothers. Based on the ratio between the number of new infections
+	and the total time spent in the Healthy state by mothers of a certain age.
+*/
+
+table Mother MotherIncidence //EN Incidence amongst mothers
 {
 	integer_age * //EN Age
 	{
 		undergone_transition( infected, FALSE, TRUE), //EN Number of new infections
-		duration(), //EN Mother years in this age decimals=1
-		(undergone_transition( infected, FALSE, TRUE) / unit) //EN Incidence decimals=4
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in this age decimals=1
+		(undergone_transition( infected, FALSE, TRUE) / duration(mdeath_sched_status, mdsHEALTHY)) //EN Incidence decimals=4
 	} //EN Infection Statistics
 };
 
-table Mother Mortality
+/* NOTE(MotherMortalityTable, EN)
+	A table tracking detailed mortality stats of the mothers.
+	It aims to be able to answer the questions:
+	For mothers aged x in state y, what is the probability of dying in 12 months?
+*/
+
+table Mother MotherMortalityTable //EN Mother Mortality Table
 {
 	integer_age+ *
 	{
@@ -36,9 +47,14 @@ table Mother Mortality
 	}
 };
 
+/* NOTE(ModelVersion, EN)
+	A version hard coded into the source code of the project to ensure that
+	you can be 100% confident of the version of the code you are looking at
+*/
+
 table Mother ModelVersion //EN Model Version
 {
 	{
-		min_value_out(model_version)
+		min_value_out(model_version) //EN Version
 	}
 };

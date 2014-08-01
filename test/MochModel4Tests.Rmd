@@ -11,7 +11,7 @@ output: html_document
 
 ```{r, include=FALSE}
 rm(list = ls())
-rerun_models <- FALSE
+rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -118,7 +118,7 @@ print_test_results <- function(test_results){
 
 ```{r}
 get_mother_population_size <- function(db_channel){
-  DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channel))
+  DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channel))
   return(subset(DurationOfLife, 
                 metrics == "Population size", 
                 select = 'Value')[1,1])
@@ -141,7 +141,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channels$NoHIV))
+DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$NoHIV))
 print(DurationOfLife)
 x <- subset(DurationOfLife, 
             metrics == "Life expectancy", 
@@ -168,7 +168,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-DurationOfLife <- as.data.frame(new_RTable("DurationOfLife", db_channels$Base))
+DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$Base))
 print(DurationOfLife)
 x <- subset(DurationOfLife, 
             metrics == "Maximum duration of life", 
@@ -195,7 +195,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Incidence <- as.data.frame(new_RTable("Incidence", db_channels$Base))
+Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$Base))
 new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
 total_infections <- sum(new_infections)
 total_population <- get_mother_population_size(db_channels$Base)
@@ -224,7 +224,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Incidence <- as.data.frame(new_RTable("Incidence", db_channels$NoHIV))
+Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$NoHIV))
 new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
 total_infections <- sum(new_infections)
 print(list(total_infections = total_infections))
@@ -250,7 +250,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Mortality <- as.data.frame(new_RTable("Mortality", db_channels[[cscenarios]]))
+Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
 total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy Population", select = 'Value')$Value)
 total_time_in_infected <- sum(subset(Mortality, metrics == "Infected Population", select = 'Value')$Value)
 deaths_in_healthy <- sum(subset(Mortality, metrics == "Death from Healthy State", select = 'Value')$Value)
