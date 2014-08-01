@@ -68,7 +68,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {5};
+	int model_version = {6};
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
 		I can be 100% sure that the model version reported in the output can only be
@@ -80,14 +80,14 @@ actor Mother            //EN Individual
 	// Model-specific labels and notes are supplied below.
 
 	//LABEL(Mother.time, EN) Time
-	/*NOTE(Mother.time, EN)
+	/* NOTE(Mother.time, EN)
 		Time is a continuous quantity in this model.
 		A unit of time is a year.
 	*/
 
 	REPORT_TIME report_time = { 0 };
 	//LABEL(Mother.age, EN) Age
-	/*NOTE(Mother.age, EN)
+	/* NOTE(Mother.age, EN)
 		Age is a continuous quantity in this model.
 		A unit of age is a year.
 	*/

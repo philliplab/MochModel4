@@ -112,6 +112,11 @@ parameters
 		A multiplier that allows finer control for testing and model exploration.
 	*/
 
+	double InfectedMortalityMotherMultiplier; //EN Multiplier for Mortality of Infected Mothers
+	/* NOTE (InfectedMortalityMotherMultiplier, EN)
+		A multiplier that allows finer control for testing and model exploration.
+	*/
+
 	double MInfectedMortShape; //EN Infected Mother Survival Curve Shape - kappa
 	/* NOTE (MInfectedMortShape, EN)
 		The shape parameter for the Infected mother's survival curve
@@ -142,7 +147,7 @@ actor Mother            //EN Individual
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
 
-double InvWeibull(double y, double kappa, double lambda, double phi)
+double invWeibull(double y, double kappa, double lambda, double phi)
 {
 	// Lambda is Scale and Kappa is Shape
 	double x = 0;
@@ -155,7 +160,7 @@ double InvWeibull(double y, double kappa, double lambda, double phi)
 	return(x);
 };
 
-double LifeTableDraw(double x)
+double lifeTableDraw(double x)
 {
 	// Old code that allowed model time to vary commented out
 	// Consider implementing the feature again in the future
@@ -169,12 +174,24 @@ double LifeTableDraw(double x)
 //		time_indx = indx > 40 ? 40 : indx;
 		prev_lx = lx;
 //		lx = prev_lx * (1-HIVFreeMortality[F][indx][time_indx]);
-		lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime]);
+		lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime] * HealthyMortalityMotherMultiplier);
 	};
 	if (indx == -1){
 		indx = 0;
 	}; // Small correction for when mother dies between ages 0 and 1.
 	return(indx + ((x - lx) / (prev_lx - lx)));
+};
+
+double healthyMortalityTime(double draw){
+    return(lifeTableDraw(draw));
+};
+
+double infectedMortalityTime(double y, double kappa, double lambda, double phi){
+	TIME t_event_time = TIME_INFINITE;
+	if (InfectedMortalityMotherMultiplier > 0){
+		t_event_time = invWeibull(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
+	};
+	return(t_event_time);
 };
 
 // The time function of MortalityEvent
@@ -184,8 +201,8 @@ TIME Mother::timeMortalityEvent()
 	double draw = RandUniform(4);
 
 	switch(mdeath_sched_status){
-	case mdsHEALTHY: {t_event_time = WAIT(LifeTableDraw(draw));} break;
-	case mdsINFECTED: {t_event_time = WAIT(InvWeibull(inf_mortality_draw, MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi[vdp_age_at_infection]));} break;
+	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(draw));} break;
+	case mdsINFECTED: {t_event_time = WAIT(infectedMortalityTime(inf_mortality_draw, MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi[vdp_age_at_infection]));} break;
 	default: {t_event_time = WAIT(0);} break;
 	}
 

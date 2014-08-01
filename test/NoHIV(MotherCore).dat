@@ -14,6 +14,11 @@ Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
+/* NOTE ( InfectedMortalityMotherMultiplier, EN )
+Choose 1 to prevent any deviations from the ASSA model values.
+*/
+
+	double	InfectedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Infected Mothers
 /* NOTE ( IncidenceMotherMultiplier, EN )
 Choose 1 to prevent any deviations from the ASSA model values.
 */
