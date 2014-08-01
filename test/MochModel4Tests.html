@@ -116,7 +116,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## [[5]]
 ## [1] &quot;\&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\&quot; -sc \&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\&quot;&quot;</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.03    0.01   15.88</code></pre>
+##    0.03    0.00   15.76</code></pre>
 </div>
 <div id="list-available-results" class="section level3">
 <h3>List available results</h3>
@@ -293,6 +293,20 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p><strong>Result: TRUE</strong></p>
 <hr />
 </div>
+<div id="no-deaths-from-infected-in-noinfectedmortality" class="section level3">
+<h3><a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality</h3>
+<p>Scenario(s): NoInfectedMortality</p>
+<p>No mothers should die from the Infected state in the NoInfectedMortality Scenario</p>
+<pre><code>##                      metrics    ..1
+## 1            Dead Population      0
+## 2   Death from Healthy State   5502
+## 3 Death from Infected States      0
+## 4         Healthy Population 452228
+## 5        Infected Population 336320
+## 6           Total Population 788548</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
 </div>
 <div id="summary-of-all-tests" class="section level2">
 <h2>Summary of all tests</h2>
@@ -334,6 +348,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <td align="center"><a href="#NodeathsfromhealthyinNoHealthyMortality">No deaths from healthy in NoHealthyMortality</a></td>
 <td align="center">TRUE</td>
 <td align="center">NoHealthyMortality</td>
+</tr>
+<tr class="odd">
+<td align="center"><a href="#NodeathsfromInfectedinNoInfectedMortality">No deaths from Infected in NoInfectedMortality</a></td>
+<td align="center">TRUE</td>
+<td align="center">NoInfectedMortality</td>
 </tr>
 </tbody>
 </table>
