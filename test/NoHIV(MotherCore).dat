@@ -14,6 +14,11 @@ Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
+	/* NOTE(MInfectionImmortalityPeriod, EN)
+		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
+	*/
+	
+	double MInfectionImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
 /* NOTE ( InfectedMortalityMotherMultiplier, EN )
 Choose 1 to prevent any deviations from the ASSA model values.
 */

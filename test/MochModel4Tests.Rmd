@@ -15,6 +15,7 @@ rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
+library(plyr)
 opts_chunk$set(echo = FALSE)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
@@ -42,7 +43,26 @@ scenarios_to_create <- list(
              dat_sub = list('1' = list(from = 'IncidenceMotherMultiplier = 1',
                                        to = 'IncidenceMotherMultiplier = 0')
                             )
-             ))
+             ),
+  '3' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'NoHealthyMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0')
+                            )
+             ),
+  '4' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'NoInfectedMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0')
+                            )
+             )
+  )
 for (i in scenarios_to_create){
   do.call(generate_scenario, i)
 }
@@ -288,6 +308,32 @@ crude_healthy_mortality = crude_healthy_mortality,
 crude_infected_mortality = crude_infected_mortality 
 ))
 result <- crude_healthy_mortality < crude_infected_mortality
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'No deaths from healthy in NoHealthyMortality'
+cscenarios <- 'NoHealthyMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "No mothers should die from the Healthy state in the NoHealthyMortality Scenario")
+```
+
+```{r}
+Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Death from Healthy State", select = 'Value')$Value)
+
+result <- deaths_in_healthy == 0
+print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
 
 ```{r, results='asis'}

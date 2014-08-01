@@ -133,6 +133,13 @@ parameters
 		Each of the different age groups used in the Van der Paal article must have an entry in
 		this parameter.
 	*/
+
+	double MInfectionImmortalityPeriod; //EN Length of Period of immortality immediately after infection
+	/* NOTE(MInfectionImmortalityPeriod, EN)
+		The number of years a mother is immortal immediately after infection.
+		This is required to make the HealthyMortalityMotherMultiplier work.
+		This should be an extremely small number.
+	*/
 };
 
 
@@ -162,6 +169,9 @@ double invWeibull(double y, double kappa, double lambda, double phi)
 
 double lifeTableDraw(double x)
 {
+	if (HealthyMortalityMotherMultiplier <= 0){
+		return(1000*1000);
+	};
 	// Old code that allowed model time to vary commented out
 	// Consider implementing the feature again in the future
 	int indx = -1;
@@ -189,7 +199,10 @@ double healthyMortalityTime(double draw){
 double infectedMortalityTime(double y, double kappa, double lambda, double phi){
 	TIME t_event_time = TIME_INFINITE;
 	if (InfectedMortalityMotherMultiplier > 0){
-		t_event_time = invWeibull(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
+		t_event_time = 0;
+		while (t_event_time <= MInfectionImmortalityPeriod){
+			t_event_time = invWeibull(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
+		};
 	};
 	return(t_event_time);
 };
