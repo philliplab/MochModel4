@@ -40,6 +40,7 @@ classification MDEATH_SCHED_STATE
 	mdsHEALTHY,
 	mdsINFECTED,
 	mdsTREATED,
+	mdsSTOPPED,
 	mdsDEAD
 };
 

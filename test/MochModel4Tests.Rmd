@@ -16,6 +16,8 @@ options(scipen=999)
 library(modgenTester)
 library(knitr)
 library(plyr)
+library(survival)
+library(reshape2)
 opts_chunk$set(echo = FALSE)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
@@ -116,6 +118,23 @@ for (i in all_results){
   db_channel <- access_database(i)
   scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
   db_channels[[scenario_name]] <- db_channel
+#  print('Parameter Tables:')
+#  print(list_parameter_tables(db_channel))
+#  print('Result Tables:')
+#  print(list_result_tables(db_channel))
+}
+```
+
+```{r, eval=FALSE, include=FALSE}
+# Setup connections to scratch databases for dev
+scratch_dir <- file.path(td, 'scratch')
+scratch_results <- list_all_results(scratch_dir)
+db_channels <- list()
+for (i in scratch_results){
+  print(i)
+  db_channel <- access_database(i)
+  scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
+  db_channels[[scenario_name]] <- db_channel
   print('Parameter Tables:')
   print(list_parameter_tables(db_channel))
   print('Result Tables:')
@@ -123,47 +142,10 @@ for (i in all_results){
 }
 ```
 
-### Some utility functions that will soon be merged into the package
+### Load the helper functions and initiate the test_results list
 ```{r}
 test_results <- list()
-
-new_test <- function(test_results, name, scenarios = NULL, result = NULL, description = NULL){
-  anchor_link <- gsub(" ", "", name)
-  test_results[[name]] <- list(name = name,
-                               result = result,
-                               scenarios = scenarios, 
-                               anchor_link = anchor_link)
-  cat(paste0('### <a name="', anchor_link,'"></a>', name, "\n\n"))
-  cat(paste0("Scenario(s): ", scenarios, "\n\n"))
-  cat(paste0(description, '\n\n'))
-  return(test_results)
-}
-
-new_result <- function(test_results, name, result){
-  test_results[[name]][['result']] <- result
-  cat(paste0("**Result: ", result, "** \n\n"))
-  cat('---\n\n')
-  return(test_results)
-}
-
-print_test_results <- function(test_results){
-  cat("|Name|Result|Scenarios|\n")
-  cat("|:-:|:-:|:-:|\n")
-  for (i in test_results){
-    cat(paste0("|[", i$name, "](#", i$anchor_link, ")|", i$result, "|", paste(i$scenarios, collapse = ", "), " \n"))
-  }
-}
-```
-
-### Helper functions - should maybe be packaged?
-
-```{r}
-get_mother_population_size <- function(db_channel){
-  DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channel))
-  return(subset(DurationOfLife, 
-                metrics == "Population size", 
-                select = 'Value')[1,1])
-}
+source('test_helpers.R')
 ```
 
 ```{r}
@@ -371,6 +353,24 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 
+```{r}
+cscenarios <- 'Base'
+x <- get_mother_mortality(db_channels[[cscenarios]])
+all_survival_data <- data.frame(age_at_death = x,
+                                group = 'All')
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = x,
+                                      group = 'Infected_birth'))
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          time_since = 'Infection',
+                          status_at_death = 1)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = x,
+                                      group = 'Infected_infection'))
+plot(survfit(Surv(age_at_death) ~ group, all_survival_data))
+```
 
 
 
