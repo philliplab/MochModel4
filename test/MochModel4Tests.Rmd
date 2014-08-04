@@ -375,6 +375,7 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ## Summary of all tests
+Model Version: `r ModelVersion`
 
 ```{r, results='asis'}
 print_test_results(test_results)
