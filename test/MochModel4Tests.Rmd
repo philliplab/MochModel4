@@ -65,6 +65,23 @@ scenarios_to_create <- list(
              dat_sub = list('1' = list(from = 'InfectedMortalityMotherMultiplier = 1',
                                        to = 'InfectedMortalityMotherMultiplier = 0')
                             )
+             ),
+  '5' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'OnlyInfectedMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3.5'),
+                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 0'),
+                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
+                                       to = 'InfectedDiagnosisMotherMultiplier = 0'),
+                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
+                                       to = 'SymptomsDiagnosisMotherMultiplier = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -120,10 +137,6 @@ for (i in all_results){
   db_channel <- access_database(i)
   scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
   db_channels[[scenario_name]] <- db_channel
-#  print('Parameter Tables:')
-#  print(list_parameter_tables(db_channel))
-#  print('Result Tables:')
-#  print(list_result_tables(db_channel))
 }
 ```
 
@@ -395,10 +408,103 @@ rm('ctest_name', 'cscenarios')
 
 
 
+```{r, results='asis'}
+ctest_name <- 'Infected Mortality Match van der paal'
+cscenarios <- 'OnlyInfectedMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article")
+```
+
+```{r}
+Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
+deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
+print(deaths_in_infected)
+mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channels[[cscenarios]]))[,1:3]
+mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
+print(table(mdd$`Status at death`))
+
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1, 
+                          vdp_age_at_infection = 1,
+                          time_since = 'Infection')
+all_survival_data <- data.frame(age_at_death = x,
+                                group = 'vdpa1')
+
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1, 
+                          vdp_age_at_infection = 2,
+                          time_since = 'Infection')
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = x,
+                                      group = 'vdpa2'))
+
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1, 
+                          vdp_age_at_infection = 3,
+                          time_since = 'Infection')
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = x,
+                                      group = 'vdpa3'))
+
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1, 
+                          vdp_age_at_infection = 4,
+                          time_since = 'Infection')
+if (length(x) > 0){
+  all_survival_data <- rbind(all_survival_data,
+                             data.frame(age_at_death = x,
+                                        group = 'vdpa4'))
+}
+
+x <- get_mother_mortality(db_channels[[cscenarios]],
+                          status_at_death = 1, 
+                          vdp_age_at_infection = 0,
+                          time_since = 'Infection')
+if (length(x) > 0){
+  all_survival_data <- rbind(all_survival_data,
+                             data.frame(age_at_death = x,
+                                        group = 'vdpa0'))
+}
+
+p <- autoplot(survfit(Surv(age_at_death) ~ group, all_survival_data))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+pweibull1m <- function(...){1 - pweibull(...)}
+
+plot_one_vdp_cat <- function(dat, category, phi){
+vdp_restricted <- subset(dat, group == category)
+p <- autoplot(survfit(Surv(age_at_death) ~ 1, vdp_restricted))$plot
+p <- p + labs(title = paste0("Overlay of data for ", category, " and input weibull distribution")) +
+  stat_function(fun = pweibull1m, arg = list(shape = 2.5, scale = 11.1123 * phi),
+                col = 'green') +
+  scale_colour_discrete(guide = FALSE)
+  return(p)
+}
+
+print(plot_one_vdp_cat(all_survival_data, 'vdpa1', phi = 1.22398))
+print(plot_one_vdp_cat(all_survival_data, 'vdpa2', phi = 0.95143))
+print(plot_one_vdp_cat(all_survival_data, 'vdpa3', phi = 0.58661))
+print(plot_one_vdp_cat(all_survival_data, 'vdpa4', phi = 0.52447))
+result <- 'Manual'
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
 
 ## Summary of all tests
 Model Version: `r ModelVersion`
 
 ```{r, results='asis'}
 print_test_results(test_results)
+odbcCloseAll()
 ```
