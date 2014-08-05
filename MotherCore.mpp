@@ -120,6 +120,15 @@ actor Mother            //EN Individual
 		To schedule death from the infected state, the mother's age at infection (in Van Der Paal Category) must be known.
 	*/
 
+	VAN_DER_PAAL_INDX vdp_age_at_symptoms = {4}; //EN Van Der Paal Age Category at Syptoms
+	/* NOTE (Mother.vdp_age_at_symptoms, EN)
+		For reporting purposes only
+	*/
+	
+	logical showing_symptoms = {FALSE}; //EN Showing Symptoms
+
+
+
 	//LABEL(Mother.Start, EN) Starts the actor
 	void Start();
 

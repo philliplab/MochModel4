@@ -102,6 +102,7 @@
     <None Include="MotherCore.mpp" />
     <None Include="MotherInfection.mpp" />
     <None Include="MotherMortality.mpp" />
+    <None Include="MotherSymptoms.mpp" />
     <None Include="MotherTables.mpp" />
     <None Include="parse.inf" />
     <None Include="ReadMe.txt" />
@@ -114,6 +115,7 @@
     <ClCompile Include="MotherCore.cpp" />
     <ClCompile Include="MotherInfection.cpp" />
     <ClCompile Include="MotherMortality.cpp" />
+    <ClCompile Include="MotherSymptoms.cpp" />
     <ClCompile Include="MTables.cpp" />
     <ClCompile Include="Tabinit.cpp" />
     <ClCompile Include="TickerCore.cpp" />

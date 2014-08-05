@@ -377,7 +377,7 @@ test_results <- new_test(test_results,
                          description = "Plots of all the survival curves. The curves must be inspected manually")
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 x <- get_mother_mortality(db_channels[[cscenarios]])
 all_survival_data <- data.frame(age_at_death = x,
                                 group = 'All: Time since birth')
@@ -409,6 +409,34 @@ rm('ctest_name', 'cscenarios')
 
 
 ```{r, results='asis'}
+ctest_name <- 'OnlyInfectedMortality scenario has most people dying from infected state'
+cscenarios <- 'OnlyInfectedMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "This test make sure that in the scenario where there is only mortality in the infected state, that all people who die before age 100, die from the infected state")
+```
+
+```{r, warning=FALSE, message=FALSE}
+Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
+deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
+print(deaths_in_infected)
+mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channels[[cscenarios]]))[,1:3]
+mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
+print(table(mdd$`Status at death`))
+result <- deaths_in_infected > 8000
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
 ctest_name <- 'Infected Mortality Match van der paal'
 cscenarios <- 'OnlyInfectedMortality'
 test_results <- new_test(test_results,
@@ -417,14 +445,7 @@ test_results <- new_test(test_results,
                          description = "When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article")
 ```
 
-```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
-deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
-print(deaths_in_infected)
-mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channels[[cscenarios]]))[,1:3]
-mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
-print(table(mdd$`Status at death`))
-
+```{r, warning=FALSE, message=FALSE}
 x <- get_mother_mortality(db_channels[[cscenarios]],
                           status_at_death = 1, 
                           vdp_age_at_infection = 1,
@@ -499,6 +520,9 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
+
+
+
 
 
 ## Summary of all tests
