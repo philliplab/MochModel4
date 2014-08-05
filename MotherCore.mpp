@@ -153,8 +153,6 @@ void Mother::Start()
 	// After the code in this function is executed,
 	// Modgen initializes events and tables for the actor.
 	// Modgen also outputs starting values to the tracking file if requested.
-
-
 }
 
 /*NOTE(Mother.Finish, EN)
@@ -162,7 +160,7 @@ void Mother::Start()
 */
 void Mother::Finish()
 {
-}
+};
 
 track Mother
 	[actor_id % 100 == 0, GetReplicate() == 0 ]

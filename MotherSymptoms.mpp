@@ -1,18 +1,54 @@
 
+parameters
+{
+	double SymptomsMotherShape; //EN Infected Mother Time to Symptoms Curve Shape - kappa
+	double SymptomsMotherScale; //EN Infected Mother Time to Symptoms Curve Scale - lambda
+	double SymptomsMotherCorrelation; //EN Correlation between mortality and becoming symptomatic
+	double SymptomsMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
+};
+
+/* NOTE (SymptomsMotherShape, EN)
+    The shape parameter for the Infected mother's time-to-symptoms curve
+*/
+
+/* NOTE (SymptomsMotherScale, EN)
+   The scale parameter for the Infected mother's time-to-symptoms curve
+*/
+
+/* NOTE (SymptomsMotherCorrelation, EN)
+   The the correlation between time to death since
+	infection and the time to symptoms since infection
+*/
+
 actor Mother            //EN Individual
 {
 	event timeSymptomEvent, SymptomEvent;
+};
+
+double InvWeibull2(double y, double kappa, double lambda, double phi)
+{
+	// Lambda is Scale and Kappa is Shape
+	double x = 0;
+	if (phi == 1000){ // SIGH - this is not a pretty hack - no construct like R's Inf in C++?
+		x = pow(10, 10);
+	} else
+	{
+		x = (phi * lambda) * pow(-log(y), 1/kappa);
+	};
+	return(x);
 };
 
 TIME Mother::timeSymptomEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
 	if (mdeath_sched_status == mdsINFECTED && showing_symptoms == FALSE){
-/*		double symp_draw = RandUniform(6);
+		double symp_draw = RandUniform(6);
 		double symp_par;
-		symp_par = ((1 - MIMort_Symp_Corr) * symp_draw) + (MIMort_Symp_Corr * inf_mortality_draw);
-		t_event_time = InvWeibull2(symp_par, MSymptomsShape, MSymptomsScale, MInfectedMortPhi[vdp_age_at_infection]);*/
-		t_event_time = 5;
+		symp_par = ((1 - SymptomsMotherCorrelation) * symp_draw) + (SymptomsMotherCorrelation * inf_mortality_draw);
+		if (SymptomsMotherMultiplier > 0){
+			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, MInfectedMortPhi[vdp_age_at_infection]);
+		};
+//		t_event_time = 5;
 	}
 	t_event_time = WAIT(t_event_time);
 	return t_event_time;
