@@ -18,9 +18,11 @@ library(knitr)
 library(plyr)
 library(survival)
 library(reshape2)
+library(survMisc)
 opts_chunk$set(echo = FALSE)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
+setwd(td)
 
 copy_model(sd, 'MochModel4.exe', td)
 copy_scenario(sd, 'Base.scex', 'Base(MotherCore).dat', td)
@@ -353,24 +355,44 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 
-```{r}
+```{r, results='asis'}
+ctest_name <- 'All survival curves'
 cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots of all the survival curves. The curves must be inspected manually")
+```
+
+```{r}
 x <- get_mother_mortality(db_channels[[cscenarios]])
 all_survival_data <- data.frame(age_at_death = x,
-                                group = 'All')
+                                group = 'All: Time since birth')
 x <- get_mother_mortality(db_channels[[cscenarios]],
                           status_at_death = 1)
 all_survival_data <- rbind(all_survival_data,
                            data.frame(age_at_death = x,
-                                      group = 'Infected_birth'))
+                                      group = 'Infected: Time since birth'))
 x <- get_mother_mortality(db_channels[[cscenarios]],
                           time_since = 'Infection',
                           status_at_death = 1)
 all_survival_data <- rbind(all_survival_data,
                            data.frame(age_at_death = x,
-                                      group = 'Infected_infection'))
-plot(survfit(Surv(age_at_death) ~ group, all_survival_data))
+                                      group = 'Infected: Time since infection'))
+p <- autoplot(survfit(Surv(age_at_death) ~ group, all_survival_data))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
 ```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = 'Manual')
+rm('ctest_name', 'cscenarios')
+```
+
 
 
 
