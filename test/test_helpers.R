@@ -15,6 +15,7 @@ new_test <- function(test_results, name, scenarios = NULL, result = NULL, descri
   cat(paste0('### <a name="', anchor_link,'"></a>', name, "\n\n"))
   cat(paste0("Scenario(s): ", scenarios, "\n\n"))
   cat(paste0(description, '\n\n'))
+  cat(paste0("[To Summary Table](#summary_tab_link)\n\n"))
   return(test_results)
 }
 
@@ -35,6 +36,7 @@ new_result <- function(test_results, name, result){
 #' @param test_results A list containing all the previously run tests
 #' @export
 print_test_results <- function(test_results){
+  cat(paste0('### <a name="summary_tab_link"></a>Summary Table\n\n'))
   cat("|Name|Result|Scenarios|\n")
   cat("|:-:|:-:|:-:|\n")
   for (i in test_results){

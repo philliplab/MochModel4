@@ -9,6 +9,15 @@ output: html_document
 
 ### Folders and scenario creation
 
+```{r, include=FALSE, eval=FALSE}
+# Build commands
+require(knitr) # required for knitting from rmd to md
+require(markdown) # required for md to html 
+knit('MochModel4Tests.Rmd', 'MochModel4Tests.md') # creates md file
+markdownToHTML('MochModel4Tests.md', 'MochModel4Tests.html') # creates html file
+browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) # open file in browser
+```
+
 ```{r, include=FALSE}
 rm(list = ls())
 rerun_models <- TRUE
@@ -26,17 +35,7 @@ setwd(td)
 
 copy_model(sd, 'MochModel4.exe', td)
 copy_scenario(sd, 'Base.scex', 'Base(MotherCore).dat', td)
-```
 
-```{r, include=FALSE, eval=FALSE}
-require(knitr) # required for knitting from rmd to md
-require(markdown) # required for md to html 
-knit('MochModel4Tests.Rmd', 'MochModel4Tests.md') # creates md file
-markdownToHTML('MochModel4Tests.md', 'MochModel4Tests.html') # creates html file
-browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) # open file in browser
-```
-
-```{r}
 scenarios_to_create <- list(
   '1' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -95,9 +94,6 @@ scenarios_to_create <- list(
 for (i in scenarios_to_create){
   do.call(generate_scenario, i)
 }
-```
-
-```{r}
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 
@@ -121,24 +117,9 @@ foreach(scenario = available_scenarios) %dopar% {
 }
 print(proc.time() - ptm)
 
-#ptm <- proc.time()
-#for (scenario in available_scenarios) {
-#  print(scenario)
-#  run_scenario(td, scenario$scex,
-#               td, "MochModel4.exe")
-#}
-#proc.time() - ptm
-
 stopCluster(cl)
-```
-
-```{r}
 all_results <- list_all_results(td)
-```
 
-### List available results
-
-```{r}
 db_channels <- list()
 for (i in all_results){
   print(i)
@@ -146,32 +127,10 @@ for (i in all_results){
   scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
   db_channels[[scenario_name]] <- db_channel
 }
-```
 
-```{r, eval=FALSE, include=FALSE}
-# Setup connections to scratch databases for dev
-scratch_dir <- file.path(td, 'scratch')
-scratch_results <- list_all_results(scratch_dir)
-db_channels <- list()
-for (i in scratch_results){
-  print(i)
-  db_channel <- access_database(i)
-  scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
-  db_channels[[scenario_name]] <- db_channel
-  print('Parameter Tables:')
-  print(list_parameter_tables(db_channel))
-  print('Result Tables:')
-  print(list_result_tables(db_channel))
-}
-```
-
-### Load the helper functions and initiate the test_results list
-```{r}
 test_results <- list()
 source('test_helpers.R')
-```
 
-```{r}
 ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channels$NoHIV))$Value[1]
 ```
 
@@ -578,6 +537,35 @@ percentage_ever_diagnosed <- total_diagnosed_mothers / total_population
 print(list(total_diagnosed_mothers = total_diagnosed_mothers,
            total_population = total_population))
 result <- percentage_ever_diagnosed > 0.36 & percentage_ever_diagnosed < 0.40
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r, results='asis'}
+ctest_name <- 'State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE")
+```
+
+```{r}
+for (scenario_name in names(db_channels)){
+	StateMembership <- as.data.frame(new_RTable("MotherMDSMembershipxAge", db_channels[[scenario_name]]))
+	p <- ggplot(StateMembership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
+	    guides(col = guide_legend(nrow=2)) +
+	    theme(legend.position = 'bottom') + 
+	    labs(title = paste0("Scenario: ", scenario_name))
+	print(p)
+}
+result <- "Manual"
 ```
 
 ```{r, results='asis'}

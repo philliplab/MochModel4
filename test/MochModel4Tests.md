@@ -13,40 +13,8 @@ output: html_document
 
 
 
-
-
 ### Run modgen on all scenarios
 
-
-```
-## Warning: package 'foreach' was built under R version 3.0.3
-```
-
-```
-## foreach: simple, scalable parallel programming from Revolution Analytics
-## Use Revolution R for scalability, fault tolerance and more.
-## http://www.revolutionanalytics.com
-```
-
-```
-## Warning: package 'doSNOW' was built under R version 3.0.3
-```
-
-```
-## Loading required package: iterators
-```
-
-```
-## Warning: package 'iterators' was built under R version 3.0.3
-```
-
-```
-## Loading required package: snow
-```
-
-```
-## Warning: package 'snow' was built under R version 3.0.3
-```
 
 ```
 ## [[1]]
@@ -102,13 +70,8 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.06    0.00   18.30
+##    0.01    0.02   18.79
 ```
-
-
-
-### List available results
-
 
 ```
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb"
@@ -119,13 +82,6 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-
-
-### Load the helper functions and initiate the test_results list
-
-
-
-
 ## Tests for Model Version 12
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
@@ -133,6 +89,8 @@ output: html_document
 Scenario(s): NoHIV
 
 In the case of no sickness, we expect the mother's life expectancy to be between 60 and 70
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -155,6 +113,8 @@ Scenario(s): Base
 
 The max age of a mother cannot be greater than 92
 
+[To Summary Table](#summary_tab_link)
+
 
 ```
 ##                    metrics        Value CV SE
@@ -175,6 +135,8 @@ The max age of a mother cannot be greater than 92
 Scenario(s): Base
 
 The percentage of mothers ever infected in the base case should be between 40 and 50%
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -197,6 +159,8 @@ Scenario(s): NoHIV
 
 The number of mothers ever infected in the NoHIV case should be 0
 
+[To Summary Table](#summary_tab_link)
+
 
 ```
 ## $total_infections
@@ -214,6 +178,8 @@ The number of mothers ever infected in the NoHIV case should be 0
 Scenario(s): Base
 
 The mortality of uninfected mothers must be lower than the mortality of uninfected mothers. Mortality is tricky to measure accurately thus a proxy is used. Total deaths from state is compared to the total years spent in the state for each state. Further refinements should be made to this test
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -248,6 +214,8 @@ Scenario(s): NoHealthyMortality
 
 No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 
+[To Summary Table](#summary_tab_link)
+
 
 ```
 ##                                metrics    ..1
@@ -273,6 +241,8 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 Scenario(s): NoInfectedMortality
 
 No mothers should die from the Infected state in the NoInfectedMortality Scenario
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -300,7 +270,9 @@ Scenario(s): Base
 
 Plots of all the survival curves. The curves must be inspected manually
 
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32.png) 
+[To Summary Table](#summary_tab_link)
+
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png) 
 
 **Result: Manual** 
 
@@ -313,6 +285,8 @@ Plots of all the survival curves. The curves must be inspected manually
 Scenario(s): OnlyInfectedMortality
 
 This test make sure that in the scenario where there is only mortality in the infected state, that all people who die before age 100, die from the infected state
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -337,7 +311,9 @@ Scenario(s): OnlyInfectedMortality
 
 When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-381.png) ![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-382.png) ![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-383.png) ![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-384.png) ![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-385.png) 
+[To Summary Table](#summary_tab_link)
+
+![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-321.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-322.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-323.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-324.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-325.png) 
 
 **Result: Manual** 
 
@@ -350,6 +326,8 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 Scenario(s): Base
 
 The percentage of mothers who ever became symptomatic in the base case should be between 30 and 34%
+
+[To Summary Table](#summary_tab_link)
 
 
 ```
@@ -372,6 +350,8 @@ Scenario(s): Base
 
 The percentage of mothers who were ever diagnosed in the base case should be between 36 and 40%
 
+[To Summary Table](#summary_tab_link)
+
 
 ```
 ## $total_diagnosed_mothers
@@ -386,9 +366,26 @@ The percentage of mothers who were ever diagnosed in the base case should be bet
 ---
 
 
+### <a name="StateMembershiptracking"></a>State Membership tracking
+
+Scenario(s): All
+
+Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
+
+[To Summary Table](#summary_tab_link)
+
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-411.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-412.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-413.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-414.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-415.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-416.png) 
+
+**Result: Manual** 
+
+---
+
+
 
 ## Summary of all tests
 Model Version: 12
+
+### <a name="summary_tab_link"></a>Summary Table
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
@@ -404,3 +401,4 @@ Model Version: 12
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
+|[State Membership tracking](#StateMembershiptracking)|Manual|All 
