@@ -20,13 +20,31 @@ table Mother MotherDurationOfLife //EN Mother Duration of Life
 
 table Mother MotherIncidence //EN Incidence amongst mothers
 {
-	integer_age * //EN Age
+	integer_age+ * //EN Age
 	{
 		undergone_transition( infected, FALSE, TRUE), //EN Number of new infections
 		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in this age decimals=1
 		(undergone_transition( infected, FALSE, TRUE) / duration(mdeath_sched_status, mdsHEALTHY)) //EN Incidence decimals=4
 	} //EN Infection Statistics
 };
+
+/*NOTE(MotherSymptomRates, EN)
+	The symptom development rates amongst mothers. Based on the ratio between the number of new 
+	mothers showing symptoms
+	and the total time spent in the Infected and Diagnosis states by mothers of a certain age.
+*/
+
+table Mother MotherSymptomRates //EN Symptom Rates amongst mothers
+{
+	integer_age+ * //EN Age
+	{
+		undergone_transition( showing_symptoms, FALSE, TRUE), //EN Number of new symptomatic mothers
+		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years at risk decimals=4
+		(undergone_transition( showing_symptoms, FALSE, TRUE) / duration(mdeath_sched_status, mdsHEALTHY)) //EN Symptom Rates decimals=4
+	} //EN Symptom Rate Statistics
+};
+
+
 
 /* NOTE(MotherMortalityTable, EN)
 	A table tracking detailed mortality stats of the mothers.
@@ -109,7 +127,7 @@ table Mother MotherDeathDetails //EN Death Details of the mothers
 
 table Mother SymptomDevTable
 {
-	integer_age * //EN Age
+	integer_age+ * //EN Age
 	{
 		duration(),
 		duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Population

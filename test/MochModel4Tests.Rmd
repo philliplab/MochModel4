@@ -523,6 +523,33 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 
+```{r, results='asis'}
+ctest_name <- 'Percentage ever symptomatic bounded'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The percentage of mothers who ever became symptomatic in the base case should be between 30 and 34%")
+```
+
+```{r}
+SymptomRates <- as.data.frame(new_RTable("MotherSymptomRates", db_channels[[cscenarios]]))
+new_symptomatic_mothers <- subset(SymptomRates, metrics == "Number of new symptomatic mothers", select = 'Value')$Value
+total_symptomatic_mothers <- sum(new_symptomatic_mothers)
+total_population <- get_mother_population_size(db_channels$Base)
+percentage_ever_symptomatic <- total_symptomatic_mothers / total_population
+print(list(total_symptomatic_mothers = total_symptomatic_mothers,
+           total_population = total_population))
+result <- percentage_ever_symptomatic > 0.30 & percentage_ever_symptomatic < 0.34
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
 
 
 ## Summary of all tests

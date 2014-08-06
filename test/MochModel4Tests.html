@@ -119,7 +119,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ## [[6]]
 ## [1] &quot;\&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\&quot; -sc \&quot;C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\&quot;&quot;</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.05    0.01   12.77</code></pre>
+##    0.04    0.00   12.77</code></pre>
 </div>
 <div id="list-available-results" class="section level3">
 <h3>List available results</h3>
@@ -134,8 +134,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h3>Load the helper functions and initiate the test_results list</h3>
 </div>
 </div>
-<div id="tests-for-model-version-10" class="section level2">
-<h2>Tests for Model Version 10</h2>
+<div id="tests-for-model-version-11" class="section level2">
+<h2>Tests for Model Version 11</h2>
 <div id="life-expectancy-healthy-mother" class="section level3">
 <h3><a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother</h3>
 <p>Scenario(s): NoHIV</p>
@@ -260,10 +260,22 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p><strong>Result: Manual</strong></p>
 <hr />
 </div>
+<div id="percentage-ever-symptomatic-bounded" class="section level3">
+<h3><a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded</h3>
+<p>Scenario(s): Base</p>
+<p>The percentage of mothers who ever became symptomatic in the base case should be between 30 and 34%</p>
+<pre><code>## $total_symptomatic_mothers
+## [1] 3202
+## 
+## $total_population
+## [1] 10000</code></pre>
+<p><strong>Result: TRUE</strong></p>
+<hr />
+</div>
 </div>
 <div id="summary-of-all-tests" class="section level2">
 <h2>Summary of all tests</h2>
-<p>Model Version: 10</p>
+<p>Model Version: 11</p>
 <table>
 <thead>
 <tr class="header">
@@ -322,6 +334,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <td align="center"><a href="#InfectedMortalityMatchvanderpaal">Infected Mortality Match van der paal</a></td>
 <td align="center">Manual</td>
 <td align="center">OnlyInfectedMortality</td>
+</tr>
+<tr class="odd">
+<td align="center"><a href="#Percentageeversymptomaticbounded">Percentage ever symptomatic bounded</a></td>
+<td align="center">TRUE</td>
+<td align="center">Base</td>
 </tr>
 </tbody>
 </table>

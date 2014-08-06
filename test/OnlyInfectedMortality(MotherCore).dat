@@ -72,6 +72,37 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	double	MInfectedMortPhi[VAN_DER_PAAL_INDX] = {
 		1000, 1.22398, 0.95143, 0.58661, 0.52447, 
 	};
+
+/* NOTE ( SymptomsMotherShape, EN )
+	    The R package nls was used to obtain the following fit to 
+		Figure 3 from the Van der Paal article.
+
+	    f(x) = exp(-(x/7.5251)^1.5101) 
+
+		From this formula, the choice for the shape parameter is 1.5101
+*/
+
+	double	SymptomsMotherShape = 1.5101; //EN Infected Mother Time to Symptoms Curve Shape - kappa
+/* NOTE ( SymptomsMotherScale, EN )
+	    The R package nls was used to obtain the following fit to 
+		Figure 3 from the Van der Paal article.
+
+	    f(x) = exp(-(x/7.5251)^1.5101) 
+
+		From this formula, the choice for the scale parameter is 7.5251
+*/
+
+	double	SymptomsMotherScale = 7.5251; //EN Infected Mother Time to Symptoms Curve Scale - lambda
+/* NOTE ( SymptomsMotherCorrelation, EN )
+	    TODO - estimate this correlation
+*/
+
+	double SymptomsMotherCorrelation = 0; //EN Correlation between mortality and becoming symptomatic
+/* NOTE ( SymptomsMotherMultiplier, EN )
+Choose 1 to prevent any deviations from the Van der Paal article.
+*/
+
+	double SymptomsMotherMultiplier = 0; //EN Multiplier for Symptom Development Speed of Infected Mothers
 /* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
