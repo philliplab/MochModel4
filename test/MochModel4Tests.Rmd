@@ -28,6 +28,14 @@ copy_model(sd, 'MochModel4.exe', td)
 copy_scenario(sd, 'Base.scex', 'Base(MotherCore).dat', td)
 ```
 
+```{r, include=FALSE, eval=FALSE}
+require(knitr) # required for knitting from rmd to md
+require(markdown) # required for md to html 
+knit('MochModel4Tests.Rmd', 'MochModel4Tests.md') # creates md file
+markdownToHTML('MochModel4Tests.md', 'MochModel4Tests.html') # creates html file
+browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) # open file in browser
+```
+
 ```{r}
 scenarios_to_create <- list(
   '1' = list(test_folder = td, 
