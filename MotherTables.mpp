@@ -1,4 +1,4 @@
-/*NOTE(MotherDurationOfLife, EN)
+/* NOTE(MotherDurationOfLife, EN)
 	This table contains statistics related to the duration of life of Mothers.
 */
 
@@ -13,6 +13,10 @@ table Mother MotherDurationOfLife //EN Mother Duration of Life
 	}	//EN Demographic characteristics
 };
 
+/* ##################################################################
+The Rates Tables
+################################################################## */
+
 /*NOTE(MotherIncidence, EN)
 	The incidence amongst mothers. Based on the ratio between the number of new infections
 	and the total time spent in the Healthy state by mothers of a certain age.
@@ -23,7 +27,7 @@ table Mother MotherIncidence //EN Incidence amongst mothers
 	integer_age+ * //EN Age
 	{
 		undergone_transition( infected, FALSE, TRUE), //EN Number of new infections
-		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in this age decimals=1
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years at risk decimals=1
 		(undergone_transition( infected, FALSE, TRUE) / duration(mdeath_sched_status, mdsHEALTHY)) //EN Incidence decimals=4
 	} //EN Infection Statistics
 };
@@ -40,29 +44,59 @@ table Mother MotherSymptomRates //EN Symptom Rates amongst mothers
 	{
 		undergone_transition( showing_symptoms, FALSE, TRUE), //EN Number of new symptomatic mothers
 		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years at risk decimals=4
-		(undergone_transition( showing_symptoms, FALSE, TRUE) / duration(mdeath_sched_status, mdsHEALTHY)) //EN Symptom Rates decimals=4
+		(undergone_transition( showing_symptoms, FALSE, TRUE) / duration(mdeath_sched_status, mdsINFECTED)) //EN Symptom Rates decimals=4
 	} //EN Symptom Rate Statistics
 };
 
+/*NOTE(MotherDiagnosisRates, EN)
+	The diagnosis rates amongst mothers. Based on the ratio between the number of newly
+	diagnosed mothers
+	and the total time spent in the Infected and Symptom states by mothers of a certain age.
+*/
 
+table Mother MotherDiagnosisRates //EN Diagnosis Rates amongst mothers
+{
+	integer_age+ * //EN Age
+	{
+		undergone_transition( diagnosed, FALSE, TRUE), //EN Number of new diagnosed mothers
+		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years at risk decimals=4
+		(undergone_transition( diagnosed, FALSE, TRUE) / duration(mdeath_sched_status, mdsINFECTED)) //EN Diagnosis Rates decimals=4
+	} //EN Diagnosis Rate Statistics
+};
 
-/* NOTE(MotherMortalityTable, EN)
+/* NOTE(MotherMortalityRates, EN)
 	A table tracking detailed mortality stats of the mothers.
 	It aims to be able to answer the questions:
 	For mothers aged x in state y, what is the probability of dying in 12 months?
+	Note that it is more complicated than the other rates tables since mortality
+	changes so much based on state the mother is currently in
 */
 
-table Mother MotherMortalityTable //EN Mother Mortality Table
+table Mother MotherMortalityRates //EN Mother Mortality Rates Table
 {
-	integer_age+ *
+	integer_age+ * //EN Age
 	{
-		duration(), //EN Total Population
-		duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Population
-		undergone_transition(mdeath_sched_status, mdsHEALTHY, mdsDEAD), //EN Death from Healthy State
-		duration(mdeath_sched_status, mdsINFECTED), //EN Infected Population
-		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD), //EN Death from Infected States
-		duration(mdeath_sched_status, mdsDEAD) //EN Dead Population
-	}
+		undergone_transition(alive, TRUE, FALSE), //EN Number of deaths
+		duration(), //EN Mother years at risk
+		undergone_transition(alive, TRUE, FALSE) / duration(), //EN Overall Mortality Rate decimals=4
+		undergone_transition(mdeath_sched_status, mdsHEALTHY, mdsDEAD), //EN Number of deaths from HEALTHY state
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy mother years at risk 
+		undergone_transition(mdeath_sched_status, mdsHEALTHY, mdsDEAD) / duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Mortality Rate decimals=4
+		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD), //EN Number of deaths from INFECTED state
+		duration(mdeath_sched_status, mdsINFECTED), //EN Infected mother years at risk
+		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD) / duration(mdeath_sched_status, mdsINFECTED) //EN Infected Mortality Rate decimals=4
+	} //EN 
+};
+
+table Mother MotherMDSMembershipxAge //EN Membership of Mothers in the MDEATH_SCHED_STATE
+{
+	integer_age+ * //EN Age
+	{
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in HEALTHY state decimals=2
+		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years in INFECTED state decimals=2
+		duration(mdeath_sched_status, mdsTREATED), //EN Mother years in TREATED state decimals=2
+		duration(mdeath_sched_status, mdsSTOPPED) //EN Mother years in STOPPED state decimals=2
+	} //EN Membership counts
 };
 
 /* NOTE(ModelVersion, EN)
@@ -124,17 +158,3 @@ table Mother MotherDeathDetails //EN Death Details of the mothers
 		unit //EN Indicator of number of Actors Tracked
 	}
 };
-
-table Mother SymptomDevTable
-{
-	integer_age+ * //EN Age
-	{
-		duration(),
-		duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Population
-		duration(mdeath_sched_status, mdsINFECTED), //EN Infected Population
-		duration(showing_symptoms, TRUE), //EN Showing Symptoms
-		duration(showing_symptoms, FALSE), //EN Not shoing Symptoms
-		undergone_transition(showing_symptoms, FALSE, TRUE) //EN Became symptomatic
-	}
-};
-

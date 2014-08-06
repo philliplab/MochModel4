@@ -1,0 +1,69 @@
+
+//LABEL(MotherDiagnosis, EN) Determines when an infected mother becomes diagnosed
+
+/* NOTE(MotherDiagnosis, EN)
+	This module schedules and implements the event that transitions a mother
+	from the infected state into the diagnosed state. This transition competes
+	with the transitions into the death state and the showing symptoms state.
+	Due to the limited information on the rates of diagnosis, only a simple
+	exponential rate is implemented.
+
+	- Data requirements
+
+	A single exponential rate parameter must be specified.
+
+	- Implementation details
+
+	A number, x, is drawn at random from a unifrom distribution. The transition
+	into diagnosis is scheduled log(x) / -(InfectedDiagnosisMotherRate) years after infection.
+*/
+
+parameters
+{
+	double InfectedDiagnosisMotherRate; //EN Diagnosis Rate of Infected Mothers
+	double SymptomaticDiagnosisMotherRate; //EN Diagnosis Rate of Symptomatic Mothers
+};
+
+/* NOTE(InfectedDiagnosisMotherRate, EN)
+    An exponential rate at which mothers become diagnosed
+	after becoming infected.
+*/
+
+/* NOTE(SymptomaticDiagnosisMotherRate, EN)
+    An exponential rate at which mothers become diagnosed
+	after becoming symptomatic.
+*/
+
+actor Mother
+{
+	logical diagnosed = {FALSE};
+
+	event timeDiagnosisEvent, diagnosisEvent;
+};
+
+TIME Mother::timeDiagnosisEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if (mdeath_sched_status == mdsINFECTED && diagnosed == FALSE && showing_symptoms == FALSE)
+	{
+		t_event_time = log(RandUniform(9)) / -InfectedDiagnosisMotherRate;
+	}
+	if (mdeath_sched_status == mdsINFECTED && diagnosed == FALSE && showing_symptoms == TRUE)
+	{
+		t_event_time = log(RandUniform(10)) / -SymptomaticDiagnosisMotherRate;
+	}
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Mother::diagnosisEvent()
+{
+	diagnosed = TRUE;
+/*	disease_status_detailed = DIAGNOSED_;
+	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Diagnose();
+	}*/
+};

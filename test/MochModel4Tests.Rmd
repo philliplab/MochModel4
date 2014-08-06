@@ -288,11 +288,11 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
-total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy Population", select = 'Value')$Value)
-total_time_in_infected <- sum(subset(Mortality, metrics == "Infected Population", select = 'Value')$Value)
-deaths_in_healthy <- sum(subset(Mortality, metrics == "Death from Healthy State", select = 'Value')$Value)
-deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy mother years at risk", select = 'Value')$Value)
+total_time_in_infected <- sum(subset(Mortality, metrics == "Infected mother years at risk", select = 'Value')$Value)
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
+deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
 crude_healthy_mortality <- deaths_in_healthy / total_time_in_healthy
 crude_infected_mortality <- deaths_in_infected / total_time_in_infected
 
@@ -326,8 +326,8 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
-deaths_in_healthy <- sum(subset(Mortality, metrics == "Death from Healthy State", select = 'Value')$Value)
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
 
 result <- deaths_in_healthy == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
@@ -352,7 +352,7 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
 deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected State", select = 'Value')$Value)
 
 result <- deaths_in_infected == 0
@@ -418,8 +418,8 @@ test_results <- new_test(test_results,
 ```
 
 ```{r, warning=FALSE, message=FALSE}
-Mortality <- as.data.frame(new_RTable("MotherMortalityTable", db_channels[[cscenarios]]))
-deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected States", select = 'Value')$Value)
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
 print(deaths_in_infected)
 mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channels[[cscenarios]]))[,1:3]
 mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
@@ -541,6 +541,35 @@ percentage_ever_symptomatic <- total_symptomatic_mothers / total_population
 print(list(total_symptomatic_mothers = total_symptomatic_mothers,
            total_population = total_population))
 result <- percentage_ever_symptomatic > 0.30 & percentage_ever_symptomatic < 0.34
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'Percentage ever diagnosed bounded'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The percentage of mothers who were ever diagnosed in the base case should be between 36 and 40%")
+```
+
+```{r}
+DiagnosisRates <- as.data.frame(new_RTable("MotherDiagnosisRates", db_channels[[cscenarios]]))
+new_diagnosed_mothers <- subset(DiagnosisRates, metrics == "Number of new diagnosed mothers", select = 'Value')$Value
+total_diagnosed_mothers <- sum(new_diagnosed_mothers)
+total_population <- get_mother_population_size(db_channels$Base)
+percentage_ever_diagnosed <- total_diagnosed_mothers / total_population
+print(list(total_diagnosed_mothers = total_diagnosed_mothers,
+           total_population = total_population))
+result <- percentage_ever_diagnosed > 0.36 & percentage_ever_diagnosed < 0.40
 ```
 
 ```{r, results='asis'}

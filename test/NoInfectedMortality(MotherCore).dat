@@ -103,6 +103,16 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
 	double SymptomsMotherMultiplier = 1; //EN Multiplier for Symptom Development Speed of Infected Mothers
+/* NOTE ( InfectedDiagnosisMotherRate, EN )
+    Arbitrarily chosen. Should yield an average time to diagnosis of 5 years.
+*/
+
+	double InfectedDiagnosisMotherRate = 0.2; //EN Diagnosis Rate of Infected Mothers
+/* NOTE ( SymptomaticDiagnosisMotherRate, EN )
+    Arbitrarily chosen. Should yield an average time to diagnosis of 3 years.
+*/
+
+	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
 /* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
