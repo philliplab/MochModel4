@@ -17,36 +17,6 @@ output: html_document
 
 
 ```
-## Warning: package 'foreach' was built under R version 3.0.3
-```
-
-```
-## foreach: simple, scalable parallel programming from Revolution Analytics
-## Use Revolution R for scalability, fault tolerance and more.
-## http://www.revolutionanalytics.com
-```
-
-```
-## Warning: package 'doSNOW' was built under R version 3.0.3
-```
-
-```
-## Loading required package: iterators
-```
-
-```
-## Warning: package 'iterators' was built under R version 3.0.3
-```
-
-```
-## Loading required package: snow
-```
-
-```
-## Warning: package 'snow' was built under R version 3.0.3
-```
-
-```
 ## [[1]]
 ##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
 ##  [5] "methods"      "stats"        "graphics"     "grDevices"   
@@ -100,7 +70,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.05    0.00   21.12
+##    0.03    0.00   21.46
 ```
 
 ```
@@ -396,7 +366,7 @@ The percentage of mothers who were ever diagnosed in the base case should be bet
 ---
 
 
-### <a name="StateMembershiptracking"></a>State Membership tracking
+### <a name="MDEATH_SCHEDStateMembershiptracking"></a>MDEATH_SCHED State Membership tracking
 
 Scenario(s): All
 
@@ -405,6 +375,22 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 [To Summary Table](#summary_tab_link)
 
 ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-411.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-412.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-413.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-414.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-415.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-416.png) 
+
+**Result: Manual** 
+
+---
+
+
+
+### <a name="MDETAILEDStateMembershiptracking"></a>MDETAILED State Membership tracking
+
+Scenario(s): All
+
+Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
+
+[To Summary Table](#summary_tab_link)
+
+![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-441.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-442.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-443.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-444.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-445.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-446.png) 
 
 **Result: Manual** 
 
@@ -431,4 +417,5 @@ Model Version: 13
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
-|[State Membership tracking](#StateMembershiptracking)|Manual|All 
+|[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
+|[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 

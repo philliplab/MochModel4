@@ -548,7 +548,7 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ```{r, results='asis'}
-ctest_name <- 'State Membership tracking'
+ctest_name <- 'MDEATH_SCHED State Membership tracking'
 cscenarios <- 'All'
 test_results <- new_test(test_results,
                          name = ctest_name,
@@ -559,6 +559,36 @@ test_results <- new_test(test_results,
 ```{r}
 for (scenario_name in names(db_channels)){
 	StateMembership <- as.data.frame(new_RTable("MotherMDSMembershipxAge", db_channels[[scenario_name]]))
+	p <- ggplot(StateMembership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
+	    guides(col = guide_legend(nrow=2)) +
+	    theme(legend.position = 'bottom') + 
+	    labs(title = paste0("Scenario: ", scenario_name))
+	print(p)
+}
+result <- "Manual"
+```
+
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+
+```{r, results='asis'}
+ctest_name <- 'MDETAILED State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE")
+```
+
+```{r}
+for (scenario_name in names(db_channels)){
+	StateMembership <- as.data.frame(new_RTable("MotherMDMembershipxAge", db_channels[[scenario_name]]))
 	p <- ggplot(StateMembership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
 	    guides(col = guide_legend(nrow=2)) +
 	    theme(legend.position = 'bottom') + 
