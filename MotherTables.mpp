@@ -172,3 +172,21 @@ table Mother MotherDeathDetails //EN Death Details of the mothers
 		unit //EN Indicator of number of Actors Tracked
 	}
 };
+
+table Mother MotherEventDetails //EN Event Details of the mothers
+[actor_id < 5002]
+{
+	split(actor_id, ACTOR_ID) *
+	{
+		value_out(mother_mds_status_at_death ), //EN Status at death
+		value_out(age), //EN Age at Death decimals=2
+		value_at_first_entrance(mdeath_sched_status, mdsINFECTED, age), //EN Age at Infection decimals=2
+		value_at_first_entrance(mdeath_sched_status, mdsTREATED, age), //EN Age at Treatment decimals=2
+		value_at_first_entrance(mdeath_sched_status, mdsSTOPPED, age), //EN Age at Treatment Cessation decimals=2
+		value_out(vdp_age_at_infection), //EN Van der Paal Age category at infection
+		value_at_first_entrance(mdetailed_status, mdSYMPTOMS, age), //EN Age at Symptoms decimals=2
+		value_at_first_entrance(mdetailed_status, mdDIAGNOSED, age), //EN Age at Diagnosed decimals=2
+		value_at_first_entrance(mdetailed_status, mdDIAGSYMP, age), //EN Age at Diagsymp decimals=2
+		unit //EN Indicator of number of Actors Tracked
+	}
+};
