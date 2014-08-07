@@ -28,6 +28,7 @@ library(plyr)
 library(survival)
 library(reshape2)
 library(survMisc)
+library(gridExtra)
 opts_chunk$set(echo = FALSE)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
@@ -467,17 +468,19 @@ pweibull1m <- function(...){1 - pweibull(...)}
 plot_one_vdp_cat <- function(dat, category, phi){
 vdp_restricted <- subset(dat, group == category)
 p <- autoplot(survfit(Surv(age_at_death) ~ 1, vdp_restricted))$plot
-p <- p + labs(title = paste0("Overlay of data for ", category, " and input weibull distribution")) +
+p <- p + labs(title = category) +
   stat_function(fun = pweibull1m, arg = list(shape = 2.5, scale = 11.1123 * phi),
                 col = 'green') +
   scale_colour_discrete(guide = FALSE)
   return(p)
 }
 
-print(plot_one_vdp_cat(all_survival_data, 'vdpa1', phi = 1.22398))
-print(plot_one_vdp_cat(all_survival_data, 'vdpa2', phi = 0.95143))
-print(plot_one_vdp_cat(all_survival_data, 'vdpa3', phi = 0.58661))
-print(plot_one_vdp_cat(all_survival_data, 'vdpa4', phi = 0.52447))
+p <- arrangeGrob(
+plot_one_vdp_cat(all_survival_data, 'vdpa1', phi = 1.22398),
+plot_one_vdp_cat(all_survival_data, 'vdpa2', phi = 0.95143),
+plot_one_vdp_cat(all_survival_data, 'vdpa3', phi = 0.58661),
+plot_one_vdp_cat(all_survival_data, 'vdpa4', phi = 0.52447))
+print(p)
 result <- 'Manual'
 ```
 

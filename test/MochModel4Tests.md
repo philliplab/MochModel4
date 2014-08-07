@@ -70,7 +70,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.00    0.00   13.11
+##    0.03    0.01   12.92
 ```
 
 ```
@@ -82,7 +82,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 13
+## Tests for Model Version 14
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -268,7 +268,7 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 
 Scenario(s): Base
 
-Plots of all the survival curves. The curves must be inspected manually
+Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)
 
@@ -313,7 +313,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 
 [To Summary Table](#summary_tab_link)
 
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-321.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-322.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-323.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-324.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-325.png) 
+![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-321.png) ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-322.png) 
 
 **Result: Manual** 
 
@@ -399,7 +399,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 13
+Model Version: 14
 
 ### <a name="summary_tab_link"></a>Summary Table
 
