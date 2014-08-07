@@ -341,7 +341,7 @@ cscenarios <- 'Base'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "Plots of all the survival curves. The curves must be inspected manually")
+                         description = "Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.")
 ```
 
 ```{r, warning=FALSE, message=FALSE}
@@ -557,14 +557,19 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
+all_membership <- NULL
 for (scenario_name in names(db_channels)){
 	StateMembership <- as.data.frame(new_RTable("MotherMDSMembershipxAge", db_channels[[scenario_name]]))
-	p <- ggplot(StateMembership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
-	    guides(col = guide_legend(nrow=2)) +
-	    theme(legend.position = 'bottom') + 
-	    labs(title = paste0("Scenario: ", scenario_name))
-	print(p)
+  StateMembership$scenario <- scenario_name
+  all_membership <- rbind(all_membership,
+                          StateMembership)
 }
+	p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
+	    guides(col = guide_legend(ncol=2)) +
+	    theme(legend.position = 'bottom') + 
+	    labs(title = paste0("Scenario: ", scenario_name)) +
+      facet_wrap(~ scenario, ncol = 2)
+	print(p)
 result <- "Manual"
 ```
 
@@ -587,14 +592,19 @@ test_results <- new_test(test_results,
 ```
 
 ```{r}
+all_membership <- NULL
 for (scenario_name in names(db_channels)){
 	StateMembership <- as.data.frame(new_RTable("MotherMDMembershipxAge", db_channels[[scenario_name]]))
-	p <- ggplot(StateMembership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
-	    guides(col = guide_legend(nrow=2)) +
-	    theme(legend.position = 'bottom') + 
-	    labs(title = paste0("Scenario: ", scenario_name))
-	print(p)
+  StateMembership$scenario <- scenario_name
+  all_membership <- rbind(all_membership,
+                          StateMembership)
 }
+	p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
+	    guides(col = guide_legend(ncol=2)) +
+	    theme(legend.position = 'bottom') + 
+	    labs(title = paste0("Scenario: ", scenario_name)) +
+      facet_wrap(~ scenario, ncol = 2)
+	print(p)
 result <- "Manual"
 ```
 

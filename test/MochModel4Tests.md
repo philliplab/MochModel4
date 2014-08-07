@@ -70,7 +70,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.03    0.00   21.46
+##    0.00    0.00   13.11
 ```
 
 ```
@@ -374,7 +374,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)
 
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-411.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-412.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-413.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-414.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-415.png) ![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-416.png) 
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
 
 **Result: Manual** 
 
@@ -390,7 +390,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)
 
-![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-441.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-442.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-443.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-444.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-445.png) ![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-446.png) 
+![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44.png) 
 
 **Result: Manual** 
 
