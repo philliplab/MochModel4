@@ -67,5 +67,5 @@ void Mother::SymptomEvent()
 */
 	vdp_age_at_symptoms = vdp_age_int;
 	showing_symptoms = TRUE;
-
+	mdetailed_status = mdSYMPTOMS;
 };

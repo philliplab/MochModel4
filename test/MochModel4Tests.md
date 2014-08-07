@@ -17,6 +17,36 @@ output: html_document
 
 
 ```
+## Warning: package 'foreach' was built under R version 3.0.3
+```
+
+```
+## foreach: simple, scalable parallel programming from Revolution Analytics
+## Use Revolution R for scalability, fault tolerance and more.
+## http://www.revolutionanalytics.com
+```
+
+```
+## Warning: package 'doSNOW' was built under R version 3.0.3
+```
+
+```
+## Loading required package: iterators
+```
+
+```
+## Warning: package 'iterators' was built under R version 3.0.3
+```
+
+```
+## Loading required package: snow
+```
+
+```
+## Warning: package 'snow' was built under R version 3.0.3
+```
+
+```
 ## [[1]]
 ##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
 ##  [5] "methods"      "stats"        "graphics"     "grDevices"   
@@ -70,7 +100,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.01    0.02   18.79
+##    0.05    0.00   21.12
 ```
 
 ```
@@ -82,7 +112,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 12
+## Tests for Model Version 13
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -383,7 +413,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 12
+Model Version: 13
 
 ### <a name="summary_tab_link"></a>Summary Table
 

@@ -148,10 +148,11 @@ parameter_group Mother_Mortality
 	MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi
 };
 
-
 actor Mother            //EN Individual
 {
 	MDEATH_SCHED_STATE mother_mds_status_at_death = {mdsHEALTHY};
+	MDETAILED_STATE mother_md_status_at_death = {mdHEALTHY};
+
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
 
@@ -228,6 +229,8 @@ void Mother::MortalityEvent()
 {
 	mother_mds_status_at_death = mdeath_sched_status;
 	mdeath_sched_status = mdsDEAD;
+	mother_md_status_at_death = mdetailed_status;
+	mdetailed_status = mdDEAD;
 	alive = FALSE;
 
 	// Remove the actor from the simulation.

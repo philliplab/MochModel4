@@ -106,5 +106,6 @@ void Mother::InfectionEvent()
 {
 	vdp_age_at_infection = vdp_age_int; //Used for scheduling death from infection
 	mdeath_sched_status = mdsINFECTED;
+	mdetailed_status = mdINFECTED;
 	infected = TRUE;
 };

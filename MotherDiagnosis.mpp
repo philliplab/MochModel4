@@ -59,6 +59,7 @@ TIME Mother::timeDiagnosisEvent()
 void Mother::diagnosisEvent()
 {
 	diagnosed = TRUE;
+	mdetailed_status = mdDIAGNOSED;
 /*	disease_status_detailed = DIAGNOSED_;
 	int nIndex = {-1};
 	Child *prChild = {NULL};

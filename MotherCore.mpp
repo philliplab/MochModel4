@@ -44,6 +44,18 @@ classification MDEATH_SCHED_STATE
 	mdsDEAD
 };
 
+classification MDETAILED_STATE
+{
+	mdHEALTHY,
+	mdINFECTED,
+	mdSYMPTOMS,
+	mdDIAGNOSED,
+	mdDIAGSYMP,
+	mdTREATED,
+	mdSTOPPED,
+	mdDEAD
+};
+
 partition VAN_DER_PAAL_AGES
 {
 	13, 25, 35, 45
@@ -68,7 +80,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {12};
+	int model_version = {13};
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
 		I can be 100% sure that the model version reported in the output can only be
@@ -76,6 +88,10 @@ actor Mother            //EN Individual
 	*/
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
+	MDETAILED_STATE mdetailed_status = {mdHEALTHY};
+
+	REPORT_TIME report_time = { 0 };
+
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.
 
@@ -85,7 +101,6 @@ actor Mother            //EN Individual
 		A unit of time is a year.
 	*/
 
-	REPORT_TIME report_time = { 0 };
 	//LABEL(Mother.age, EN) Age
 	/* NOTE(Mother.age, EN)
 		Age is a continuous quantity in this model.
