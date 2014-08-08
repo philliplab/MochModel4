@@ -52,31 +52,35 @@ output: html_document
 ## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\AllInfectedNoMortality.scex\""
 ## 
 ## [[2]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\AllInfectedNoSymptomsNoMortality.scex\""
 ## 
 ## [[3]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHealthyMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\""
 ## 
 ## [[4]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHealthyMortality.scex\""
 ## 
 ## [[5]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoInfectedMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\""
 ## 
 ## [[6]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\OnlyInfectedMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoInfectedMortality.scex\""
 ## 
 ## [[7]]
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\OnlyInfectedMortality.scex\""
+## 
+## [[8]]
 ## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\""
 ```
 
 ```
 ##    user  system elapsed 
-##    0.01    0.02   32.51
+##    0.02    0.03   33.39
 ```
 
 ```
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/AllInfectedNoMortality(tbl).mdb"
+## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/AllInfectedNoSymptomsNoMortality(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHealthyMortality(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHIV(tbl).mdb"
@@ -364,6 +368,44 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ---
 
 
+### <a name="SymptomaticDiagnosisRatesmatchesinputs"></a>Symptomatic Diagnosis Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png)   
+
+```
+## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
+### <a name="AsymptomaticDiagnosisRatesmatchesinputs"></a>Asymptomatic Diagnosis Rates matches inputs
+
+Scenario(s): AllInfectedNoSymptomsNoMortality
+
+When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png)   
+
+```
+## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
 ### <a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded
 
 Scenario(s): Base
@@ -416,7 +458,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
+![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png) 
   
 
 **Result: Manual**  
@@ -431,7 +473,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png) 
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35.png) 
   
 
 **Result: Manual**  
@@ -457,6 +499,8 @@ Model Version: 16
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
+|[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 

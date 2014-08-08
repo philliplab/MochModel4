@@ -104,6 +104,22 @@ scenarios_to_create <- list(
                             '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
                                        to = 'InfectedMortalityMotherMultiplier = 0')
                             )
+             ),
+  '7' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'AllInfectedNoSymptomsNoMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3.5'),
+                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+                            '4' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 0')
+
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -471,6 +487,74 @@ plot_one_vdp_cat(med, 2, shape_input = 1.5101, scale_input = 7.5251, phi = 0.951
 plot_one_vdp_cat(med, 3, shape_input = 1.5101, scale_input = 7.5251, phi = 0.58661),
 plot_one_vdp_cat(med, 4, shape_input = 1.5101, scale_input = 7.5251, phi = 0.52447))
 print(p)
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Symptomatic Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
+cscenarios <- 'AllInfectedNoMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Symptoms',
+                                end_event = 'Diagnosis')
+med <- subset(med, time_to_event > 0 &
+                    `Age at Infection` > 0 &
+                    `Age at Symptoms` < `Age at Diagnosis`)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+cat("  \n")
+cat(paste0("Mean time till diagnosis from onset of symptoms: ", mean(med$time_to_event), ". \n"))
+
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Asymptomatic Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Asymptomatic Diagnosis Rates matches inputs'
+cscenarios <- 'AllInfectedNoSymptomsNoMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Infection',
+                                end_event = 'Diagnosis')
+med <- subset(med, time_to_event > 0 &
+                    `Age at Infection` > 0 &
+                    `Age at Symptoms` < `Age at Diagnosis`)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+cat("  \n")
+cat(paste0("Mean time till diagnosis from onset of symptoms: ", mean(med$time_to_event), ". \n"))
+
 result <- 'Manual'
 ```
 ```{r, results='asis'}

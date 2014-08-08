@@ -1,4 +1,4 @@
-Fri Aug 08 13:05:58 2014
+Fri Aug 08 13:32:23 2014
 
 Modgen Version: 11.1.0.0
 Model Name: MOCHMO~1
@@ -16,105 +16,102 @@ Reading Parameters:
 Running Simulation:
 
    1%, 
-   3%, Time to completion: 1.65s
-   4%, Time to completion: 1.22s
-   5%, Time to completion: 0.97s
-   6%, Time to completion: 0.85s
-   7%, Time to completion: 0.76s
-   8%, Time to completion: 0.70s
-   9%, Time to completion: 0.65s
+   2%, Time to completion: 0.10s
+   3%, Time to completion: 1.45s
+   4%, Time to completion: 1.12s
+   5%, Time to completion: 0.93s
+   6%, Time to completion: 0.81s
+   8%, Time to completion: 0.68s
+   9%, Time to completion: 0.64s
    10%, Time to completion: 0.61s
-   11%, Time to completion: 0.57s
-   12%, Time to completion: 0.54s
-   13%, Time to completion: 0.51s
-   14%, Time to completion: 0.50s
-   15%, Time to completion: 0.49s
-   16%, Time to completion: 0.47s
-   17%, Time to completion: 0.46s
-   18%, Time to completion: 0.45s
-   19%, Time to completion: 0.44s
-   20%, Time to completion: 0.43s
-   21%, Time to completion: 0.42s
-   22%, Time to completion: 0.41s
-   23%, Time to completion: 0.40s
-   24%, Time to completion: 0.40s
-   25%, Time to completion: 0.39s
-   26%, Time to completion: 0.39s
-   27%, Time to completion: 0.38s
-   28%, Time to completion: 0.37s
-   30%, Time to completion: 0.35s
-   31%, Time to completion: 0.34s
-   32%, Time to completion: 0.34s
-   33%, Time to completion: 0.33s
-   34%, Time to completion: 0.32s
-   35%, Time to completion: 0.31s
-   36%, Time to completion: 0.31s
-   37%, Time to completion: 0.30s
-   38%, Time to completion: 0.29s
-   39%, Time to completion: 0.28s
-   40%, Time to completion: 0.28s
-   41%, Time to completion: 0.27s
-   42%, Time to completion: 0.26s
-   43%, Time to completion: 0.26s
-   44%, Time to completion: 0.25s
-   45%, Time to completion: 0.24s
-   46%, Time to completion: 0.24s
-   47%, Time to completion: 0.23s
-   48%, Time to completion: 0.22s
-   49%, Time to completion: 0.22s
-   50%, Time to completion: 0.21s
-   51%, Time to completion: 0.20s
-   52%, Time to completion: 0.20s
-   53%, Time to completion: 0.19s
-   54%, Time to completion: 0.19s
-   55%, Time to completion: 0.18s
-   56%, Time to completion: 0.17s
-   57%, Time to completion: 0.17s
-   59%, Time to completion: 0.16s
-   60%, Time to completion: 0.15s
-   61%, Time to completion: 0.15s
-   62%, Time to completion: 0.14s
-   63%, Time to completion: 0.14s
-   64%, Time to completion: 0.13s
-   65%, Time to completion: 0.13s
+   11%, Time to completion: 0.58s
+   13%, Time to completion: 0.58s
+   14%, Time to completion: 0.58s
+   15%, Time to completion: 0.56s
+   16%, Time to completion: 0.53s
+   17%, Time to completion: 0.52s
+   19%, Time to completion: 0.49s
+   20%, Time to completion: 0.47s
+   21%, Time to completion: 0.46s
+   23%, Time to completion: 0.45s
+   24%, Time to completion: 0.44s
+   25%, Time to completion: 0.43s
+   26%, Time to completion: 0.41s
+   27%, Time to completion: 0.40s
+   28%, Time to completion: 0.39s
+   30%, Time to completion: 0.38s
+   31%, Time to completion: 0.37s
+   32%, Time to completion: 0.36s
+   33%, Time to completion: 0.35s
+   34%, Time to completion: 0.35s
+   35%, Time to completion: 0.34s
+   36%, Time to completion: 0.33s
+   37%, Time to completion: 0.32s
+   38%, Time to completion: 0.32s
+   39%, Time to completion: 0.31s
+   40%, Time to completion: 0.30s
+   41%, Time to completion: 0.29s
+   42%, Time to completion: 0.28s
+   43%, Time to completion: 0.28s
+   44%, Time to completion: 0.27s
+   45%, Time to completion: 0.26s
+   46%, Time to completion: 0.25s
+   47%, Time to completion: 0.24s
+   48%, Time to completion: 0.24s
+   49%, Time to completion: 0.23s
+   50%, Time to completion: 0.23s
+   51%, Time to completion: 0.22s
+   52%, Time to completion: 0.21s
+   53%, Time to completion: 0.21s
+   54%, Time to completion: 0.20s
+   55%, Time to completion: 0.20s
+   56%, Time to completion: 0.19s
+   57%, Time to completion: 0.19s
+   59%, Time to completion: 0.17s
+   60%, Time to completion: 0.17s
+   61%, Time to completion: 0.16s
+   62%, Time to completion: 0.15s
+   63%, Time to completion: 0.15s
+   64%, Time to completion: 0.14s
+   65%, Time to completion: 0.14s
    66%, Time to completion: 0.13s
-   67%, Time to completion: 0.12s
+   67%, Time to completion: 0.13s
    68%, Time to completion: 0.12s
-   69%, Time to completion: 0.11s
+   69%, Time to completion: 0.12s
    70%, Time to completion: 0.11s
-   71%, Time to completion: 0.10s
-   72%, Time to completion: 0.10s
-   73%, Time to completion: 0.09s
-   74%, Time to completion: 0.09s
+   71%, Time to completion: 0.11s
+   72%, Time to completion: 0.11s
+   73%, Time to completion: 0.10s
+   74%, Time to completion: 0.10s
    75%, Time to completion: 0.09s
-   76%, Time to completion: 0.08s
+   76%, Time to completion: 0.09s
    77%, Time to completion: 0.08s
-   78%, Time to completion: 0.07s
-   79%, Time to completion: 0.07s
+   78%, Time to completion: 0.08s
+   79%, Time to completion: 0.08s
    80%, Time to completion: 0.07s
-   81%, Time to completion: 0.06s
+   81%, Time to completion: 0.07s
    82%, Time to completion: 0.06s
-   83%, Time to completion: 0.05s
-   84%, Time to completion: 0.05s
+   83%, Time to completion: 0.06s
+   84%, Time to completion: 0.06s
    85%, Time to completion: 0.05s
-   86%, Time to completion: 0.04s
+   86%, Time to completion: 0.05s
    87%, Time to completion: 0.04s
    88%, Time to completion: 0.04s
-   89%, Time to completion: 0.03s
+   89%, Time to completion: 0.04s
    90%, Time to completion: 0.03s
    91%, Time to completion: 0.03s
-   92%, Time to completion: 0.02s
+   92%, Time to completion: 0.03s
    93%, Time to completion: 0.02s
    100%, Time to completion: 0.00s
 
    Total:
 
-   Elapsed Time: 0.29s
-   CPU Time: 0.23s
-   CPU Utilization: 80.14%
-   Speed (replicates per CPU-second) : 4.273477
+   Elapsed Time: 0.31s
+   CPU Time: 0.25s
+   CPU Utilization: 80.26%
+   Speed (replicates per CPU-second) : 4.006385
    Events per replicate: 53251.00
-   Page Faults: 509
+   Page Faults: 497
 
 Generating Reports:
 Done.
