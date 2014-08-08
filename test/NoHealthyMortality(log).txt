@@ -1,4 +1,4 @@
-Thu Aug 07 15:08:17 2014
+Fri Aug 08 10:46:19 2014
 
 Modgen Version: 11.1.0.0
 Model Name: MOCHMO~1
@@ -15,7 +15,123 @@ Reading Parameters:
 
 Running Simulation:
 
+   1%, 
+   2%, Time to completion: 3.23s
+   3%, Time to completion: 6.01s
+   4%, Time to completion: 7.55s
+   5%, Time to completion: 7.70s
+   6%, Time to completion: 8.07s
+   7%, Time to completion: 7.98s
+   8%, Time to completion: 8.12s
+   9%, Time to completion: 8.03s
+   10%, Time to completion: 7.94s
+   11%, Time to completion: 7.85s
+   12%, Time to completion: 7.80s
+   13%, Time to completion: 7.71s
+   14%, Time to completion: 7.62s
+   15%, Time to completion: 7.58s
+   16%, Time to completion: 7.44s
+   17%, Time to completion: 7.32s
+   18%, Time to completion: 7.26s
+   19%, Time to completion: 7.20s
+   20%, Time to completion: 7.13s
+   21%, Time to completion: 7.09s
+   22%, Time to completion: 7.12s
+   23%, Time to completion: 7.12s
+   24%, Time to completion: 6.99s
+   25%, Time to completion: 6.88s
+   26%, Time to completion: 6.74s
+   27%, Time to completion: 6.63s
+   28%, Time to completion: 6.50s
+   30%, Time to completion: 6.39s
+   31%, Time to completion: 6.30s
+   32%, Time to completion: 6.17s
+   33%, Time to completion: 6.04s
+   34%, Time to completion: 5.97s
+   35%, Time to completion: 5.84s
+   36%, Time to completion: 5.71s
+   37%, Time to completion: 5.57s
+   38%, Time to completion: 5.43s
+   39%, Time to completion: 5.29s
+   40%, Time to completion: 5.14s
+   41%, Time to completion: 5.01s
+   42%, Time to completion: 4.88s
+   43%, Time to completion: 4.77s
+   44%, Time to completion: 4.64s
+   45%, Time to completion: 4.54s
+   46%, Time to completion: 4.42s
+   47%, Time to completion: 4.30s
+   48%, Time to completion: 4.20s
+   49%, Time to completion: 4.08s
+   50%, Time to completion: 3.97s
+   51%, Time to completion: 3.85s
+   52%, Time to completion: 3.74s
+   53%, Time to completion: 3.63s
+   54%, Time to completion: 3.54s
+   55%, Time to completion: 3.43s
+   56%, Time to completion: 3.32s
+   57%, Time to completion: 3.25s
+   59%, Time to completion: 3.01s
+   60%, Time to completion: 2.91s
+   61%, Time to completion: 2.81s
+   62%, Time to completion: 2.72s
+   63%, Time to completion: 2.62s
+   64%, Time to completion: 2.53s
+   65%, Time to completion: 2.44s
+   66%, Time to completion: 2.35s
+   67%, Time to completion: 2.26s
+   68%, Time to completion: 2.18s
+   69%, Time to completion: 2.10s
+   70%, Time to completion: 2.01s
+   71%, Time to completion: 1.93s
+   72%, Time to completion: 1.85s
+   73%, Time to completion: 1.77s
+   74%, Time to completion: 1.70s
+   75%, Time to completion: 1.62s
+   76%, Time to completion: 1.55s
+   77%, Time to completion: 1.47s
 
-Errors and Warnings:
+      Current:
 
-Error: Unable to create MS Access file: NoHealthyMortality(tbl).mdb
+      Elapsed Time: 5.01s
+      CPU Time: 4.04s
+      CPU Utilization: 80.65%
+      Speed (replicates per CPU-second) : 0.190574
+      Events per replicate: 765007.79
+      Page Faults: 4323
+
+   78%, Time to completion: 1.40s
+   79%, Time to completion: 1.33s
+   80%, Time to completion: 1.26s
+   81%, Time to completion: 1.19s
+   82%, Time to completion: 1.12s
+   83%, Time to completion: 1.05s
+   84%, Time to completion: 0.99s
+   85%, Time to completion: 0.92s
+   86%, Time to completion: 0.85s
+   87%, Time to completion: 0.79s
+   88%, Time to completion: 0.72s
+   89%, Time to completion: 0.66s
+   90%, Time to completion: 0.60s
+   91%, Time to completion: 0.53s
+   92%, Time to completion: 0.47s
+   93%, Time to completion: 0.41s
+   94%, Time to completion: 0.35s
+   95%, Time to completion: 0.29s
+   96%, Time to completion: 0.23s
+   97%, Time to completion: 0.17s
+   98%, Time to completion: 0.11s
+   99%, Time to completion: 0.06s
+   100%, Time to completion: 0.00s
+
+   Total:
+
+   Elapsed Time: 5.79s
+   CPU Time: 4.79s
+   CPU Utilization: 82.64%
+   Speed (replicates per CPU-second) : 0.208802
+   Events per replicate: 711295.00
+   Page Faults: 4576
+
+Generating Reports:
+Done.
