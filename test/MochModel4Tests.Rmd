@@ -294,7 +294,6 @@ test_results <- new_test(test_results,
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
 deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
-
 result <- deaths_in_healthy == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
@@ -317,7 +316,6 @@ test_results <- new_test(test_results,
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
 deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected State", select = 'Value')$Value)
-
 result <- deaths_in_infected == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
@@ -338,24 +336,6 @@ test_results <- new_test(test_results,
                          description = "Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.")
 ```
 ```{r, warning=FALSE, message=FALSE}
-get_mother_time_to_event <- function(db_channel,
-                                     start_event = 'birth',
-                                     end_event = 'Death'){
-  med <- as.data.frame(new_RTable("MotherEventDetails", db_channel))[,1:3]
-  med <- dcast(med, `split( actor_id, ACTOR_ID )` ~ metrics)
-  if (start_event == 'birth'){
-    start_times <- rep(0, nrow(med))
-  } else {
-    col_name <- paste0("Age at ", start_event)
-    stopifnot(col_name %in% names(med))
-    start_times <- med[,col_name]
-  }
-  col_name <- paste0("Age at ", end_event)
-  stopifnot(col_name %in% names(med))
-  med$time_to_event <- med[,col_name] - start_times
-  return(med)
-}
-
 med <- get_mother_time_to_event(db_channels[[cscenarios]])
 all_survival_data <- data.frame(age_at_death = med$time_to_event,
                                 group = 'All: Time since birth')
@@ -416,6 +396,23 @@ test_results <- new_test(test_results,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article")
 ```
+```{r}
+#' Returns 1 - the CDF of a weibull
+pweibull1m <- function(...){1 - pweibull(...)}
+
+#' Plots a survival curve and overlays a weibull CDF
+plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
+  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
+  print(table(vdp_restricted$vdpa_inf))
+  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
+  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
+    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
+                col = 'green') +
+    scale_colour_discrete(guide = FALSE)
+  return(p)
+}
+
+```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
                                 start_event = 'Infection')
@@ -429,19 +426,6 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
-
-pweibull1m <- function(...){1 - pweibull(...)}
-
-plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
-  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
-  print(table(vdp_restricted$vdpa_inf))
-  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
-  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
-    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
-                col = 'green') +
-    scale_colour_discrete(guide = FALSE)
-  return(p)
-}
 
 p <- arrangeGrob(
 plot_one_vdp_cat(med, 1, phi = 1.22398),
@@ -475,14 +459,11 @@ med$vdpa_inf <- med$`Van der Paal Age category at infection`
 med <- subset(med, time_to_event > 0 &
                     vdpa_inf != 5)
 
-
 p <- autoplot(survfit(Surv(time_to_event) ~ vdpa_inf, med))$plot
 p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
-
-pweibull1m <- function(...){1 - pweibull(...)}
 
 p <- arrangeGrob(
 plot_one_vdp_cat(med, 1, shape_input = 1.5101, scale_input = 7.5251, phi = 1.22398),
@@ -561,19 +542,28 @@ test_results <- new_test(test_results,
                          description = "Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE")
 ```
 ```{r}
-all_membership <- NULL
-for (scenario_name in names(db_channels)){
-	StateMembership <- as.data.frame(new_RTable("MotherMDSMembershipxAge", db_channels[[scenario_name]]))
-  StateMembership$scenario <- scenario_name
-  all_membership <- rbind(all_membership,
-                          StateMembership)
-}
-	p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
-	    guides(col = guide_legend(ncol=2)) +
-	    theme(legend.position = 'bottom') + 
-	    labs(title = paste0("Scenario: ", scenario_name)) +
+#' Produces a plot showing the membership in the different states overtime
+plot_state_membership <- function(source_table){
+  all_membership <- NULL
+  for (scenario_name in names(db_channels)){
+  	StateMembership <- as.data.frame(new_RTable(source_table, db_channels[[scenario_name]]))
+    StateMembership$scenario <- scenario_name
+    all_membership <- rbind(all_membership,
+                            StateMembership)
+  }
+  
+  p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + 
+      geom_line() +
+      guides(col = guide_legend(ncol=2)) +
+      theme(legend.position = 'bottom') + 
+      labs(title = paste0("Scenario: ", scenario_name)) +
       facet_wrap(~ scenario, ncol = 2)
-	print(p)
+  return(p)    
+}
+```
+```{r}
+p <- plot_state_membership("MotherMDSMembershipxAge")
+print(p)
 result <- "Manual"
 ```
 ```{r, results='asis'}
@@ -593,19 +583,8 @@ test_results <- new_test(test_results,
                          description = "Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE")
 ```
 ```{r}
-all_membership <- NULL
-for (scenario_name in names(db_channels)){
-	StateMembership <- as.data.frame(new_RTable("MotherMDMembershipxAge", db_channels[[scenario_name]]))
-  StateMembership$scenario <- scenario_name
-  all_membership <- rbind(all_membership,
-                          StateMembership)
-}
-	p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + geom_line() +
-	    guides(col = guide_legend(ncol=2)) +
-	    theme(legend.position = 'bottom') + 
-	    labs(title = paste0("Scenario: ", scenario_name)) +
-      facet_wrap(~ scenario, ncol = 2)
-	print(p)
+p <- plot_state_membership("MotherMDMembershipxAge")
+print(p)
 result <- "Manual"
 ```
 ```{r, results='asis'}

@@ -56,3 +56,28 @@ get_mother_population_size <- function(db_channel){
                 select = 'Value')[1,1])
 }
 
+#' Returns the mother event details table with a time_to_event column added
+#' The time to event column is computed based on the start_event and end_event inputs
+#' @param db_channel The connection to the access database to use
+#' @param start_event Time to event will consider this as the start of the risk period
+#' @param end_event Time till the occurance of this event will be returned
+#' @export
+
+get_mother_time_to_event <- function(db_channel,
+                                     start_event = 'birth',
+                                     end_event = 'Death'){
+  med <- as.data.frame(new_RTable("MotherEventDetails", db_channel))[,1:3]
+  med <- dcast(med, `split( actor_id, ACTOR_ID )` ~ metrics)
+  if (start_event == 'birth'){
+    start_times <- rep(0, nrow(med))
+  } else {
+    col_name <- paste0("Age at ", start_event)
+    stopifnot(col_name %in% names(med))
+    start_times <- med[,col_name]
+  }
+  col_name <- paste0("Age at ", end_event)
+  stopifnot(col_name %in% names(med))
+  med$time_to_event <- med[,col_name] - start_times
+  return(med)
+}
+

@@ -72,7 +72,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.00    0.00   31.94
+##    0.01    0.02   32.51
 ```
 
 ```
@@ -306,7 +306,8 @@ Scenario(s): OnlyInfectedMortality
 When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-191.png) 
+
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-201.png) 
 
 ```
 ## 
@@ -323,7 +324,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 20
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-192.png) 
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-202.png) 
   
 
 **Result: Manual**  
@@ -338,7 +339,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-211.png) 
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-221.png) 
 
 ```
 ## 
@@ -355,10 +356,10 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 21
 ```
 
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-212.png) 
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-222.png) 
   
 
-**Result: FALSE / manual**  
+**Result: Manual**  
 
 ---
 
@@ -414,7 +415,8 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
+
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
   
 
 **Result: Manual**  
@@ -429,7 +431,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
+![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png) 
   
 
 **Result: Manual**  
@@ -454,7 +456,7 @@ Model Version: 16
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
-|[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|FALSE / manual|AllInfectedNoMortality 
+|[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
