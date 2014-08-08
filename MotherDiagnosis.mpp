@@ -59,7 +59,12 @@ TIME Mother::timeDiagnosisEvent()
 void Mother::diagnosisEvent()
 {
 	diagnosed = TRUE;
-	mdetailed_status = mdDIAGNOSED;
+	if (mdetailed_status == mdSYMPTOMS)
+	{
+		mdetailed_status = mdDIAGSYMP;
+	} else {
+		mdetailed_status = mdDIAGNOSED;
+	};
 /*	disease_status_detailed = DIAGNOSED_;
 	int nIndex = {-1};
 	Child *prChild = {NULL};

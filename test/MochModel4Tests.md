@@ -49,30 +49,34 @@ output: html_document
 
 ```
 ## [[1]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\AllInfectedNoMortality.scex\""
 ## 
 ## [[2]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHealthyMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\""
 ## 
 ## [[3]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHealthyMortality.scex\""
 ## 
 ## [[4]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoInfectedMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\""
 ## 
 ## [[5]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\OnlyInfectedMortality.scex\""
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoInfectedMortality.scex\""
 ## 
 ## [[6]]
+## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\OnlyInfectedMortality.scex\""
+## 
+## [[7]]
 ## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\""
 ```
 
 ```
 ##    user  system elapsed 
-##    0.00    0.00   21.49
+##    0.00    0.00   31.94
 ```
 
 ```
+## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/AllInfectedNoMortality(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHealthyMortality(tbl).mdb"
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHIV(tbl).mdb"
@@ -81,7 +85,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 14
+## Tests for Model Version 16
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -263,7 +267,7 @@ Scenario(s): Base
 Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
   
 
 **Result: Manual**  
@@ -302,14 +306,59 @@ Scenario(s): OnlyInfectedMortality
 When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-321.png) 
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-191.png) 
 
+```
+## 
+##    1 
+## 3441 
+## 
+##   2 
+## 908 
+## 
+##   3 
+## 158 
+## 
+##  4 
+## 20
+```
 
-
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-322.png) 
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-192.png) 
   
 
 **Result: Manual**  
+
+---
+
+
+### <a name="SymptomRatesMatchvanderpaal"></a>Symptom Rates Match van der paal
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-211.png) 
+
+```
+## 
+##    1 
+## 3441 
+## 
+##   2 
+## 908 
+## 
+##   3 
+## 158 
+## 
+##  4 
+## 21
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-212.png) 
+  
+
+**Result: FALSE / manual**  
 
 ---
 
@@ -365,7 +414,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
   
 
 **Result: Manual**  
@@ -380,7 +429,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44.png) 
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
   
 
 **Result: Manual**  
@@ -389,7 +438,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 14
+Model Version: 16
 
 ### <a name="summary_tab_link"></a>Summary Table
 
@@ -405,6 +454,7 @@ Model Version: 14
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
+|[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|FALSE / manual|AllInfectedNoMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 

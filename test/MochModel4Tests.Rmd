@@ -9,15 +9,14 @@ output: html_document
 
 ### Folders and scenario creation
 
-```{r, include=FALSE, eval=FALSE}
-# Build commands
+```{r Build Commands, include=FALSE, eval=FALSE}
 require(knitr) # required for knitting from rmd to md
 require(markdown) # required for md to html 
 knit('MochModel4Tests.Rmd', 'MochModel4Tests.md') # creates md file
 markdownToHTML('MochModel4Tests.md', 'MochModel4Tests.html') # creates html file
 browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) # open file in browser
 ```
-```{r, include=FALSE}
+```{r Setup and Scenario Creation, include=FALSE}
 rm(list = ls())
 rerun_models <- TRUE
 options(scipen=999)
@@ -30,6 +29,8 @@ library(survMisc)
 library(gridExtra)
 odbcCloseAll()
 opts_chunk$set(echo = FALSE)
+opts_chunk$set(fig.height = 10)
+opts_chunk$set(fig.width = 10)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
 setwd(td)
@@ -90,6 +91,19 @@ scenarios_to_create <- list(
                             '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
                                        to = 'SymptomsDiagnosisMotherMultiplier = 0')
                             )
+             ),
+  '6' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'AllInfectedNoMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3.5'),
+                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -100,7 +114,7 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 
 ### Run modgen on all scenarios
 
-```{r, eval=rerun_models}
+```{r Run Models and create connections, eval=rerun_models}
 library(foreach)
 library(doSNOW)
 cl <- makeCluster(6)
@@ -137,7 +151,7 @@ ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channels$NoHIV))$Val
 
 ## Tests for Model Version `r ModelVersion`
 
-```{r, results='asis'}
+```{r Life Expectancy Healthy Mother, results='asis'}
 ctest_name <- 'Life Expectancy Healthy Mother'
 cscenarios <- 'NoHIV'
 test_results <- new_test(test_results, 
@@ -161,7 +175,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Mother Max Age, results='asis'}
 ctest_name <- 'Mother Max Age'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -185,7 +199,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Percentage ever infected bounded, results='asis'}
 ctest_name <- 'Percentage ever infected bounded'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -211,7 +225,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Percentage ever infected zero in NoHIV, results='asis'}
 ctest_name <- 'Percentage ever infected zero in NoHIV'
 cscenarios <- 'NoHIV'
 test_results <- new_test(test_results,
@@ -234,7 +248,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Infected vs Healthy Mortality, results='asis'}
 ctest_name <- 'Infected vs Healthy Mortality'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -269,7 +283,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r No deaths from healthy in NoHealthyMortality, results='asis'}
 ctest_name <- 'No deaths from healthy in NoHealthyMortality'
 cscenarios <- 'NoHealthyMortality'
 test_results <- new_test(test_results,
@@ -292,7 +306,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r No deaths from Infected in NoInfectedMortality, results='asis'}
 ctest_name <- 'No deaths from Infected in NoInfectedMortality'
 cscenarios <- 'NoInfectedMortality'
 test_results <- new_test(test_results,
@@ -315,7 +329,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r All survival curves, results='asis'}
 ctest_name <- 'All survival curves'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -369,7 +383,7 @@ rm('ctest_name', 'cscenarios')
 ```
 
 
-```{r, results='asis'}
+```{r OnlyInfectedMortality scenario has most people dying from infected state, results='asis'}
 ctest_name <- 'OnlyInfectedMortality scenario has most people dying from infected state'
 cscenarios <- 'OnlyInfectedMortality'
 test_results <- new_test(test_results,
@@ -381,7 +395,7 @@ test_results <- new_test(test_results,
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
 deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
 print(deaths_in_infected)
-mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channels[[cscenarios]]))[,1:3]
+mdd <- as.data.frame(new_RTable("MotherEventDetails", db_channels[[cscenarios]]))[,1:3]
 mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
 print(table(mdd$`Status at death`))
 result <- deaths_in_infected > 8000
@@ -394,7 +408,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Infected Mortality Match van der paal, results='asis'}
 ctest_name <- 'Infected Mortality Match van der paal'
 cscenarios <- 'OnlyInfectedMortality'
 test_results <- new_test(test_results,
@@ -416,17 +430,16 @@ p <- p + labs(title = NULL) +
     theme(legend.position = 'bottom')
 print(p)
 
-cat("\n\n\n\n")
-
 pweibull1m <- function(...){1 - pweibull(...)}
 
-plot_one_vdp_cat <- function(dat, vdpa_inf, phi){
-vdp_restricted <- subset(dat, vdpa_inf == vdpa_inf)
-p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
-p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_inf)) +
-  stat_function(fun = pweibull1m, arg = list(shape = 2.5, scale = 11.1123 * phi),
+plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
+  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
+  print(table(vdp_restricted$vdpa_inf))
+  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
+  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
+    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
                 col = 'green') +
-  scale_colour_discrete(guide = FALSE)
+    scale_colour_discrete(guide = FALSE)
   return(p)
 }
 
@@ -436,7 +449,6 @@ plot_one_vdp_cat(med, 2, phi = 0.95143),
 plot_one_vdp_cat(med, 3, phi = 0.58661),
 plot_one_vdp_cat(med, 4, phi = 0.52447))
 print(p)
-cat("\n\n\n\n")
 result <- 'Manual'
 ```
 ```{r, results='asis'}
@@ -447,7 +459,48 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+```{r Symptom Rates Match van der paal, results='asis'}
+ctest_name <- 'Symptom Rates Match van der paal'
+cscenarios <- 'AllInfectedNoMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Infection',
+                                end_event = 'Symptoms')
+med$vdpa_inf <- med$`Van der Paal Age category at infection`
+med <- subset(med, time_to_event > 0 &
+                    vdpa_inf != 5)
+
+
+p <- autoplot(survfit(Surv(time_to_event) ~ vdpa_inf, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+pweibull1m <- function(...){1 - pweibull(...)}
+
+p <- arrangeGrob(
+plot_one_vdp_cat(med, 1, shape_input = 1.5101, scale_input = 7.5251, phi = 1.22398),
+plot_one_vdp_cat(med, 2, shape_input = 1.5101, scale_input = 7.5251, phi = 0.95143),
+plot_one_vdp_cat(med, 3, shape_input = 1.5101, scale_input = 7.5251, phi = 0.58661),
+plot_one_vdp_cat(med, 4, shape_input = 1.5101, scale_input = 7.5251, phi = 0.52447))
+print(p)
+result <- 'Manual'
+```
 ```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Percentage ever symptomatic bounded, results='asis'}
 ctest_name <- 'Percentage ever symptomatic bounded'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -473,7 +526,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r Percentage ever diagnosed bounded, results='asis'}
 ctest_name <- 'Percentage ever diagnosed bounded'
 cscenarios <- 'Base'
 test_results <- new_test(test_results,
@@ -499,7 +552,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r MDEATH_SCHED State Membership tracking, results='asis'}
 ctest_name <- 'MDEATH_SCHED State Membership tracking'
 cscenarios <- 'All'
 test_results <- new_test(test_results,
@@ -531,7 +584,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r, results='asis'}
+```{r MDETAILED State Membership tracking, results='asis'}
 ctest_name <- 'MDETAILED State Membership tracking'
 cscenarios <- 'All'
 test_results <- new_test(test_results,

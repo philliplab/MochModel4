@@ -56,32 +56,3 @@ get_mother_population_size <- function(db_channel){
                 select = 'Value')[1,1])
 }
 
-#' Returns all the ages at death for mothers based on certain criteria and modifiers
-#' @param db_channel The connection to the access database to use
-#' @param time_since The event from which the time to death must be tracked.
-#'  Defaults to 'Birth'. Valid options are 'Birth' and Infection'.
-#' @param status_at_death The death_schedule_state the mother was in when she died.
-#'  Defaults to -1 to indicate the any status is allowed. 
-#'  Valid options are -1 for 'any', 0 for 'mdsHEALTHY' and 1 for 'mdsINFECTED'
-#' @param vdp_age_at_infection Restrict the selection to only subject with a specific 
-#'  van der paal age category at infection. Defaults to -1 meaning that it should 
-#'  not be used to filter the data.
-#' @export
-
-get_mother_mortality <- function(db_channel, time_since = 'Birth',
-                                 status_at_death = -1, vdp_age_at_infection = -1){
-  mdd <- as.data.frame(new_RTable("MotherDeathDetails", db_channel))[,1:3]
-  mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
-  if (status_at_death != -1){
-    mdd <- subset(mdd, `Status at death` == status_at_death)
-  }
-  if (vdp_age_at_infection != -1){
-    mdd <- subset(mdd, `Van der Paal Age category at infection` == vdp_age_at_infection)
-  }
-  if (time_since != 'Birth'){
-    if (time_since == 'Infection'){
-      mdd$`Age at Death` <- mdd$`Age at Death` - mdd$`Age at Infection`
-    }
-  }
-  return(mdd$`Age at Death`)
-}
