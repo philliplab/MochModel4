@@ -103,6 +103,7 @@
     <None Include="MotherDiagnosis.mpp" />
     <None Include="MotherInfection.mpp" />
     <None Include="MotherMortality.mpp" />
+    <None Include="MotherStop.mpp" />
     <None Include="MotherSymptoms.mpp" />
     <None Include="MotherTables.mpp" />
     <None Include="MotherTreatment.mpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="MotherDiagnosis.cpp" />
     <ClCompile Include="MotherInfection.cpp" />
     <ClCompile Include="MotherMortality.cpp" />
+    <ClCompile Include="MotherStop.cpp" />
     <ClCompile Include="MotherSymptoms.cpp" />
     <ClCompile Include="MotherTreatment.cpp" />
     <ClCompile Include="MTables.cpp" />

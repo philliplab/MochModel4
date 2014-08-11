@@ -75,7 +75,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.03    0.01   34.93
+##    0.05    0.00   33.38
 ```
 
 ```
@@ -89,7 +89,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 20
+## Tests for Model Version 23
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -126,7 +126,7 @@ The max age of a mother cannot be greater than 92
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life    91.993240 NA NA
-## 4          Life expectancy    51.031228 NA NA
+## 4          Life expectancy    49.893482 NA NA
 ```
   
 
@@ -224,8 +224,8 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ## 2         Healthy mother years at risk 634221
 ## 3              Infected Mortality Rate     NA
 ## 4        Infected mother years at risk  38371
-## 5                 Mother years at risk 697110
-## 6                     Number of deaths   4917
+## 5                 Mother years at risk 684835
+## 6                     Number of deaths   4918
 ## 7  Number of deaths from HEALTHY state      0
 ## 8 Number of deaths from INFECTED state   2466
 ## 9               Overall Mortality Rate     NA
@@ -251,7 +251,7 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 ## 2         Healthy mother years at risk 452228
 ## 3              Infected Mortality Rate     NA
 ## 4        Infected mother years at risk  48497
-## 5                 Mother years at risk 545705
+## 5                 Mother years at risk 523196
 ## 6                     Number of deaths  10000
 ## 7  Number of deaths from HEALTHY state   5502
 ## 8 Number of deaths from INFECTED state      0
@@ -416,7 +416,26 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 ![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 2.59032384514969.
+## Mean time till treatment from Eligibility and diagnosis: 2.56172194157973.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
+### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30.png)   
+
+```
+## Mean time till treatment from Eligibility and diagnosis: 1.89017180719761.
 ```
   
 
@@ -477,7 +496,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35.png) 
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
   
 
 **Result: Manual**  
@@ -492,7 +511,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
   
 
 **Result: Manual**  
@@ -501,7 +520,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 20
+Model Version: 23
 
 ### <a name="summary_tab_link"></a>Summary Table
 
@@ -521,6 +540,7 @@ Model Version: 20
 |[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 

@@ -1,0 +1,43 @@
+
+parameters
+{
+	double StopMotherMultiplier; //EN Multiplier switch for treatment stopping rate
+	double StopMotherRate; //EN Treatment stoppage rates for mothers
+};
+
+/* NOTE(StopMotherMultiplier, EN)
+	A Multiplier to toggle the stoppage rates of the mothers
+*/
+/* NOTE(StopMotherRate, EN)
+	Exponential rate at which mothers stop treatment
+*/
+
+actor Mother
+{
+	event timeStopEvent, StopEvent;
+};
+
+TIME Mother::timeStopEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if (mdetailed_status == mdTREATED)
+	{
+		t_event_time = log(RandUniform(5)) / -StopMotherRate * StopMotherMultiplier;
+	};
+	t_event_time = WAIT(t_event_time);
+	return (t_event_time);
+};
+
+void Mother::StopEvent()
+{
+	mdeath_sched_status = mdsSTOPPED;
+	mdetailed_status = mdSTOPPED;
+	showing_symptoms = FALSE;
+/*	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Treat();
+	}*/
+};
+
