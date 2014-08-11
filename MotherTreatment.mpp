@@ -1,0 +1,58 @@
+
+parameters
+{
+	double SymptomsTreatmentMotherMultiplier; //EN Treatment Access Accelleration with Symptoms
+	double DiagnosedTreatmentMotherRates[MORT_TIME]; //EN Treatment Rates of Diagnosed Mothers by year
+};
+
+/* NOTE(SymptomsTreatmentMotherMultiplier, EN)
+	A Multiplier Describing how much Faster Mothers with Symptoms Access Treatment
+*/
+/* NOTE(DiagnosedTreatmentMotherRates, EN)
+    Exponential rates at which mothers access treatment
+	after they are diagnosed. Since treatment access rates change with time, 
+	a seperate rate must be specified for each year between 1985 and 2025. After
+	2025, it is assumed that treatment rates stay at 2025 levels.
+*/
+
+parameter_group Mother_Treatment
+{ //EN Parameters controlling the Mother's access to Treatment
+	DiagnosedTreatmentMotherRates, SymptomsTreatmentMotherMultiplier
+};
+
+actor Mother
+{
+	event timeTreatmentEvent, TreatmentEvent;
+};
+
+TIME Mother::timeTreatmentEvent()
+{
+	int time_indx = ModelTime;
+	double multiplier = 1;
+//	if (time_indx > 40){ time_indx = 40;};
+	TIME t_event_time = TIME_INFINITE;
+	if (mdeath_sched_status == mdsINFECTED && diagnosed == TRUE)
+	{
+		if (showing_symptoms == TRUE)
+		{
+			double multiplier = SymptomsTreatmentMotherMultiplier;
+		};
+		t_event_time = log(RandUniform(11)) / -DiagnosedTreatmentMotherRates[time_indx] * multiplier;
+		t_event_time = 1;
+	};
+	t_event_time = WAIT(t_event_time);
+	return (t_event_time);
+};
+
+void Mother::TreatmentEvent()
+{
+	mdeath_sched_status = mdsTREATED;
+	mdetailed_status = mdTREATED;
+	showing_symptoms = FALSE;
+/*	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Treat();
+	}*/
+};

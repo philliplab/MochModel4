@@ -113,14 +113,27 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
 	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
-/* NOTE ( IncidenceTable, EN )
+/* NOTE ( SymptomsTreatmentMotherMultiplier, EN )
+    Arbitrarily chosen.
+*/
+
+	double	SymptomsTreatmentMotherMultiplier = 1; //EN Treatment Access Accelleration with Symptoms
+/* NOTE(DiagnosedTreatmentMotherRates)
+    Arbitrarily chosen.
+*/
+
+	//EN Treatment Rates of Diagnosed Mothers by year 
+	double	DiagnosedTreatmentMotherRates[MORT_TIME] = { 
+		(41) 0.4, 
+	};
+
+	/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
 		the number of HIV-FREE people there were at the start of the year.
 		(The ASSA model's years run from 1 of June). These rates are for the
 		black population only
 */
-
 
 	 //EN Incidence Rates
 	double	IncidenceTable[GENDER][INCIDENCE_LIFE][MORT_TIME] = {
