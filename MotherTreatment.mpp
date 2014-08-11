@@ -31,14 +31,13 @@ TIME Mother::timeTreatmentEvent()
 	double multiplier = 1;
 //	if (time_indx > 40){ time_indx = 40;};
 	TIME t_event_time = TIME_INFINITE;
-	if (mdeath_sched_status == mdsINFECTED && diagnosed == TRUE)
+	if (mdetailed_status == mdDIAGSYMP)
 	{
 		if (showing_symptoms == TRUE)
 		{
 			double multiplier = SymptomsTreatmentMotherMultiplier;
 		};
 		t_event_time = log(RandUniform(11)) / -DiagnosedTreatmentMotherRates[time_indx] * multiplier;
-		t_event_time = 1;
 	};
 	t_event_time = WAIT(t_event_time);
 	return (t_event_time);

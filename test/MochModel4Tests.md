@@ -16,36 +16,6 @@ output: html_document
 
 
 ```
-## Warning: package 'foreach' was built under R version 3.0.3
-```
-
-```
-## foreach: simple, scalable parallel programming from Revolution Analytics
-## Use Revolution R for scalability, fault tolerance and more.
-## http://www.revolutionanalytics.com
-```
-
-```
-## Warning: package 'doSNOW' was built under R version 3.0.3
-```
-
-```
-## Loading required package: iterators
-```
-
-```
-## Warning: package 'iterators' was built under R version 3.0.3
-```
-
-```
-## Loading required package: snow
-```
-
-```
-## Warning: package 'snow' was built under R version 3.0.3
-```
-
-```
 ## [[1]]
 ##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
 ##  [5] "methods"      "stats"        "graphics"     "grDevices"   
@@ -105,7 +75,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.05    0.02   33.96
+##    0.03    0.01   34.93
 ```
 
 ```
@@ -119,7 +89,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 18
+## Tests for Model Version 20
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -156,7 +126,7 @@ The max age of a mother cannot be greater than 92
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life    91.993240 NA NA
-## 4          Life expectancy    50.978962 NA NA
+## 4          Life expectancy    51.031228 NA NA
 ```
   
 
@@ -219,19 +189,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 21022
+## [1] 35355
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 844
+## [1] 2225
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.04015
+## [1] 0.06293
 ```
   
 
@@ -253,11 +223,11 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ## 1               Healthy Mortality Rate      0
 ## 2         Healthy mother years at risk 634221
 ## 3              Infected Mortality Rate     NA
-## 4        Infected mother years at risk  22824
-## 5                 Mother years at risk 696620
+## 4        Infected mother years at risk  38371
+## 5                 Mother years at risk 697110
 ## 6                     Number of deaths   4917
 ## 7  Number of deaths from HEALTHY state      0
-## 8 Number of deaths from INFECTED state    960
+## 8 Number of deaths from INFECTED state   2466
 ## 9               Overall Mortality Rate     NA
 ```
   
@@ -280,8 +250,8 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 ## 1               Healthy Mortality Rate     NA
 ## 2         Healthy mother years at risk 452228
 ## 3              Infected Mortality Rate     NA
-## 4        Infected mother years at risk  24063
-## 5                 Mother years at risk 521271
+## 4        Infected mother years at risk  48497
+## 5                 Mother years at risk 545705
 ## 6                     Number of deaths  10000
 ## 7  Number of deaths from HEALTHY state   5502
 ## 8 Number of deaths from INFECTED state      0
@@ -318,17 +288,17 @@ This test make sure that in the scenario where there is only mortality in the in
 [To Summary Table](#summary_tab_link)  
 
 ```
-## [1] 1808
+## [1] 9066
 ```
 
 ```
 ## 
-##    0    1    2    4 
-##  471  905 3622    1
+##    0    1    2 
+##  471 4527    1
 ```
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -345,17 +315,17 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 
 ```
 ## 
-##   1 
-## 597 
+##    1 
+## 3441 
 ## 
 ##   2 
-## 241 
+## 908 
 ## 
-##  3 
-## 57 
+##   3 
+## 158 
 ## 
 ##  4 
-## 10
+## 20
 ```
 
 ![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-202.png) 
@@ -378,16 +348,16 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ```
 ## 
 ##    1 
-## 1255 
+## 3441 
 ## 
 ##   2 
-## 406 
+## 908 
 ## 
 ##   3 
-## 103 
+## 158 
 ## 
 ##  4 
-## 12
+## 21
 ```
 
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-222.png) 
@@ -408,7 +378,7 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 ![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png)   
 
 ```
-## Mean time till diagnosis from onset of symptoms: 17.2074260933477.
+## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
 ```
   
 
@@ -436,6 +406,25 @@ When the kaplan meier curves of the asymptomatic diagnosis rates are compared to
 ---
 
 
+### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
+
+```
+## Mean time till treatment from Eligibility and diagnosis: 2.59032384514969.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
 ### <a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded
 
 Scenario(s): Base
@@ -446,14 +435,14 @@ The percentage of mothers who ever became symptomatic in the base case should be
 
 ```
 ## $total_symptomatic_mothers
-## [1] 1654
+## [1] 3202
 ## 
 ## $total_population
 ## [1] 10000
 ```
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -488,7 +477,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png) 
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35.png) 
   
 
 **Result: Manual**  
@@ -503,7 +492,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-35.png) 
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
   
 
 **Result: Manual**  
@@ -512,7 +501,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 18
+Model Version: 20
 
 ### <a name="summary_tab_link"></a>Summary Table
 
@@ -526,12 +515,13 @@ Model Version: 18
 |[No deaths from healthy in NoHealthyMortality](#NodeathsfromhealthyinNoHealthyMortality)|TRUE|NoHealthyMortality 
 |[No deaths from Infected in NoInfectedMortality](#NodeathsfromInfectedinNoInfectedMortality)|TRUE|NoInfectedMortality 
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
-|[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|FALSE|OnlyInfectedMortality 
+|[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
-|[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|FALSE|Base 
+|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
