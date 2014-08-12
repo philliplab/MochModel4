@@ -14,6 +14,11 @@ Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
+/* NOTE ( IncidenceMotherMultiplier, EN )
+Choose 1 to prevent any deviations from the ASSA model values.
+*/
+
+	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
 	/* NOTE(MInfectionImmortalityPeriod, EN)
 		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 	*/
@@ -24,12 +29,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	InfectedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Infected Mothers
-/* NOTE ( IncidenceMotherMultiplier, EN )
-Choose 1 to prevent any deviations from the ASSA model values.
-*/
-
-	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
-/* NOTE ( MInfectedMortShape, EN )
+/* NOTE ( InfectedMortalityMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 2.b from the Van der Paal article.
 
@@ -40,8 +40,8 @@ Choose 1 to prevent any deviations from the ASSA model values.
 		the original fit yields low mortality at advanced ages.
 */
 
-	double	MInfectedMortShape = 2.5; //EN Infected Mother Survival Curve Shape - kappa
-/* NOTE ( MInfectedMortScale, EN )
+	double	InfectedMortalityMotherShape = 2.5; //EN Infected Mother Survival Curve Shape - kappa
+/* NOTE ( InfectedMortalityMotherScale, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 2.b from the Van der Paal article.
 
@@ -50,7 +50,79 @@ Choose 1 to prevent any deviations from the ASSA model values.
 		 The scale parameter was extracted from this formula.
 */
 
-	double	MInfectedMortScale = 11.1123; //EN Infected Mother Survival Curve Scale - lambda
+	double	InfectedMortalityMotherScale = 11.1123; //EN Infected Mother Survival Curve Scale - lambda
+/* NOTE ( InfectedMortalityMotherPhi, EN )
+	The Van der Paal article only provides survival
+	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
+	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
+	that will instruct the function to not assign a death date to people younger than 13.
+	Future versions of the model will include a better implemenation of this mechanism.
+
+	The other values in this vector was obtained by fitting a curve of the form
+	
+	f(x) = exp(-(x/scale)^shape)
+
+	was fitted to each age groups survival function seperately. The scale value obtained from each fit 
+	was then divided by the scale of the pooled data to obtain the phi value. 
+	Note that the last entry is used for all ages above 44.
+*/
+
+	 //EN Infected Mother Survival Curve Age Modifier - phi
+	double	InfectedMortalityMotherPhi[VAN_DER_PAAL_INDX] = {
+		1000, 1.22398, 0.95143, 0.58661, 0.52447, 
+	};
+/* NOTE ( StoppedMortalityMotherMultiplier, EN )
+Choose 1 to prevent any deviations from the ASSA model values.
+*/
+
+	double	StoppedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Stopped Mothers
+/* NOTE ( StoppedMortalityMotherShape, EN )
+	From the ASSA model
+*/
+
+	double	StoppedMortalityMotherShape = 1; //EN Stopped Mother Survival Curve Shape - kappa
+/* NOTE ( StoppedMortalityMotherScale, EN )
+	From the ASSA model (combined with Phi to get the whole range based on age)
+*/
+
+	double	StoppedMortalityMotherScale = 1.69; //EN Stopped Mother Survival Curve Scale - lambda
+/* NOTE ( StoppedMortalityMotherPhi, EN )
+	The Van der Paal article only provides survival
+	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
+	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
+	that will instruct the function to not assign a death date to people younger than 13.
+	Future versions of the model will include a better implemenation of this mechanism.
+
+	The other values in this vector was obtained by fitting a curve of the form
+	
+	f(x) = exp(-(x/scale)^shape)
+
+	was fitted to each age groups survival function seperately. The scale value obtained from each fit 
+	was then divided by the scale of the pooled data to obtain the phi value. 
+	Note that the last entry is used for all ages above 44.
+*/
+
+	 //EN Stopped Mother Survival Curve Age Modifier - phi
+	double	StoppedMortalityMotherPhi[VAN_DER_PAAL_INDX] = {
+		1000, 1, 0.8579882, 0.7159763, 0.7159763
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* NOTE (TreatedMortalityMotherb6m, EN)
 	From ASSA model
 */
@@ -77,28 +149,6 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	Chose 1 so that there is no deviation from the ASSA model
 */
 	double TreatmentCessationMotherMultiplier = 1; //EN Multiplier for Mortality of Treated Mothers
-
-
-/* NOTE ( MInfectedMortPhi, EN )
-	The Van der Paal article only provides survival
-	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
-	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
-	that will instruct the function to not assign a death date to people younger than 13.
-	Future versions of the model will include a better implemenation of this mechanism.
-
-	The other values in this vector was obtained by fitting a curve of the form
-	
-	f(x) = exp(-(x/scale)^shape)
-
-	was fitted to each age groups survival function seperately. The scale value obtained from each fit 
-	was then divided by the scale of the pooled data to obtain the phi value. 
-	Note that the last entry is used for all ages above 44.
-*/
-
-	 //EN Infected Mother Survival Curve Age Modifier - phi
-	double	MInfectedMortPhi[VAN_DER_PAAL_INDX] = {
-		1000, 1.22398, 0.95143, 0.58661, 0.52447, 
-	};
 /* NOTE ( TreatmentMotherShape, EN )
 	Defaults to 1 so that an exponential distribution is used
 */
@@ -155,11 +205,6 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 
 	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
 /* NOTE ( SymptomsTreatmentMotherMultiplier, EN )
-    Arbitrarily chosen.
-*/
-
-	double	SymptomsTreatmentMotherMultiplier = 1; //EN Treatment Access Accelleration with Symptoms
-/* NOTE(DiagnosedTreatmentMotherRates)
     Arbitrarily chosen.
 */
 

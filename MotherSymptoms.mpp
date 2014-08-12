@@ -52,7 +52,7 @@ TIME Mother::timeSymptomEvent()
 		double symp_par;
 		symp_par = ((1 - SymptomsMotherCorrelation) * symp_draw) + (SymptomsMotherCorrelation * inf_mortality_draw);
 		if (SymptomsMotherMultiplier > 0){
-			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, MInfectedMortPhi[vdp_age_at_infection]) / SymptomsMotherMultiplier;
+			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]) / SymptomsMotherMultiplier;
 		};
 	}
 	t_event_time = WAIT(t_event_time);

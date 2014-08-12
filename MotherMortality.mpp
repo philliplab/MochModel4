@@ -117,26 +117,48 @@ parameters
 		A multiplier that allows finer control for testing and model exploration.
 	*/
 
-	double TreatedMortalityMotherb6m; //EN Probability of dying within 6 months of starting treatment
-	double TreatedMortalityMothera6m; //EN Annual Probability of dying after 6 months of starting treatment
-	double TreatedMortalityMotherMultiplier; //EN Multiplier for Mortality of Treated Mothers
-
-	double MInfectedMortShape; //EN Infected Mother Survival Curve Shape - kappa
-	/* NOTE (MInfectedMortShape, EN)
+	double InfectedMortalityMotherShape; //EN Infected Mother Survival Curve Shape - kappa
+	/* NOTE (InfectedMortalityMotherShape, EN)
 		The shape parameter for the Infected mother's survival curve
 	*/
 
-	double MInfectedMortScale; //EN Infected Mother Survival Curve Scale - lambda
-	/* NOTE (MInfectedMortScale, EN)
+	double InfectedMortalityMotherScale; //EN Infected Mother Survival Curve Scale - lambda
+	/* NOTE (InfectedMortalityMotherScale, EN)
 		The scale parameter for Infected mother's survival curve
 	*/
 	
-	double MInfectedMortPhi[VAN_DER_PAAL_INDX]; //EN Infected Mother Survival Curve Age Modifier - phi
-	/* NOTE (MInfectedMortPhi, EN)
+	double InfectedMortalityMotherPhi[VAN_DER_PAAL_INDX]; //EN Infected Mother Survival Curve Age Modifier - phi
+	/* NOTE (InfectedMortalityMotherPhi, EN)
 		To accomodate different age groups, the scale parameter is multiplied by a this number. 
 		Each of the different age groups used in the Van der Paal article must have an entry in
 		this parameter.
 	*/
+
+	double StoppedMortalityMotherMultiplier; //EN Multiplier for Mortality of Stopped Mothers
+	/* NOTE (StoppedMortalityMotherMultiplier, EN)
+		A multiplier that allows finer control for testing and model exploration.
+	*/
+
+	double StoppedMortalityMotherShape; //EN Stopped Mother Survival Curve Shape - kappa
+	/* NOTE (StoppedMortalityMotherShape, EN)
+		The shape parameter for the Stopped mother's survival curve
+	*/
+
+	double StoppedMortalityMotherScale; //EN Stopped Mother Survival Curve Scale - lambda
+	/* NOTE (StoppedMortalityMotherScale, EN)
+		The scale parameter for Stopped mother's survival curve
+	*/
+	
+	double StoppedMortalityMotherPhi[VAN_DER_PAAL_INDX]; //EN Stopped Mother Survival Curve Age Modifier - phi
+	/* NOTE (StoppedMortalityMotherPhi, EN)
+		To accomodate different age groups, the scale parameter is multiplied by a this number. 
+		Each of the different age groups used in the Van der Paal article must have an entry in
+		this parameter.
+	*/
+
+	double TreatedMortalityMotherb6m; //EN Probability of dying within 6 months of starting treatment
+	double TreatedMortalityMothera6m; //EN Annual Probability of dying after 6 months of starting treatment
+	double TreatedMortalityMotherMultiplier; //EN Multiplier for Mortality of Treated Mothers
 
 	double MInfectionImmortalityPeriod; //EN Length of Period of immortality immediately after infection
 	/* NOTE(MInfectionImmortalityPeriod, EN)
@@ -149,7 +171,7 @@ parameters
 
 parameter_group Mother_Mortality
 { //EN Mothers' Mortality Parameters
-	MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi
+	InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi
 };
 
 actor Mother            //EN Individual
@@ -228,6 +250,17 @@ double treatedMortalityTime(double y){
 	return(t_event_time);
 };
 
+double stoppedMortalityTime(double y, double kappa, double lambda, double phi){
+	TIME t_event_time = TIME_INFINITE;
+	if (StoppedMortalityMotherMultiplier > 0){
+		t_event_time = 0;
+		while (t_event_time <= MInfectionImmortalityPeriod){
+			t_event_time = invWeibull(y, kappa, lambda, phi) / StoppedMortalityMotherMultiplier;
+		};
+	};
+	return(t_event_time);
+};
+
 // The time function of MortalityEvent
 TIME Mother::timeMortalityEvent()
 {
@@ -235,9 +268,9 @@ TIME Mother::timeMortalityEvent()
 
 	switch(mdeath_sched_status){
 	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(RandUniform(4)));} break;
-	case mdsINFECTED: {t_event_time = WAIT(infectedMortalityTime(inf_mortality_draw, MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi[vdp_age_at_infection]));} break;
+	case mdsINFECTED: {t_event_time = WAIT(infectedMortalityTime(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]));} break;
 	case mdsTREATED: {t_event_time = WAIT(treatedMortalityTime(RandUniform(8)));} break;
-	case mdsSTOPPED: {t_event_time = WAIT(3);} break;
+	case mdsSTOPPED: {t_event_time = WAIT(stoppedMortalityTime(RandUniform(11), StoppedMortalityMotherShape, StoppedMortalityMotherScale, StoppedMortalityMotherPhi[vdp_age_at_infection]));} break;
 	default: {t_event_time = WAIT(100);} break;
 	}
 
