@@ -75,7 +75,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.05    0.00   33.38
+##    0.03    0.00   35.42
 ```
 
 ```
@@ -89,7 +89,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 23
+## Tests for Model Version 24
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -125,12 +125,12 @@ The max age of a mother cannot be greater than 92
 ##                    metrics        Value CV SE
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
-## 3 Maximum duration of life    91.993240 NA NA
-## 4          Life expectancy    49.893482 NA NA
+## 3 Maximum duration of life   100.000000 NA NA
+## 4          Life expectancy    52.021919 NA NA
 ```
   
 
-**Result: TRUE**  
+**Result: FALSE**  
 
 ---
 
@@ -189,19 +189,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 35355
+## [1] 38542
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 2225
+## [1] 2713
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.06293
+## [1] 0.07039
 ```
   
 
@@ -219,16 +219,19 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                metrics    ..1
-## 1               Healthy Mortality Rate      0
-## 2         Healthy mother years at risk 634221
-## 3              Infected Mortality Rate     NA
-## 4        Infected mother years at risk  38371
-## 5                 Mother years at risk 684835
-## 6                     Number of deaths   4918
-## 7  Number of deaths from HEALTHY state      0
-## 8 Number of deaths from INFECTED state   2466
-## 9               Overall Mortality Rate     NA
+##                                 metrics    ..1
+## 1                Healthy Mortality Rate      0
+## 2          Healthy mother years at risk 634221
+## 3               Infected Mortality Rate     NA
+## 4         Infected mother years at risk  41866
+## 5                  Mother years at risk 707696
+## 6                      Number of deaths   4884
+## 7   Number of deaths from HEALTHY state      0
+## 8  Number of deaths from INFECTED state   2993
+## 9   Number of deaths from TREATED state   1009
+## 10               Overall Mortality Rate     NA
+## 11               Treated Mortality Rate     NA
+## 12         Treated mother years at risk  28960
 ```
   
 
@@ -246,16 +249,19 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                metrics    ..1
-## 1               Healthy Mortality Rate     NA
-## 2         Healthy mother years at risk 452228
-## 3              Infected Mortality Rate     NA
-## 4        Infected mother years at risk  48497
-## 5                 Mother years at risk 523196
-## 6                     Number of deaths  10000
-## 7  Number of deaths from HEALTHY state   5502
-## 8 Number of deaths from INFECTED state      0
-## 9               Overall Mortality Rate     NA
+##                                 metrics        ..1
+## 1                Healthy Mortality Rate      4.661
+## 2          Healthy mother years at risk 452227.730
+## 3               Infected Mortality Rate         NA
+## 4         Infected mother years at risk  59568.627
+## 5                  Mother years at risk 585403.548
+## 6                      Number of deaths   9885.000
+## 7   Number of deaths from HEALTHY state   5502.000
+## 8  Number of deaths from INFECTED state      0.000
+## 9   Number of deaths from TREATED state   2322.000
+## 10               Overall Mortality Rate         NA
+## 11               Treated Mortality Rate         NA
+## 12         Treated mother years at risk  67412.871
 ```
   
 
@@ -416,7 +422,7 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 ![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 2.56172194157973.
+## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
 ```
   
 
@@ -435,7 +441,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 1.89017180719761.
+## Mean time till treatment from Eligibility and diagnosis: 14.4985939538831.
 ```
   
 
@@ -520,14 +526,14 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 23
+Model Version: 24
 
 ### <a name="summary_tab_link"></a>Summary Table
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
-|[Mother Max Age](#MotherMaxAge)|TRUE|Base 
+|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
 |[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
 |[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 

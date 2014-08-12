@@ -1,4 +1,4 @@
-Mon Aug 11 15:46:21 2014
+Tue Aug 12 14:04:27 2014
 
 Modgen Version: 11.1.0.0
 Model Name: MOCHMO~1
@@ -13,57 +13,61 @@ Processor Speed=2195MHz
 
 Reading Parameters:
 
+Unrecognized parameter SymptomsTreatmentMotherMultiplier in file MotherCore.dat
+Unrecognized parameter DiagnosedTreatmentMotherRates in file MotherCore.dat
+Unrecognized parameter StopMotherMultiplier in file MotherCore.dat
+Unrecognized parameter StopMotherRate in file MotherCore.dat
 Running Simulation:
 
    1%, 
-   2%, Time to completion: 0.88s
-   3%, Time to completion: 3.01s
+   2%, Time to completion: 0.98s
+   3%, Time to completion: 3.06s
    4%, Time to completion: 3.49s
    5%, Time to completion: 3.75s
-   6%, Time to completion: 3.85s
-   7%, Time to completion: 3.92s
-   8%, Time to completion: 3.96s
-   9%, Time to completion: 4.55s
-   10%, Time to completion: 4.53s
-   11%, Time to completion: 4.49s
-   12%, Time to completion: 4.54s
-   13%, Time to completion: 4.50s
-   14%, Time to completion: 4.50s
-   15%, Time to completion: 4.55s
-   16%, Time to completion: 4.45s
-   17%, Time to completion: 4.37s
-   18%, Time to completion: 4.28s
-   19%, Time to completion: 4.21s
-   20%, Time to completion: 4.14s
-   21%, Time to completion: 4.07s
-   22%, Time to completion: 4.01s
-   23%, Time to completion: 3.94s
-   24%, Time to completion: 3.88s
-   25%, Time to completion: 3.82s
-   26%, Time to completion: 3.76s
-   27%, Time to completion: 3.69s
-   28%, Time to completion: 3.63s
-   30%, Time to completion: 3.50s
-   31%, Time to completion: 3.43s
-   32%, Time to completion: 3.34s
-   33%, Time to completion: 3.26s
-   34%, Time to completion: 3.17s
-   35%, Time to completion: 3.08s
-   36%, Time to completion: 2.99s
-   37%, Time to completion: 2.90s
-   38%, Time to completion: 2.82s
-   39%, Time to completion: 2.72s
-   40%, Time to completion: 2.63s
-   41%, Time to completion: 2.54s
-   42%, Time to completion: 2.46s
-   43%, Time to completion: 2.38s
-   44%, Time to completion: 2.29s
-   45%, Time to completion: 2.21s
-   46%, Time to completion: 2.13s
-   47%, Time to completion: 2.05s
+   6%, Time to completion: 3.89s
+   7%, Time to completion: 3.95s
+   8%, Time to completion: 4.01s
+   9%, Time to completion: 4.03s
+   10%, Time to completion: 4.04s
+   11%, Time to completion: 4.08s
+   12%, Time to completion: 4.08s
+   13%, Time to completion: 4.04s
+   14%, Time to completion: 4.00s
+   15%, Time to completion: 4.01s
+   16%, Time to completion: 3.95s
+   17%, Time to completion: 3.94s
+   18%, Time to completion: 3.92s
+   19%, Time to completion: 3.87s
+   20%, Time to completion: 3.83s
+   21%, Time to completion: 3.78s
+   22%, Time to completion: 3.74s
+   23%, Time to completion: 3.69s
+   24%, Time to completion: 3.64s
+   25%, Time to completion: 3.59s
+   26%, Time to completion: 3.55s
+   27%, Time to completion: 3.50s
+   28%, Time to completion: 3.46s
+   30%, Time to completion: 3.35s
+   31%, Time to completion: 3.30s
+   32%, Time to completion: 3.25s
+   33%, Time to completion: 3.20s
+   34%, Time to completion: 3.14s
+   35%, Time to completion: 3.06s
+   36%, Time to completion: 2.96s
+   37%, Time to completion: 2.88s
+   38%, Time to completion: 2.79s
+   39%, Time to completion: 2.70s
+   40%, Time to completion: 2.61s
+   41%, Time to completion: 2.53s
+   42%, Time to completion: 2.44s
+   43%, Time to completion: 2.36s
+   44%, Time to completion: 2.28s
+   45%, Time to completion: 2.20s
+   46%, Time to completion: 2.12s
+   47%, Time to completion: 2.04s
    48%, Time to completion: 1.97s
    49%, Time to completion: 1.90s
-   50%, Time to completion: 1.83s
+   50%, Time to completion: 1.82s
    51%, Time to completion: 1.76s
    52%, Time to completion: 1.69s
    53%, Time to completion: 1.63s
@@ -87,7 +91,7 @@ Running Simulation:
    72%, Time to completion: 0.74s
    73%, Time to completion: 0.70s
    74%, Time to completion: 0.67s
-   75%, Time to completion: 0.63s
+   75%, Time to completion: 0.64s
    76%, Time to completion: 0.60s
    77%, Time to completion: 0.57s
    78%, Time to completion: 0.54s
@@ -95,18 +99,18 @@ Running Simulation:
    80%, Time to completion: 0.48s
    81%, Time to completion: 0.45s
    82%, Time to completion: 0.42s
-   83%, Time to completion: 0.39s
+   83%, Time to completion: 0.40s
    84%, Time to completion: 0.37s
    85%, Time to completion: 0.34s
-   86%, Time to completion: 0.31s
+   86%, Time to completion: 0.32s
    87%, Time to completion: 0.29s
-   88%, Time to completion: 0.26s
+   88%, Time to completion: 0.27s
    89%, Time to completion: 0.24s
    90%, Time to completion: 0.22s
    91%, Time to completion: 0.19s
    92%, Time to completion: 0.17s
    93%, Time to completion: 0.15s
-   94%, Time to completion: 0.12s
+   94%, Time to completion: 0.13s
    95%, Time to completion: 0.10s
    96%, Time to completion: 0.08s
    97%, Time to completion: 0.06s
@@ -116,12 +120,16 @@ Running Simulation:
 
    Total:
 
-   Elapsed Time: 2.05s
-   CPU Time: 1.81s
-   CPU Utilization: 88.40%
-   Speed (replicates per CPU-second) : 0.552605
+   Elapsed Time: 2.07s
+   CPU Time: 1.86s
+   CPU Utilization: 89.64%
+   Speed (replicates per CPU-second) : 0.538674
    Events per replicate: 430680.00
-   Page Faults: 4533
+   Page Faults: 4530
 
 Generating Reports:
 Done.
+
+Errors and Warnings:
+
+Error: Unrecognized parameter SymptomsTreatmentMotherMultiplier in file MotherCore.datError: Unrecognized parameter DiagnosedTreatmentMotherRates in file MotherCore.datError: Unrecognized parameter StopMotherMultiplier in file MotherCore.datError: Unrecognized parameter StopMotherRate in file MotherCore.dat

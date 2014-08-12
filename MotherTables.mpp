@@ -84,7 +84,10 @@ table Mother MotherMortalityRates //EN Mother Mortality Rates Table
 		undergone_transition(mdeath_sched_status, mdsHEALTHY, mdsDEAD) / duration(mdeath_sched_status, mdsHEALTHY), //EN Healthy Mortality Rate decimals=4
 		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD), //EN Number of deaths from INFECTED state
 		duration(mdeath_sched_status, mdsINFECTED), //EN Infected mother years at risk
-		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD) / duration(mdeath_sched_status, mdsINFECTED) //EN Infected Mortality Rate decimals=4
+		undergone_transition(mdeath_sched_status, mdsINFECTED, mdsDEAD) / duration(mdeath_sched_status, mdsINFECTED), //EN Infected Mortality Rate decimals=4
+		undergone_transition(mdeath_sched_status, mdsTREATED, mdsDEAD), //EN Number of deaths from TREATED state
+		duration(mdeath_sched_status, mdsTREATED), //EN Treated mother years at risk
+		undergone_transition(mdeath_sched_status, mdsTREATED, mdsDEAD) / duration(mdeath_sched_status, mdsTREATED) //EN Treated Mortality Rate decimals=4
 	} //EN 
 };
 

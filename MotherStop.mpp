@@ -1,16 +1,9 @@
-
 parameters
 {
-	double StopMotherMultiplier; //EN Multiplier switch for treatment stopping rate
-	double StopMotherRate; //EN Treatment stoppage rates for mothers
+	double TreatmentCessationMotherb6m; //EN Probability of treatment cessation within 6 months of starting treatment
+	double TreatmentCessationMothera6m; //EN Annual Probability of treatment cessation after 6 months of starting treatment
+	double TreatmentCessationMotherMultiplier; //EN Multiplier for treatment cessation probability of Treated Mothers
 };
-
-/* NOTE(StopMotherMultiplier, EN)
-	A Multiplier to toggle the stoppage rates of the mothers
-*/
-/* NOTE(StopMotherRate, EN)
-	Exponential rate at which mothers stop treatment
-*/
 
 actor Mother
 {
@@ -22,10 +15,19 @@ TIME Mother::timeStopEvent()
 	TIME t_event_time = TIME_INFINITE;
 	if (mdetailed_status == mdTREATED)
 	{
-		t_event_time = log(RandUniform(5)) / -StopMotherRate * StopMotherMultiplier;
-	};
-	t_event_time = WAIT(t_event_time);
-	return (t_event_time);
+		double y = RandUniform(5);
+		if (y > (1 - TreatmentCessationMotherb6m)){
+			t_event_time = -log(y) / (2 * TreatmentCessationMotherb6m);
+		} else {
+			t_event_time = -log(y) / (TreatmentCessationMothera6m);
+		}
+		if (TreatmentCessationMotherMultiplier > 0){
+			t_event_time = t_event_time / TreatmentCessationMotherMultiplier;
+		} else {
+			t_event_time = TIME_INFINITE;
+		}
+	}
+	return(WAIT(t_event_time));
 };
 
 void Mother::StopEvent()
@@ -40,4 +42,3 @@ void Mother::StopEvent()
 		prChild->Mother_Treat();
 	}*/
 };
-

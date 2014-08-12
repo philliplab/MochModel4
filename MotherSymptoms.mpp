@@ -20,6 +20,12 @@ parameters
 	infection and the time to symptoms since infection
 */
 
+/* NOTE (SymptomsMotherMultiplier, EN)
+	The time to symptoms is divided by this number. Thus if you want to switch off symptoms, set it to zero
+	so that you have to wait till inifinity to develop symptoms. If you want to double symptoms, set it to
+	2 so that time to symptoms is halved.
+*/
+
 actor Mother            //EN Individual
 {
 	event timeSymptomEvent, SymptomEvent;
@@ -46,9 +52,8 @@ TIME Mother::timeSymptomEvent()
 		double symp_par;
 		symp_par = ((1 - SymptomsMotherCorrelation) * symp_draw) + (SymptomsMotherCorrelation * inf_mortality_draw);
 		if (SymptomsMotherMultiplier > 0){
-			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, MInfectedMortPhi[vdp_age_at_infection]);
+			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, MInfectedMortPhi[vdp_age_at_infection]) / SymptomsMotherMultiplier;
 		};
-//		t_event_time = 5;
 	}
 	t_event_time = WAIT(t_event_time);
 	return t_event_time;

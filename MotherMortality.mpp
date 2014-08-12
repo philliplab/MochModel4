@@ -117,6 +117,10 @@ parameters
 		A multiplier that allows finer control for testing and model exploration.
 	*/
 
+	double TreatedMortalityMotherb6m; //EN Probability of dying within 6 months of starting treatment
+	double TreatedMortalityMothera6m; //EN Annual Probability of dying after 6 months of starting treatment
+	double TreatedMortalityMotherMultiplier; //EN Multiplier for Mortality of Treated Mothers
+
 	double MInfectedMortShape; //EN Infected Mother Survival Curve Shape - kappa
 	/* NOTE (MInfectedMortShape, EN)
 		The shape parameter for the Infected mother's survival curve
@@ -209,16 +213,30 @@ double infectedMortalityTime(double y, double kappa, double lambda, double phi){
 	return(t_event_time);
 };
 
+double treatedMortalityTime(double y){
+	TIME t_event_time = TIME_INFINITE;
+	if (y > (1 - TreatedMortalityMotherb6m)){
+		t_event_time = -log(y) / (2 * TreatedMortalityMotherb6m);
+	} else {
+		t_event_time = -log(y) / (TreatedMortalityMothera6m);
+	}
+	if (TreatedMortalityMotherMultiplier > 0){
+		t_event_time = t_event_time / TreatedMortalityMotherMultiplier;
+	} else {
+		t_event_time = TIME_INFINITE;
+	}
+	return(t_event_time);
+};
+
 // The time function of MortalityEvent
 TIME Mother::timeMortalityEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	double draw = RandUniform(4);
 
 	switch(mdeath_sched_status){
-	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(draw));} break;
+	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(RandUniform(4)));} break;
 	case mdsINFECTED: {t_event_time = WAIT(infectedMortalityTime(inf_mortality_draw, MInfectedMortShape, MInfectedMortScale, MInfectedMortPhi[vdp_age_at_infection]));} break;
-	case mdsTREATED: {t_event_time = WAIT(6);} break;
+	case mdsTREATED: {t_event_time = WAIT(treatedMortalityTime(RandUniform(8)));} break;
 	case mdsSTOPPED: {t_event_time = WAIT(3);} break;
 	default: {t_event_time = WAIT(100);} break;
 	}

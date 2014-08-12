@@ -1,24 +1,38 @@
 
 parameters
 {
-	double SymptomsTreatmentMotherMultiplier; //EN Treatment Access Accelleration with Symptoms
-	double DiagnosedTreatmentMotherRates[MORT_TIME]; //EN Treatment Rates of Diagnosed Mothers by year
+	double TreatmentMotherShape; //EN Eligilble Mother Time to Treatment Curve Shape - kappa
+	double TreatmentMotherScale; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
+	double TreatmentMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
 };
 
-/* NOTE(SymptomsTreatmentMotherMultiplier, EN)
-	A Multiplier Describing how much Faster Mothers with Symptoms Access Treatment
-*/
-/* NOTE(DiagnosedTreatmentMotherRates, EN)
-    Exponential rates at which mothers access treatment
-	after they are diagnosed. Since treatment access rates change with time, 
-	a seperate rate must be specified for each year between 1985 and 2025. After
-	2025, it is assumed that treatment rates stay at 2025 levels.
+/* NOTE (TreatmentMotherShape, EN)
+    The shape parameter for the Infected mother's time-to-treatment curve
 */
 
-parameter_group Mother_Treatment
-{ //EN Parameters controlling the Mother's access to Treatment
-	DiagnosedTreatmentMotherRates, SymptomsTreatmentMotherMultiplier
+/* NOTE (TreatmentMotherScale, EN)
+   The scale parameter for the Infected mother's time-to-treatment curve
+*/
+
+/* NOTE (TreatmentMotherMultiplier, EN)
+	The time to treatment is divided by this number. Thus if you want to switch off treatment, set it to zero
+	so that you have to wait till inifinity to develop treatment. If you want to double treatment, set it to
+	2 so that time to treatment is halved.
+*/
+
+double InvWeibull3(double y, double kappa, double lambda, double phi)
+{
+	// Lambda is Scale and Kappa is Shape
+	double x = 0;
+	if (phi == 1000){ // SIGH - this is not a pretty hack - no construct like R's Inf in C++?
+		x = pow(10, 10);
+	} else
+	{
+		x = (phi * lambda) * pow(-log(y), 1/kappa);
+	};
+	return(x);
 };
+
 
 actor Mother
 {
@@ -27,17 +41,12 @@ actor Mother
 
 TIME Mother::timeTreatmentEvent()
 {
-	int time_indx = ModelTime;
-	double multiplier = 1;
-//	if (time_indx > 40){ time_indx = 40;};
 	TIME t_event_time = TIME_INFINITE;
 	if (mdetailed_status == mdDIAGSYMP)
 	{
-		if (showing_symptoms == TRUE)
-		{
-			double multiplier = SymptomsTreatmentMotherMultiplier;
+		if (TreatmentMotherMultiplier > 0){
+			t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
 		};
-		t_event_time = log(RandUniform(11)) / -DiagnosedTreatmentMotherRates[time_indx] * multiplier;
 	};
 	t_event_time = WAIT(t_event_time);
 	return (t_event_time);
