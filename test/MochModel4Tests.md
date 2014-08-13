@@ -5,91 +5,24 @@ date: "Tuesday, July 22, 2014"
 output: html_document
 ---
 
-## Setup and Run Model
-
-### Folders and scenario creation
+# Setup and Run Model
 
 
 
-
-### Run modgen on all scenarios
 
 
 ```
-## [[1]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"        
-## 
-## [[2]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"        
-## 
-## [[3]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"        
-## 
-## [[4]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"        
-## 
-## [[5]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"        
-## 
-## [[6]]
-##  [1] "modgenTester" "ggplot2"      "RODBC"        "snow"        
-##  [5] "methods"      "stats"        "graphics"     "grDevices"   
-##  [9] "utils"        "datasets"     "base"
-```
-
-```
-## [[1]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\AllInfectedNoMortality.scex\""
-## 
-## [[2]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\AllInfectedNoSymptomsNoMortality.scex\""
-## 
-## [[3]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Base.scex\""
-## 
-## [[4]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHealthyMortality.scex\""
-## 
-## [[5]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoHIV.scex\""
-## 
-## [[6]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\NoInfectedMortality.scex\""
-## 
-## [[7]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\OnlyInfectedMortality.scex\""
-## 
-## [[8]]
-## [1] "\"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\MochModel4.exe\" -sc \"C:\\Users\\Administrator\\Documents\\Visual Studio 2010\\Projects\\MochModel4\\test\\Small.scex\""
+## [1] "Running Time"
 ```
 
 ```
 ##    user  system elapsed 
-##    0.02    0.01   34.43
+##    0.05    0.00   35.13
 ```
 
-```
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/AllInfectedNoMortality(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/AllInfectedNoSymptomsNoMortality(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Base(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHealthyMortality(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoHIV(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/NoInfectedMortality(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/OnlyInfectedMortality(tbl).mdb"
-## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
-```
+# Tests for Model Version 25
 
-## Tests for Model Version 25
+## Mother
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -277,7 +210,7 @@ Scenario(s): Base
 Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 
   
 
 **Result: Manual**  
@@ -317,7 +250,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-201.png) 
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-211.png) 
 
 ```
 ## 
@@ -334,7 +267,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 20
 ```
 
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-202.png) 
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-212.png) 
   
 
 **Result: Manual**  
@@ -349,7 +282,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-221.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
 
 ```
 ## 
@@ -366,7 +299,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 21
 ```
 
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-222.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
   
 
 **Result: Manual**  
@@ -381,7 +314,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png)   
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
@@ -400,7 +333,7 @@ Scenario(s): AllInfectedNoSymptomsNoMortality
 When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png)   
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
@@ -419,7 +352,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
@@ -438,7 +371,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30.png)   
+![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.4985939538831.
@@ -502,7 +435,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
+![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38.png) 
   
 
 **Result: Manual**  
@@ -517,13 +450,14 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
+![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40.png) 
   
 
 **Result: Manual**  
 
 ---
 
+## Child
 
 ## Summary of all tests
 Model Version: 25

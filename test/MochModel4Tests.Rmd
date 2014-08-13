@@ -5,9 +5,7 @@ date: "Tuesday, July 22, 2014"
 output: html_document
 ---
 
-## Setup and Run Model
-
-### Folders and scenario creation
+# Setup and Run Model
 
 ```{r Build Commands, include=FALSE, eval=FALSE}
 require(knitr) # required for knitting from rmd to md
@@ -127,10 +125,7 @@ for (i in scenarios_to_create){
 }
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
-
-### Run modgen on all scenarios
-
-```{r Run Models and create connections, eval=rerun_models}
+```{r Run Models and create connections, include=FALSE}
 library(foreach)
 library(doSNOW)
 cl <- makeCluster(6)
@@ -142,11 +137,10 @@ registerDoSNOW(cl)
 
 ptm <- proc.time()
 foreach(scenario = available_scenarios) %dopar% {
-  print(scenario)
   run_scenario(td, scenario$scex,
                td, "MochModel4.exe")
 }
-print(proc.time() - ptm)
+running_time <- proc.time() - ptm
 #for (scenario in available_scenarios){
 #  print(scenario)
 #  run_scenario(td, scenario$scex,
@@ -158,7 +152,6 @@ all_results <- list_all_results(td)
 
 db_channels <- list()
 for (i in all_results){
-  print(i)
   db_channel <- access_database(i)
   scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
   db_channels[[scenario_name]] <- db_channel
@@ -169,8 +162,16 @@ source('test_helpers.R')
 
 ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channels$NoHIV))$Value[1]
 ```
+```{r}
+print("Running Time")
+print(running_time)
+print("Number of Scenarios")
+print(length(db_channels))
+```
 
-## Tests for Model Version `r ModelVersion`
+# Tests for Model Version `r ModelVersion`
+
+## Mother
 
 ```{r Life Expectancy Healthy Mother, results='asis'}
 ctest_name <- 'Life Expectancy Healthy Mother'
@@ -775,6 +776,7 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+## Child
 
 ## Summary of all tests
 Model Version: `r ModelVersion`
