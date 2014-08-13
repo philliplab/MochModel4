@@ -12,7 +12,7 @@ new_test <- function(test_results, name, scenarios = NULL, result = NULL, descri
                                result = result,
                                scenarios = scenarios, 
                                anchor_link = anchor_link)
-  cat(paste0('### <a name="', anchor_link,'"></a>', name, "\n\n"))
+  cat(paste0('#### <a name="', anchor_link,'"></a>', name, "\n\n"))
   cat(paste0("Scenario(s): ", scenarios, "\n\n"))
   cat(paste0(description, '\n\n'))
   cat(paste0("[To Summary Table](#summary_tab_link)  \n\n"))

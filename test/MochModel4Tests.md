@@ -17,14 +17,265 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.05    0.00   35.13
+##    0.04    0.00   33.99
+```
+
+```
+## [1] "Number of Scenarios"
+```
+
+```
+## [1] 8
 ```
 
 # Tests for Model Version 25
 
+Notes on the organization of the tests:
+- If a test involves a child in any way, it goes in the child section.
+- If a test involves only one transition, then it goes into that transition's section. This includes test that only test the effect of one parameter. If that parameter is specifically associated with only one transition, then the test goes there.
+- Any other test goes under the heading of the scenario it uses.
+- If a test does not fit any of these categories, dump it in the General section.
+
 ## Mother
 
-### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
+### Transitions
+
+#### Transition 1 - Death of Uninfected Mothers
+
+#### <a name="NodeathsfromhealthyinNoHealthyMortality"></a>No deaths from healthy in NoHealthyMortality
+
+Scenario(s): NoHealthyMortality
+
+No mothers should die from the Healthy state in the NoHealthyMortality Scenario
+
+[To Summary Table](#summary_tab_link)  
+
+```
+##                                 metrics    ..1
+## 1                Healthy Mortality Rate      0
+## 2          Healthy mother years at risk 634221
+## 3               Infected Mortality Rate     NA
+## 4         Infected mother years at risk  41866
+## 5                  Mother years at risk 706416
+## 6                      Number of deaths   4884
+## 7   Number of deaths from HEALTHY state      0
+## 8  Number of deaths from INFECTED state   2993
+## 9   Number of deaths from TREATED state   1009
+## 10               Overall Mortality Rate     NA
+## 11               Treated Mortality Rate     NA
+## 12         Treated mother years at risk  28960
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
+#### Transition 2 - HIV Infection
+
+#### <a name="PercentageeverinfectedzeroinNoHIV"></a>Percentage ever infected zero in NoHIV
+
+Scenario(s): NoHIV
+
+The number of mothers ever infected in the NoHIV case should be 0
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## $total_infections
+## [1] 0
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
+#### Transition 3 - Death of Infected Mothers
+
+#### <a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality
+
+Scenario(s): NoInfectedMortality
+
+No mothers should die from the Infected state in the NoInfectedMortality Scenario
+
+[To Summary Table](#summary_tab_link)  
+
+```
+##                                 metrics        ..1
+## 1                Healthy Mortality Rate      4.661
+## 2          Healthy mother years at risk 452227.730
+## 3               Infected Mortality Rate         NA
+## 4         Infected mother years at risk  59568.627
+## 5                  Mother years at risk 582447.719
+## 6                      Number of deaths   9889.000
+## 7   Number of deaths from HEALTHY state   5502.000
+## 8  Number of deaths from INFECTED state      0.000
+## 9   Number of deaths from TREATED state   2322.000
+## 10               Overall Mortality Rate         NA
+## 11               Treated Mortality Rate         NA
+## 12         Treated mother years at risk  67412.871
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
+#### <a name="InfectedMortalityMatchvanderpaal"></a>Infected Mortality Match van der paal
+
+Scenario(s): OnlyInfectedMortality
+
+When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
+
+[To Summary Table](#summary_tab_link)  
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-81.png) 
+
+```
+## 
+##    1 
+## 3441 
+## 
+##   2 
+## 908 
+## 
+##   3 
+## 158 
+## 
+##  4 
+## 20
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-82.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
+#### Transition 4 - Development of Symptoms of HIV Infected Mothers
+
+#### <a name="SymptomRatesMatchvanderpaal"></a>Symptom Rates Match van der paal
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) 
+
+```
+## 
+##    1 
+## 3441 
+## 
+##   2 
+## 908 
+## 
+##   3 
+## 158 
+## 
+##  4 
+## 21
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
+#### Transition 5 - Diagnosis of Asymptomatic Mothers
+#### <a name="AsymptomaticDiagnosisRatesmatchesinputs"></a>Asymptomatic Diagnosis Rates matches inputs
+
+Scenario(s): AllInfectedNoSymptomsNoMortality
+
+When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png)   
+
+```
+## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
+#### Transition 6 - Diagnosis of Symptomatic Mothers
+#### <a name="SymptomaticDiagnosisRatesmatchesinputs"></a>Symptomatic Diagnosis Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png)   
+
+```
+## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
+#### Transition 7 - Treatment rate of Eligible Mothers
+#### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
+
+```
+## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
+```
+  
+
+**Result: Manual**  
+
+---
+
+
+#### Transition 9 - Treatment cessation
+#### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
+
+Scenario(s): AllInfectedNoMortality
+
+When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png)   
+
+```
+## Mean time till treatment from Eligibility and diagnosis: 14.4985939538831.
+```
+  
+
+**Result: Manual**  
+
+---
+
+### Scenarios
+
+#### Base
+
+#### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
 Scenario(s): NoHIV
 
@@ -46,29 +297,7 @@ In the case of no sickness, we expect the mother's life expectancy to be between
 ---
 
 
-### <a name="MotherMaxAge"></a>Mother Max Age
-
-Scenario(s): Base
-
-The max age of a mother cannot be greater than 92
-
-[To Summary Table](#summary_tab_link)  
-
-```
-##                    metrics        Value CV SE
-## 1          Population size 10000.000000 NA NA
-## 2 Minimum duration of life     0.001127 NA NA
-## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.900707 NA NA
-```
-  
-
-**Result: FALSE**  
-
----
-
-
-### <a name="Percentageeverinfectedbounded"></a>Percentage ever infected bounded
+#### <a name="Percentageeverinfectedbounded"></a>Percentage ever infected bounded
 
 Scenario(s): Base
 
@@ -90,26 +319,7 @@ The percentage of mothers ever infected in the base case should be between 40 an
 ---
 
 
-### <a name="PercentageeverinfectedzeroinNoHIV"></a>Percentage ever infected zero in NoHIV
-
-Scenario(s): NoHIV
-
-The number of mothers ever infected in the NoHIV case should be 0
-
-[To Summary Table](#summary_tab_link)  
-
-```
-## $total_infections
-## [1] 0
-```
-  
-
-**Result: TRUE**  
-
----
-
-
-### <a name="InfectedvsHealthyMortality"></a>Infected vs Healthy Mortality
+#### <a name="InfectedvsHealthyMortality"></a>Infected vs Healthy Mortality
 
 Scenario(s): Base
 
@@ -143,82 +353,53 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ---
 
 
-### <a name="NodeathsfromhealthyinNoHealthyMortality"></a>No deaths from healthy in NoHealthyMortality
-
-Scenario(s): NoHealthyMortality
-
-No mothers should die from the Healthy state in the NoHealthyMortality Scenario
-
-[To Summary Table](#summary_tab_link)  
-
-```
-##                                 metrics    ..1
-## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 634221
-## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  41866
-## 5                  Mother years at risk 706416
-## 6                      Number of deaths   4884
-## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   2993
-## 9   Number of deaths from TREATED state   1009
-## 10               Overall Mortality Rate     NA
-## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  28960
-```
-  
-
-**Result: TRUE**  
-
----
-
-
-### <a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality
-
-Scenario(s): NoInfectedMortality
-
-No mothers should die from the Infected state in the NoInfectedMortality Scenario
-
-[To Summary Table](#summary_tab_link)  
-
-```
-##                                 metrics        ..1
-## 1                Healthy Mortality Rate      4.661
-## 2          Healthy mother years at risk 452227.730
-## 3               Infected Mortality Rate         NA
-## 4         Infected mother years at risk  59568.627
-## 5                  Mother years at risk 582447.719
-## 6                      Number of deaths   9889.000
-## 7   Number of deaths from HEALTHY state   5502.000
-## 8  Number of deaths from INFECTED state      0.000
-## 9   Number of deaths from TREATED state   2322.000
-## 10               Overall Mortality Rate         NA
-## 11               Treated Mortality Rate         NA
-## 12         Treated mother years at risk  67412.871
-```
-  
-
-**Result: TRUE**  
-
----
-
-
-### <a name="Allsurvivalcurves"></a>All survival curves
+#### <a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded
 
 Scenario(s): Base
 
-Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
+The percentage of mothers who ever became symptomatic in the base case should be between 30 and 34%
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 
+
+```
+## $total_symptomatic_mothers
+## [1] 3202
+## 
+## $total_population
+## [1] 10000
+```
   
 
-**Result: Manual**  
+**Result: TRUE**  
 
 ---
 
 
-### <a name="OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate"></a>OnlyInfectedMortality scenario has most people dying from infected state
+#### <a name="Percentageeverdiagnosedbounded"></a>Percentage ever diagnosed bounded
+
+Scenario(s): Base
+
+The percentage of mothers who were ever diagnosed in the base case should be between 36 and 40%
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## $total_diagnosed_mothers
+## [1] 3841
+## 
+## $total_population
+## [1] 10000
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
+#### OnlyInfectedMortality
+
+#### <a name="OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate"></a>OnlyInfectedMortality scenario has most people dying from infected state
 
 Scenario(s): OnlyInfectedMortality
 
@@ -242,192 +423,46 @@ This test make sure that in the scenario where there is only mortality in the in
 ---
 
 
-### <a name="InfectedMortalityMatchvanderpaal"></a>Infected Mortality Match van der paal
+### General
 
-Scenario(s): OnlyInfectedMortality
-
-When the kaplan meier curves of the infected mortalities are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
-
-[To Summary Table](#summary_tab_link)  
-
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-211.png) 
-
-```
-## 
-##    1 
-## 3441 
-## 
-##   2 
-## 908 
-## 
-##   3 
-## 158 
-## 
-##  4 
-## 20
-```
-
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-212.png) 
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="SymptomRatesMatchvanderpaal"></a>Symptom Rates Match van der paal
-
-Scenario(s): AllInfectedNoMortality
-
-When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
-
-```
-## 
-##    1 
-## 3441 
-## 
-##   2 
-## 908 
-## 
-##   3 
-## 158 
-## 
-##  4 
-## 21
-```
-
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="SymptomaticDiagnosisRatesmatchesinputs"></a>Symptomatic Diagnosis Rates matches inputs
-
-Scenario(s): AllInfectedNoMortality
-
-When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25.png)   
-
-```
-## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
-```
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="AsymptomaticDiagnosisRatesmatchesinputs"></a>Asymptomatic Diagnosis Rates matches inputs
-
-Scenario(s): AllInfectedNoSymptomsNoMortality
-
-When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png)   
-
-```
-## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
-```
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
-
-Scenario(s): AllInfectedNoMortality
-
-When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png)   
-
-```
-## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
-```
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
-
-Scenario(s): AllInfectedNoMortality
-
-When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
-
-```
-## Mean time till treatment from Eligibility and diagnosis: 14.4985939538831.
-```
-  
-
-**Result: Manual**  
-
----
-
-
-### <a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded
+#### <a name="MotherMaxAge"></a>Mother Max Age
 
 Scenario(s): Base
 
-The percentage of mothers who ever became symptomatic in the base case should be between 30 and 34%
+The max age of a mother cannot be greater than 92
 
 [To Summary Table](#summary_tab_link)  
 
 ```
-## $total_symptomatic_mothers
-## [1] 3202
-## 
-## $total_population
-## [1] 10000
+##                    metrics        Value CV SE
+## 1          Population size 10000.000000 NA NA
+## 2 Minimum duration of life     0.001127 NA NA
+## 3 Maximum duration of life   100.000000 NA NA
+## 4          Life expectancy    51.900707 NA NA
 ```
   
 
-**Result: TRUE**  
+**Result: FALSE**  
 
 ---
 
 
-### <a name="Percentageeverdiagnosedbounded"></a>Percentage ever diagnosed bounded
+#### <a name="Allsurvivalcurves"></a>All survival curves
 
 Scenario(s): Base
 
-The percentage of mothers who were ever diagnosed in the base case should be between 36 and 40%
+Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-
-```
-## $total_diagnosed_mothers
-## [1] 3841
-## 
-## $total_population
-## [1] 10000
-```
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-34.png) 
   
 
-**Result: TRUE**  
+**Result: Manual**  
 
 ---
 
 
-### <a name="MDEATH_SCHEDStateMembershiptracking"></a>MDEATH_SCHED State Membership tracking
+#### <a name="MDEATH_SCHEDStateMembershiptracking"></a>MDEATH_SCHED State Membership tracking
 
 Scenario(s): All
 
@@ -435,7 +470,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38.png) 
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
   
 
 **Result: Manual**  
@@ -443,14 +478,14 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ---
 
 
-### <a name="MDETAILEDStateMembershiptracking"></a>MDETAILED State Membership tracking
+#### <a name="MDETAILEDStateMembershiptracking"></a>MDETAILED State Membership tracking
 
 Scenario(s): All
 
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-40](figure/unnamed-chunk-40.png) 
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
   
 
 **Result: Manual**  
@@ -466,22 +501,22 @@ Model Version: 25
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
-|[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
-|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
-|[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
-|[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
-|[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
 |[No deaths from healthy in NoHealthyMortality](#NodeathsfromhealthyinNoHealthyMortality)|TRUE|NoHealthyMortality 
+|[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
 |[No deaths from Infected in NoInfectedMortality](#NodeathsfromInfectedinNoInfectedMortality)|TRUE|NoInfectedMortality 
-|[All survival curves](#Allsurvivalcurves)|Manual|Base 
-|[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
-|[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
+|[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
+|[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
+|[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[Percentage ever diagnosed bounded](#Percentageeverdiagnosedbounded)|TRUE|Base 
+|[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
+|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
+|[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 

@@ -162,7 +162,7 @@ source('test_helpers.R')
 
 ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channels$NoHIV))$Value[1]
 ```
-```{r}
+```{r Report on scenarios ran}
 print("Running Time")
 print(running_time)
 print("Number of Scenarios")
@@ -171,47 +171,31 @@ print(length(db_channels))
 
 # Tests for Model Version `r ModelVersion`
 
+Notes on the organization of the tests:
+- If a test involves a child in any way, it goes in the child section.
+- If a test involves only one transition, then it goes into that transition's section. This includes test that only test the effect of one parameter. If that parameter is specifically associated with only one transition, then the test goes there.
+- Any other test goes under the heading of the scenario it uses.
+- If a test does not fit any of these categories, dump it in the General section.
+
 ## Mother
 
-```{r Life Expectancy Healthy Mother, results='asis'}
-ctest_name <- 'Life Expectancy Healthy Mother'
-cscenarios <- 'NoHIV'
-test_results <- new_test(test_results, 
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "In the case of no sickness, we expect the mother's life expectancy to be between 60 and 70")
-```
-```{r}
-DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$NoHIV))
-print(DurationOfLife)
-x <- subset(DurationOfLife, 
-            metrics == "Life expectancy", 
-            select = 'Value')[1,1]
-result <- x > 60 & x < 70
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
+### Transitions
 
+#### Transition 1 - Death of Uninfected Mothers
 
-```{r Mother Max Age, results='asis'}
-ctest_name <- 'Mother Max Age'
-cscenarios <- 'Base'
+```{r No deaths from healthy in NoHealthyMortality, results='asis'}
+ctest_name <- 'No deaths from healthy in NoHealthyMortality'
+cscenarios <- 'NoHealthyMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "The max age of a mother cannot be greater than 92")
+                         description = "No mothers should die from the Healthy state in the NoHealthyMortality Scenario")
 ```
 ```{r}
-DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$Base))
-print(DurationOfLife)
-x <- subset(DurationOfLife, 
-            metrics == "Maximum duration of life", 
-            select = 'Value')
-result <- x <= 92
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
+result <- deaths_in_healthy == 0
+print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -221,31 +205,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r Percentage ever infected bounded, results='asis'}
-ctest_name <- 'Percentage ever infected bounded'
-cscenarios <- 'Base'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "The percentage of mothers ever infected in the base case should be between 40 and 50%")
-```
-```{r}
-Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$Base))
-new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
-total_infections <- sum(new_infections)
-total_population <- get_mother_population_size(db_channels$Base)
-percentage_ever_infected <- total_infections / total_population
-print(list(total_infections = total_infections,
-           total_population = total_population))
-result <- percentage_ever_infected > 0.4 & percentage_ever_infected < 0.5
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
+#### Transition 2 - HIV Infection
 
 ```{r Percentage ever infected zero in NoHIV, results='asis'}
 ctest_name <- 'Percentage ever infected zero in NoHIV'
@@ -270,62 +230,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r Infected vs Healthy Mortality, results='asis'}
-ctest_name <- 'Infected vs Healthy Mortality'
-cscenarios <- 'Base'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "The mortality of uninfected mothers must be lower than the mortality of uninfected mothers. Mortality is tricky to measure accurately thus a proxy is used. Total deaths from state is compared to the total years spent in the state for each state. Further refinements should be made to this test")
-```
-```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
-total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy mother years at risk", select = 'Value')$Value)
-total_time_in_infected <- sum(subset(Mortality, metrics == "Infected mother years at risk", select = 'Value')$Value)
-deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
-deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
-crude_healthy_mortality <- deaths_in_healthy / total_time_in_healthy
-crude_infected_mortality <- deaths_in_infected / total_time_in_infected
-
-print(list(
-total_time_in_healthy = total_time_in_healthy,
-total_time_in_infected = total_time_in_infected,
-deaths_in_healthy = deaths_in_healthy,
-deaths_in_infected = deaths_in_infected,
-crude_healthy_mortality = crude_healthy_mortality,
-crude_infected_mortality = crude_infected_mortality 
-))
-result <- crude_healthy_mortality < crude_infected_mortality
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
-
-```{r No deaths from healthy in NoHealthyMortality, results='asis'}
-ctest_name <- 'No deaths from healthy in NoHealthyMortality'
-cscenarios <- 'NoHealthyMortality'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "No mothers should die from the Healthy state in the NoHealthyMortality Scenario")
-```
-```{r}
-Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
-deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
-result <- deaths_in_healthy == 0
-print (ddply(Mortality, .(metrics), summarise, sum(Value)))
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
+#### Transition 3 - Death of Infected Mothers
 
 ```{r No deaths from Infected in NoInfectedMortality, results='asis'}
 ctest_name <- 'No deaths from Infected in NoInfectedMortality'
@@ -340,93 +245,6 @@ Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscen
 deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected State", select = 'Value')$Value)
 result <- deaths_in_infected == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
-
-```{r All survival curves, results='asis'}
-ctest_name <- 'All survival curves'
-cscenarios <- 'Base'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.")
-```
-```{r, warning=FALSE, message=FALSE}
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-all_survival_data <- data.frame(age_at_death = med$time_to_event,
-                                group = 'All: Time since birth')
-
-med <- subset(med, `Status at death` == 1)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Infected: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Infection')
-med <- subset(med, `Status at death` == 1)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Infected: Time since infection'))
-
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-med <- subset(med, `Status at death` == 2)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Treated: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Treatment')
-med <- subset(med, `Status at death` == 2)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Treated: Time since treatment'))
-
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-med <- subset(med, `Status at death` == 3)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Stopped: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Treatment Cessation')
-med <- subset(med, `Status at death` == 3)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Stopped: Time since treatment cessation'))
-
-p <- autoplot(survfit(Surv(age_at_death) ~ group, all_survival_data))$plot
-p <- p + labs(title = NULL) +
-    guides(col = guide_legend(nrow=4)) +
-    theme(legend.position = 'bottom')
-print(p)
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = 'Manual')
-rm('ctest_name', 'cscenarios')
-```
-
-
-```{r OnlyInfectedMortality scenario has most people dying from infected state, results='asis'}
-ctest_name <- 'OnlyInfectedMortality scenario has most people dying from infected state'
-cscenarios <- 'OnlyInfectedMortality'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "This test make sure that in the scenario where there is only mortality in the infected state, that all people who die before age 100, die from the infected state")
-```
-```{r, warning=FALSE, message=FALSE}
-Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
-deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
-print(deaths_in_infected)
-mdd <- as.data.frame(new_RTable("MotherEventDetails", db_channels[[cscenarios]]))[,1:3]
-mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
-print(table(mdd$`Status at death`))
-result <- deaths_in_infected > 8000
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -491,6 +309,8 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+#### Transition 4 - Development of Symptoms of HIV Infected Mothers
+
 ```{r Symptom Rates Match van der paal, results='asis'}
 ctest_name <- 'Symptom Rates Match van der paal'
 cscenarios <- 'AllInfectedNoMortality'
@@ -529,40 +349,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r Symptomatic Diagnosis Rates matches inputs, results='asis'}
-ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
-cscenarios <- 'AllInfectedNoMortality'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar")
-```
-```{r, warning=FALSE, message=FALSE}
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Symptoms',
-                                end_event = 'Diagnosis')
-med <- subset(med, time_to_event > 0 &
-                    `Age at Infection` > 0 &
-                    `Age at Symptoms` < `Age at Diagnosis`)
-
-p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
-p <- p + labs(title = NULL) +
-    guides(col = guide_legend(nrow=2)) +
-    theme(legend.position = 'bottom')
-print(p)
-cat("  \n")
-cat(paste0("Mean time till diagnosis from onset of symptoms: ", mean(med$time_to_event), ". \n"))
-
-result <- 'Manual'
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
-
+#### Transition 5 - Diagnosis of Asymptomatic Mothers
 ```{r Asymptomatic Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Asymptomatic Diagnosis Rates matches inputs'
 cscenarios <- 'AllInfectedNoSymptomsNoMortality'
@@ -597,6 +384,42 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+#### Transition 6 - Diagnosis of Symptomatic Mothers
+```{r Symptomatic Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
+cscenarios <- 'AllInfectedNoMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Symptoms',
+                                end_event = 'Diagnosis')
+med <- subset(med, time_to_event > 0 &
+                    `Age at Infection` > 0 &
+                    `Age at Symptoms` < `Age at Diagnosis`)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+cat("  \n")
+cat(paste0("Mean time till diagnosis from onset of symptoms: ", mean(med$time_to_event), ". \n"))
+
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+#### Transition 7 - Treatment rate of Eligible Mothers
 ```{r Treatment Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -630,6 +453,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+#### Transition 9 - Treatment cessation
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -654,6 +478,94 @@ cat("  \n")
 cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
 
 result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+### Scenarios
+
+#### Base
+
+```{r Life Expectancy Healthy Mother, results='asis'}
+ctest_name <- 'Life Expectancy Healthy Mother'
+cscenarios <- 'NoHIV'
+test_results <- new_test(test_results, 
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "In the case of no sickness, we expect the mother's life expectancy to be between 60 and 70")
+```
+```{r}
+DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$NoHIV))
+print(DurationOfLife)
+x <- subset(DurationOfLife, 
+            metrics == "Life expectancy", 
+            select = 'Value')[1,1]
+result <- x > 60 & x < 70
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Percentage ever infected bounded, results='asis'}
+ctest_name <- 'Percentage ever infected bounded'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The percentage of mothers ever infected in the base case should be between 40 and 50%")
+```
+```{r}
+Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$Base))
+new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
+total_infections <- sum(new_infections)
+total_population <- get_mother_population_size(db_channels$Base)
+percentage_ever_infected <- total_infections / total_population
+print(list(total_infections = total_infections,
+           total_population = total_population))
+result <- percentage_ever_infected > 0.4 & percentage_ever_infected < 0.5
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Infected vs Healthy Mortality, results='asis'}
+ctest_name <- 'Infected vs Healthy Mortality'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The mortality of uninfected mothers must be lower than the mortality of uninfected mothers. Mortality is tricky to measure accurately thus a proxy is used. Total deaths from state is compared to the total years spent in the state for each state. Further refinements should be made to this test")
+```
+```{r}
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+total_time_in_healthy <- sum(subset(Mortality, metrics == "Healthy mother years at risk", select = 'Value')$Value)
+total_time_in_infected <- sum(subset(Mortality, metrics == "Infected mother years at risk", select = 'Value')$Value)
+deaths_in_healthy <- sum(subset(Mortality, metrics == "Number of deaths from HEALTHY state", select = 'Value')$Value)
+deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
+crude_healthy_mortality <- deaths_in_healthy / total_time_in_healthy
+crude_infected_mortality <- deaths_in_infected / total_time_in_infected
+
+print(list(
+total_time_in_healthy = total_time_in_healthy,
+total_time_in_infected = total_time_in_infected,
+deaths_in_healthy = deaths_in_healthy,
+deaths_in_infected = deaths_in_infected,
+crude_healthy_mortality = crude_healthy_mortality,
+crude_infected_mortality = crude_infected_mortality 
+))
+result <- crude_healthy_mortality < crude_infected_mortality
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -712,6 +624,122 @@ test_results <- new_result(test_results,
                          name = ctest_name,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+#### OnlyInfectedMortality
+
+```{r OnlyInfectedMortality scenario has most people dying from infected state, results='asis'}
+ctest_name <- 'OnlyInfectedMortality scenario has most people dying from infected state'
+cscenarios <- 'OnlyInfectedMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "This test make sure that in the scenario where there is only mortality in the infected state, that all people who die before age 100, die from the infected state")
+```
+```{r, warning=FALSE, message=FALSE}
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+deaths_in_infected <- sum(subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value)
+print(deaths_in_infected)
+mdd <- as.data.frame(new_RTable("MotherEventDetails", db_channels[[cscenarios]]))[,1:3]
+mdd <- dcast(mdd, `split( actor_id, ACTOR_ID )` ~ metrics)
+print(table(mdd$`Status at death`))
+result <- deaths_in_infected > 8000
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+### General
+
+```{r Mother Max Age, results='asis'}
+# TODO: Check on all scenarios not just base
+ctest_name <- 'Mother Max Age'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The max age of a mother cannot be greater than 92")
+```
+```{r}
+DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$Base))
+print(DurationOfLife)
+x <- subset(DurationOfLife, 
+            metrics == "Maximum duration of life", 
+            select = 'Value')
+result <- x <= 92
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r All survival curves, results='asis'}
+ctest_name <- 'All survival curves'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]])
+all_survival_data <- data.frame(age_at_death = med$time_to_event,
+                                group = 'All: Time since birth')
+
+med <- subset(med, `Status at death` == 1)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Infected: Time since birth'))
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Infection')
+med <- subset(med, `Status at death` == 1)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Infected: Time since infection'))
+
+med <- get_mother_time_to_event(db_channels[[cscenarios]])
+med <- subset(med, `Status at death` == 2)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Treated: Time since birth'))
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Treatment')
+med <- subset(med, `Status at death` == 2)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Treated: Time since treatment'))
+
+med <- get_mother_time_to_event(db_channels[[cscenarios]])
+med <- subset(med, `Status at death` == 3)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Stopped: Time since birth'))
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Treatment Cessation')
+med <- subset(med, `Status at death` == 3)
+all_survival_data <- rbind(all_survival_data,
+                           data.frame(age_at_death = med$time_to_event,
+                                      group = 'Stopped: Time since treatment cessation'))
+
+p <- autoplot(survfit(Surv(age_at_death) ~ group, all_survival_data))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=4)) +
+    theme(legend.position = 'bottom')
+print(p)
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = 'Manual')
+rm('ctest_name', 'cscenarios')
 ```
 
 
@@ -778,7 +806,7 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ## Child
 
-## Summary of all tests
+## Summary of All Tests
 Model Version: `r ModelVersion`
 
 ```{r, results='asis'}
