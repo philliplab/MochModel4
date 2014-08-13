@@ -204,25 +204,6 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
 	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
-/* NOTE ( SymptomsTreatmentMotherMultiplier, EN )
-    Arbitrarily chosen.
-*/
-
-	//EN Treatment Rates of Diagnosed Mothers by year 
-	double	DiagnosedTreatmentMotherRates[MORT_TIME] = { 
-		(41) 0.4, 
-	};
-	/* NOTE (StopMotherMultiplier, EN)
-	Arbitrarily chosen
-	*/
-
-	double StopMotherMultiplier = 1; //EN Multiplier switch for treatment stopping rate
-	/* NOTE (StopMotherRate, EN)
-	Arbitrarily chosen
-	*/
-
-	double StopMotherRate = 0.4; //EN Treatment stoppage rates for mothers
-
 	/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to

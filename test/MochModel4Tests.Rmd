@@ -147,11 +147,11 @@ foreach(scenario = available_scenarios) %dopar% {
                td, "MochModel4.exe")
 }
 print(proc.time() - ptm)
-for (scenario in available_scenarios){
-  print(scenario)
-  run_scenario(td, scenario$scex,
-               td, "MochModel4.exe")
-}
+#for (scenario in available_scenarios){
+#  print(scenario)
+#  run_scenario(td, scenario$scex,
+#               td, "MochModel4.exe")
+#}
 
 stopCluster(cl)
 all_results <- list_all_results(td)

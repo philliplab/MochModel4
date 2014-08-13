@@ -75,7 +75,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.02    0.00    5.12
+##    0.02    0.01   34.43
 ```
 
 ```
@@ -89,7 +89,7 @@ output: html_document
 ## [1] "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test/Small(tbl).mdb"
 ```
 
-## Tests for Model Version 24
+## Tests for Model Version 25
 
 ### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -126,7 +126,7 @@ The max age of a mother cannot be greater than 92
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    52.021919 NA NA
+## 4          Life expectancy    51.900707 NA NA
 ```
   
 
@@ -224,7 +224,7 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ## 2          Healthy mother years at risk 634221
 ## 3               Infected Mortality Rate     NA
 ## 4         Infected mother years at risk  41866
-## 5                  Mother years at risk 707696
+## 5                  Mother years at risk 706416
 ## 6                      Number of deaths   4884
 ## 7   Number of deaths from HEALTHY state      0
 ## 8  Number of deaths from INFECTED state   2993
@@ -254,8 +254,8 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 ## 2          Healthy mother years at risk 452227.730
 ## 3               Infected Mortality Rate         NA
 ## 4         Infected mother years at risk  59568.627
-## 5                  Mother years at risk 585403.548
-## 6                      Number of deaths   9885.000
+## 5                  Mother years at risk 582447.719
+## 6                      Number of deaths   9889.000
 ## 7   Number of deaths from HEALTHY state   5502.000
 ## 8  Number of deaths from INFECTED state      0.000
 ## 9   Number of deaths from TREATED state   2322.000
@@ -526,7 +526,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 
 ## Summary of all tests
-Model Version: 24
+Model Version: 25
 
 ### <a name="summary_tab_link"></a>Summary Table
 
