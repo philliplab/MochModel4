@@ -37,7 +37,12 @@ new_result <- function(test_results, name, result){
 #' @param test_results A list containing all the previously run tests
 #' @export
 print_test_results <- function(test_results){
-  cat(paste0('### <a name="summary_tab_link"></a>Summary Table\n\n'))
+  result_vector <- table(sapply(test_results, `[[`, 'result'))
+  cat("#### Summary of the Test Results \n\n")
+  cat(paste0('|', as.character(paste(names(result_vector), collapse = '|', sep = '|')), '|\n'))
+  cat(paste(paste(rep("|:-:", length(result_vector)), sep = "", collapse = ""), "|\n", sep = "", collapse = ""))
+  cat(paste0('|', paste(as.character(result_vector), collapse = '|', sep = '|'), '| \n\n'))
+  cat(paste0('#### <a name="summary_tab_link"></a>Table of the Test Results\n\n'))
   cat("|Name|Result|Scenarios|\n")
   cat("|:-:|:-:|:-:|\n")
   for (i in test_results){

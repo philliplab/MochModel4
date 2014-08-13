@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.04    0.00   33.99
+##    0.03    0.00   35.53
 ```
 
 ```
@@ -494,10 +494,16 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 ## Child
 
-## Summary of all tests
+## Summary of All Tests
 Model Version: 25
 
-### <a name="summary_tab_link"></a>Summary Table
+#### Summary of the Test Results 
+
+|FALSE|Manual|TRUE|
+|:-:|:-:|:-:|
+|1|9|9| 
+
+#### <a name="summary_tab_link"></a>Table of the Test Results
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
