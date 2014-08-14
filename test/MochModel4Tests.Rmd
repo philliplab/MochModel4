@@ -128,6 +128,7 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 ```{r Run Models and create connections, include=FALSE}
 library(foreach)
 library(doSNOW)
+ptm <- proc.time()
 cl <- makeCluster(6)
 clusterCall(cl, function() {
   library(modgenTester)
@@ -135,12 +136,10 @@ clusterCall(cl, function() {
 clusterExport(cl, 'td')
 registerDoSNOW(cl)
 
-ptm <- proc.time()
 foreach(scenario = available_scenarios) %dopar% {
   run_scenario(td, scenario$scex,
                td, "MochModel4.exe")
 }
-running_time <- proc.time() - ptm
 #for (scenario in available_scenarios){
 #  print(scenario)
 #  run_scenario(td, scenario$scex,
@@ -156,6 +155,7 @@ for (i in all_results){
   scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
   db_channels[[scenario_name]] <- db_channel
 }
+running_time <- proc.time() - ptm
 
 test_results <- list()
 source('test_helpers.R')

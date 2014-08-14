@@ -4,7 +4,15 @@ parameters
 	double TreatmentMotherShape; //EN Eligilble Mother Time to Treatment Curve Shape - kappa
 	double TreatmentMotherScale; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
 	double TreatmentMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
+	double TreatmentTransitionMotherSwitch; //EN A switch allowing to choose which transition to use
 };
+
+/* NOTE (TreatmentTransitionMotherSwitch, EN)
+	This switch allows one to choose between scheduling access to treatment based on a weibull 
+	curve from the time since eligibility or based on the coverage rate.
+	Setting this value to zero will use the weibull rate.
+	Setting this value to one will use the coverage based approach.
+*/
 
 /* NOTE (TreatmentMotherShape, EN)
     The shape parameter for the Infected mother's time-to-treatment curve
@@ -44,8 +52,11 @@ TIME Mother::timeTreatmentEvent()
 	TIME t_event_time = TIME_INFINITE;
 	if (mdetailed_status == mdDIAGSYMP)
 	{
-		if (TreatmentMotherMultiplier > 0){
-			t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
+		if (TreatmentTransitionMotherSwitch == 0)
+		{
+			if (TreatmentMotherMultiplier > 0){
+				t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
+			};
 		};
 	};
 	t_event_time = WAIT(t_event_time);
