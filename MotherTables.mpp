@@ -49,6 +49,24 @@ table Mother MotherDiagnosisRates //EN Diagnosis Rates amongst mothers
 	} //EN Diagnosis Rate Statistics
 };
 
+/*NOTE(MotherTreatmentRates, EN)
+	The treatment rates amongst mothers. Based on the ratio between the number of eligible mothers
+	and the treated mothers.
+*/
+
+table Mother MotherTreatmentRates //EN Treatment Rates amongst mothers
+{
+	integer_age+ * //EN Age
+	{
+		undergone_transition( mdetailed_status, mdDIAGSYMP, mdTREATED), //EN Number of newly treated mothers
+		duration(mdetailed_status, mdDIAGSYMP), //EN Mother years at risk decimals=4
+		(undergone_transition( mdetailed_status, mdDIAGSYMP, mdTREATED) / duration(mdetailed_status, mdDIAGSYMP)), //EN Treatment Rates decimals=4
+		duration( mdetailed_status, mdTREATED), //EN Mothers under treatment decimals=4
+		undergone_transition( mdetailed_status, mdDIAGNOSED, mdDIAGSYMP) + undergone_transition( mdetailed_status, mdSYMPTOMS, mdDIAGSYMP) //EN Newly eligible mothers 
+
+	} //EN Diagnosis Rate Statistics
+};
+
 /* NOTE(MotherMortalityRates, EN)
 	A table tracking detailed mortality stats of the mothers.
 	It aims to be able to answer the questions:
