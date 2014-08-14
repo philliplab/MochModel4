@@ -5,7 +5,12 @@ parameters
 	double TreatmentMotherScale; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
 	double TreatmentMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
 	double TreatmentTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for treatment
+	double TreatmentCoverageMother[MORT_TIME]; //EN The treatment times over the model time
 };
+
+/* NOTE (TreatmentCoverageMother, EN)
+	The treatment coverage for eligible mothers. 
+*/
 
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
 	This switch allows one to choose between scheduling access to treatment based on a weibull 
