@@ -91,6 +91,10 @@ table Mother MotherMortalityRates //EN Mother Mortality Rates Table
 	} //EN 
 };
 
+/* ################################################################################
+The State Membership tables
+################################################################################ */
+
 table Mother MotherMDSMembershipxAge //EN Membership of Mothers in the MDEATH_SCHED_STATE
 {
 	integer_age+ * //EN Age
