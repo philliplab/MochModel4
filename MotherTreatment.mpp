@@ -1,3 +1,38 @@
+//LABEL(MotherTreatment, EN) Determines when an eligile mother gets treatment
+
+/* NOTE(MotherTreatment, EN)
+	This module schedules and implements the event that transitions a mother
+	from the DIAGSYMP state into the treated state. 
+	This transition competes with the transitions into the death state.
+	Due to the limited information on the rates of treatment, only a simple
+	exponential rate is implemented. Different rates can be specified for the
+	two source states (symptoms and diagnosis)
+	A switch allows the user to specify which transition type he wants the model
+	to use. Either a weibull curve can be used to draw the transition time, or 
+	the treatment coverage rate can be used to transition into treatment.
+
+	- Data requirements
+
+	For the weibull transition (TreatmentTransitionMotherSwitch == 0), the shape
+	and scale parameters. For the coverage based transition, a vector of coverages
+	at the different model times.
+
+	- Implementation details
+
+	For the weibull transition, a number is randomly drawn from the appropriate
+	weibull distribution upon entry into the DIAGSYMP state. This number
+	is then used to schedule the time to treatment. The formula is:
+		x = (lambda) * pow(-log(y), 1/kappa) where x is the time to
+	treatment, lambda is the scale, kappa is the shape and y is randomly drawn
+	from a uniform distribution.
+
+	For the coverage rate based transition, each mother is randomly assigned a
+	treatment_chance value from a uniform distribution. Upon entry to the DIAGSYMP
+	state, the mother's treatment_chance is compared to the coverage rate. If
+	her treatment chance is smaller than the coverage rate, then she transitions
+	into the treatment state after 0.01 year. The small delay is necessary for
+	the modelling machinery to correctly tabulate the transition
+*/
 
 parameters
 {
@@ -5,11 +40,11 @@ parameters
 	double TreatmentMotherScale; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
 	double TreatmentMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
 	double TreatmentTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for treatment
-	double TreatmentCoverageMother[MORT_TIME]; //EN The treatment times over the model time
+	double TreatmentCoverageMother[MORT_TIME]; //EN The treatment coverage over the model time
 };
 
 /* NOTE (TreatmentCoverageMother, EN)
-	The treatment coverage for eligible mothers. 
+	The treatment coverage for eligible mothers specified for each year that falls under the model time. 
 */
 
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
@@ -32,6 +67,11 @@ parameters
 	so that you have to wait till inifinity to develop treatment. If you want to double treatment, set it to
 	2 so that time to treatment is halved.
 */
+
+parameter_group Mother_Treatment_Parameters
+{ //EN Parameters controlling the mother's access to treatment
+	TreatmentMotherShape, TreatmentMotherScale, TreatmentMotherMultiplier, TreatmentTransitionMotherSwitch, TreatmentCoverageMother
+};
 
 double InvWeibull3(double y, double kappa, double lambda, double phi)
 {
