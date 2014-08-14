@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.10    0.10   40.22
+##    0.11    0.13   43.24
 ```
 
 ```
@@ -296,6 +296,54 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 ---
 
 
+#### <a name="TreatmentCoverageRateCoverageBasedTransition"></a>Treatment Coverage Rate Coverage Based Transition
+
+Scenario(s): AllInfectedNoMortality
+
+Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## Using Value as value column: use value.var to override.
+```
+
+```
+## Warning: Removed 32 rows containing missing values (geom_path).
+```
+
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
+#### <a name="TreatmentCoverageRateWeibullBasedTransition"></a>Treatment Coverage Rate Weibull Based Transition
+
+Scenario(s): WeibullTreatmentTransition
+
+Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## Using Value as value column: use value.var to override.
+```
+
+```
+## Warning: Removed 31 rows containing missing values (geom_path).
+```
+
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
 #### Transition 9 - Treatment cessation
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
@@ -304,7 +352,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png)   
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
@@ -498,7 +546,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38.png) 
+![plot of chunk unnamed-chunk-42](figure/unnamed-chunk-42.png) 
   
 
 **Result: Manual**  
@@ -514,7 +562,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
+![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45.png) 
   
 
 **Result: Manual**  
@@ -529,7 +577,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43.png) 
+![plot of chunk unnamed-chunk-47](figure/unnamed-chunk-47.png) 
   
 
 **Result: Manual**  
@@ -545,7 +593,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|1|10|10| 
+|1|12|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -561,6 +609,8 @@ Model Version: 27
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Treatment Rates matches inputs Weibull Transition](#TreatmentRatesmatchesinputsWeibullTransition)|Manual|WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
+|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
+|[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
