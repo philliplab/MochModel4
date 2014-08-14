@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.06    0.09   40.38
+##    0.05    0.09   39.97
 ```
 
 ```
@@ -55,15 +55,15 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ## 1                Healthy Mortality Rate      0
 ## 2          Healthy mother years at risk 634221
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  35262
-## 5                  Mother years at risk 714963
-## 6                      Number of deaths   4871
+## 4         Infected mother years at risk  40426
+## 5                  Mother years at risk 704075
+## 6                      Number of deaths   4887
 ## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   2062
-## 9   Number of deaths from TREATED state   1467
+## 8  Number of deaths from INFECTED state   3055
+## 9   Number of deaths from TREATED state    978
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  43401
+## 12         Treated mother years at risk  28129
 ```
   
 
@@ -104,19 +104,19 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                 metrics        ..1
-## 1                Healthy Mortality Rate      4.661
-## 2          Healthy mother years at risk 452227.730
-## 3               Infected Mortality Rate         NA
-## 4         Infected mother years at risk  41654.846
-## 5                  Mother years at risk 564981.966
-## 6                      Number of deaths   9924.000
-## 7   Number of deaths from HEALTHY state   5502.000
-## 8  Number of deaths from INFECTED state      0.000
-## 9   Number of deaths from TREATED state   2339.000
-## 10               Overall Mortality Rate         NA
-## 11               Treated Mortality Rate         NA
-## 12         Treated mother years at risk  67841.994
+##                                 metrics    ..1
+## 1                Healthy Mortality Rate     NA
+## 2          Healthy mother years at risk 452228
+## 3               Infected Mortality Rate     NA
+## 4         Infected mother years at risk 160047
+## 5                  Mother years at risk 654520
+## 6                      Number of deaths   8100
+## 7   Number of deaths from HEALTHY state   5502
+## 8  Number of deaths from INFECTED state      0
+## 9   Number of deaths from TREATED state   1361
+## 10               Overall Mortality Rate     NA
+## 11               Treated Mortality Rate     NA
+## 12         Treated mother years at risk  40313
 ```
   
 
@@ -243,7 +243,7 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 ![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 1.00022084805654.
+## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000002.
 ```
   
 
@@ -307,7 +307,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 14.5481817049969.
+## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
 ```
   
 
@@ -376,19 +376,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 32532
+## [1] 37065
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 1832
+## [1] 2771
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.05631
+## [1] 0.07476
 ```
   
 
@@ -482,7 +482,7 @@ The max age of a mother cannot be greater than 92
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    52.744129 NA NA
+## 4          Life expectancy    51.688629 NA NA
 ```
   
 

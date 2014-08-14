@@ -64,7 +64,9 @@ TIME Mother::timeTreatmentEvent()
 			};
 		};
 		if (TreatmentTransitionMotherSwitch == 1){
-			t_event_time = 1;
+			if (TreatmentMotherMultiplier * treatment_chance < TreatmentCoverageMother[ModelTime]){
+				t_event_time = 0.01;
+			};
 		};
 	};
 	t_event_time = WAIT(t_event_time);
