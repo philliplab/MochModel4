@@ -501,6 +501,40 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+```{r Treatment chance is assigned as expected,  results='asis'}
+ctest_name <- 'Treatment chance is assigned as expected'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The treatment chance must be a random uniform number. Min between 0 and 0.05, Max between 0.95 and 1, Mean between 0.475 and 0.525")
+```
+```{r, warning=FALSE, message=FALSE}
+MotherTreatmentChance <- as.data.frame(new_RTable("MotherTestForTreatmentChance", db_channels$NoHIV))
+minv <- subset(MotherTreatmentChance, 
+            metrics == "Minimum Treatment Chance", 
+            select = 'Value')[1,1]
+maxv <- subset(MotherTreatmentChance, 
+            metrics == "Maximum Treatment Chance", 
+            select = 'Value')[1,1]
+avgv <- subset(MotherTreatmentChance, 
+            metrics == "Average Treatment Chance", 
+            select = 'Value')[1,1]
+
+print(list('Min' = minv,
+           'Max' = maxv,
+           'Avg' = avgv))
+
+result <- (minv > 0) & (minv < 0.05) & (maxv > 0.95) & (maxv < 1) & (avgv > 0.475) & (avgv < 0.525) 
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 #### Transition 9 - Treatment cessation
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'

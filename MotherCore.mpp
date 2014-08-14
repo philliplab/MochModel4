@@ -81,10 +81,17 @@ actor_set Mother asAllMother; //EN All Mother actors
 actor Mother            //EN Individual
 {
 	int model_version = {26};
+
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
 		I can be 100% sure that the model version reported in the output can only be
 		produced by that version of the code (as opposed to just reading it from a dat file)
+	*/
+
+	double treatment_chance = {0};
+	/* NOTE(Mother.treatment_chance, EN)
+		The chance that a mother will access treatment once she is elible.
+		Used in conjunction with the Treatment Coverage based Treatment schduler
 	*/
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
@@ -163,6 +170,7 @@ void Mother::Start()
 	time = 0;
 
 	inf_mortality_draw = RandUniform(3);
+	treatment_chance = RandUniform(12);
 
 	// After the code in this function is executed,
 	// Modgen initializes events and tables for the actor.

@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.12    0.09   39.97
+##    0.06    0.09   40.38
 ```
 
 ```
@@ -252,7 +252,7 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 ---
 
 
-#### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
+#### <a name="TreatmentRatesmatchesinputsWeibullTransition"></a>Treatment Rates matches inputs Weibull Transition
 
 Scenario(s): WeibullTreatmentTransition
 
@@ -271,6 +271,31 @@ The input rates for the transition to treatment must match the input rates in th
 ---
 
 
+#### <a name="Treatmentchanceisassignedasexpected"></a>Treatment chance is assigned as expected
+
+Scenario(s): Base
+
+The treatment chance must be a random uniform number. Min between 0 and 0.05, Max between 0.95 and 1, Mean between 0.475 and 0.525
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## $Min
+## [1] 0.00005855
+## 
+## $Max
+## [1] 0.9998
+## 
+## $Avg
+## [1] 0.5036
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
 #### Transition 9 - Treatment cessation
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
@@ -279,7 +304,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png)   
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.5481817049969.
@@ -473,7 +498,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-36](figure/unnamed-chunk-36.png) 
+![plot of chunk unnamed-chunk-38](figure/unnamed-chunk-38.png) 
   
 
 **Result: Manual**  
@@ -489,7 +514,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
   
 
 **Result: Manual**  
@@ -504,7 +529,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
+![plot of chunk unnamed-chunk-43](figure/unnamed-chunk-43.png) 
   
 
 **Result: Manual**  
@@ -520,7 +545,7 @@ Model Version: 26
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|1|9|9| 
+|1|10|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -533,7 +558,9 @@ Model Version: 26
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
 |[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
-|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|WeibullTreatmentTransition 
+|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Treatment Rates matches inputs Weibull Transition](#TreatmentRatesmatchesinputsWeibullTransition)|Manual|WeibullTreatmentTransition 
+|[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
