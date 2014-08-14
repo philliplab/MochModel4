@@ -118,6 +118,21 @@ scenarios_to_create <- list(
                                        to = 'SymptomsMotherMultiplier = 0')
 
                             )
+             ),
+  '8' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'WeibullTreatmentTransition'), 
+             scex_sub = list(), 
+             dat_sub = list('4' = list(from = 'TreatmentTransitionMotherSwitch = 1',
+                                       to = 'TreatmentTransitionMotherSwitch = 0'),
+                            '1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3.5'),
+                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0')
+                           )
              )
   )
 for (i in scenarios_to_create){
@@ -427,6 +442,39 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar")
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]],
+                                start_event = 'Diagsymp',
+                                end_event = 'Treatment')
+med <- subset(med, time_to_event > 0 &
+                    `Age at Infection` > 0)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+cat("  \n")
+cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
+
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Treatment Rates matches inputs Weibull Transition, results='asis'}
+ctest_name <- 'Treatment Rates matches inputs Weibull Transition'
+cscenarios <- 'WeibullTreatmentTransition'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The input rates for the transition to treatment must match the input rates in the case that the weibull transition is specified.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
