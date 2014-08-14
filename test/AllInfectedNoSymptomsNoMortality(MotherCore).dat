@@ -165,9 +165,9 @@ Choose 1 to prevent any deviations from the ASSA model values.
 
 	double TreatmentMotherMultiplier = 1; //EN Multiplier for Symptom Development Speed of Infected Mothers
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
-	A value of 0 will cause the weibull transition to be used
+	A value of 1 will cause the treatment coverage rate transition to be used
 */
-	double TreatmentTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use
+	double TreatmentTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use
 /* NOTE ( SymptomsMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 3 from the Van der Paal article.

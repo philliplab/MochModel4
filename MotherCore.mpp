@@ -80,7 +80,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {25};
+	int model_version = {26};
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
 		I can be 100% sure that the model version reported in the output can only be

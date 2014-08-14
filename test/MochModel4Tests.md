@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.01   39.05
+##    0.14    0.07   47.40
 ```
 
 ```
@@ -28,7 +28,7 @@ output: html_document
 ## [1] 8
 ```
 
-# Tests for Model Version 25
+# Tests for Model Version 26
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -55,15 +55,15 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ## 1                Healthy Mortality Rate      0
 ## 2          Healthy mother years at risk 634221
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  41866
-## 5                  Mother years at risk 706416
-## 6                      Number of deaths   4884
+## 4         Infected mother years at risk  35262
+## 5                  Mother years at risk 714963
+## 6                      Number of deaths   4871
 ## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   2993
-## 9   Number of deaths from TREATED state   1009
+## 8  Number of deaths from INFECTED state   2062
+## 9   Number of deaths from TREATED state   1467
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  28960
+## 12         Treated mother years at risk  43401
 ```
   
 
@@ -108,15 +108,15 @@ No mothers should die from the Infected state in the NoInfectedMortality Scenari
 ## 1                Healthy Mortality Rate      4.661
 ## 2          Healthy mother years at risk 452227.730
 ## 3               Infected Mortality Rate         NA
-## 4         Infected mother years at risk  59568.627
-## 5                  Mother years at risk 582447.719
-## 6                      Number of deaths   9889.000
+## 4         Infected mother years at risk  41654.846
+## 5                  Mother years at risk 564981.966
+## 6                      Number of deaths   9924.000
 ## 7   Number of deaths from HEALTHY state   5502.000
 ## 8  Number of deaths from INFECTED state      0.000
-## 9   Number of deaths from TREATED state   2322.000
+## 9   Number of deaths from TREATED state   2339.000
 ## 10               Overall Mortality Rate         NA
 ## 11               Treated Mortality Rate         NA
-## 12         Treated mother years at risk  67412.871
+## 12         Treated mother years at risk  67841.994
 ```
   
 
@@ -243,7 +243,7 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 ![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
+## Mean time till treatment from Eligibility and diagnosis: 1.00022084805654.
 ```
   
 
@@ -263,7 +263,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 14.4985939538831.
+## Mean time till treatment from Eligibility and diagnosis: 14.5481817049969.
 ```
   
 
@@ -332,19 +332,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 38542
+## [1] 32532
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 2713
+## [1] 1832
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.07039
+## [1] 0.05631
 ```
   
 
@@ -438,7 +438,7 @@ The max age of a mother cannot be greater than 92
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.900707 NA NA
+## 4          Life expectancy    52.744129 NA NA
 ```
   
 
@@ -495,7 +495,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 25
+Model Version: 26
 
 #### Summary of the Test Results 
 

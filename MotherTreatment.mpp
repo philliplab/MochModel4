@@ -4,7 +4,7 @@ parameters
 	double TreatmentMotherShape; //EN Eligilble Mother Time to Treatment Curve Shape - kappa
 	double TreatmentMotherScale; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
 	double TreatmentMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
-	double TreatmentTransitionMotherSwitch; //EN A switch allowing to choose which transition to use
+	double TreatmentTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for treatment
 };
 
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
@@ -57,6 +57,9 @@ TIME Mother::timeTreatmentEvent()
 			if (TreatmentMotherMultiplier > 0){
 				t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
 			};
+		};
+		if (TreatmentTransitionMotherSwitch == 1){
+			t_event_time = 1;
 		};
 	};
 	t_event_time = WAIT(t_event_time);
