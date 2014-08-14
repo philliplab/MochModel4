@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.13   43.24
+##    0.11    0.10   40.24
 ```
 
 ```

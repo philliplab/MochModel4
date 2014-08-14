@@ -543,7 +543,7 @@ test_results <- new_test(test_results,
                          scenarios = cscenarios,
                          description = "Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.")
 ```
-```{r}
+```{r, warning=FALSE, message=FALSE}
 MotherTreatmentRates <- as.data.frame(new_RTable("MotherTreatmentRates", db_channels[[cscenarios]]))[,1:3]
 mtr <- dcast(MotherTreatmentRates, Age ~ metrics)
 mtr$`Eligible Coverage` <- mtr$`Mothers under treatment` / mtr$`Mother years at risk`
@@ -573,7 +573,7 @@ test_results <- new_test(test_results,
                          scenarios = cscenarios,
                          description = "Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.")
 ```
-```{r}
+```{r, warning=FALSE, message=FALSE}
 MotherTreatmentRates <- as.data.frame(new_RTable("MotherTreatmentRates", db_channels[[cscenarios]]))[,1:3]
 mtr <- dcast(MotherTreatmentRates, Age ~ metrics)
 mtr$`Eligible Coverage` <- mtr$`Mothers under treatment` / mtr$`Mother years at risk`
