@@ -135,7 +135,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE (TreatedMortalityMotherMultiplier, EN)
 	Chose 1 so that there is no deviation from the ASSA model
 */
-	double TreatedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Treated Mothers
+	double TreatedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Treated Mothers
 /* NOTE (TreatmentCessationMotherb6m, EN)
 	From ASSA model
 */
@@ -148,7 +148,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE (TreatmentCessationMotherMultiplier, EN)
 	Chose 1 so that there is no deviation from the ASSA model
 */
-	double TreatmentCessationMotherMultiplier = 0; //EN Multiplier for Mortality of Treated Mothers
+	double TreatmentCessationMotherMultiplier = 10; //EN Multiplier for Mortality of Treated Mothers
 /* NOTE ( TreatmentMotherShape, EN )
 	Defaults to 1 so that an exponential distribution is used
 */

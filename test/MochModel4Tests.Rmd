@@ -153,7 +153,34 @@ scenarios_to_create <- list(
                             '6' = list(from = 'TreatmentMotherMultiplier = 1',
                                        to = 'TreatmentMotherMultiplier = 1000'),
                             '7' = list(from = 'TreatmentCessationMotherMultiplier = 1',
-                                       to = 'TreatmentCessationMotherMultiplier = 0')
+                                       to = 'TreatmentCessationMotherMultiplier = 0'),
+                            '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0')
+                            )
+             ),
+  '10' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'OnlyStoppedMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 5'),
+                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 10'),
+                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
+                                       to = 'InfectedDiagnosisMotherMultiplier = 10'),
+                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
+                                       to = 'SymptomsDiagnosisMotherMultiplier = 10'),
+                            '6' = list(from = 'TreatmentMotherMultiplier = 1',
+                                       to = 'TreatmentMotherMultiplier = 1000'),
+                            '7' = list(from = 'TreatmentCessationMotherMultiplier = 1',
+                                       to = 'TreatmentCessationMotherMultiplier = 10'),
+                            '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+                            '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
+                                       to = 'TreatedMortalityMotherMultiplier = 0')
                             )
              )
   )
@@ -716,6 +743,28 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+<!---
+```{r No deaths from Treated in OnlyStoppedMortality, results='asis'}
+ctest_name <- 'No deaths from Infected in NoInfectedMortality'
+cscenarios <- 'OnlyStoppedMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "No mothers should die from the Treated state in the OnlyStoppedMortality Scenario")
+```
+```{r}
+Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
+deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Treated State", select = 'Value')$Value)
+result <- deaths_in_infected == 0
+print (ddply(Mortality, .(metrics), summarise, sum(Value)))
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+--->
 
 ### Transition 9 - Treatment cessation
 ```{r Treatment Cessation Rates matches inputs, results='asis'}

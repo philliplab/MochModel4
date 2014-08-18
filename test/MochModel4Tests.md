@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.15    0.08   43.60
+##    0.11    0.11   44.28
 ```
 
 ```
@@ -26,7 +26,7 @@ output: html_document
 ```
 
 ```
-## [1] 10
+## [1] 11
 ```
 
 # Tests for Model Version 27
