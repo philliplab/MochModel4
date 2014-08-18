@@ -18,7 +18,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	IncidenceMotherMultiplier = 5; //EN Incidence Multiplier
+	double	IncidenceMotherMultiplier = 3; //EN Incidence Multiplier
 	/* NOTE(MInfectionImmortalityPeriod, EN)
 		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 	*/

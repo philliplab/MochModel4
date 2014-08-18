@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.11   43.17
+##    0.04    0.11   42.03
 ```
 
 ```
@@ -368,17 +368,17 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 ```
 ##                                 metrics    ..1
 ## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 236725
+## 2          Healthy mother years at risk 330298
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  33173
-## 5                  Mother years at risk 317398
-## 6                      Number of deaths   9679
+## 4         Infected mother years at risk  29463
+## 5                  Mother years at risk 402132
+## 6                      Number of deaths   8685
 ## 7   Number of deaths from HEALTHY state      0
 ## 8  Number of deaths from INFECTED state      0
 ## 9   Number of deaths from TREATED state      0
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  31583
+## 12         Treated mother years at risk  28356
 ```
   
 
@@ -410,20 +410,34 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 
 ### Transition 10 - Death of Stopped Mothers
 
-#### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
+![plot of chunk Stopped Mortality Match Inputs](figure/Stopped Mortality Match Inputs.png) #### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
 
-Scenario(s): OnlyTreatedMortality
+Scenario(s): OnlyStoppedMortality
 
 When the kaplan meier curves of the stopped mortalities are compared to the input ASSA mortalities, then they must be similar.
 
 [To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-341.png) 
 
 ```
-## [1] "skeleton"
+## 
+##    1 
+## 3190 
+## 
+##   2 
+## 938 
+## 
+##   3 
+## 179 
+## 
+##  4 
+## 31
 ```
+
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-342.png) 
   
 
-**Result: FALSE**  
+**Result: Manual**  
 
 ---
 
@@ -658,7 +672,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|3|13|11| 
+|2|14|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -680,7 +694,7 @@ Model Version: 27
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
-|[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
+|[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
 |[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
