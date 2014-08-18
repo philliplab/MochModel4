@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.10   41.62
+##    0.08    0.13   42.99
 ```
 
 ```
@@ -344,15 +344,12 @@ Plots showing the treatment coverage rates. Eligible coverage means the percenta
 
 #### <a name="TreatedMortalityMatchInputs"></a>Treated Mortality Match Inputs
 
-Scenario(s): Base
+Scenario(s): OnlyTreatedMortality
 
 When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar.
 
 [To Summary Table](#summary_tab_link)  
-
-```
-## [1] "skeleton"
-```
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png) 
   
 
 **Result: Manual**  
@@ -628,7 +625,7 @@ Model Version: 27
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
-|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|Manual|Base 
+|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|Manual|OnlyTreatedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
