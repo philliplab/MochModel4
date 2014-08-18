@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.14   43.49
+##    0.10    0.06   43.31
 ```
 
 ```
@@ -41,28 +41,28 @@ Notes on the organization of the tests:
 
 ### Transition 1 - Death of Uninfected Mothers
 
-#### <a name="NodeathsfromhealthyinNoHealthyMortality"></a>No deaths from healthy in NoHealthyMortality
+#### <a name="NodeathsfromhealthyinOnlyInfectedMortality"></a>No deaths from healthy in OnlyInfectedMortality
 
-Scenario(s): NoHealthyMortality
+Scenario(s): OnlyInfectedMortality
 
-No mothers should die from the Healthy state in the NoHealthyMortality Scenario
+No mothers should die from the Healthy state in the OnlyInfectedMortality Scenario
 
 [To Summary Table](#summary_tab_link)  
 
 ```
 ##                                 metrics    ..1
-## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 634221
+## 1                Healthy Mortality Rate     NA
+## 2          Healthy mother years at risk 296732
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  40426
-## 5                  Mother years at risk 704075
-## 6                      Number of deaths   4887
+## 4         Infected mother years at risk 102705
+## 5                  Mother years at risk 399436
+## 6                      Number of deaths   9066
 ## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   3055
-## 9   Number of deaths from TREATED state    978
+## 8  Number of deaths from INFECTED state   9066
+## 9   Number of deaths from TREATED state      0
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  28129
+## 12         Treated mother years at risk      0
 ```
   
 
@@ -109,28 +109,28 @@ The number of mothers ever infected in the NoHIV case should be 0
 
 ### Transition 3 - Death of Infected Mothers
 
-#### <a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality
+#### <a name="NodeathsfromInfectedinOnlyTreatedMortality"></a>No deaths from Infected in OnlyTreatedMortality
 
-Scenario(s): NoInfectedMortality
+Scenario(s): OnlyTreatedMortality
 
-No mothers should die from the Infected state in the NoInfectedMortality Scenario
+No mothers should die from the Infected state in the OnlyTreatedMortality Scenario
 
 [To Summary Table](#summary_tab_link)  
 
 ```
 ##                                 metrics    ..1
-## 1                Healthy Mortality Rate     NA
-## 2          Healthy mother years at risk 452228
+## 1                Healthy Mortality Rate      0
+## 2          Healthy mother years at risk 236725
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk 160047
-## 5                  Mother years at risk 654520
-## 6                      Number of deaths   8100
-## 7   Number of deaths from HEALTHY state   5502
+## 4         Infected mother years at risk  33173
+## 5                  Mother years at risk 527867
+## 6                      Number of deaths   8952
+## 7   Number of deaths from HEALTHY state      0
 ## 8  Number of deaths from INFECTED state      0
-## 9   Number of deaths from TREATED state   1361
+## 9   Number of deaths from TREATED state   8952
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  40313
+## 12         Treated mother years at risk 257969
 ```
   
 
@@ -678,10 +678,10 @@ Model Version: 28
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
-|[No deaths from healthy in NoHealthyMortality](#NodeathsfromhealthyinNoHealthyMortality)|TRUE|NoHealthyMortality 
+|[No deaths from healthy in OnlyInfectedMortality](#NodeathsfromhealthyinOnlyInfectedMortality)|TRUE|OnlyInfectedMortality 
 |[Healthy Mortality Match Inputs](#HealthyMortalityMatchInputs)|Manual|NoHIV 
 |[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
-|[No deaths from Infected in NoInfectedMortality](#NodeathsfromInfectedinNoInfectedMortality)|TRUE|NoInfectedMortality 
+|[No deaths from Infected in OnlyTreatedMortality](#NodeathsfromInfectedinOnlyTreatedMortality)|TRUE|OnlyTreatedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 

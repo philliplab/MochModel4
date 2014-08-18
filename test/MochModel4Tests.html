@@ -155,7 +155,7 @@ hr {
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.11    0.14   43.49
+##    0.10    0.06   43.31
 </code></pre>
 
 <pre><code>## [1] &quot;Number of Scenarios&quot;
@@ -179,27 +179,27 @@ hr {
 
 <h3>Transition 1 - Death of Uninfected Mothers</h3>
 
-<h4><a name="NodeathsfromhealthyinNoHealthyMortality"></a>No deaths from healthy in NoHealthyMortality</h4>
+<h4><a name="NodeathsfromhealthyinOnlyInfectedMortality"></a>No deaths from healthy in OnlyInfectedMortality</h4>
 
-<p>Scenario(s): NoHealthyMortality</p>
+<p>Scenario(s): OnlyInfectedMortality</p>
 
-<p>No mothers should die from the Healthy state in the NoHealthyMortality Scenario</p>
+<p>No mothers should die from the Healthy state in the OnlyInfectedMortality Scenario</p>
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
 <pre><code>##                                 metrics    ..1
-## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 634221
+## 1                Healthy Mortality Rate     NA
+## 2          Healthy mother years at risk 296732
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  40426
-## 5                  Mother years at risk 704075
-## 6                      Number of deaths   4887
+## 4         Infected mother years at risk 102705
+## 5                  Mother years at risk 399436
+## 6                      Number of deaths   9066
 ## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   3055
-## 9   Number of deaths from TREATED state    978
+## 8  Number of deaths from INFECTED state   9066
+## 9   Number of deaths from TREATED state      0
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  28129
+## 12         Treated mother years at risk      0
 </code></pre>
 
 <p><strong>Result: TRUE</strong>  </p>
@@ -239,27 +239,27 @@ hr {
 
 <h3>Transition 3 - Death of Infected Mothers</h3>
 
-<h4><a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality</h4>
+<h4><a name="NodeathsfromInfectedinOnlyTreatedMortality"></a>No deaths from Infected in OnlyTreatedMortality</h4>
 
-<p>Scenario(s): NoInfectedMortality</p>
+<p>Scenario(s): OnlyTreatedMortality</p>
 
-<p>No mothers should die from the Infected state in the NoInfectedMortality Scenario</p>
+<p>No mothers should die from the Infected state in the OnlyTreatedMortality Scenario</p>
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
 <pre><code>##                                 metrics    ..1
-## 1                Healthy Mortality Rate     NA
-## 2          Healthy mother years at risk 452228
+## 1                Healthy Mortality Rate      0
+## 2          Healthy mother years at risk 236725
 ## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk 160047
-## 5                  Mother years at risk 654520
-## 6                      Number of deaths   8100
-## 7   Number of deaths from HEALTHY state   5502
+## 4         Infected mother years at risk  33173
+## 5                  Mother years at risk 527867
+## 6                      Number of deaths   8952
+## 7   Number of deaths from HEALTHY state      0
 ## 8  Number of deaths from INFECTED state      0
-## 9   Number of deaths from TREATED state   1361
+## 9   Number of deaths from TREATED state   8952
 ## 10               Overall Mortality Rate     NA
 ## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  40313
+## 12         Treated mother years at risk 257969
 </code></pre>
 
 <p><strong>Result: TRUE</strong>  </p>
@@ -762,9 +762,9 @@ hr {
 </tr>
 </thead><tbody>
 <tr>
-<td align="center"><a href="#NodeathsfromhealthyinNoHealthyMortality">No deaths from healthy in NoHealthyMortality</a></td>
+<td align="center"><a href="#NodeathsfromhealthyinOnlyInfectedMortality">No deaths from healthy in OnlyInfectedMortality</a></td>
 <td align="center">TRUE</td>
-<td align="center">NoHealthyMortality</td>
+<td align="center">OnlyInfectedMortality</td>
 </tr>
 <tr>
 <td align="center"><a href="#HealthyMortalityMatchInputs">Healthy Mortality Match Inputs</a></td>
@@ -777,9 +777,9 @@ hr {
 <td align="center">NoHIV</td>
 </tr>
 <tr>
-<td align="center"><a href="#NodeathsfromInfectedinNoInfectedMortality">No deaths from Infected in NoInfectedMortality</a></td>
+<td align="center"><a href="#NodeathsfromInfectedinOnlyTreatedMortality">No deaths from Infected in OnlyTreatedMortality</a></td>
 <td align="center">TRUE</td>
-<td align="center">NoInfectedMortality</td>
+<td align="center">OnlyTreatedMortality</td>
 </tr>
 <tr>
 <td align="center"><a href="#InfectedMortalityMatchvanderpaal">Infected Mortality Match van der paal</a></td>

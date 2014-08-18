@@ -56,24 +56,6 @@ scenarios_to_create <- list(
                                        to = 'IncidenceMotherMultiplier = 0')
                             )
              ),
-  '3' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'NoHealthyMortality'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
-                                       to = 'HealthyMortalityMotherMultiplier = 0')
-                            )
-             ),
-  '4' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'NoInfectedMortality'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'InfectedMortalityMotherMultiplier = 1',
-                                       to = 'InfectedMortalityMotherMultiplier = 0')
-                            )
-             ),
   '5' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
              base_scenario_dat = 'Base(MotherCore).dat',
@@ -258,13 +240,13 @@ Notes on the organization of the tests:
 
 ### Transition 1 - Death of Uninfected Mothers
 
-```{r No deaths from healthy in NoHealthyMortality, results='asis'}
-ctest_name <- 'No deaths from healthy in NoHealthyMortality'
-cscenarios <- 'NoHealthyMortality'
+```{r No deaths from healthy in OnlyInfectedMortality, results='asis'}
+ctest_name <- 'No deaths from healthy in OnlyInfectedMortality'
+cscenarios <- 'OnlyInfectedMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "No mothers should die from the Healthy state in the NoHealthyMortality Scenario")
+                         description = "No mothers should die from the Healthy state in the OnlyInfectedMortality Scenario")
 ```
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
@@ -350,13 +332,13 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ### Transition 3 - Death of Infected Mothers
 
-```{r No deaths from Infected in NoInfectedMortality, results='asis'}
-ctest_name <- 'No deaths from Infected in NoInfectedMortality'
-cscenarios <- 'NoInfectedMortality'
+```{r No deaths from Infected in OnlyTreatedMortality, results='asis'}
+ctest_name <- 'No deaths from Infected in OnlyTreatedMortality'
+cscenarios <- 'OnlyTreatedMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "No mothers should die from the Infected state in the NoInfectedMortality Scenario")
+                         description = "No mothers should die from the Infected state in the OnlyTreatedMortality Scenario")
 ```
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
