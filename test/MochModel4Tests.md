@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.09    0.06   43.15
+##    0.08    0.08   43.62
 ```
 
 ```
@@ -29,7 +29,7 @@ output: html_document
 ## [1] 11
 ```
 
-# Tests for Model Version 29
+# Tests for Model Version 30
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -50,19 +50,22 @@ No mothers should die from the Healthy state in the OnlyInfectedMortality Scenar
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                 metrics    ..1
-## 1                Healthy Mortality Rate     NA
-## 2          Healthy mother years at risk 296732
-## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk 102705
-## 5                  Mother years at risk 399436
-## 6                      Number of deaths   9066
-## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state   9066
-## 9   Number of deaths from TREATED state      0
-## 10               Overall Mortality Rate     NA
-## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk      0
+##                                  metrics    ..1
+## 1                 Healthy Mortality Rate     NA
+## 2           Healthy mother years at risk 296732
+## 3                Infected Mortality Rate     NA
+## 4          Infected mother years at risk 102705
+## 5                   Mother years at risk 399436
+## 6                       Number of deaths   9066
+## 7    Number of deaths from HEALTHY state      0
+## 8   Number of deaths from INFECTED state   9066
+## 9    Number of deaths from STOPPED state      0
+## 10   Number of deaths from TREATED state      0
+## 11                Overall Mortality Rate     NA
+## 12                Treated Mortality Rate     NA
+## 13          Treated mother years at risk      0
+## 14       Treatment Ceased Mortality Rate     NA
+## 15 Treatment Ceased mother years at risk      0
 ```
   
 
@@ -118,19 +121,22 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                 metrics    ..1
-## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 236725
-## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  33173
-## 5                  Mother years at risk 527867
-## 6                      Number of deaths   8952
-## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state      0
-## 9   Number of deaths from TREATED state   8952
-## 10               Overall Mortality Rate     NA
-## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk 257969
+##                                  metrics    ..1
+## 1                 Healthy Mortality Rate      0
+## 2           Healthy mother years at risk 236725
+## 3                Infected Mortality Rate     NA
+## 4          Infected mother years at risk  33173
+## 5                   Mother years at risk 527867
+## 6                       Number of deaths   8952
+## 7    Number of deaths from HEALTHY state      0
+## 8   Number of deaths from INFECTED state      0
+## 9    Number of deaths from STOPPED state      0
+## 10   Number of deaths from TREATED state   8952
+## 11                Overall Mortality Rate     NA
+## 12                Treated Mortality Rate     NA
+## 13          Treated mother years at risk 257969
+## 14       Treatment Ceased Mortality Rate     NA
+## 15 Treatment Ceased mother years at risk      0
 ```
   
 
@@ -366,19 +372,22 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                 metrics    ..1
-## 1                Healthy Mortality Rate      0
-## 2          Healthy mother years at risk 330298
-## 3               Infected Mortality Rate     NA
-## 4         Infected mother years at risk  29463
-## 5                  Mother years at risk 402132
-## 6                      Number of deaths   8685
-## 7   Number of deaths from HEALTHY state      0
-## 8  Number of deaths from INFECTED state      0
-## 9   Number of deaths from TREATED state      0
-## 10               Overall Mortality Rate     NA
-## 11               Treated Mortality Rate     NA
-## 12         Treated mother years at risk  28356
+##                                  metrics    ..1
+## 1                 Healthy Mortality Rate      0
+## 2           Healthy mother years at risk 330298
+## 3                Infected Mortality Rate     NA
+## 4          Infected mother years at risk  29463
+## 5                   Mother years at risk 402132
+## 6                       Number of deaths   8685
+## 7    Number of deaths from HEALTHY state      0
+## 8   Number of deaths from INFECTED state      0
+## 9    Number of deaths from STOPPED state   8685
+## 10   Number of deaths from TREATED state      0
+## 11                Overall Mortality Rate     NA
+## 12                Treated Mortality Rate     NA
+## 13          Treated mother years at risk  28356
+## 14       Treatment Ceased Mortality Rate     NA
+## 15 Treatment Ceased mother years at risk  14015
 ```
   
 
@@ -666,7 +675,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 29
+Model Version: 30
 
 #### Summary of the Test Results 
 
