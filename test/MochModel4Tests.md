@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.10   40.24
+##    0.14    0.13   43.13
 ```
 
 ```
@@ -36,11 +36,9 @@ Notes on the organization of the tests:
 - Any other test goes under the heading of the scenario it uses.
 - If a test does not fit any of these categories, dump it in the General section.
 
-## Mother
+## Mother - Transitions
 
-### Transitions
-
-#### Transition 1 - Death of Uninfected Mothers
+### Transition 1 - Death of Uninfected Mothers
 
 #### <a name="NodeathsfromhealthyinNoHealthyMortality"></a>No deaths from healthy in NoHealthyMortality
 
@@ -72,7 +70,7 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
 ---
 
 
-#### Transition 2 - HIV Infection
+### Transition 2 - HIV Infection
 
 #### <a name="PercentageeverinfectedzeroinNoHIV"></a>Percentage ever infected zero in NoHIV
 
@@ -93,7 +91,7 @@ The number of mothers ever infected in the NoHIV case should be 0
 ---
 
 
-#### Transition 3 - Death of Infected Mothers
+### Transition 3 - Death of Infected Mothers
 
 #### <a name="NodeathsfromInfectedinNoInfectedMortality"></a>No deaths from Infected in NoInfectedMortality
 
@@ -158,7 +156,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ---
 
 
-#### Transition 4 - Development of Symptoms of HIV Infected Mothers
+### Transition 4 - Development of Symptoms of HIV Infected Mothers
 
 #### <a name="SymptomRatesMatchvanderpaal"></a>Symptom Rates Match van der paal
 
@@ -192,7 +190,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ---
 
 
-#### Transition 5 - Diagnosis of Asymptomatic Mothers
+### Transition 5 - Diagnosis of Asymptomatic Mothers
 #### <a name="AsymptomaticDiagnosisRatesmatchesinputs"></a>Asymptomatic Diagnosis Rates matches inputs
 
 Scenario(s): AllInfectedNoSymptomsNoMortality
@@ -212,7 +210,7 @@ When the kaplan meier curves of the asymptomatic diagnosis rates are compared to
 ---
 
 
-#### Transition 6 - Diagnosis of Symptomatic Mothers
+### Transition 6 - Diagnosis of Symptomatic Mothers
 #### <a name="SymptomaticDiagnosisRatesmatchesinputs"></a>Symptomatic Diagnosis Rates matches inputs
 
 Scenario(s): AllInfectedNoMortality
@@ -232,7 +230,7 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 ---
 
 
-#### Transition 7 - Treatment rate of Eligible Mothers
+### Transition 7 - Treatment rate of Eligible Mothers
 #### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
 
 Scenario(s): AllInfectedNoMortality
@@ -303,15 +301,6 @@ Scenario(s): AllInfectedNoMortality
 Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.
 
 [To Summary Table](#summary_tab_link)  
-
-```
-## Using Value as value column: use value.var to override.
-```
-
-```
-## Warning: Removed 32 rows containing missing values (geom_path).
-```
-
 ![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png) 
   
 
@@ -327,15 +316,6 @@ Scenario(s): WeibullTreatmentTransition
 Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.
 
 [To Summary Table](#summary_tab_link)  
-
-```
-## Using Value as value column: use value.var to override.
-```
-
-```
-## Warning: Removed 31 rows containing missing values (geom_path).
-```
-
 ![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png) 
   
 
@@ -344,7 +324,7 @@ Plots showing the treatment coverage rates. Eligible coverage means the percenta
 ---
 
 
-#### Transition 9 - Treatment cessation
+### Transition 9 - Treatment cessation
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
 Scenario(s): AllInfectedNoMortality
@@ -363,9 +343,9 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 
 ---
 
-### Scenarios
+## Mother - Scenarios
 
-#### Base
+### Base
 
 #### <a name="LifeExpectancyHealthyMother"></a>Life Expectancy Healthy Mother
 
@@ -489,7 +469,7 @@ The percentage of mothers who were ever diagnosed in the base case should be bet
 ---
 
 
-#### OnlyInfectedMortality
+### OnlyInfectedMortality
 
 #### <a name="OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate"></a>OnlyInfectedMortality scenario has most people dying from infected state
 
@@ -515,7 +495,7 @@ This test make sure that in the scenario where there is only mortality in the in
 ---
 
 
-### General
+## Mother - General
 
 #### <a name="MotherMaxAge"></a>Mother Max Age
 

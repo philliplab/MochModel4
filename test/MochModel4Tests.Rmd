@@ -192,11 +192,9 @@ Notes on the organization of the tests:
 - Any other test goes under the heading of the scenario it uses.
 - If a test does not fit any of these categories, dump it in the General section.
 
-## Mother
+## Mother - Transitions
 
-### Transitions
-
-#### Transition 1 - Death of Uninfected Mothers
+### Transition 1 - Death of Uninfected Mothers
 
 ```{r No deaths from healthy in NoHealthyMortality, results='asis'}
 ctest_name <- 'No deaths from healthy in NoHealthyMortality'
@@ -220,7 +218,57 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 2 - HIV Infection
+```{r Healthy Mortality Match Inputs, results='asis'}
+ctest_name <- 'Healthy Mortality Match Inputs'
+cscenarios <- 'NoHIV'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar")
+```
+```{r}
+##' Returns 1 - the CDF of a weibull
+#pweibull1m <- function(...){1 - pweibull(...)}
+#
+##' Plots a survival curve and overlays a weibull CDF
+#plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
+#  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
+#  print(table(vdp_restricted$vdpa_inf))
+#  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
+#  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
+#    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
+#                col = 'green') +
+#    scale_colour_discrete(guide = FALSE)
+#  return(p)
+#}
+#
+```
+```{r, warning=FALSE, message=FALSE}
+med <- get_mother_time_to_event(db_channels[[cscenarios]])
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+#p <- arrangeGrob(
+#plot_one_vdp_cat(med, 1, phi = 1.22398),
+#plot_one_vdp_cat(med, 2, phi = 0.95143),
+#plot_one_vdp_cat(med, 3, phi = 0.58661),
+#plot_one_vdp_cat(med, 4, phi = 0.52447))
+#print(p)
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+### Transition 2 - HIV Infection
 
 ```{r Percentage ever infected zero in NoHIV, results='asis'}
 ctest_name <- 'Percentage ever infected zero in NoHIV'
@@ -245,7 +293,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 3 - Death of Infected Mothers
+### Transition 3 - Death of Infected Mothers
 
 ```{r No deaths from Infected in NoInfectedMortality, results='asis'}
 ctest_name <- 'No deaths from Infected in NoInfectedMortality'
@@ -324,7 +372,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 4 - Development of Symptoms of HIV Infected Mothers
+### Transition 4 - Development of Symptoms of HIV Infected Mothers
 
 ```{r Symptom Rates Match van der paal, results='asis'}
 ctest_name <- 'Symptom Rates Match van der paal'
@@ -364,7 +412,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 5 - Diagnosis of Asymptomatic Mothers
+### Transition 5 - Diagnosis of Asymptomatic Mothers
 ```{r Asymptomatic Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Asymptomatic Diagnosis Rates matches inputs'
 cscenarios <- 'AllInfectedNoSymptomsNoMortality'
@@ -399,7 +447,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 6 - Diagnosis of Symptomatic Mothers
+### Transition 6 - Diagnosis of Symptomatic Mothers
 ```{r Symptomatic Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -434,7 +482,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 7 - Treatment rate of Eligible Mothers
+### Transition 7 - Treatment rate of Eligible Mothers
 ```{r Treatment Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -595,7 +643,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### Transition 9 - Treatment cessation
+### Transition 9 - Treatment cessation
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -628,9 +676,9 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-### Scenarios
+## Mother - Scenarios
 
-#### Base
+### Base
 
 ```{r Life Expectancy Healthy Mother, results='asis'}
 ctest_name <- 'Life Expectancy Healthy Mother'
@@ -769,7 +817,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-#### OnlyInfectedMortality
+### OnlyInfectedMortality
 
 ```{r OnlyInfectedMortality scenario has most people dying from infected state, results='asis'}
 ctest_name <- 'OnlyInfectedMortality scenario has most people dying from infected state'
@@ -796,7 +844,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-### General
+## Mother - General
 
 ```{r Mother Max Age, results='asis'}
 # TODO: Check on all scenarios not just base
