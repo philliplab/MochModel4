@@ -636,6 +636,52 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+### Transition 8 - Death of Treated Mothers
+
+```{r Treated Mortality Match Inputs, results='asis'}
+ctest_name <- 'Treated Mortality Match Inputs'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar.")
+```
+```{r, warning=FALSE, message=FALSE}
+#med <- get_mother_time_to_event(db_channels[[cscenarios]])
+#healthy_mort <- as.data.frame(new_PTable("HIVFreeMortality", db_channels[[cscenarios]]))
+#model_time <- as.data.frame(new_PTable("ModelTime", db_channels[[cscenarios]]))[1,1]
+#healthy_mort <- subset(healthy_mort, `ASSA model Time Range` == model_time &
+#                                      GENDER == 'F')
+#stopifnot(nrow(healthy_mort) >= 90)
+#healthy_mort_function <- function(ages, healthy_mortality){
+#  all_results <- numeric(0)
+#  for (age in ages){
+#    age_int <- floor(age)
+#    if (age_int <= 0) { age <- 0}
+#    y <- prod(1 - healthy_mortality[healthy_mortality$`Mortality Life Range` <= age_int,]$Value)
+#    all_results <- c(all_results, y)
+#  }
+#  return(all_results)
+#}
+#
+#p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+#p <- p + labs(title = NULL) +
+#    guides(col = guide_legend(nrow=2)) +
+#    theme(legend.position = 'bottom')
+#p <- p + stat_function(fun = healthy_mort_function, color = 'red', arg = list('healthy_mortality' = healthy_mort))
+#print(p)
+print('skeleton')
+
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 ### Transition 9 - Treatment cessation
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'

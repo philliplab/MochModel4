@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.08   40.41
+##    0.04    0.11   40.01
 ```
 
 ```
@@ -339,6 +339,26 @@ Plots showing the treatment coverage rates. Eligible coverage means the percenta
 ---
 
 
+### Transition 8 - Death of Treated Mothers
+
+#### <a name="TreatedMortalityMatchInputs"></a>Treated Mortality Match Inputs
+
+Scenario(s): Base
+
+When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## [1] "skeleton"
+```
+  
+
+**Result: Manual**  
+
+---
+
+
 ### Transition 9 - Treatment cessation
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
@@ -347,7 +367,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
+![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
@@ -541,7 +561,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44.png) 
+![plot of chunk unnamed-chunk-46](figure/unnamed-chunk-46.png) 
   
 
 **Result: Manual**  
@@ -557,7 +577,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-47](figure/unnamed-chunk-47.png) 
+![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
   
 
 **Result: Manual**  
@@ -572,7 +592,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
+![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51.png) 
   
 
 **Result: Manual**  
@@ -588,7 +608,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|1|13|10| 
+|1|14|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -607,6 +627,7 @@ Model Version: 27
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
+|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|Manual|Base 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
