@@ -358,7 +358,9 @@ test_results <- new_test(test_results,
 ```
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
-deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Infected State", select = 'Value')$Value)
+deaths_in_infected <- subset(Mortality, metrics == "Number of deaths from INFECTED state", select = 'Value')$Value
+stopifnot(length(deaths_in_infected) > 0)
+deaths_in_infected <- sum(deaths_in_infected)
 result <- deaths_in_infected == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
@@ -743,9 +745,9 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-<!---
+
 ```{r No deaths from Treated in OnlyStoppedMortality, results='asis'}
-ctest_name <- 'No deaths from Infected in NoInfectedMortality'
+ctest_name <- 'No deaths from Treated in OnlyStoppedMortality'
 cscenarios <- 'OnlyStoppedMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
@@ -754,8 +756,10 @@ test_results <- new_test(test_results,
 ```
 ```{r}
 Mortality <- as.data.frame(new_RTable("MotherMortalityRates", db_channels[[cscenarios]]))
-deaths_in_infected <- sum(subset(Mortality, metrics == "Death from Treated State", select = 'Value')$Value)
-result <- deaths_in_infected == 0
+deaths_in_treated <- subset(Mortality, metrics == "Number of deaths from TREATED state", select = 'Value')$Value
+stopifnot(length(deaths_in_treated) > 0)
+deaths_in_treated <- sum(deaths_in_treated)
+result <- deaths_in_treated == 0
 print (ddply(Mortality, .(metrics), summarise, sum(Value)))
 ```
 ```{r, results='asis'}
@@ -764,9 +768,10 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
---->
+
 
 ### Transition 9 - Treatment cessation
+
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'
 cscenarios <- 'AllInfectedNoMortality'
@@ -798,6 +803,7 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
+
 
 ### Transition 10 - Death of Stopped Mothers
 

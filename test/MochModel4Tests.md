@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.11   44.28
+##    0.11    0.11   43.17
 ```
 
 ```
@@ -357,7 +357,38 @@ When the kaplan meier curves of the treated mortalities are compared to the inpu
 ---
 
 
+#### <a name="NodeathsfromTreatedinOnlyStoppedMortality"></a>No deaths from Treated in OnlyStoppedMortality
+
+Scenario(s): OnlyStoppedMortality
+
+No mothers should die from the Treated state in the OnlyStoppedMortality Scenario
+
+[To Summary Table](#summary_tab_link)  
+
+```
+##                                 metrics    ..1
+## 1                Healthy Mortality Rate      0
+## 2          Healthy mother years at risk 236725
+## 3               Infected Mortality Rate     NA
+## 4         Infected mother years at risk  33173
+## 5                  Mother years at risk 317398
+## 6                      Number of deaths   9679
+## 7   Number of deaths from HEALTHY state      0
+## 8  Number of deaths from INFECTED state      0
+## 9   Number of deaths from TREATED state      0
+## 10               Overall Mortality Rate     NA
+## 11               Treated Mortality Rate     NA
+## 12         Treated mother years at risk  31583
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
 ### Transition 9 - Treatment cessation
+
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
 Scenario(s): AllInfectedNoMortality
@@ -365,7 +396,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-30](figure/unnamed-chunk-30.png)   
+![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
@@ -375,6 +406,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 **Result: Manual**  
 
 ---
+
 
 ### Transition 10 - Death of Stopped Mothers
 
@@ -579,7 +611,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-48](figure/unnamed-chunk-48.png) 
+![plot of chunk unnamed-chunk-50](figure/unnamed-chunk-50.png) 
   
 
 **Result: Manual**  
@@ -595,7 +627,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51.png) 
+![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53.png) 
   
 
 **Result: Manual**  
@@ -610,7 +642,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53.png) 
+![plot of chunk unnamed-chunk-55](figure/unnamed-chunk-55.png) 
   
 
 **Result: Manual**  
@@ -626,7 +658,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|3|13|10| 
+|3|13|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -646,6 +678,7 @@ Model Version: 27
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
+|[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
