@@ -17,7 +17,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.14    0.13   43.13
+##    0.11    0.08   40.41
 ```
 
 ```
@@ -66,6 +66,21 @@ No mothers should die from the Healthy state in the NoHealthyMortality Scenario
   
 
 **Result: TRUE**  
+
+---
+
+
+#### <a name="HealthyMortalityMatchInputs"></a>Healthy Mortality Match Inputs
+
+Scenario(s): NoHIV
+
+When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+  
+
+**Result: Manual**  
 
 ---
 
@@ -131,7 +146,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-81.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) 
 
 ```
 ## 
@@ -148,7 +163,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 20
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-82.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
   
 
 **Result: Manual**  
@@ -165,7 +180,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
 
 ```
 ## 
@@ -182,7 +197,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 21
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
   
 
 **Result: Manual**  
@@ -198,7 +213,7 @@ Scenario(s): AllInfectedNoSymptomsNoMortality
 When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png)   
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
@@ -218,7 +233,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png)   
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
@@ -238,7 +253,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000002.
@@ -257,7 +272,7 @@ Scenario(s): WeibullTreatmentTransition
 The input rates for the transition to treatment must match the input rates in the case that the weibull transition is specified.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png)   
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
@@ -301,7 +316,7 @@ Scenario(s): AllInfectedNoMortality
 Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png) 
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png) 
   
 
 **Result: Manual**  
@@ -316,7 +331,7 @@ Scenario(s): WeibullTreatmentTransition
 Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png) 
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png) 
   
 
 **Result: Manual**  
@@ -332,7 +347,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png)   
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
@@ -526,7 +541,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-42](figure/unnamed-chunk-42.png) 
+![plot of chunk unnamed-chunk-44](figure/unnamed-chunk-44.png) 
   
 
 **Result: Manual**  
@@ -542,7 +557,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-45](figure/unnamed-chunk-45.png) 
+![plot of chunk unnamed-chunk-47](figure/unnamed-chunk-47.png) 
   
 
 **Result: Manual**  
@@ -557,7 +572,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-47](figure/unnamed-chunk-47.png) 
+![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
   
 
 **Result: Manual**  
@@ -573,13 +588,14 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|1|12|10| 
+|1|13|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
 |Name|Result|Scenarios|
 |:-:|:-:|:-:|
 |[No deaths from healthy in NoHealthyMortality](#NodeathsfromhealthyinNoHealthyMortality)|TRUE|NoHealthyMortality 
+|[Healthy Mortality Match Inputs](#HealthyMortalityMatchInputs)|Manual|NoHIV 
 |[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
 |[No deaths from Infected in NoInfectedMortality](#NodeathsfromInfectedinNoInfectedMortality)|TRUE|NoInfectedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 

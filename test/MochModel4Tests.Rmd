@@ -224,40 +224,33 @@ cscenarios <- 'NoHIV'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar")
-```
-```{r}
-##' Returns 1 - the CDF of a weibull
-#pweibull1m <- function(...){1 - pweibull(...)}
-#
-##' Plots a survival curve and overlays a weibull CDF
-#plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
-#  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
-#  print(table(vdp_restricted$vdpa_inf))
-#  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
-#  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
-#    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
-#                col = 'green') +
-#    scale_colour_discrete(guide = FALSE)
-#  return(p)
-#}
-#
+                         description = "When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]])
+healthy_mort <- as.data.frame(new_PTable("HIVFreeMortality", db_channels[[cscenarios]]))
+model_time <- as.data.frame(new_PTable("ModelTime", db_channels[[cscenarios]]))[1,1]
+healthy_mort <- subset(healthy_mort, `ASSA model Time Range` == model_time &
+                                      GENDER == 'F')
+stopifnot(nrow(healthy_mort) >= 90)
+healthy_mort_function <- function(ages, healthy_mortality){
+  all_results <- numeric(0)
+  for (age in ages){
+    age_int <- floor(age)
+    if (age_int <= 0) { age <- 0}
+    y <- prod(1 - healthy_mortality[healthy_mortality$`Mortality Life Range` <= age_int,]$Value)
+    all_results <- c(all_results, y)
+  }
+  return(all_results)
+}
 
 p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
 p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
+p <- p + stat_function(fun = healthy_mort_function, color = 'red', arg = list('healthy_mortality' = healthy_mort))
 print(p)
 
-#p <- arrangeGrob(
-#plot_one_vdp_cat(med, 1, phi = 1.22398),
-#plot_one_vdp_cat(med, 2, phi = 0.95143),
-#plot_one_vdp_cat(med, 3, phi = 0.58661),
-#plot_one_vdp_cat(med, 4, phi = 0.52447))
-#print(p)
 result <- 'Manual'
 ```
 ```{r, results='asis'}
