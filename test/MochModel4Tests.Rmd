@@ -164,6 +164,29 @@ scenarios_to_create <- list(
                             '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
                                        to = 'TreatedMortalityMotherMultiplier = 0')
                             )
+             ),
+  '11' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'AllStopped'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3'),
+                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 10'),
+                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
+                                       to = 'InfectedDiagnosisMotherMultiplier = 10'),
+                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
+                                       to = 'SymptomsDiagnosisMotherMultiplier = 10'),
+                            '6' = list(from = 'TreatmentMotherMultiplier = 1',
+                                       to = 'TreatmentMotherMultiplier = 1000'),
+                            '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+                            '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
+                                       to = 'TreatedMortalityMotherMultiplier = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -758,13 +781,15 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Cessation Rates matches inputs'
-cscenarios <- 'AllInfectedNoMortality'
+cscenarios <- 'AllStopped'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar")
 ```
 ```{r, warning=FALSE, message=FALSE}
+cease_treat_b6m <- as.data.frame(new_PTable("TreatmentCessationMotherb6m", db_channels[[cscenarios]]))[1,1]
+cease_treat_a6m <- as.data.frame(new_PTable("TreatmentCessationMothera6m", db_channels[[cscenarios]]))[1,1]
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
                                 start_event = 'Treatment',
                                 end_event = 'Treatment Cessation')
@@ -775,11 +800,13 @@ p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
 p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
+p <- p + stat_function(fun = treated_mort_function, color = 'red', arg = list('mort_b6m' = cease_treat_b6m,
+                                                                              'mort_a6m' = cease_treat_a6m))
 print(p)
 cat("  \n")
 cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
 
-result <- 'Manual'
+result <- FALSE
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,

@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.08   43.62
+##    0.13    0.09   46.05
 ```
 
 ```
@@ -26,7 +26,7 @@ output: html_document
 ```
 
 ```
-## [1] 11
+## [1] 12
 ```
 
 # Tests for Model Version 30
@@ -400,7 +400,7 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
-Scenario(s): AllInfectedNoMortality
+Scenario(s): AllStopped
 
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
@@ -408,11 +408,11 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 14.3186898548911.
+## Mean time till treatment from Eligibility and diagnosis: 24.3654466726808.
 ```
   
 
-**Result: Manual**  
+**Result: FALSE**  
 
 ---
 
@@ -681,7 +681,7 @@ Model Version: 30
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|2|14|11| 
+|3|13|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -702,7 +702,7 @@ Model Version: 30
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
-|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
