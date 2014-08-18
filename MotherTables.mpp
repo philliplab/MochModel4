@@ -67,6 +67,21 @@ table Mother MotherTreatmentRates //EN Treatment Rates amongst mothers
 	} //EN Diagnosis Rate Statistics
 };
 
+/*NOTE(MotherTreatmentCessationRates, EN)
+	The treatment cessation rates amongst mothers. Based on the ratio between the number of treated mothers
+	and the stopped mothers.
+*/
+
+table Mother MotherTreatmentCessationRates //EN Treatment Rates amongst mothers
+{
+	integer_age+ * //EN Age
+	{
+		undergone_transition( mdetailed_status, mdTREATED, mdSTOPPED), //EN Number of newly treated ceased mothers
+		duration(mdetailed_status, mdTREATED), //EN Mother years at risk decimals=4
+		(undergone_transition( mdetailed_status, mdTREATED, mdSTOPPED) / duration(mdetailed_status, mdTREATED)) //EN Treatment Cessation Rates decimals=4
+	} //EN Diagnosis Rate Statistics
+};
+
 /* NOTE(MotherMortalityRates, EN)
 	A table tracking detailed mortality stats of the mothers.
 	It aims to be able to answer the questions:
