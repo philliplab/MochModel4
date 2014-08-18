@@ -11,13 +11,14 @@ output: html_document
 
 
 
+
 ```
 ## [1] "Running Time"
 ```
 
 ```
 ##    user  system elapsed 
-##    0.04    0.11   40.01
+##    0.08    0.10   41.62
 ```
 
 ```
@@ -25,7 +26,7 @@ output: html_document
 ```
 
 ```
-## [1] 9
+## [1] 10
 ```
 
 # Tests for Model Version 27

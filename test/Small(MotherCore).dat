@@ -163,7 +163,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	Arbitrarily chosen. A value of 1 will have no effect
 */
 
-	double TreatmentMotherMultiplier = 1; //EN Multiplier for Symptom Development Speed of Infected Mothers
+	double TreatmentMotherMultiplier = 1; //EN Multiplier for Treatment Access Speed of Infected Mothers
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
 	A value of 1 will cause the treatment coverage rate transition to be used
 */

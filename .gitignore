@@ -16,3 +16,7 @@ Base*txt
 Release/*
 *.xls
 *.png
+*(log).txt
+
+test/AllInfectedNoMortality(log).txt
+test/AllInfectedNoMortality(log).txt

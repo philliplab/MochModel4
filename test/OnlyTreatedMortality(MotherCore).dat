@@ -18,7 +18,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	IncidenceMotherMultiplier = 3.5; //EN Incidence Multiplier
+	double	IncidenceMotherMultiplier = 5; //EN Incidence Multiplier
 	/* NOTE(MInfectionImmortalityPeriod, EN)
 		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 	*/
@@ -28,7 +28,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	InfectedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Infected Mothers
+	double	InfectedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Infected Mothers
 /* NOTE ( InfectedMortalityMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 2.b from the Van der Paal article.
@@ -148,7 +148,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE (TreatmentCessationMotherMultiplier, EN)
 	Chose 1 so that there is no deviation from the ASSA model
 */
-	double TreatmentCessationMotherMultiplier = 1; //EN Multiplier for Mortality of Treated Mothers
+	double TreatmentCessationMotherMultiplier = 0; //EN Multiplier for Mortality of Treated Mothers
 /* NOTE ( TreatmentMotherShape, EN )
 	Defaults to 1 so that an exponential distribution is used
 */
@@ -163,7 +163,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	Arbitrarily chosen. A value of 1 will have no effect
 */
 
-	double TreatmentMotherMultiplier = 1; //EN Multiplier for Treatment Access Speed of Infected Mothers
+	double TreatmentMotherMultiplier = 1000; //EN Multiplier for Treatment Access Speed of Infected Mothers
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
 	A value of 1 will cause the treatment coverage rate transition to be used
 */
@@ -206,7 +206,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
-	double SymptomsMotherMultiplier = 1; //EN Multiplier for Symptom Development Speed of Infected Mothers
+	double SymptomsMotherMultiplier = 10; //EN Multiplier for Symptom Development Speed of Infected Mothers
 /* NOTE ( InfectedDiagnosisMotherRate, EN )
     Arbitrarily chosen. Should yield an average time to diagnosis of 5 years.
 */

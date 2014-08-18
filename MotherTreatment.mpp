@@ -103,8 +103,9 @@ TIME Mother::timeTreatmentEvent()
 				t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
 			};
 		};
+
 		if (TreatmentTransitionMotherSwitch == 1){
-			if (TreatmentMotherMultiplier * treatment_chance < TreatmentCoverageMother[ModelTime]){
+			if (treatment_chance / TreatmentMotherMultiplier < TreatmentCoverageMother[ModelTime]){
 				t_event_time = 0.01;
 			};
 		};

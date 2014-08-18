@@ -133,12 +133,45 @@ scenarios_to_create <- list(
                             '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
                                        to = 'InfectedMortalityMotherMultiplier = 0')
                            )
+             ),
+  '9' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'OnlyTreatedMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 5'),
+                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 10'),
+                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
+                                       to = 'InfectedDiagnosisMotherMultiplier = 10'),
+                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
+                                       to = 'SymptomsDiagnosisMotherMultiplier = 10'),
+                            '6' = list(from = 'TreatmentMotherMultiplier = 1',
+                                       to = 'TreatmentMotherMultiplier = 1000'),
+                            '7' = list(from = 'TreatmentCessationMotherMultiplier = 1',
+                                       to = 'TreatmentCessationMotherMultiplier = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
   do.call(generate_scenario, i)
 }
 available_scenarios <- list_all_scenarios(td, FALSE)
+```
+```{r Run single scenario for testing, include=FALSE, eval=FALSE}
+run_scenario(td, available_scenarios[[8]]$scex, td, 'MochModel4.exe')
+
+all_results <- list_all_results(td)
+
+db_channels <- list()
+for (i in all_results){
+  db_channel <- access_database(i)
+  scenario_name <- gsub("\\(.*$", "", gsub("^.*/", "", i))
+  db_channels[[scenario_name]] <- db_channel
+}
 ```
 ```{r Run Models and create connections, include=FALSE}
 library(foreach)
