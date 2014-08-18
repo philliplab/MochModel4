@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.13   42.99
+##    0.11    0.10   44.45
 ```
 
 ```
@@ -346,13 +346,13 @@ Plots showing the treatment coverage rates. Eligible coverage means the percenta
 
 Scenario(s): OnlyTreatedMortality
 
-When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar.
+When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. There is obviously somethings wrong: Need a different way for dealing with older people. Also that step that happens right at the start in the simulated data is not right.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png) 
   
 
-**Result: Manual**  
+**Result: FALSE**  
 
 ---
 
@@ -606,7 +606,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|1|14|10| 
+|2|13|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -625,7 +625,7 @@ Model Version: 27
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
-|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|Manual|OnlyTreatedMortality 
+|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
