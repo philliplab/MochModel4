@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.10   44.45
+##    0.15    0.08   43.60
 ```
 
 ```
@@ -376,6 +376,26 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 
 ---
 
+### Transition 10 - Death of Stopped Mothers
+
+#### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
+
+Scenario(s): OnlyTreatedMortality
+
+When the kaplan meier curves of the stopped mortalities are compared to the input ASSA mortalities, then they must be similar.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## [1] "skeleton"
+```
+  
+
+**Result: FALSE**  
+
+---
+
+
 ## Mother - Scenarios
 
 ### Base
@@ -559,7 +579,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-46](figure/unnamed-chunk-46.png) 
+![plot of chunk unnamed-chunk-48](figure/unnamed-chunk-48.png) 
   
 
 **Result: Manual**  
@@ -575,7 +595,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
+![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51.png) 
   
 
 **Result: Manual**  
@@ -590,7 +610,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-51](figure/unnamed-chunk-51.png) 
+![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53.png) 
   
 
 **Result: Manual**  
@@ -606,7 +626,7 @@ Model Version: 27
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|2|13|10| 
+|3|13|10| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -627,6 +647,7 @@ Model Version: 27
 |[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|Manual|AllInfectedNoMortality 
+|[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
 |[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 

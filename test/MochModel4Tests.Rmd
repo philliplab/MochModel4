@@ -750,6 +750,55 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+### Transition 10 - Death of Stopped Mothers
+
+```{r Stopped Mortality Match Inputs, results='asis'}
+ctest_name <- 'Stopped Mortality Match Inputs'
+cscenarios <- 'OnlyTreatedMortality'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the kaplan meier curves of the stopped mortalities are compared to the input ASSA mortalities, then they must be similar.")
+```
+```{r, warning=FALSE, message=FALSE}
+#med <- get_mother_time_to_event(db_channels[[cscenarios]],
+#                                start_event = 'Treatment')
+#mort_treat_b6m <- as.data.frame(new_PTable("TreatedMortalityMotherb6m", db_channels[[cscenarios]]))[1,1]
+#mort_treat_a6m <- as.data.frame(new_PTable("TreatedMortalityMothera6m", db_channels[[cscenarios]]))[1,1]
+#treated_mort_function <- function(ages, mort_b6m, mort_a6m){
+#  all_results <- numeric(0)
+#  for (age in ages){
+#    if (age <= 0){
+#      y <- 1
+#    } else if (age <= 0.5){
+#      y <- (1-mort_b6m)^age
+#    } else if (age >= 0.5){
+#      new_age <- age - 0.5
+#      y <- (1 - mort_b6m)^0.5 * (1 - mort_a6m)^new_age
+#    }
+#    all_results <- c(all_results, y)
+#  }
+#  return(all_results)
+#}
+#p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+#p <- p + labs(title = NULL) +
+#    guides(col = guide_legend(nrow=2)) +
+#    theme(legend.position = 'bottom')
+#p <- p + stat_function(fun = treated_mort_function, color = 'red', arg = list('mort_b6m' = mort_treat_b6m,
+#                                                                              'mort_a6m' = mort_treat_a6m))
+#print(p)
+print('skeleton')
+
+result <- FALSE
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 ## Mother - Scenarios
 
 ### Base
