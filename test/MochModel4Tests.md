@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.04    0.11   42.03
+##    0.11    0.06   41.32
 ```
 
 ```
@@ -410,7 +410,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 
 ### Transition 10 - Death of Stopped Mothers
 
-![plot of chunk Stopped Mortality Match Inputs](figure/Stopped Mortality Match Inputs.png) #### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
+#### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
 
 Scenario(s): OnlyStoppedMortality
 
@@ -600,7 +600,7 @@ This test make sure that in the scenario where there is only mortality in the in
 
 Scenario(s): Base
 
-The max age of a mother cannot be greater than 92
+The max age of a mother cannot be greater than 92. This is failing because the old people's mortality on treatment and STOPPED is not correctly implemented from ASSA model
 
 [To Summary Table](#summary_tab_link)  
 

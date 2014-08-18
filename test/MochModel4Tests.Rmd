@@ -212,9 +212,11 @@ clusterCall(cl, function() {
 clusterExport(cl, 'td')
 registerDoSNOW(cl)
 
-foreach(scenario = available_scenarios) %dopar% {
-  run_scenario(td, scenario$scex,
-               td, "MochModel4.exe")
+if (rerun_models){
+  foreach(scenario = available_scenarios) %dopar% {
+    run_scenario(td, scenario$scex,
+                 td, "MochModel4.exe")
+  }
 }
 #for (scenario in available_scenarios){
 #  print(scenario)
@@ -1022,7 +1024,7 @@ cscenarios <- 'Base'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "The max age of a mother cannot be greater than 92")
+                         description = "The max age of a mother cannot be greater than 92. This is failing because the old people's mortality on treatment and STOPPED is not correctly implemented from ASSA model")
 ```
 ```{r}
 DurationOfLife <- as.data.frame(new_RTable("MotherDurationOfLife", db_channels$Base))
@@ -1126,7 +1128,7 @@ plot_state_membership <- function(source_table){
       guides(col = guide_legend(ncol=2)) +
       theme(legend.position = 'bottom') + 
       labs(title = paste0("Scenario: ", scenario_name)) +
-      facet_wrap(~ scenario, ncol = 2)
+      facet_wrap(~ scenario, ncol = 3)
   return(p)    
 }
 ```
