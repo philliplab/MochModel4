@@ -2,12 +2,12 @@
 The Rates Tables
 ################################################################## */
 
-/*NOTE(MotherIncidence, EN)
+/*NOTE(MotherInfectionRates, EN)
 	The incidence amongst mothers. Based on the ratio between the number of new infections
 	and the total time spent in the Healthy state by mothers of a certain age.
 */
 
-table Mother MotherIncidence //EN Incidence amongst mothers
+table Mother MotherInfectionRates //EN Infection Rates amongst mothers
 {
 	integer_age+ * //EN Age
 	{

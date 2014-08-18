@@ -334,7 +334,7 @@ test_results <- new_test(test_results,
                          description = "The number of mothers ever infected in the NoHIV case should be 0")
 ```
 ```{r}
-Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$NoHIV))
+Incidence <- as.data.frame(new_RTable("MotherInfectionRates", db_channels$NoHIV))
 new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
 total_infections <- sum(new_infections)
 print(list(total_infections = total_infections))
@@ -884,7 +884,7 @@ test_results <- new_test(test_results,
                          description = "The percentage of mothers ever infected in the base case should be between 40 and 50%")
 ```
 ```{r}
-Incidence <- as.data.frame(new_RTable("MotherIncidence", db_channels$Base))
+Incidence <- as.data.frame(new_RTable("MotherInfectionRates", db_channels$Base))
 new_infections <- subset(Incidence, metrics == "Number of new infections", select = 'Value')$Value
 total_infections <- sum(new_infections)
 total_population <- get_mother_population_size(db_channels$Base)

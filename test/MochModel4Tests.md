@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.06   41.32
+##    0.11    0.14   43.49
 ```
 
 ```
@@ -29,7 +29,7 @@ output: html_document
 ## [1] 11
 ```
 
-# Tests for Model Version 27
+# Tests for Model Version 28
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -666,7 +666,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 27
+Model Version: 28
 
 #### Summary of the Test Results 
 
