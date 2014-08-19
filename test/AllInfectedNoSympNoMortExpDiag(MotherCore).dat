@@ -13,12 +13,12 @@ An arbitrarily selected value.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
+	double	HealthyMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Healthy Mothers
 /* NOTE ( IncidenceMotherMultiplier, EN )
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
+	double	IncidenceMotherMultiplier = 3.5; //EN Incidence Multiplier
 	/* NOTE(MInfectionImmortalityPeriod, EN)
 		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 	*/
@@ -28,7 +28,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the ASSA model values.
 */
 
-	double	InfectedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Infected Mothers
+	double	InfectedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Infected Mothers
 /* NOTE ( InfectedMortalityMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 2.b from the Van der Paal article.
@@ -206,7 +206,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
-	double SymptomsMotherMultiplier = 1; //EN Multiplier for Symptom Development Speed of Infected Mothers
+	double SymptomsMotherMultiplier = 0; //EN Multiplier for Symptom Development Speed of Infected Mothers
 /* NOTE ( InfectedDiagnosisMotherRate, EN )
     Arbitrarily chosen. Should yield an average time to diagnosis of 5 years.
 */
@@ -220,7 +220,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 /* NOTE (InfectedDiagnosisTransitionMotherSwitch, EN)
 	Set to 0 so that the weibull based transition is used.
 */
-	double InfectedDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
+	double InfectedDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
 /* NOTE ( InfectedDiagnosisMotherPercentage, EN)
 	Arbitrarily Chosen
 	*/

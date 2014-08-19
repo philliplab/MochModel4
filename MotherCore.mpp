@@ -80,7 +80,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {33};
+	int model_version = {35};
 
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
@@ -101,6 +101,7 @@ actor Mother            //EN Individual
 
 	double infected_death_time = {0};
 	double infected_symptoms_time = {0};
+	double age_at_infection = {0};
 
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.

@@ -113,6 +113,7 @@ double infectedMortalityTimeCalc(double y, double kappa, double lambda, double p
 			t_event_time = invWeibull_infect(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
 		};
 	};
+//	t_event_time = WAIT(t_event_time);
 	return(t_event_time);
 };
 
@@ -124,6 +125,7 @@ double infectedSymptomsTimeCalc(double inf_mortality_draw, double phi){
 	if (SymptomsMotherMultiplier > 0){
 		t_event_time = invWeibull_infect(symp_par, SymptomsMotherShape, SymptomsMotherScale, phi) / SymptomsMotherMultiplier;
 	};
+//	t_event_time = WAIT(t_event_time);
 	return(t_event_time);
 };
 
@@ -139,6 +141,7 @@ TIME Mother::timeInfectionEvent()
 void Mother::InfectionEvent()
 {
 	vdp_age_at_infection = vdp_age_int; //Used for scheduling death from infection
+	age_at_infection = age;
 	mdeath_sched_status = mdsINFECTED;
 	mdetailed_status = mdINFECTED;
 	infected = TRUE;

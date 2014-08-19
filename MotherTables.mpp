@@ -33,19 +33,20 @@ table Mother MotherSymptomRates //EN Symptom Rates amongst mothers
 	} //EN Symptom Rate Statistics
 };
 
-/*NOTE(MotherDiagnosisRates, EN)
+/*NOTE(MotherAsymptomaticDiagnosisRates, EN)
 	The diagnosis rates amongst mothers. Based on the ratio between the number of newly
 	diagnosed mothers
 	and the total time spent in the Infected and Symptom states by mothers of a certain age.
 */
 
-table Mother MotherDiagnosisRates //EN Diagnosis Rates amongst mothers
+table Mother MotherAsymptomaticDiagnosisRates //EN Diagnosis Rates amongst asymptomatic mothers
 {
 	integer_age+ * //EN Age
 	{
-		undergone_transition( diagnosed, FALSE, TRUE), //EN Number of new diagnosed mothers
+		undergone_transition( mdetailed_status, mdINFECTED, mdDIAGNOSED), //EN Number of new diagnosed mothers
 		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years at risk decimals=4
-		(undergone_transition( diagnosed, FALSE, TRUE) / duration(mdeath_sched_status, mdsINFECTED)) //EN Diagnosis Rates decimals=4
+		(undergone_transition( diagnosed, FALSE, TRUE) / duration(mdeath_sched_status, mdsINFECTED)), //EN Diagnosis Rates decimals=4
+		undergone_transition( mdetailed_status, mdHEALTHY, mdINFECTED) //EN Number of new infected mothers
 	} //EN Diagnosis Rate Statistics
 };
 
