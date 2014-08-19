@@ -99,6 +99,8 @@ actor Mother            //EN Individual
 
 	REPORT_TIME report_time = { 0 };
 
+	double infected_death_time = {0};
+
 	// The states time and age are automatically defined by Modgen.
 	// Model-specific labels and notes are supplied below.
 

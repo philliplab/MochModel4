@@ -92,12 +92,35 @@ double mInfectionTime(LIFE v_integer_age){
 	return t_event_time;
 }
 
+double invWeibull_infect(double y, double kappa, double lambda, double phi)
+{
+	// Lambda is Scale and Kappa is Shape
+	double x = 0;
+	if (phi == 1000){ // SIGH - this is not a pretty hack - no construct like R's Inf in C++?
+		x = pow(10, 10);
+	} else
+	{
+		x = (phi * lambda) * pow(-log(y), 1/kappa);
+	};
+	return(x);
+};
+
+double infectedMortalityTimeCalc(double y, double kappa, double lambda, double phi){
+	TIME t_event_time = TIME_INFINITE;
+	if (InfectedMortalityMotherMultiplier > 0){
+		t_event_time = 0;
+		while (t_event_time <= MInfectionImmortalityPeriod){
+			t_event_time = invWeibull_infect(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
+		};
+	};
+	return(t_event_time);
+};
+
 TIME Mother::timeInfectionEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
 	if (mdeath_sched_status == mdsHEALTHY && infectible == TRUE){
 			t_event_time = WAIT(mInfectionTime(integer_age));
-			//tEventTime = WAIT(IncidenceTableDraw(RandUniform(2)));
 	};
 	return(t_event_time);
 };
@@ -108,4 +131,5 @@ void Mother::InfectionEvent()
 	mdeath_sched_status = mdsINFECTED;
 	mdetailed_status = mdINFECTED;
 	infected = TRUE;
+    infected_death_time = infectedMortalityTimeCalc(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]);
 };

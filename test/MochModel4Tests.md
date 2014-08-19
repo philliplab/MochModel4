@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.13    0.14   46.42
+##    0.12    0.16   45.91
 ```
 
 ```
@@ -411,7 +411,7 @@ Something is not right. It needs to be debugged.
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 24.0165977899676.
+## Mean time till treatment cessarion from treatment: 24.0165977899676.
 ```
   
 

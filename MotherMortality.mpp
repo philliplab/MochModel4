@@ -224,17 +224,6 @@ double healthyMortalityTime(double draw){
     return(lifeTableDraw(draw));
 };
 
-double infectedMortalityTime(double y, double kappa, double lambda, double phi){
-	TIME t_event_time = TIME_INFINITE;
-	if (InfectedMortalityMotherMultiplier > 0){
-		t_event_time = 0;
-		while (t_event_time <= MInfectionImmortalityPeriod){
-			t_event_time = invWeibull(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
-		};
-	};
-	return(t_event_time);
-};
-
 double treatedMortalityTime(double y){
 	TIME t_event_time = TIME_INFINITE;
 	if (y > (1 - (TreatedMortalityMotherb6m/2))){
@@ -268,7 +257,7 @@ TIME Mother::timeMortalityEvent()
 
 	switch(mdeath_sched_status){
 	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(RandUniform(4)));} break;
-	case mdsINFECTED: {t_event_time = WAIT(infectedMortalityTime(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]));} break;
+	case mdsINFECTED: {t_event_time = WAIT(infected_death_time);} break;
 	case mdsTREATED: {t_event_time = WAIT(treatedMortalityTime(RandUniform(8)));} break;
 	case mdsSTOPPED: {t_event_time = WAIT(stoppedMortalityTime(RandUniform(11), StoppedMortalityMotherShape, StoppedMortalityMotherScale, StoppedMortalityMotherPhi[vdp_age_at_infection]));} break;
 	default: {t_event_time = WAIT(100);} break;
