@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.12    0.16   45.91
+##    0.12    0.10   46.77
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 12
 ```
 
-# Tests for Model Version 32
+# Tests for Model Version 33
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -128,16 +128,16 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 ## 1                 Healthy Mortality Rate      0
 ## 2           Healthy mother years at risk 236725
 ## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk  33173
-## 5                   Mother years at risk 520685
-## 6                       Number of deaths   8995
+## 4          Infected mother years at risk  52077
+## 5                   Mother years at risk 532194
+## 6                       Number of deaths   8770
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
 ## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state   8995
+## 10   Number of deaths from TREATED state   8770
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk 250787
+## 13          Treated mother years at risk 243392
 ## 14       Treatment Ceased Mortality Rate     NA
 ## 15 Treatment Ceased mother years at risk      0
 ```
@@ -276,7 +276,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ##   
-## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939. 
+## Mean time till treatment from Eligibility and diagnosis: 2.92783380971515. 
 ## 
 ```
   
@@ -377,18 +377,18 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 ## 1                 Healthy Mortality Rate      0
 ## 2           Healthy mother years at risk 330298
 ## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk  29463
-## 5                   Mother years at risk 401579
-## 6                       Number of deaths   8685
+## 4          Infected mother years at risk  45817
+## 5                   Mother years at risk 416837
+## 6                       Number of deaths   8461
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
-## 9    Number of deaths from STOPPED state   8685
+## 9    Number of deaths from STOPPED state   8461
 ## 10   Number of deaths from TREATED state      0
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk  27782
+## 13          Treated mother years at risk  27075
 ## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk  14037
+## 15 Treatment Ceased mother years at risk  13647
 ```
   
 
@@ -411,7 +411,7 @@ Something is not right. It needs to be debugged.
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png)   
 
 ```
-## Mean time till treatment cessarion from treatment: 24.0165977899676.
+## Mean time till treatment cessarion from treatment: 23.5625092512089.
 ```
   
 
@@ -437,7 +437,7 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ```
 ## 
 ##    1    2    3    4 
-## 3190  938  179   31
+## 3128  908  168   29
 ```
 
 ![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-311.png) ![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-312.png) 
@@ -509,19 +509,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 37065
+## [1] 37069
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 2771
+## [1] 2772
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.07476
+## [1] 0.07478
 ```
   
 
@@ -615,7 +615,7 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.602824 NA NA
+## 4          Life expectancy    51.602571 NA NA
 ```
   
 
@@ -672,7 +672,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 32
+Model Version: 33
 
 #### Summary of the Test Results 
 

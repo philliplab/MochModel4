@@ -116,6 +116,17 @@ double infectedMortalityTimeCalc(double y, double kappa, double lambda, double p
 	return(t_event_time);
 };
 
+double infectedSymptomsTimeCalc(double inf_mortality_draw, double phi){
+	TIME t_event_time = TIME_INFINITE;
+	double symp_draw = RandUniform(6);
+	double symp_par;
+	symp_par = ((1 - SymptomsMotherCorrelation) * symp_draw) + (SymptomsMotherCorrelation * inf_mortality_draw);
+	if (SymptomsMotherMultiplier > 0){
+		t_event_time = invWeibull_infect(symp_par, SymptomsMotherShape, SymptomsMotherScale, phi) / SymptomsMotherMultiplier;
+	};
+	return(t_event_time);
+};
+
 TIME Mother::timeInfectionEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
@@ -132,4 +143,6 @@ void Mother::InfectionEvent()
 	mdetailed_status = mdINFECTED;
 	infected = TRUE;
     infected_death_time = infectedMortalityTimeCalc(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]);
+
+	infected_symptoms_time = infectedSymptomsTimeCalc(inf_mortality_draw, InfectedMortalityMotherPhi[vdp_age_at_infection]);
 };

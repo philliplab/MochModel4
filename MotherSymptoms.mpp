@@ -31,30 +31,12 @@ actor Mother            //EN Individual
 	event timeSymptomEvent, SymptomEvent;
 };
 
-double InvWeibull2(double y, double kappa, double lambda, double phi)
-{
-	// Lambda is Scale and Kappa is Shape
-	double x = 0;
-	if (phi == 1000){ // SIGH - this is not a pretty hack - no construct like R's Inf in C++?
-		x = pow(10, 10);
-	} else
-	{
-		x = (phi * lambda) * pow(-log(y), 1/kappa);
-	};
-	return(x);
-};
-
 TIME Mother::timeSymptomEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if (mdeath_sched_status == mdsINFECTED && showing_symptoms == FALSE){
-		double symp_draw = RandUniform(6);
-		double symp_par;
-		symp_par = ((1 - SymptomsMotherCorrelation) * symp_draw) + (SymptomsMotherCorrelation * inf_mortality_draw);
-		if (SymptomsMotherMultiplier > 0){
-			t_event_time = InvWeibull2(symp_par, SymptomsMotherShape, SymptomsMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]) / SymptomsMotherMultiplier;
-		};
-	}
+	if (mdeath_sched_status == mdINFECTED){
+		t_event_time = infected_symptoms_time;
+	};
 	t_event_time = WAIT(t_event_time);
 	return t_event_time;
 };
