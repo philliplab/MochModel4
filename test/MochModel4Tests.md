@@ -18,7 +18,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.13    0.09   46.05
+##    0.14    0.17   45.65
 ```
 
 ```
@@ -153,24 +153,18 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) 
+
+```
+## Number of deaths by Van Der Paal Age category:
+```
 
 ```
 ## 
-##    1 
-## 3441 
-## 
-##   2 
-## 908 
-## 
-##   3 
-## 158 
-## 
-##  4 
-## 20
+##    1    2    3    4 
+## 3441  908  158   20
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
   
 
 **Result: Manual**  
@@ -187,24 +181,18 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptom rates are fitted with Weibull curves, the parameters must be similar to those obtained from the van der paal article
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) 
+
+```
+## Number of deaths by Van Der Paal Age category:
+```
 
 ```
 ## 
-##    1 
-## 3441 
-## 
-##   2 
-## 908 
-## 
-##   3 
-## 158 
-## 
-##  4 
-## 21
+##    1    2    3    4 
+## 3441  908  158   21
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
   
 
 **Result: Manual**  
@@ -426,24 +414,18 @@ Scenario(s): OnlyStoppedMortality
 When the kaplan meier curves of the stopped mortalities are compared to the input ASSA mortalities, then they must be similar.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-341.png) 
+
+```
+## Number of deaths by Van Der Paal Age category:
+```
 
 ```
 ## 
-##    1 
-## 3190 
-## 
-##   2 
-## 938 
-## 
-##   3 
-## 179 
-## 
-##  4 
-## 31
+##    1    2    3    4 
+## 3190  938  179   31
 ```
 
-![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-342.png) 
+![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-341.png) ![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-342.png) 
   
 
 **Result: Manual**  

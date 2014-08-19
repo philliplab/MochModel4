@@ -195,7 +195,7 @@ for (i in scenarios_to_create){
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
-run_scenario(td, available_scenarios[[8]]$scex, td, 'MochModel4.exe')
+#run_scenario(td, available_scenarios[[8]]$scex, td, 'MochModel4.exe')
 
 all_results <- list_all_results(td)
 
@@ -394,7 +394,6 @@ pweibull1m <- function(...){1 - pweibull(...)}
 #' Plots a survival curve and overlays a weibull CDF
 plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
   vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
-  print(table(vdp_restricted$vdpa_inf))
   p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
   p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
     stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
@@ -410,7 +409,8 @@ med <- get_mother_time_to_event(db_channels[[cscenarios]],
 med$vdpa_inf <- med$`Van der Paal Age category at infection`
 med <- subset(med, `Status at death` == 1 &
                     vdpa_inf != 5)
-
+cat("Number of deaths by Van Der Paal Age category: \n")
+print(table(med$vdpa_inf))
 
 p <- autoplot(survfit(Surv(time_to_event) ~ vdpa_inf, med))$plot
 p <- p + labs(title = NULL) +
@@ -451,6 +451,8 @@ med <- get_mother_time_to_event(db_channels[[cscenarios]],
 med$vdpa_inf <- med$`Van der Paal Age category at infection`
 med <- subset(med, time_to_event > 0 &
                     vdpa_inf != 5)
+cat("Number of deaths by Van Der Paal Age category: \n")
+print(table(med$vdpa_inf))
 
 p <- autoplot(survfit(Surv(time_to_event) ~ vdpa_inf, med))$plot
 p <- p + labs(title = NULL) +
@@ -832,7 +834,8 @@ med <- get_mother_time_to_event(db_channels[[cscenarios]],
 med$vdpa_inf <- med$`Van der Paal Age category at infection`
 med <- subset(med, `Status at death` == 3 &
                     vdpa_inf != 5)
-
+cat("Number of deaths by Van Der Paal Age category: \n")
+print(table(med$vdpa_inf))
 
 p <- autoplot(survfit(Surv(time_to_event) ~ vdpa_inf, med))$plot
 p <- p + labs(title = NULL) +
