@@ -21,6 +21,7 @@ parameters
 {
 	double InfectedDiagnosisMotherRate; //EN Diagnosis Rate of Infected Mothers
 	double SymptomaticDiagnosisMotherRate; //EN Diagnosis Rate of Symptomatic Mothers
+	double InfectedDiagnosisTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
 };
 
 /* NOTE(InfectedDiagnosisMotherRate, EN)
@@ -33,6 +34,13 @@ parameters
 	after becoming symptomatic.
 */
 
+/* NOTE (InfectedDiagnosisTransitionMotherSwitch, EN)
+	This switch allows one to choose between scheduling diagnosis of an asymptomatic mother based on a weibull 
+	curve from the time since eligibility or based on the percentage of mothers that gets diagnosed while asymptomatic
+	Setting this value to zero will use the weibull rate.
+	Setting this value to one will use the percentage based approach.
+*/
+
 actor Mother
 {
 	logical diagnosed = {FALSE};
@@ -43,10 +51,17 @@ actor Mother
 TIME Mother::timeDiagnosisEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
+	// With symptoms
 	if (mdeath_sched_status == mdsINFECTED && diagnosed == FALSE && showing_symptoms == FALSE)
 	{
-		t_event_time = log(RandUniform(9)) / -InfectedDiagnosisMotherRate;
+		if (InfectedDiagnosisTransitionMotherSwitch == 0){
+			t_event_time = log(RandUniform(9)) / -InfectedDiagnosisMotherRate;
+		} else {
+			t_event_time = 5;
+		}
 	}
+
+	// Without Symptoms
 	if (mdeath_sched_status == mdsINFECTED && diagnosed == FALSE && showing_symptoms == TRUE)
 	{
 		t_event_time = log(RandUniform(10)) / -SymptomaticDiagnosisMotherRate;
