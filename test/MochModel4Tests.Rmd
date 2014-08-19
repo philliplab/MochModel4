@@ -712,7 +712,7 @@ treated_mort_function <- function(ages, mort_b6m, mort_a6m){
       y <- 1
     } else if (age <= 0.5){
       y <- (1-mort_b6m)^age
-    } else if (age >= 0.5){
+    } else if (age > 0.5){
       new_age <- age - 0.5
       y <- (1 - mort_b6m)^0.5 * (1 - mort_a6m)^new_age
     }
@@ -770,7 +770,8 @@ cscenarios <- 'AllStopped'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar")
+                         description = "When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar. \n
+Something is not right. It needs to be debugged.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 cease_treat_b6m <- as.data.frame(new_PTable("TreatmentCessationMotherb6m", db_channels[[cscenarios]]))[1,1]

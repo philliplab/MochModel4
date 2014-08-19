@@ -16,10 +16,10 @@ TIME Mother::timeStopEvent()
 	if (mdetailed_status == mdTREATED)
 	{
 		double y = RandUniform(5);
-		if (y > (1 - TreatmentCessationMotherb6m)){
-			t_event_time = -log(y) / (2 * TreatmentCessationMotherb6m);
+		if (y > (1 - (TreatmentCessationMotherb6m/2))){
+			t_event_time = log(y) / (log(1 - TreatmentCessationMotherb6m));
 		} else {
-			t_event_time = -log(y) / (TreatmentCessationMothera6m);
+			t_event_time = 0.5 + (log(y / pow(1 - TreatmentCessationMotherb6m,0.5)) / (log(1 - TreatmentCessationMothera6m)) );
 		}
 		if (TreatmentCessationMotherMultiplier > 0){
 			t_event_time = t_event_time / TreatmentCessationMotherMultiplier;

@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.16    0.19   46.05
+##    0.09    0.17   47.42
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 12
 ```
 
-# Tests for Model Version 31
+# Tests for Model Version 32
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -347,7 +347,9 @@ If the Treatment coverage rate transition is used, then the line must reflect th
 
 Scenario(s): OnlyTreatedMortality
 
-When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. There is obviously somethings wrong: Need a different way for dealing with older people. Also that step that happens right at the start in the simulated data is not right.
+When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. 
+
+Something does not look right. The deviation between the lines are too large. Also the spike in mortality in the data centered at age 75 is troublesome.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
@@ -372,7 +374,7 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 ## 2           Healthy mother years at risk 330298
 ## 3                Infected Mortality Rate     NA
 ## 4          Infected mother years at risk  29463
-## 5                   Mother years at risk 402132
+## 5                   Mother years at risk 401579
 ## 6                       Number of deaths   8685
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
@@ -380,9 +382,9 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 ## 10   Number of deaths from TREATED state      0
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk  28356
+## 13          Treated mother years at risk  27782
 ## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk  14015
+## 15 Treatment Ceased mother years at risk  14037
 ```
   
 
@@ -397,13 +399,15 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 
 Scenario(s): AllStopped
 
-When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
+When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar. 
+
+Something is not right. It needs to be debugged.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 24.3654466726808.
+## Mean time till treatment from Eligibility and diagnosis: 24.0165977899676.
 ```
   
 
@@ -607,7 +611,7 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.630533 NA NA
+## 4          Life expectancy    51.602824 NA NA
 ```
   
 
@@ -664,7 +668,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 31
+Model Version: 32
 
 #### Summary of the Test Results 
 
