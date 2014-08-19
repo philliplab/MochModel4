@@ -237,10 +237,10 @@ double infectedMortalityTime(double y, double kappa, double lambda, double phi){
 
 double treatedMortalityTime(double y){
 	TIME t_event_time = TIME_INFINITE;
-	if (y > (1 - TreatedMortalityMotherb6m)){
-		t_event_time = -log(y) / (2 * TreatedMortalityMotherb6m);
+	if (y > (1 - (TreatedMortalityMotherb6m/2))){
+		t_event_time = log(y) / (log(1-TreatedMortalityMotherb6m));
 	} else {
-		t_event_time = -log(y) / (TreatedMortalityMothera6m);
+		t_event_time = 0.5+(log(y / pow((1 - TreatedMortalityMotherb6m), 0.5)) / (log(1 - TreatedMortalityMothera6m)));
 	}
 	if (TreatedMortalityMotherMultiplier > 0){
 		t_event_time = t_event_time / TreatedMortalityMotherMultiplier;

@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.09    0.17   46.46
+##    0.16    0.19   46.05
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 12
 ```
 
-# Tests for Model Version 30
+# Tests for Model Version 31
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -129,15 +129,15 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 ## 2           Healthy mother years at risk 236725
 ## 3                Infected Mortality Rate     NA
 ## 4          Infected mother years at risk  33173
-## 5                   Mother years at risk 527867
-## 6                       Number of deaths   8952
+## 5                   Mother years at risk 520685
+## 6                       Number of deaths   8995
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
 ## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state   8952
+## 10   Number of deaths from TREATED state   8995
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk 257969
+## 13          Treated mother years at risk 250787
 ## 14       Treatment Ceased Mortality Rate     NA
 ## 15 Treatment Ceased mother years at risk      0
 ```
@@ -607,7 +607,7 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.688629 NA NA
+## 4          Life expectancy    51.630533 NA NA
 ```
   
 
@@ -664,7 +664,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 ## Child
 
 ## Summary of All Tests
-Model Version: 30
+Model Version: 31
 
 #### Summary of the Test Results 
 

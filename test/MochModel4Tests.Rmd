@@ -697,7 +697,8 @@ cscenarios <- 'OnlyTreatedMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. There is obviously somethings wrong: Need a different way for dealing with older people. Also that step that happens right at the start in the simulated data is not right.")
+                         description = "When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. \n
+Something does not look right. The deviation between the lines are too large. Also the spike in mortality in the data centered at age 75 is troublesome.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
