@@ -17,6 +17,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 ```{r Setup and Scenario Creation, include=FALSE}
 rm(list = ls())
 source('test_helpers.R')
+rerun_models <- FALSE
 rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
@@ -194,6 +195,11 @@ for (i in scenarios_to_create){
 }
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
+```{r, results='asis'}
+if (!rerun_models){
+  cat("# WARNING MODELS WERE NOT RERUN \n")
+}
+```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
 #run_scenario(td, available_scenarios[[8]]$scex, td, 'MochModel4.exe')
 
@@ -291,7 +297,8 @@ cscenarios <- 'NoHIV'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.")
+                         description = "When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. \n
+Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]])
@@ -649,54 +656,29 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ```{r Treatment Coverage Rate Coverage Based Transition, results='asis'}
 ctest_name <- 'Treatment Coverage Rate Coverage Based Transition'
-cscenarios <- 'AllInfectedNoMortality'
+cscenarios <- c('AllInfectedNoMortality', 'WeibullTreatmentTransition')
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.")
+                         description = "Plots showing the treatment coverage rates. \n
+The line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. \n
+If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. \n
+If the Treatment coverage rate transition is used, then the line must reflect the treatment coverage rate for the given age. Note that the variability increases drastically as the number of mothers who become eligible decreases.")
 ```
 ```{r, warning=FALSE, message=FALSE}
-MotherTreatmentRates <- as.data.frame(new_RTable("MotherTreatmentRates", db_channels[[cscenarios]]))[,1:3]
-mtr <- dcast(MotherTreatmentRates, Age ~ metrics)
-mtr$`Eligible Coverage` <- mtr$`Mothers under treatment` / mtr$`Mother years at risk`
-mtr$`Started vs Became Eligible` <- mtr$`Number of newly treated mothers` / mtr$`Newly eligible mothers`
-
-mmtr <- melt(mtr, id.vars = 'Age')
-mmtr <- subset(mmtr, variable %in% c('Eligible Coverage', 'Started vs Became Eligible'))
-p <- ggplot(mmtr, aes(x = Age, y = value, col = variable)) +
-  geom_line() + 
-  scale_y_continuous(limits = c(-1, 3))
-print(p)
-result <- "Manual"
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
-
-```{r Treatment Coverage Rate Weibull Based Transition, results='asis'}
-ctest_name <- 'Treatment Coverage Rate Weibull Based Transition'
-cscenarios <- 'WeibullTreatmentTransition'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.")
-```
-```{r, warning=FALSE, message=FALSE}
-MotherTreatmentRates <- as.data.frame(new_RTable("MotherTreatmentRates", db_channels[[cscenarios]]))[,1:3]
-mtr <- dcast(MotherTreatmentRates, Age ~ metrics)
-mtr$`Eligible Coverage` <- mtr$`Mothers under treatment` / mtr$`Mother years at risk`
-mtr$`Started vs Became Eligible` <- mtr$`Number of newly treated mothers` / mtr$`Newly eligible mothers`
-
-mmtr <- melt(mtr, id.vars = 'Age')
-mmtr <- subset(mmtr, variable %in% c('Eligible Coverage', 'Started vs Became Eligible'))
-p <- ggplot(mmtr, aes(x = Age, y = value, col = variable)) +
-  geom_line() + 
-  scale_y_continuous(limits = c(-1, 10))
-print(p)
+for (cscenario in cscenarios){
+  print(cscenario)
+  MotherTreatmentRates <- as.data.frame(new_RTable("MotherTreatmentRates", db_channels[[cscenario]]))[,1:3]
+  mtr <- dcast(MotherTreatmentRates, Age ~ metrics)
+  mtr$`Started vs Became Eligible` <- mtr$`Number of newly treated mothers` / mtr$`Newly eligible mothers`
+  
+  mmtr <- melt(mtr, id.vars = 'Age')
+  mmtr <- subset(mmtr, variable %in% c('Started vs Became Eligible'))
+  p <- ggplot(mmtr, aes(x = Age, y = value)) +
+    geom_line() + 
+    scale_y_continuous(limits = c(-0.1, 4))
+  print(p)
+}
 result <- "Manual"
 ```
 ```{r, results='asis'}

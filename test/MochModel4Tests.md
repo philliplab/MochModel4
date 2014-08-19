@@ -12,13 +12,14 @@ output: html_document
 
 
 
+
 ```
 ## [1] "Running Time"
 ```
 
 ```
 ##    user  system elapsed 
-##    0.14    0.17   45.65
+##    0.09    0.17   46.46
 ```
 
 ```
@@ -78,10 +79,12 @@ No mothers should die from the Healthy state in the OnlyInfectedMortality Scenar
 
 Scenario(s): NoHIV
 
-When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.
+When the kaplan meier curves of the healthy mortalities are compared to the input ASSA mortalities, then they must be similar. 
+
+Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
   
 
 **Result: Manual**  
@@ -164,7 +167,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 3441  908  158   20
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-101.png) ![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-102.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
   
 
 **Result: Manual**  
@@ -192,7 +195,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 3441  908  158   21
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-121.png) ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-122.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
   
 
 **Result: Manual**  
@@ -208,7 +211,7 @@ Scenario(s): AllInfectedNoSymptomsNoMortality
 When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png)   
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.96688215346391.
@@ -228,7 +231,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png)   
+![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 2.90830914462988.
@@ -248,7 +251,7 @@ Scenario(s): AllInfectedNoMortality
 When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png)   
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000002.
@@ -267,7 +270,7 @@ Scenario(s): WeibullTreatmentTransition
 The input rates for the transition to treatment must match the input rates in the case that the weibull transition is specified.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20.png)   
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
@@ -308,25 +311,29 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 
 Scenario(s): AllInfectedNoMortality
 
-Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line.
+ Scenario(s): WeibullTreatmentTransition
+
+Plots showing the treatment coverage rates. 
+
+The line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. 
+
+If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. 
+
+If the Treatment coverage rate transition is used, then the line must reflect the treatment coverage rate for the given age. Note that the variability increases drastically as the number of mothers who become eligible decreases.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24.png) 
-  
 
-**Result: Manual**  
+```
+## [1] "AllInfectedNoMortality"
+```
 
----
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-251.png) 
 
+```
+## [1] "WeibullTreatmentTransition"
+```
 
-#### <a name="TreatmentCoverageRateWeibullBasedTransition"></a>Treatment Coverage Rate Weibull Based Transition
-
-Scenario(s): WeibullTreatmentTransition
-
-Plots showing the treatment coverage rates. Eligible coverage means the percentage of eligible mothers who are treated. This is based on time spent in the different states (Total mother years in eligible vs total mother years in treated). If the TreatmentCoverage parameter is used to control the transition into treatment, then this measure in inappropriate since the mother either immediately starts treatment or is very unlikely to start treatment ever (based on how treatment coverage rates changes with time). The Blue line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. If the weibull transition is used, the blue line is not as informative as the red line. For the weibull based transition it is expected that coverage will increase over time as mothers are more like to start treatment the longer they are eligible.
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26.png) 
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-252.png) 
   
 
 **Result: Manual**  
@@ -343,7 +350,7 @@ Scenario(s): OnlyTreatedMortality
 When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. There is obviously somethings wrong: Need a different way for dealing with older people. Also that step that happens right at the start in the simulated data is not right.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
   
 
 **Result: FALSE**  
@@ -393,7 +400,7 @@ Scenario(s): AllStopped
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-32](figure/unnamed-chunk-32.png)   
+![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 24.3654466726808.
@@ -425,7 +432,7 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ## 3190  938  179   31
 ```
 
-![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-341.png) ![plot of chunk unnamed-chunk-34](figure/unnamed-chunk-342.png) 
+![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-331.png) ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-332.png) 
   
 
 **Result: Manual**  
@@ -616,7 +623,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-50](figure/unnamed-chunk-50.png) 
+![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
   
 
 **Result: Manual**  
@@ -632,7 +639,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-53](figure/unnamed-chunk-53.png) 
+![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
   
 
 **Result: Manual**  
@@ -647,7 +654,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-55](figure/unnamed-chunk-55.png) 
+![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
   
 
 **Result: Manual**  
@@ -663,7 +670,7 @@ Model Version: 30
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|3|13|11| 
+|3|12|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -680,8 +687,7 @@ Model Version: 30
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
 |[Treatment Rates matches inputs Weibull Transition](#TreatmentRatesmatchesinputsWeibullTransition)|Manual|WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
-|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
-|[Treatment Coverage Rate Weibull Based Transition](#TreatmentCoverageRateWeibullBasedTransition)|Manual|WeibullTreatmentTransition 
+|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
