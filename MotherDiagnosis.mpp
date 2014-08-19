@@ -21,7 +21,8 @@ parameters
 {
 	double InfectedDiagnosisMotherRate; //EN Diagnosis Rate of Infected Mothers
 	double SymptomaticDiagnosisMotherRate; //EN Diagnosis Rate of Symptomatic Mothers
-	double InfectedDiagnosisTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
+	double InfectedDiagnosisTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for diagnosis of asymptomatic mothers
+	double InfectedDiagnosisMotherPercentage[MORT_TIME]; //EN The percentage of mothers who become diagnosed while asymptomatic
 };
 
 /* NOTE(InfectedDiagnosisMotherRate, EN)
@@ -41,6 +42,10 @@ parameters
 	Setting this value to one will use the percentage based approach.
 */
 
+/* NOTE (InfectedDiagnosisMotherPercentage, EN)
+	The percentage of mothers who become diagnosed while asymptomatic. A percentage can be specified for each model year
+*/
+
 actor Mother
 {
 	logical diagnosed = {FALSE};
@@ -57,7 +62,8 @@ TIME Mother::timeDiagnosisEvent()
 		if (InfectedDiagnosisTransitionMotherSwitch == 0){
 			t_event_time = log(RandUniform(9)) / -InfectedDiagnosisMotherRate;
 		} else {
-			t_event_time = 5;
+			double exit_date = min(infected_death_time, infected_symptoms_time);
+			t_event_time = 5; //RandUniform(14) * exit_date / InfectedDiagnosisMotherRate[Model_Time];
 		}
 	}
 

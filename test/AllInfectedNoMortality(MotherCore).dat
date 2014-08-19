@@ -221,6 +221,14 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	Set to 0 so that the weibull based transition is used.
 */
 	double InfectedDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
+/* NOTE ( InfectedDiagnosisMotherPercentage, EN)
+	Arbitrarily Chosen
+	*/
+
+	double InfectedDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of mothers who become diagnosed while asymptomatic
+		(41) 0.4,
+	};
+
 	/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
