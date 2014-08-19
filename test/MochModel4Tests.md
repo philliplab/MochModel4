@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.09    0.17   47.42
+##    0.13    0.14   46.42
 ```
 
 ```
@@ -244,36 +244,40 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 
 
 ### Transition 7 - Treatment rate of Eligible Mothers
+
 #### <a name="TreatmentRatesmatchesinputs"></a>Treatment Rates matches inputs
 
 Scenario(s): AllInfectedNoMortality
 
-When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar
+ Scenario(s): WeibullTreatmentTransition
+
+When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar. 
+
+When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) 
+
+If the weibull transition is used, then the KM curve should look like a weibull curve.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000002.
+## [1] "AllInfectedNoMortality"
 ```
-  
 
-**Result: Manual**  
-
----
-
-
-#### <a name="TreatmentRatesmatchesinputsWeibullTransition"></a>Treatment Rates matches inputs Weibull Transition
-
-Scenario(s): WeibullTreatmentTransition
-
-The input rates for the transition to treatment must match the input rates in the case that the weibull transition is specified.
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21.png)   
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-191.png) 
 
 ```
-## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939.
+##   
+## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000002. 
+##   
+## [1] "WeibullTreatmentTransition"
+```
+
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-192.png) 
+
+```
+##   
+## Mean time till treatment from Eligibility and diagnosis: 4.9568826822939. 
+## 
 ```
   
 
@@ -327,13 +331,13 @@ If the Treatment coverage rate transition is used, then the line must reflect th
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-251.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
 
 ```
 ## [1] "WeibullTreatmentTransition"
 ```
 
-![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-252.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
   
 
 **Result: Manual**  
@@ -352,7 +356,7 @@ When the kaplan meier curves of the treated mortalities are compared to the inpu
 Something does not look right. The deviation between the lines are too large. Also the spike in mortality in the data centered at age 75 is troublesome.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25.png) 
   
 
 **Result: FALSE**  
@@ -404,7 +408,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 Something is not right. It needs to be debugged.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png)   
 
 ```
 ## Mean time till treatment from Eligibility and diagnosis: 24.0165977899676.
@@ -436,7 +440,7 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ## 3190  938  179   31
 ```
 
-![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-331.png) ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-332.png) 
+![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-311.png) ![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-312.png) 
   
 
 **Result: Manual**  
@@ -627,7 +631,7 @@ Scenario(s): Base
 Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
+![plot of chunk unnamed-chunk-47](figure/unnamed-chunk-47.png) 
   
 
 **Result: Manual**  
@@ -643,7 +647,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
+![plot of chunk unnamed-chunk-50](figure/unnamed-chunk-50.png) 
   
 
 **Result: Manual**  
@@ -658,7 +662,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
+![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
   
 
 **Result: Manual**  
@@ -674,7 +678,7 @@ Model Version: 32
 
 |FALSE|Manual|TRUE|
 |:-:|:-:|:-:|
-|3|12|11| 
+|3|11|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -688,8 +692,7 @@ Model Version: 32
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Diagnosis Rates matches inputs](#AsymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSymptomsNoMortality 
 |[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoMortality 
-|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality 
-|[Treatment Rates matches inputs Weibull Transition](#TreatmentRatesmatchesinputsWeibullTransition)|Manual|WeibullTreatmentTransition 
+|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 

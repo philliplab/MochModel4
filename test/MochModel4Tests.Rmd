@@ -554,61 +554,35 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ### Transition 7 - Treatment rate of Eligible Mothers
+
 ```{r Treatment Rates matches inputs, results='asis'}
 ctest_name <- 'Treatment Rates matches inputs'
-cscenarios <- 'AllInfectedNoMortality'
+cscenarios <- c('AllInfectedNoMortality', 'WeibullTreatmentTransition')
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar")
+                         description = "When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar. \n
+When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) \n
+If the weibull transition is used, then the KM curve should look like a weibull curve.")
 ```
 ```{r, warning=FALSE, message=FALSE}
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Diagsymp',
-                                end_event = 'Treatment')
-med <- subset(med, time_to_event > 0 &
-                    `Age at Infection` > 0)
-
-p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
-p <- p + labs(title = NULL) +
-    guides(col = guide_legend(nrow=2)) +
-    theme(legend.position = 'bottom')
-print(p)
-cat("  \n")
-cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
-
-result <- 'Manual'
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = result)
-rm('ctest_name', 'cscenarios', 'result')
-```
-
-
-```{r Treatment Rates matches inputs Weibull Transition, results='asis'}
-ctest_name <- 'Treatment Rates matches inputs Weibull Transition'
-cscenarios <- 'WeibullTreatmentTransition'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "The input rates for the transition to treatment must match the input rates in the case that the weibull transition is specified.")
-```
-```{r, warning=FALSE, message=FALSE}
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Diagsymp',
-                                end_event = 'Treatment')
-med <- subset(med, time_to_event > 0 &
-                    `Age at Infection` > 0)
-
-p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
-p <- p + labs(title = NULL) +
-    guides(col = guide_legend(nrow=2)) +
-    theme(legend.position = 'bottom')
-print(p)
-cat("  \n")
-cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
+for (cscenario in cscenarios){
+  print(cscenario)
+  med <- get_mother_time_to_event(db_channels[[cscenario]],
+                                  start_event = 'Diagsymp',
+                                  end_event = 'Treatment')
+  med <- subset(med, time_to_event > 0 &
+                      `Age at Infection` > 0)
+  
+  p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+  p <- p + labs(title = NULL) +
+      guides(col = guide_legend(nrow=2)) +
+      theme(legend.position = 'bottom')
+  print(p)
+  cat("  \n")
+  cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
+  cat("  \n")
+}
 
 result <- 'Manual'
 ```
@@ -790,7 +764,7 @@ p <- p + stat_function(fun = treated_mort_function, color = 'red', arg = list('m
                                                                               'mort_a6m' = cease_treat_a6m))
 print(p)
 cat("  \n")
-cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
+cat(paste0("Mean time till treatment cessarion from treatment: ", mean(med$time_to_event), ". \n"))
 
 result <- FALSE
 ```
