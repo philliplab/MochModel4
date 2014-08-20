@@ -1123,6 +1123,29 @@ rm('ctest_name', 'cscenarios')
 ```
 
 
+```{r Event table rows track exactly one actor, results='asis'}
+ctest_name <- 'Event table rows track exactly one actor'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Each row in the events table should track exactly one actor.")
+```
+```{r}
+med <- as.data.frame(new_RTable("MotherEventDetails", db_channel))[,1:3]
+med <- dcast(med, `split( actor_id, ACTOR_ID )` ~ metrics)
+num_actors <- med$`Indicator of number of Actors Tracked`
+print(table(num_actors))
+result <- all(num_actors == 1) 
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 ```{r MDEATH_SCHED State Membership tracking, results='asis'}
 ctest_name <- 'MDEATH_SCHED State Membership tracking'
 cscenarios <- 'All'

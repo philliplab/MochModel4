@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.13    0.12   43.98
+##    0.08    0.16   44.71
 ```
 
 ```
@@ -671,6 +671,24 @@ Currently broken - Must add censoring to the KM curves. Plots of all the surviva
 ---
 
 
+#### <a name="Eventtablerowstrackexactlyoneactor"></a>Event table rows track exactly one actor
+
+Scenario(s): Base
+
+Each row in the events table should track exactly one actor.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## Using Value as value column: use value.var to override.
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
 #### <a name="MDEATH_SCHEDStateMembershiptracking"></a>MDEATH_SCHED State Membership tracking
 
 Scenario(s): All
@@ -679,7 +697,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
+![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
   
 
 **Result: Manual**  
@@ -694,7 +712,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
+![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56.png) 
   
 
 **Result: Manual**  
@@ -712,12 +730,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 7  2014-08-20 12:48:10 fa542369f4681acfe3803d2c36098cb6
 ## 8  2014-08-20 12:50:42 fa542369f4681acfe3803d2c36098cb6
 ## 9  2014-08-20 13:22:47 fa542369f4681acfe3803d2c36098cb6
 ## 10 2014-08-20 13:43:17 fa542369f4681acfe3803d2c36098cb6
 ## 11 2014-08-20 13:44:55 fa542369f4681acfe3803d2c36098cb6
 ## 12 2014-08-20 15:05:33 fa542369f4681acfe3803d2c36098cb6
+## 13 2014-08-20 15:15:15 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
@@ -736,7 +754,7 @@ Model Version: 37
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|4|11|1|10| 
+|4|11|1|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -765,6 +783,7 @@ Model Version: 37
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Mother Max Age](#MotherMaxAge)|FALSE|Base 
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
+|[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
 |[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
