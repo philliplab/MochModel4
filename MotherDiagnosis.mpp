@@ -86,6 +86,10 @@ TIME Mother::timeDiagnosisEvent()
 	{
 		if (SymptomaticDiagnosisTransitionMotherSwitch == 0){
 			t_event_time = log(RandUniform(10)) / -SymptomaticDiagnosisMotherRate;
+		} else {
+			double exit_date = min(infected_death_time, 100);
+
+			t_event_time = RandUniform(15) * exit_date / SymptomaticDiagnosisMotherPercentage[ModelTime];
 		}
 	}
 	t_event_time = WAIT(t_event_time);
