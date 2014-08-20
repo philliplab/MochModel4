@@ -74,10 +74,11 @@ TIME Mother::timeDiagnosisEvent()
 	{
 		if (InfectedDiagnosisTransitionMotherSwitch == 0){
 			t_event_time = log(RandUniform(9)) / -InfectedDiagnosisMotherRate;
+		//	t_event_time = WAIT(t_event_time);
 		} else {
 			double exit_date = min(min(infected_death_time, infected_symptoms_time), 100);
 
-			t_event_time = RandUniform(14) * exit_date / InfectedDiagnosisMotherPercentage[ModelTime];
+			t_event_time = ((RandUniform(14) * (exit_date - age_at_infection)) / InfectedDiagnosisMotherPercentage[ModelTime]);
 		}
 	}
 
@@ -86,10 +87,12 @@ TIME Mother::timeDiagnosisEvent()
 	{
 		if (SymptomaticDiagnosisTransitionMotherSwitch == 0){
 			t_event_time = log(RandUniform(10)) / -SymptomaticDiagnosisMotherRate;
+			//t_event_time = WAIT(t_event_time);
 		} else {
 			double exit_date = min(infected_death_time, 100);
 
-			t_event_time = RandUniform(15) * exit_date / SymptomaticDiagnosisMotherPercentage[ModelTime];
+			t_event_time = ((RandUniform(15) * (exit_date - age_at_symptoms)) / SymptomaticDiagnosisMotherPercentage[ModelTime]);
+			//t_event_time = age_at_symptoms + ((RandUniform(15) * (exit_date - age_at_symptoms)) / SymptomaticDiagnosisMotherPercentage[ModelTime]);
 		}
 	}
 	t_event_time = WAIT(t_event_time);

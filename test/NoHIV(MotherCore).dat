@@ -238,7 +238,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	*/
 
 	double SymptomaticDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of symptomatic mothers who become diagnosed
-		(41) 0.4,
+		(41) 0.8,
 	};
 
 	/* NOTE ( IncidenceTable, EN )

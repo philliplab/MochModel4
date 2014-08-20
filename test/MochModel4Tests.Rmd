@@ -17,7 +17,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 ```
 ```{r Setup and Scenario Creation, include=FALSE}
 rm(list = ls())
-source('test_helpers.R')
+source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
 rerun_models <- TRUE
 options(scipen=999)
@@ -191,6 +191,23 @@ scenarios_to_create <- list(
                             '5' = list(from = 'InfectedDiagnosisTransitionMotherSwitch = 1',
                                        to = 'InfectedDiagnosisTransitionMotherSwitch = 0')
                             )
+             ),
+  '13' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'AllSymptomsNoMortExpDiag'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+                                       to = 'IncidenceMotherMultiplier = 3.5'),
+                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+                            '4' = list(from = 'SymptomsMotherMultiplier = 1',
+                                       to = 'SymptomsMotherMultiplier = 5'),
+                            '5' = list(from = 'SymptomaticDiagnosisTransitionMotherSwitch = 1',
+                                       to = 'SymptomaticDiagnosisTransitionMotherSwitch = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -199,7 +216,7 @@ for (i in scenarios_to_create){
 available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
-#run_scenario(td, available_scenarios[[8]]$scex, td, 'MochModel4.exe')
+#run_scenario(td, available_scenarios[[1]]$scex, td, 'MochModel4.exe')
 
 all_results <- list_all_results(td)
 
@@ -549,9 +566,9 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ### Transition 6 - Diagnosis of Symptomatic Mothers
-```{r Symptomatic Diagnosis Rates matches inputs, results='asis'}
+```{r Symptomatic Weibull Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
-cscenarios <- 'AllInfectedNoMortality'
+cscenarios <- 'AllSymptomsNoMortExpDiag'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
@@ -574,6 +591,34 @@ cat("  \n")
 cat(paste0("Mean time till diagnosis from onset of symptoms: ", mean(med$time_to_event), ". \n"))
 
 result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Symptomatic Percentage Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Asymptomatic Percentage Diagnosis Rates matches inputs'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "The percentage of mothers who become diagnosed while asymptomatic must match the input rate. \n
+In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4")
+```
+```{r, warning=FALSE, message=FALSE}
+diagnosis <- as.data.frame(new_RTable("MotherSymptomaticDiagnosisRates", db_channels[[cscenarios]]))[,1:3]
+diagnosis <- dcast(diagnosis, Age ~ metrics)
+symptomatic_mothers <- sum(diagnosis$`Number of new symptomatic mothers`)
+diagnosed_mothers <- sum(diagnosis$`Number of new diagnosed mothers`)
+ratio <- diagnosed_mothers / symptomatic_mothers
+print(list('symptomatic mothers' = symptomatic_mothers,
+           'diagnosed mothers' = diagnosed_mothers,
+           'ratio' = ratio))
+result <- ratio > 0.38 & ratio < 0.42
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,

@@ -257,12 +257,11 @@ TIME Mother::timeMortalityEvent()
 
 	switch(mdeath_sched_status){
 	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(RandUniform(4)));} break;
-	case mdsINFECTED: {t_event_time = WAIT(infected_death_time);} break;
+	case mdsINFECTED: {t_event_time = infected_death_time;} break;
 	case mdsTREATED: {t_event_time = WAIT(treatedMortalityTime(RandUniform(8)));} break;
 	case mdsSTOPPED: {t_event_time = WAIT(stoppedMortalityTime(RandUniform(11), StoppedMortalityMotherShape, StoppedMortalityMotherScale, StoppedMortalityMotherPhi[vdp_age_at_infection]));} break;
 	default: {t_event_time = WAIT(100);} break;
 	}
-
 	return t_event_time;
 }
 

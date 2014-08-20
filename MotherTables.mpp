@@ -34,9 +34,7 @@ table Mother MotherSymptomRates //EN Symptom Rates amongst mothers
 };
 
 /*NOTE(MotherAsymptomaticDiagnosisRates, EN)
-	The diagnosis rates amongst mothers. Based on the ratio between the number of newly
-	diagnosed mothers
-	and the total time spent in the Infected and Symptom states by mothers of a certain age.
+	The diagnosis rates amongst asymptomatic mothers.
 */
 
 table Mother MotherAsymptomaticDiagnosisRates //EN Diagnosis Rates amongst asymptomatic mothers
@@ -45,8 +43,23 @@ table Mother MotherAsymptomaticDiagnosisRates //EN Diagnosis Rates amongst asymp
 	{
 		undergone_transition( mdetailed_status, mdINFECTED, mdDIAGNOSED), //EN Number of new diagnosed mothers
 		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years at risk decimals=4
-		(undergone_transition( diagnosed, FALSE, TRUE) / duration(mdeath_sched_status, mdsINFECTED)), //EN Diagnosis Rates decimals=4
+		(undergone_transition( mdetailed_status, mdINFECTED, mdDIAGNOSED) / duration(mdeath_sched_status, mdsINFECTED)), //EN Diagnosis Rates decimals=4
 		undergone_transition( mdetailed_status, mdHEALTHY, mdINFECTED) //EN Number of new infected mothers
+	} //EN Diagnosis Rate Statistics
+};
+
+/*NOTE(MotherSymptomaticDiagnosisRates, EN)
+	The diagnosis rates amongst symptomatic mothers.
+*/
+
+table Mother MotherSymptomaticDiagnosisRates //EN Diagnosis Rates amongst symptomatic mothers
+{
+	integer_age+ * //EN Age
+	{
+		undergone_transition( mdetailed_status, mdSYMPTOMS, mdDIAGSYMP), //EN Number of new diagnosed mothers
+		duration(mdetailed_status, mdSYMPTOMS), //EN Mother years at risk decimals=4
+		(undergone_transition( mdetailed_status, mdSYMPTOMS, mdDIAGSYMP) / duration(mdetailed_status, mdSYMPTOMS)), //EN Diagnosis Rates decimals=4
+		undergone_transition( mdetailed_status, mdINFECTED, mdSYMPTOMS) //EN Number of new symptomatic mothers
 	} //EN Diagnosis Rate Statistics
 };
 
@@ -221,7 +234,7 @@ partition ACTOR_ID
 };
 
 table Mother MotherEventDetails //EN Event Details of the mothers
-[actor_id < 5002]
+[actor_id < 5001]
 {
 	split(actor_id, ACTOR_ID) *
 	{
@@ -236,6 +249,10 @@ table Mother MotherEventDetails //EN Event Details of the mothers
 		value_at_first_entrance(mdetailed_status, mdDIAGSYMP, age), //EN Age at Diagsymp decimals=2
 		value_at_first_entrance(showing_symptoms, TRUE, age), //EN Age at Symptoms decimals=2
 		value_at_first_entrance(diagnosed, TRUE, age), //EN Age at Diagnosis decimals=2
+		value_out(age_at_infection), //EN Age at infection variable decimals=2
+		value_out(age_at_symptoms), //EN Age at symptoms variable decimals=2
+		value_out(infected_symptoms_time), //EN Age at infected symptoms predicted variable decimals=2
+		value_out(infected_death_time), //EN Age at infected death predicted variable decimals=2
 		unit //EN Indicator of number of Actors Tracked
 	}
 };

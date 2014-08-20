@@ -34,10 +34,10 @@ actor Mother            //EN Individual
 TIME Mother::timeSymptomEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if (mdeath_sched_status == mdINFECTED){
+	if (mdeath_sched_status == mdINFECTED && showing_symptoms == FALSE ){
 		t_event_time = infected_symptoms_time;
 	};
-	t_event_time = WAIT(t_event_time);
+	//t_event_time = WAIT(t_event_time);
 	return t_event_time;
 };
 
@@ -53,6 +53,7 @@ void Mother::SymptomEvent()
 	}
 */
 	vdp_age_at_symptoms = vdp_age_int;
+	age_at_symptoms = age;
 	showing_symptoms = TRUE;
 	if (mdetailed_status == mdDIAGNOSED){
 		mdetailed_status = mdDIAGSYMP;

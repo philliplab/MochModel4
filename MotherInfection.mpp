@@ -145,7 +145,7 @@ void Mother::InfectionEvent()
 	mdeath_sched_status = mdsINFECTED;
 	mdetailed_status = mdINFECTED;
 	infected = TRUE;
-    infected_death_time = infectedMortalityTimeCalc(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]);
+    infected_death_time = age + infectedMortalityTimeCalc(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]);
 
-	infected_symptoms_time = infectedSymptomsTimeCalc(inf_mortality_draw, InfectedMortalityMotherPhi[vdp_age_at_infection]);
+	infected_symptoms_time = age + infectedSymptomsTimeCalc(inf_mortality_draw, InfectedMortalityMotherPhi[vdp_age_at_infection]);
 };
