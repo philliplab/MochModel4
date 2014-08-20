@@ -225,7 +225,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	Arbitrarily Chosen
 	*/
 
-	double InfectedDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of mothers who become diagnosed while asymptomatic
+	double InfectedDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of asymptomatic mothers who become diagnosed
 		(41) 0.4,
 	};
 /* NOTE (SymptomaticDiagnosisTransitionMotherSwitch, EN)
@@ -233,6 +233,13 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 */
 	
 	double SymptomaticDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
+/* NOTE ( SymptomaticDiagnosisMotherPercentage, EN)
+	Arbitrarily Chosen
+	*/
+
+	double SymptomaticDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of symptomatic mothers who become diagnosed
+		(41) 0.4,
+	};
 
 	/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.

@@ -22,8 +22,9 @@ parameters
 	double InfectedDiagnosisMotherRate; //EN Diagnosis Rate of Infected Mothers
 	double SymptomaticDiagnosisMotherRate; //EN Diagnosis Rate of Symptomatic Mothers
 	double InfectedDiagnosisTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for diagnosis of asymptomatic mothers
-	double InfectedDiagnosisMotherPercentage[MORT_TIME]; //EN The percentage of mothers who become diagnosed while asymptomatic
+	double InfectedDiagnosisMotherPercentage[MORT_TIME]; //EN The percentage of asymptomatic mothers who become diagnosed
 	double SymptomaticDiagnosisTransitionMotherSwitch; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
+	double SymptomaticDiagnosisMotherPercentage[MORT_TIME]; //EN The percentage of symptomatic mothers who become diagnosed
 };
 
 /* NOTE(InfectedDiagnosisMotherRate, EN)
@@ -44,7 +45,7 @@ parameters
 */
 
 /* NOTE (InfectedDiagnosisMotherPercentage, EN)
-	The percentage of mothers who become diagnosed while asymptomatic. A percentage can be specified for each model year
+	The percentage of asymptomatic mothers who become diagnosed. A percentage can be specified for each model year
 */
 
 /* NOTE (SymptomaticDiagnosisTransitionMotherSwitch, EN)
@@ -52,6 +53,10 @@ parameters
 	curve from the time since eligibility or based on the percentage of mothers that gets diagnosed while symptomatic
 	Setting this value to zero will use the weibull rate.
 	Setting this value to one will use the percentage based approach.
+*/
+
+/* NOTE (SymptomaticDiagnosisMotherPercentage, EN)
+	The percentage of symptomatic mothers who become diagnosed. A percentage can be specified for each model year
 */
 
 actor Mother
