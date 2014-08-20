@@ -12,6 +12,7 @@ require(knitr) # required for knitting from rmd to md
 require(markdown) # required for md to html 
 knit('MochModel4Tests.Rmd', 'MochModel4Tests.md') # creates md file
 markdownToHTML('MochModel4Tests.md', 'MochModel4Tests.html') # creates html file
+file.copy('MochModel4Tests.html', paste0('MochModel4Tests', gsub("[^0-9]*", "", as.character(Sys.time())) ,'.html'))
 browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) # open file in browser
 ```
 ```{r Setup and Scenario Creation, include=FALSE}

@@ -232,7 +232,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	Set to 1 so that the percentage based transition is used.
 */
 	
-	double SymptomaticDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
+	double SymptomaticDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
 /* NOTE ( SymptomaticDiagnosisMotherPercentage, EN)
 	Arbitrarily Chosen
 	*/

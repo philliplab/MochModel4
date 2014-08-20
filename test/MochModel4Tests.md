@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.19    0.05   42.70
+##    0.16    0.08   47.56
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 13
 ```
 
-# Tests for Model Version 35
+# Tests for Model Version 36
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -128,16 +128,16 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 ## 1                 Healthy Mortality Rate      0
 ## 2           Healthy mother years at risk 236725
 ## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk  35558
-## 5                   Mother years at risk 519505
-## 6                       Number of deaths   8905
+## 4          Infected mother years at risk 390676
+## 5                   Mother years at risk 761967
+## 6                       Number of deaths   4816
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
 ## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state   8905
+## 10   Number of deaths from TREATED state   4816
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk 247222
+## 13          Treated mother years at risk 134566
 ## 14       Treatment Ceased Mortality Rate     NA
 ## 15 Treatment Ceased mother years at risk      0
 ```
@@ -261,7 +261,7 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 ![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
 
 ```
-## Mean time till diagnosis from onset of symptoms: 3.06308278097224.
+## Mean time till diagnosis from onset of symptoms: 36.5805380566108.
 ```
   
 
@@ -294,7 +294,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ##   
-## Mean time till treatment from Eligibility and diagnosis: 0.01. 
+## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000008. 
 ##   
 ## [1] "WeibullTreatmentTransition"
 ```
@@ -303,7 +303,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ##   
-## Mean time till treatment from Eligibility and diagnosis: 2.8066983183345. 
+## Mean time till treatment from Eligibility and diagnosis: 2.83514851255262. 
 ## 
 ```
   
@@ -404,18 +404,18 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 ## 1                 Healthy Mortality Rate      0
 ## 2           Healthy mother years at risk 330298
 ## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk  33214
-## 5                   Mother years at risk 404591
-## 6                       Number of deaths   8536
+## 4          Infected mother years at risk 345391
+## 5                   Mother years at risk 699641
+## 6                       Number of deaths   4935
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
-## 9    Number of deaths from STOPPED state   8536
+## 9    Number of deaths from STOPPED state   4935
 ## 10   Number of deaths from TREATED state      0
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk  27308
+## 13          Treated mother years at risk  15894
 ## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk  13772
+## 15 Treatment Ceased mother years at risk   8059
 ```
   
 
@@ -438,7 +438,7 @@ Something is not right. It needs to be debugged.
 ![plot of chunk unnamed-chunk-31](figure/unnamed-chunk-31.png)   
 
 ```
-## Mean time till treatment cessarion from treatment: 23.8260603760485.
+## Mean time till treatment cessarion from treatment: 22.4216845881689.
 ```
   
 
@@ -464,7 +464,7 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ```
 ## 
 ##    1    2    3    4 
-## 3149  917  171   28
+## 1828  523   98   15
 ```
 
 ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-331.png) ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-332.png) 
@@ -536,19 +536,19 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 ## [1] 452228
 ## 
 ## $total_time_in_infected
-## [1] 37751
+## [1] 42038
 ## 
 ## $deaths_in_healthy
 ## [1] 5502
 ## 
 ## $deaths_in_infected
-## [1] 2887
+## [1] 3534
 ## 
 ## $crude_healthy_mortality
 ## [1] 0.01217
 ## 
 ## $crude_infected_mortality
-## [1] 0.07647
+## [1] 0.08407
 ```
   
 
@@ -620,7 +620,7 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
 ## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.455960 NA NA
+## 4          Life expectancy    50.914354 NA NA
 ```
   
 
@@ -690,10 +690,11 @@ Check that the hash of the membership data of the mothers matches those of the p
 ## 3 2014-08-20 09:40:55 13a59f0dd2637a6122346a934dbf9018
 ## 4 2014-08-20 09:46:26 13a59f0dd2637a6122346a934dbf9018
 ## 5 2014-08-20 09:59:48 13a59f0dd2637a6122346a934dbf9018
+## 6 2014-08-20 10:03:00 6b9d8f2e24e5816f8807c815f23e2702
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -702,13 +703,13 @@ Check that the hash of the membership data of the mothers matches those of the p
 ## Child
 
 ## Summary of All Tests
-Model Version: 35
+Model Version: 36
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|11|1|11| 
+|1|3|11|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -739,4 +740,4 @@ Model Version: 35
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
