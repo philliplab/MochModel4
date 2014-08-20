@@ -2,19 +2,26 @@
 
 /* NOTE(MotherDiagnosis, EN)
 	This module schedules and implements the event that transitions a mother
-	from the infected state into the diagnosed state. This transition competes
-	with the transitions into the death state and the showing symptoms state.
-	Due to the limited information on the rates of diagnosis, only a simple
-	exponential rate is implemented.
+	from the infected or symptomatic states into the diagnosed state. This transition competes
+	with the transitions into the death state. A switch allows one to choose between a
+	transition based on an exponential rate or a transition based on a percentage.
 
 	- Data requirements
 
-	A single exponential rate parameter must be specified.
+	For each of the two transitions, the following must be specified: The value of the switch
+	that indicates which transition type to use. The exponential rate and the percentage of
+	mothers that becomes diagnosed by the transition.
 
 	- Implementation details
 
-	A number, x, is drawn at random from a unifrom distribution. The transition
-	into diagnosis is scheduled log(x) / -(InfectedDiagnosisMotherRate) years after infection.
+	The exponential transitions are implemented by drawing a number of a random uniform
+	distribution and then transforming that number into a random draw from an exponential
+	distribution.
+
+	The percentage based transitions are implemented by first finding the time at which the
+	mother will leave the state due to death or becoming symptomatic. A number is then drawn
+	from a random uniform distribution so that a percentage that matches the input parameter
+	will become diagnosed before the mother exits the state.
 */
 
 parameters
