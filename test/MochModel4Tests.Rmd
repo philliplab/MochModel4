@@ -1061,68 +1061,6 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r All survival curves, results='asis'}
-ctest_name <- 'All survival curves'
-cscenarios <- 'Base'
-test_results <- new_test(test_results,
-                         name = ctest_name,
-                         scenarios = cscenarios,
-                         description = "Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.")
-```
-```{r, warning=FALSE, message=FALSE}
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-all_survival_data <- data.frame(age_at_death = med$time_to_event,
-                                group = 'All: Time since birth')
-
-med <- subset(med, `Status at death` == 1)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Infected: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Infection')
-med <- subset(med, `Status at death` == 1)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Infected: Time since infection'))
-
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-med <- subset(med, `Status at death` == 2)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Treated: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Treatment')
-med <- subset(med, `Status at death` == 2)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Treated: Time since treatment'))
-
-med <- get_mother_time_to_event(db_channels[[cscenarios]])
-med <- subset(med, `Status at death` == 3)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Stopped: Time since birth'))
-med <- get_mother_time_to_event(db_channels[[cscenarios]],
-                                start_event = 'Treatment Cessation')
-med <- subset(med, `Status at death` == 3)
-all_survival_data <- rbind(all_survival_data,
-                           data.frame(age_at_death = med$time_to_event,
-                                      group = 'Stopped: Time since treatment cessation'))
-
-p <- autoplot(survfit(Surv(age_at_death) ~ group, all_survival_data))$plot
-p <- p + labs(title = NULL) +
-    guides(col = guide_legend(nrow=4)) +
-    theme(legend.position = 'bottom')
-print(p)
-```
-```{r, results='asis'}
-test_results <- new_result(test_results,
-                         name = ctest_name,
-                         result = 'Manual')
-rm('ctest_name', 'cscenarios')
-```
-
-
 ```{r Event table rows track exactly one actor, results='asis'}
 ctest_name <- 'Event table rows track exactly one actor'
 cscenarios <- 'Base'
