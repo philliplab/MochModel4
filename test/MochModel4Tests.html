@@ -151,13 +151,11 @@ hr {
 <body>
 <h1>Setup and Run Model</h1>
 
-<h1>WARNING MODELS WERE NOT RERUN</h1>
-
 <pre><code>## [1] &quot;Running Time&quot;
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.03    0.17    4.16
+##    0.08    0.13   42.39
 </code></pre>
 
 <pre><code>## [1] &quot;Number of Scenarios&quot;
@@ -738,6 +736,24 @@ hr {
 
 <hr/>
 
+<h4><a name="NochangeinMotherfromprevious"></a>No change in Mother from previous</h4>
+
+<p>Scenario(s): All</p>
+
+<p>Check that the hash of the membership data of the mothers matches those of the previous run. Note that this is not really a test. If you made changes to the code that affects the mothers, then this test&#39;s result must be &#39;Changed&#39;, otherwise it must be &#39;No_Change&#39;</p>
+
+<p><a href="#summary_tab_link">To Summary Table</a>  </p>
+
+<pre><code>##             hash_time                             hash
+## 1 2014-08-20 09:34:47 13a59f0dd2637a6122346a934dbf9018
+## 2 2014-08-20 09:36:33 13a59f0dd2637a6122346a934dbf9018
+## 3 2014-08-20 09:40:55 13a59f0dd2637a6122346a934dbf9018
+</code></pre>
+
+<p><strong>Result: No_Change</strong>  </p>
+
+<hr/>
+
 <h2>Child</h2>
 
 <h2>Summary of All Tests</h2>
@@ -750,12 +766,14 @@ hr {
 <tr>
 <th align="center">FALSE</th>
 <th align="center">Manual</th>
+<th align="center">No_Change</th>
 <th align="center">TRUE</th>
 </tr>
 </thead><tbody>
 <tr>
 <td align="center">3</td>
 <td align="center">11</td>
+<td align="center">1</td>
 <td align="center">11</td>
 </tr>
 </tbody></table>
@@ -892,6 +910,11 @@ hr {
 <tr>
 <td align="center"><a href="#MDETAILEDStateMembershiptracking">MDETAILED State Membership tracking</a></td>
 <td align="center">Manual</td>
+<td align="center">All</td>
+</tr>
+<tr>
+<td align="center"><a href="#NochangeinMotherfromprevious">No change in Mother from previous</a></td>
+<td align="center">No_Change</td>
 <td align="center">All</td>
 </tr>
 </tbody></table>

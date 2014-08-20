@@ -11,7 +11,7 @@ output: html_document
 
 
 
-# WARNING MODELS WERE NOT RERUN 
+
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.03    0.17    4.16
+##    0.08    0.13   42.39
 ```
 
 ```
@@ -674,6 +674,29 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 ---
 
+
+#### <a name="NochangeinMotherfromprevious"></a>No change in Mother from previous
+
+Scenario(s): All
+
+Check that the hash of the membership data of the mothers matches those of the previous run. Note that this is not really a test. If you made changes to the code that affects the mothers, then this test's result must be 'Changed', otherwise it must be 'No_Change'
+
+[To Summary Table](#summary_tab_link)  
+
+```
+##             hash_time                             hash
+## 1 2014-08-20 09:34:47 13a59f0dd2637a6122346a934dbf9018
+## 2 2014-08-20 09:36:33 13a59f0dd2637a6122346a934dbf9018
+## 3 2014-08-20 09:40:55 13a59f0dd2637a6122346a934dbf9018
+```
+  
+
+**Result: No_Change**  
+
+---
+
+
+
 ## Child
 
 ## Summary of All Tests
@@ -681,9 +704,9 @@ Model Version: 35
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|TRUE|
-|:-:|:-:|:-:|
-|3|11|11| 
+|FALSE|Manual|No_Change|TRUE|
+|:-:|:-:|:-:|:-:|
+|3|11|1|11| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -714,3 +737,4 @@ Model Version: 35
 |[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 

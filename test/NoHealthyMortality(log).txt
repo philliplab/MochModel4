@@ -1,4 +1,4 @@
-Tue Aug 19 17:07:47 2014
+Wed Aug 20 09:39:56 2014
 
 Modgen Version: 11.1.0.0
 Model Name: MOCHMO~1
@@ -18,3 +18,4 @@ Errors and Warnings:
 
 Error: Parameter InfectedDiagnosisMotherPercentage not found in input file.
 Parameter InfectedDiagnosisTransitionMotherSwitch not found in input file.
+Parameter SymptomaticDiagnosisTransitionMotherSwitch not found in input file.

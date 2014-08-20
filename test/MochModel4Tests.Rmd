@@ -18,7 +18,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('test_helpers.R')
 rerun_models <- FALSE
-#rerun_models <- TRUE
+rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -27,6 +27,7 @@ library(survival)
 library(reshape2)
 library(survMisc)
 library(gridExtra)
+library(digest)
 odbcCloseAll()
 opts_chunk$set(echo = FALSE)
 opts_chunk$set(fig.height = 10)
@@ -1086,7 +1087,7 @@ test_results <- new_test(test_results,
 ```
 ```{r}
 #' Produces a plot showing the membership in the different states overtime
-plot_state_membership <- function(source_table){
+get_state_membership_data <- function(source_table){
   all_membership <- NULL
   for (scenario_name in names(db_channels)){
   	StateMembership <- as.data.frame(new_RTable(source_table, db_channels[[scenario_name]]))
@@ -1094,7 +1095,10 @@ plot_state_membership <- function(source_table){
     all_membership <- rbind(all_membership,
                             StateMembership)
   }
-  
+  return(all_membership)
+}
+plot_state_membership <- function(source_table){
+  all_membership <- get_state_membership_data(source_table) 
   p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + 
       geom_line() +
       guides(col = guide_legend(ncol=2)) +
@@ -1136,6 +1140,40 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
+
+
+```{r No change in Mother from previous, results='asis'}
+ctest_name <- 'No change in Mother from previous'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Check that the hash of the membership data of the mothers matches those of the previous run. Note that this is not really a test. If you made changes to the code that affects the mothers, then this test's result must be 'Changed', otherwise it must be 'No_Change'")
+```
+```{r}
+data_hash <- digest(get_state_membership_data("MotherMDMembershipxAge"))
+previous_hashes <- read.csv('mother_state_hashes.csv', stringsAsFactors = FALSE)
+previous_hash <- previous_hashes[nrow(previous_hashes), 'hash']
+previous_hash_date <- previous_hashes[nrow(previous_hashes), 'hash_time']
+new_hash_df <- rbind(previous_hashes, data.frame(hash_time = as.character(Sys.time()),
+                                            hash = data_hash,
+                                            stringsAsFactors = FALSE))
+print(tail(new_hash_df))
+write.csv(new_hash_df, 'mother_state_hashes.csv', row.names = FALSE)
+if (data_hash != previous_hash){
+  result <- 'Changed'
+} else {
+  result <- 'No_Change'
+}
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 
 ## Child
 

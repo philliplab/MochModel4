@@ -218,7 +218,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 
 	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
 /* NOTE (InfectedDiagnosisTransitionMotherSwitch, EN)
-	Set to 0 so that the weibull based transition is used.
+	Set to 1 so that the percentage based transition is used.
 */
 	double InfectedDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
 /* NOTE ( InfectedDiagnosisMotherPercentage, EN)
@@ -228,6 +228,11 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	double InfectedDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of mothers who become diagnosed while asymptomatic
 		(41) 0.4,
 	};
+/* NOTE (SymptomaticDiagnosisTransitionMotherSwitch, EN)
+	Set to 1 so that the percentage based transition is used.
+*/
+	
+	double SymptomaticDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
 
 	/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
