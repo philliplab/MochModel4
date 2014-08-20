@@ -11,7 +11,7 @@ output: html_document
 
 
 
-
+# WARNING MODELS WERE NOT RERUN 
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.16   44.71
+##    0.04    0.11    3.96
 ```
 
 ```
@@ -270,13 +270,13 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 ---
 
 
-#### <a name="AsymptomaticPercentageDiagnosisRatesmatchesinputs"></a>Asymptomatic Percentage Diagnosis Rates matches inputs
+#### <a name="SymptomaticPercentageDiagnosisRatesmatchesinputs"></a>Symptomatic Percentage Diagnosis Rates matches inputs
 
 Scenario(s): Base
 
 The percentage of mothers who become diagnosed while asymptomatic must match the input rate. 
 
-In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4
+In the current setup, the ratio from the base scenario mst be between 0.78 and 0.82. The input value is 0.8
 
 [To Summary Table](#summary_tab_link)  
 
@@ -292,7 +292,7 @@ In the current setup, the ratio from the base scenario mst be between 0.38 and 0
 ```
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -682,6 +682,12 @@ Each row in the events table should track exactly one actor.
 ```
 ## Using Value as value column: use value.var to override.
 ```
+
+```
+## num_actors
+##    1 
+## 4999
+```
   
 
 **Result: TRUE**  
@@ -730,12 +736,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 8  2014-08-20 12:50:42 fa542369f4681acfe3803d2c36098cb6
-## 9  2014-08-20 13:22:47 fa542369f4681acfe3803d2c36098cb6
-## 10 2014-08-20 13:43:17 fa542369f4681acfe3803d2c36098cb6
 ## 11 2014-08-20 13:44:55 fa542369f4681acfe3803d2c36098cb6
 ## 12 2014-08-20 15:05:33 fa542369f4681acfe3803d2c36098cb6
 ## 13 2014-08-20 15:15:15 fa542369f4681acfe3803d2c36098cb6
+## 14 2014-08-20 15:23:28 fa542369f4681acfe3803d2c36098cb6
+## 15 2014-08-20 15:25:08 fa542369f4681acfe3803d2c36098cb6
+## 16 2014-08-20 15:26:12 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
@@ -754,7 +760,7 @@ Model Version: 37
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|4|11|1|11| 
+|3|11|1|13| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -767,8 +773,9 @@ Model Version: 37
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
 |[Asymptomatic Weibull Diagnosis Rates matches inputs](#AsymptomaticWeibullDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSympNoMortExpDiag 
-|[Asymptomatic Percentage Diagnosis Rates matches inputs](#AsymptomaticPercentageDiagnosisRatesmatchesinputs)|FALSE|Base 
+|[Asymptomatic Percentage Diagnosis Rates matches inputs](#AsymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
 |[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllSymptomsNoMortExpDiag 
+|[Symptomatic Percentage Diagnosis Rates matches inputs](#SymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 

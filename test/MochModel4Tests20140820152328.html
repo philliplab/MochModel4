@@ -151,13 +151,11 @@ hr {
 <body>
 <h1>Setup and Run Model</h1>
 
-<h1>WARNING MODELS WERE NOT RERUN</h1>
-
 <pre><code>## [1] &quot;Running Time&quot;
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.04    0.11    3.96
+##    0.19    0.12   43.45
 </code></pre>
 
 <pre><code>## [1] &quot;Number of Scenarios&quot;
@@ -346,7 +344,7 @@ hr {
 
 <p>The percentage of mothers who become diagnosed while asymptomatic must match the input rate. </p>
 
-<p>In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4</p>
+<p>In the current setup, the ratio from the base scenario mst be between 0.78 and 0.82. The input value is 0.8</p>
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
@@ -360,7 +358,7 @@ hr {
 ## [1] 0.3944
 </code></pre>
 
-<p><strong>Result: TRUE</strong>  </p>
+<p><strong>Result: FALSE</strong>  </p>
 
 <hr/>
 
@@ -382,13 +380,13 @@ hr {
 
 <hr/>
 
-<h4><a name="SymptomaticPercentageDiagnosisRatesmatchesinputs"></a>Symptomatic Percentage Diagnosis Rates matches inputs</h4>
+<h4><a name="AsymptomaticPercentageDiagnosisRatesmatchesinputs"></a>Asymptomatic Percentage Diagnosis Rates matches inputs</h4>
 
 <p>Scenario(s): Base</p>
 
 <p>The percentage of mothers who become diagnosed while asymptomatic must match the input rate. </p>
 
-<p>In the current setup, the ratio from the base scenario mst be between 0.78 and 0.82. The input value is 0.8</p>
+<p>In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4</p>
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
@@ -402,7 +400,7 @@ hr {
 ## [1] 0.8009
 </code></pre>
 
-<p><strong>Result: TRUE</strong>  </p>
+<p><strong>Result: FALSE</strong>  </p>
 
 <hr/>
 
@@ -791,12 +789,12 @@ hr {
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
 <pre><code>##              hash_time                             hash
+## 9  2014-08-20 13:22:47 fa542369f4681acfe3803d2c36098cb6
+## 10 2014-08-20 13:43:17 fa542369f4681acfe3803d2c36098cb6
 ## 11 2014-08-20 13:44:55 fa542369f4681acfe3803d2c36098cb6
 ## 12 2014-08-20 15:05:33 fa542369f4681acfe3803d2c36098cb6
 ## 13 2014-08-20 15:15:15 fa542369f4681acfe3803d2c36098cb6
 ## 14 2014-08-20 15:23:28 fa542369f4681acfe3803d2c36098cb6
-## 15 2014-08-20 15:25:08 fa542369f4681acfe3803d2c36098cb6
-## 16 2014-08-20 15:26:12 fa542369f4681acfe3803d2c36098cb6
 </code></pre>
 
 <p><strong>Result: No_Change</strong>  </p>
@@ -820,10 +818,10 @@ hr {
 </tr>
 </thead><tbody>
 <tr>
-<td align="center">3</td>
+<td align="center">4</td>
 <td align="center">11</td>
 <td align="center">1</td>
-<td align="center">13</td>
+<td align="center">11</td>
 </tr>
 </tbody></table>
 
@@ -873,18 +871,13 @@ hr {
 </tr>
 <tr>
 <td align="center"><a href="#AsymptomaticPercentageDiagnosisRatesmatchesinputs">Asymptomatic Percentage Diagnosis Rates matches inputs</a></td>
-<td align="center">TRUE</td>
+<td align="center">FALSE</td>
 <td align="center">Base</td>
 </tr>
 <tr>
 <td align="center"><a href="#SymptomaticDiagnosisRatesmatchesinputs">Symptomatic Diagnosis Rates matches inputs</a></td>
 <td align="center">Manual</td>
 <td align="center">AllSymptomsNoMortExpDiag</td>
-</tr>
-<tr>
-<td align="center"><a href="#SymptomaticPercentageDiagnosisRatesmatchesinputs">Symptomatic Percentage Diagnosis Rates matches inputs</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
 </tr>
 <tr>
 <td align="center"><a href="#TreatmentRatesmatchesinputs">Treatment Rates matches inputs</a></td>
