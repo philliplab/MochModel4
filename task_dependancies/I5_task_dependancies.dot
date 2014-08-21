@@ -1,0 +1,57 @@
+digraph {
+  "Understand ASSA Fertility" -> "Extract ASSA Fertility Data";
+  "Extract ASSA Fertility Data" -> "Prep Base Fertility Rates";
+  "Extract ASSA Fertility Data" -> "Prep Parity Multipliers";
+  "Extract ASSA Fertility Data" -> "Prep Disease Fertility Multipliers";
+  "Understand ASSA Fertility" -> "Prep SES Fertility Multipliers";
+  "Prep Base Fertility Rates" -> "Add Fertility Parameters to Model";
+  "Prep Parity Multipliers" -> "Add Fertility Parameters to Model";
+  "Prep Disease Fertility Multipliers" -> "Add Fertility Parameters to Model";
+  "Prep SES Fertility Multipliers" -> "Add Fertility Parameters to Model";
+  "Add Fertility Skeleton Module" -> "Add Fertility Parameters to Model";
+  "Add Fertility Skeleton Module" -> "Add Stub Birth Schedule Event";
+  "Add Fertility Skeleton Module" -> "Add Stub Birth Event";
+  "Add Fertility Skeleton Module" -> "Add mochModel3 parameters";
+  "Add Stub Birth Event" -> "Add Number Children per Mother Table";
+  "Add Number Children per Mother Table" -> "Add Number Children per Mother Plot";
+  "Add Stub Birth Event" -> "Add Mother Age at Birth Histogram Table";
+  "Add Mother Age at Birth Histogram Table" -> "Add Mother Age at Birth Histogram Plot";
+  "Create Birth Ages Partition" -> "Add Mother Age at Birth Histogram Table";
+  "Add Stub Birth Event" -> "Add Mother Fertility Rate Table";
+  "Add Mother Fertility Rate Table" -> "Add Mother Fertility Plot to Tests";
+  "Create scenario with constant fertility rate" -> "Test to match input and output fertily";
+  "Add Fertility Parameters to Model" -> "Create scenario with constant fertility rate";
+  "Add Mother Fertility Rate Table" -> "Test to match input and output fertily";
+  "Add Stub Birth Event" -> "Add full birth event";
+  "Add Fertility Parameters to Model" -> "Add full birth event";
+  "Add full birth event" -> "Overlay Input and Output Fertility";
+  "Add Mother Fertility Plot to Tests" -> "Overlay Input and Output Fertility";
+  "Add Mother Fertility Rate Table" -> "Create scenario with constant fertility rate";
+  "Add full birth event" -> "Document MotherFertility Module";
+}
+
+/*
+Add Fertility Parameters to Model
+Add Fertility Skeleton Module
+Add Mother Age at Birth Histogram Plot
+Add Mother Age at Birth Histogram Table
+Add Mother Fertility Plot to Tests
+Add Mother Fertility Rate Table
+Add Number Children per Mother Plot
+Add Number Children per Mother Table
+Add Stub Birth Event
+Add Stub Birth Schedule Event
+Add full birth event
+Add mochModel3 parameters
+Create Birth Ages Partition
+Create scenario with constant fertility rate
+Document MotherFertility Module
+Extract ASSA Fertility Data
+Overlay Input and Output Fertility
+Prep Base Fertility Rates
+Prep Disease Fertility Multipliers
+Prep Parity Multipliers
+Prep SES Fertility Multipliers
+Test to match input and output fertily
+Understand ASSA Fertility
+*/
