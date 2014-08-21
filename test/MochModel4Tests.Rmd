@@ -19,7 +19,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
-#rerun_models <- TRUE
+rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -504,13 +504,13 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ### Transition 5 - Diagnosis of Asymptomatic Mothers
-```{r Asymptomatic Weibull Diagnosis Rates matches inputs, results='asis'}
-ctest_name <- 'Asymptomatic Weibull Diagnosis Rates matches inputs'
+```{r Asymptomatic Exponential Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Asymptomatic Exponential Diagnosis Rates matches inputs'
 cscenarios <- 'AllInfectedNoSympNoMortExpDiag'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar")
+                         description = "When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
@@ -566,13 +566,13 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ### Transition 6 - Diagnosis of Symptomatic Mothers
-```{r Symptomatic Weibull Diagnosis Rates matches inputs, results='asis'}
-ctest_name <- 'Symptomatic Diagnosis Rates matches inputs'
+```{r Symptomatic Exponential Diagnosis Rates matches inputs, results='asis'}
+ctest_name <- 'Symptomatic Exponential Diagnosis Rates matches inputs'
 cscenarios <- 'AllSymptomsNoMortExpDiag'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar")
+                         description = "When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],

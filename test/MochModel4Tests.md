@@ -11,7 +11,7 @@ output: html_document
 
 
 
-# WARNING MODELS WERE NOT RERUN 
+
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.04    0.11    3.96
+##    0.10    0.18   47.52
 ```
 
 ```
@@ -204,11 +204,11 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 
 
 ### Transition 5 - Diagnosis of Asymptomatic Mothers
-#### <a name="AsymptomaticWeibullDiagnosisRatesmatchesinputs"></a>Asymptomatic Weibull Diagnosis Rates matches inputs
+#### <a name="AsymptomaticExponentialDiagnosisRatesmatchesinputs"></a>Asymptomatic Exponential Diagnosis Rates matches inputs
 
 Scenario(s): AllInfectedNoSympNoMortExpDiag
 
-When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar
+When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png)   
@@ -251,11 +251,11 @@ In the current setup, the ratio from the base scenario mst be between 0.38 and 0
 
 
 ### Transition 6 - Diagnosis of Symptomatic Mothers
-#### <a name="SymptomaticDiagnosisRatesmatchesinputs"></a>Symptomatic Diagnosis Rates matches inputs
+#### <a name="SymptomaticExponentialDiagnosisRatesmatchesinputs"></a>Symptomatic Exponential Diagnosis Rates matches inputs
 
 Scenario(s): AllSymptomsNoMortExpDiag
 
-When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar
+When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
@@ -656,21 +656,6 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ---
 
 
-#### <a name="Allsurvivalcurves"></a>All survival curves
-
-Scenario(s): Base
-
-Currently broken - Must add censoring to the KM curves. Plots of all the survival curves. The curves must be inspected manually. Only add those states that directly affect the scehduling og mortality, otherwise this plot will become to cluttered.
-
-[To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-49](figure/unnamed-chunk-49.png) 
-  
-
-**Result: Manual**  
-
----
-
-
 #### <a name="Eventtablerowstrackexactlyoneactor"></a>Event table rows track exactly one actor
 
 Scenario(s): Base
@@ -703,7 +688,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
+![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
   
 
 **Result: Manual**  
@@ -718,7 +703,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56.png) 
+![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
   
 
 **Result: Manual**  
@@ -736,12 +721,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 11 2014-08-20 13:44:55 fa542369f4681acfe3803d2c36098cb6
-## 12 2014-08-20 15:05:33 fa542369f4681acfe3803d2c36098cb6
 ## 13 2014-08-20 15:15:15 fa542369f4681acfe3803d2c36098cb6
 ## 14 2014-08-20 15:23:28 fa542369f4681acfe3803d2c36098cb6
 ## 15 2014-08-20 15:25:08 fa542369f4681acfe3803d2c36098cb6
 ## 16 2014-08-20 15:26:12 fa542369f4681acfe3803d2c36098cb6
+## 17 2014-08-20 16:04:48 fa542369f4681acfe3803d2c36098cb6
+## 18 2014-08-21 11:22:35 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
@@ -760,7 +745,7 @@ Model Version: 37
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|11|1|13| 
+|3|10|1|13| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -772,9 +757,9 @@ Model Version: 37
 |[No deaths from Infected in OnlyTreatedMortality](#NodeathsfromInfectedinOnlyTreatedMortality)|TRUE|OnlyTreatedMortality 
 |[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
 |[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
-|[Asymptomatic Weibull Diagnosis Rates matches inputs](#AsymptomaticWeibullDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSympNoMortExpDiag 
+|[Asymptomatic Exponential Diagnosis Rates matches inputs](#AsymptomaticExponentialDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSympNoMortExpDiag 
 |[Asymptomatic Percentage Diagnosis Rates matches inputs](#AsymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
-|[Symptomatic Diagnosis Rates matches inputs](#SymptomaticDiagnosisRatesmatchesinputs)|Manual|AllSymptomsNoMortExpDiag 
+|[Symptomatic Exponential Diagnosis Rates matches inputs](#SymptomaticExponentialDiagnosisRatesmatchesinputs)|Manual|AllSymptomsNoMortExpDiag 
 |[Symptomatic Percentage Diagnosis Rates matches inputs](#SymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
@@ -789,7 +774,6 @@ Model Version: 37
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Mother Max Age](#MotherMaxAge)|FALSE|Base 
-|[All survival curves](#Allsurvivalcurves)|Manual|Base 
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
