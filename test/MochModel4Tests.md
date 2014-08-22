@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.10    0.13   74.46
+##    0.17    0.79   72.72
 ```
 
 ```
@@ -504,6 +504,38 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 
 ### Fertility
 
+#### <a name="MotherAgeatBirthHistogram"></a>Mother Age at Birth Histogram
+
+Scenario(s): Base
+
+A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
+  
+
+**Result: Manual**  
+
+---
+
+#### <a name="MotherFertilityRates"></a>Mother Fertility Rates
+
+Scenario(s): Base
+
+A plot of the fertility rates of the mothers. TODO: Change this into a test
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
+
+
+
 ## Mother - Scenarios
 
 ### Base
@@ -712,7 +744,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
+![plot of chunk unnamed-chunk-58](figure/unnamed-chunk-58.png) 
   
 
 **Result: Manual**  
@@ -727,7 +759,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56.png) 
+![plot of chunk unnamed-chunk-60](figure/unnamed-chunk-60.png) 
   
 
 **Result: Manual**  
@@ -745,12 +777,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 27 2014-08-22 11:42:16 fa542369f4681acfe3803d2c36098cb6
-## 28 2014-08-22 12:25:26 fa542369f4681acfe3803d2c36098cb6
-## 29 2014-08-22 12:44:45 fa542369f4681acfe3803d2c36098cb6
 ## 30 2014-08-22 12:53:09 fa542369f4681acfe3803d2c36098cb6
 ## 31 2014-08-22 14:40:43 fa542369f4681acfe3803d2c36098cb6
 ## 32 2014-08-22 14:50:51 fa542369f4681acfe3803d2c36098cb6
+## 33 2014-08-22 15:00:50 fa542369f4681acfe3803d2c36098cb6
+## 34 2014-08-22 15:31:32 fa542369f4681acfe3803d2c36098cb6
+## 35 2014-08-22 15:33:50 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
@@ -769,7 +801,7 @@ Model Version: 40
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|10|1|14| 
+|3|12|1|14| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -792,6 +824,8 @@ Model Version: 40
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
+|[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
+|[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
 |[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
