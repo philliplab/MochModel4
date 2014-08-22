@@ -75,7 +75,7 @@ double next_birth_time()
 	};
 	wait_time = wait_time + prev_birth_time_of_year;
 	*/
-	double wait_time = 5;
+	double wait_time = 30;
 	return(wait_time);
 };
 

@@ -200,12 +200,30 @@ table Mother MotherTestForTreatmentChance //EN Mother Test for Treatment Chance 
 	}
 };
 
+/* NOTE(MotherSESDistribution, EN)
+	Tracks the ratio of high and low SES mothers
+*/
+
 table Mother MotherSESDistribution //EN The SES distribution of the Mothers
 {
 	ses*
 	{
 		unit //EN Number of mother with given SES
 	}
+};
+
+/* NOTE (MotherParity, EN)
+	Tracks the number of children each mother had
+*/
+
+table Mother MotherParity //EN Number of children per mother
+[alive == FALSE]
+{
+	number_children+ //EN Number of Children
+	*
+	{
+		unit //EN Frequency
+	}	//EN Demographic characteristics
 };
 
 /* ################################################################################
