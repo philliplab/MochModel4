@@ -892,6 +892,8 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+### Fertility
+
 ## Mother - Scenarios
 
 ### Base
@@ -1035,6 +1037,33 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ## Mother - General
+
+```{r Input SES matches output SES, results='asis'}
+ctest_name <- 'Input SES matches output SES'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "When the input SES rate is compared to the output SES rate, they should be similar")
+```
+```{r, warning=FALSE, message=FALSE}
+msesout <-as.data.frame(new_RTable("MotherSESDistribution", db_channels[[cscenarios]]))
+high_ses_out <- msesout$Value[msesout$`Socioeconomic Status` == 'HIGH']
+total_population <- get_mother_population_size(db_channels$Base)
+high_ses_rate_out <- high_ses_out / total_population
+high_ses_rate_in <- as.data.frame(new_PTable("PercentageHighSES", db_channels[[cscenarios]]))[1,1]
+in_out_ratio <- high_ses_rate_out / high_ses_rate_in 
+print(list(high_ses_rate_out = high_ses_rate_out,
+           high_ses_rate_in = high_ses_rate_in))
+result <- in_out_ratio > 0.975 & in_out_ratio < 1.025
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
 
 ```{r Mother Max Age, results='asis'}
 # TODO: Check on all scenarios not just base

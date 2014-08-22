@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.15   46.54
+##    0.08    0.12   47.27
 ```
 
 ```
@@ -502,6 +502,8 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ---
 
 
+### Fertility
+
 ## Mother - Scenarios
 
 ### Base
@@ -634,6 +636,28 @@ This test make sure that in the scenario where there is only mortality in the in
 
 ## Mother - General
 
+#### <a name="InputSESmatchesoutputSES"></a>Input SES matches output SES
+
+Scenario(s): Base
+
+When the input SES rate is compared to the output SES rate, they should be similar
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## $high_ses_rate_out
+## [1] 0.4934
+## 
+## $high_ses_rate_in
+## [1] 0.5
+```
+  
+
+**Result: TRUE**  
+
+---
+
+
 #### <a name="MotherMaxAge"></a>Mother Max Age
 
 Scenario(s): Base
@@ -688,7 +712,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-52](figure/unnamed-chunk-52.png) 
+![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
   
 
 **Result: Manual**  
@@ -703,7 +727,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-54](figure/unnamed-chunk-54.png) 
+![plot of chunk unnamed-chunk-56](figure/unnamed-chunk-56.png) 
   
 
 **Result: Manual**  
@@ -721,12 +745,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 15 2014-08-20 15:25:08 fa542369f4681acfe3803d2c36098cb6
-## 16 2014-08-20 15:26:12 fa542369f4681acfe3803d2c36098cb6
 ## 17 2014-08-20 16:04:48 fa542369f4681acfe3803d2c36098cb6
 ## 18 2014-08-21 11:22:35 fa542369f4681acfe3803d2c36098cb6
 ## 19 2014-08-22 09:19:14 fa542369f4681acfe3803d2c36098cb6
 ## 20 2014-08-22 09:53:06 fa542369f4681acfe3803d2c36098cb6
+## 21 2014-08-22 10:18:26 fa542369f4681acfe3803d2c36098cb6
+## 22 2014-08-22 10:20:01 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
@@ -745,7 +769,7 @@ Model Version: 38
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|10|1|13| 
+|3|10|1|14| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -773,6 +797,7 @@ Model Version: 38
 |[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
+|[Input SES matches output SES](#InputSESmatchesoutputSES)|TRUE|Base 
 |[Mother Max Age](#MotherMaxAge)|FALSE|Base 
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
