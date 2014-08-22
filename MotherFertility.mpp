@@ -8,7 +8,7 @@
 parameters 
 {
 	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE]; //EN Effect of socioeconomic state on fertility
-//	double FertilityMotherParityMultipliers[PARITY]; //EN Effect of parity on fertility
+	double FertilityMotherParityMultipliers[PARITY]; //EN Effect of parity on fertility
 };
 
 

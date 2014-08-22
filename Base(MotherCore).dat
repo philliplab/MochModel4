@@ -13,6 +13,10 @@ An arbitrarily selected value.
 	Arbitrarily chosen
 */
 	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE] = {1, 1}; //EN effect of socioeconomic state on fertility
+/* NOTE( FertilityMotherParityMultipliers, EN)
+	Arbitrarily chosen
+*/
+	double FertilityMotherParityMultipliers[PARITY] = { (16) 1, }; //EN Effect of parity on fertility
 /* NOTE ( StartingPopulationSize, EN )
 An arbitrarily selected value.
 */
