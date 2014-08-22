@@ -10,6 +10,7 @@ parameters
 	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE]; //EN Effect of socioeconomic state on fertility
 	double FertilityMotherParityMultipliers[PARITY]; //EN Effect of parity on fertility
 	double FertilityMotherRates[LIFE]; //EN The base fertility rates
+	double FertilityMotherDiseaseMultipliers[MDETAILED_STATE]; //EN Effect of disease state on fertility
 };
 
 

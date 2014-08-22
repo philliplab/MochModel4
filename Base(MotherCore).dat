@@ -24,28 +24,37 @@ An arbitrarily selected value.
 	double FertilityMotherRates[LIFE] = {  //EN The base fertility rates
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0526,0.0702,0.0880,0.1057,0.1226,0.1382,0.1517,0.1623,0.1696,0.1737,0.1747,0.1733,0.1703,0.1663,0.1615,0.1563,0.1506,0.1443,0.1376,0.1305,0.1228,0.1144,0.1052,0.0952,0.0849,0.0741,0.0633,0.0526,0.0425,0.0331,0.0247,0.0174,0.0113,0.0065,0.0039,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	};
+/* NOTE( FertilityMotherRates, EN)
+	Healthy mothers are exposed to the base rates.
+	Infected mothers have higher fertility due to the fact that HIV infection is an indication of sexual practices
+	Diagnosed mothers have the same fertility as infected mothers due to lack of data
+	Symptomatic mothers have lower fertility than infected, but slightly higher than healthy.
+	Diagnosed and symptomatic mothers have the same fertility as symptomatic mothers due to lack of data
+	Treated and treatment stopped mothers have the same fertility as healthy mothers mainly due to lack of data
+*/
+	double FertilityMotherDiseaseMultipliers[MDETAILED_STATE] = { 1, 1.3, 1.08, 1.3, 1.08, 1, 1, 0}; //EN Effect of disease state on fertility
 /* NOTE ( StartingPopulationSize, EN )
-An arbitrarily selected value.
+	An arbitrarily selected value.
 */
 
 	int	StartingPopulationSize = 10000; //EN Starting population size
 /* NOTE ( HealthyMortalityMotherMultiplier, EN )
-Choose 1 to prevent any deviations from the ASSA model values.
+	Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	HealthyMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Healthy Mothers
 /* NOTE ( IncidenceMotherMultiplier, EN )
-Choose 1 to prevent any deviations from the ASSA model values.
+	Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
-	/* NOTE(MInfectionImmortalityPeriod, EN)
-		Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
-	*/
+/* NOTE(MInfectionImmortalityPeriod, EN)
+	Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
+*/
 	
 	double MInfectionImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
 /* NOTE ( InfectedMortalityMotherMultiplier, EN )
-Choose 1 to prevent any deviations from the ASSA model values.
+	Choose 1 to prevent any deviations from the ASSA model values.
 */
 
 	double	InfectedMortalityMotherMultiplier = 1; //EN Multiplier for Mortality of Infected Mothers
