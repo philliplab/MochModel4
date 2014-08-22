@@ -17,6 +17,13 @@ An arbitrarily selected value.
 	Arbitrarily chosen
 */
 	double FertilityMotherParityMultipliers[PARITY] = { (16) 1, }; //EN Effect of parity on fertility
+/* NOTE( FertilityMotherRates, EN)
+	The 1995 base fertility rates from the ASSA model
+*/
+
+	double FertilityMotherRates[LIFE] = {  //EN The base fertility rates
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0526,0.0702,0.0880,0.1057,0.1226,0.1382,0.1517,0.1623,0.1696,0.1737,0.1747,0.1733,0.1703,0.1663,0.1615,0.1563,0.1506,0.1443,0.1376,0.1305,0.1228,0.1144,0.1052,0.0952,0.0849,0.0741,0.0633,0.0526,0.0425,0.0331,0.0247,0.0174,0.0113,0.0065,0.0039,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	};
 /* NOTE ( StartingPopulationSize, EN )
 An arbitrarily selected value.
 */
