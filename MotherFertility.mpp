@@ -1,0 +1,24 @@
+//LABEL(MotherFertility, EN) Schedules and implements births
+
+/* NOTE(MotherFertility, EN)
+	This module schedules and implements births. A mother can give
+	birth at any age, where the provided fertility rates are greater
+	than zero, and from any of the disease states other than the death state.
+*/
+
+range PARITY
+{
+	0,15
+};
+/* NOTE (PARITY, EN)
+    The range of valid parity values for a mother.
+	It is assumed that no mother can have more than 15 children.
+*/
+
+actor Mother            //EN Individual
+{
+	PARITY number_children = {0};
+	logical fertile = {FALSE};
+	TIME time_to_next_birth_scheduling = {0};
+	TIME time_to_next_birth = {0};
+};

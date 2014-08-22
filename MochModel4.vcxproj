@@ -101,6 +101,7 @@
     <None Include="ModelStrings.mpp" />
     <None Include="MotherCore.mpp" />
     <None Include="MotherDiagnosis.mpp" />
+    <None Include="MotherFertility.mpp" />
     <None Include="MotherInfection.mpp" />
     <None Include="MotherMortality.mpp" />
     <None Include="MotherStop.mpp" />
@@ -117,6 +118,7 @@
     <ClCompile Include="ModelStrings.cpp" />
     <ClCompile Include="MotherCore.cpp" />
     <ClCompile Include="MotherDiagnosis.cpp" />
+    <ClCompile Include="MotherFertility.cpp" />
     <ClCompile Include="MotherInfection.cpp" />
     <ClCompile Include="MotherMortality.cpp" />
     <ClCompile Include="MotherStop.cpp" />
