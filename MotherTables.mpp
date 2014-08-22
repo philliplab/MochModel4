@@ -101,6 +101,21 @@ table Mother MotherTreatmentCessationRates //EN Treatment Cessation Rates amongs
 	} //EN Diagnosis Rate Statistics
 };
 
+/*NOTE(MotherFertilityRates, EN)
+	The fertility rates amongst mothers. Based on the ratio between the number of mothers
+	and the number of children born.
+*/
+
+table Mother MotherFertilityRates //EN Fertility Rates amongst Mothers
+{
+	integer_age+ * //EN Age
+	{
+		nz_delta(number_children), //EN Number of Children Born
+		duration(alive, TRUE), //EN Mother years decimals=4
+		nz_delta(number_children) / duration(alive, TRUE) //EN Fertility Rates decimals=4
+	} //EN Diagnosis Rate Statistics
+};
+
 /* NOTE(MotherMortalityRates, EN)
 	A table tracking detailed mortality stats of the mothers.
 	It aims to be able to answer the questions:
