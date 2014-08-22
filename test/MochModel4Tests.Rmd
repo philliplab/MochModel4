@@ -944,7 +944,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-<!--
 ```{r Number of Children per Mother, results='asis'}
 ctest_name <- 'Number of Children per Mother'
 cscenarios <- 'Base'
@@ -969,7 +968,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
--->
 
 
 
