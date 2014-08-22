@@ -4,6 +4,10 @@ An arbitrarily selected value.
 */
 
 	int	ModelTime = 10; //EN Model Time
+/* NOTE ( GenderChildFemaleProportion, EN)
+	Arbitrarily chosen
+*/
+	double GenderChildFemaleProportion = 0.5; //EN The proportion of children that are female
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */

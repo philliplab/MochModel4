@@ -5,6 +5,9 @@
 	birth at any age, where the provided fertility rates are greater
 	than zero, and from any of the disease states other than the death state.
 */
+
+link Child.lMother Mother.mlChild[];
+
 parameters 
 {
 	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE]; //EN Effect of socioeconomic state on fertility
@@ -29,4 +32,81 @@ actor Mother            //EN Individual
 	logical fertile = {FALSE};
 	TIME time_to_next_birth_scheduling = {0};
 	TIME time_to_next_birth = {0};
+
+	event timeBirthSchedEvent, BirthSchedEvent;
+	event timeBirthEvent, BirthEvent;
+};
+
+TIME Mother::timeBirthSchedEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	if (fertile == FALSE)
+	{
+		tEventTime = time_to_next_birth_scheduling;
+	};
+	tEventTime = WAIT(tEventTime);
+	return(tEventTime);
+};
+
+double next_birth_time()
+{
+/*	double x = RandUniform(12);
+	double not_birth_prob = 1;
+	double prev_not_birth_prob = 1;
+	double wait_time = pow(10, 10);
+	int indx = -1;
+	if (prev_birth_time_of_year > 0.5)
+	{
+		curr_age++;
+	};
+	while ((curr_age + indx <= 50) && not_birth_prob > x)
+	{
+		indx++;
+		prev_not_birth_prob = not_birth_prob;
+		double curr_fert = FertilityRates[curr_age + indx]*DiseaseFertMultipliers[curr_disease_status]*ParityFertMultipliers[number_children_internal];
+		if (curr_fert > 1){ curr_fert = 1; };
+		if (curr_fert < 0){ curr_fert = 0; };
+		not_birth_prob = not_birth_prob * (1-curr_fert);
+	}
+	if (not_birth_prob <= x){
+		x = x - not_birth_prob;
+		double interpolation_step_size = x / (prev_not_birth_prob - not_birth_prob);
+	    wait_time = indx + interpolation_step_size;
+	};
+	wait_time = wait_time + prev_birth_time_of_year;
+	*/
+	double wait_time = 5;
+	return(wait_time);
+};
+
+void Mother::BirthSchedEvent()
+{
+	fertile = TRUE;
+	time_to_next_birth = next_birth_time();
+}
+
+TIME Mother::timeBirthEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	if (fertile == TRUE){
+		tEventTime = time_to_next_birth;
+	}
+	tEventTime = WAIT(tEventTime);
+	return tEventTime;
+};
+
+void Mother::BirthEvent()
+{
+	number_children++;
+
+	fertile = FALSE;
+	time_to_next_birth_scheduling = 1;
+
+	Child *prChild = new Child();
+	mlChild->Add(prChild);
+	prChild->Start();
+	prChild->Set_Mother_Age_And_SES(age, ses);
+//	if (disease_status == INFECTED){
+//		prChild->Mother_Infect();
+//	}
 };

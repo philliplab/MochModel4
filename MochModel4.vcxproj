@@ -97,6 +97,7 @@
     <None Include="app.ico" />
     <None Include="Base(MotherCore).dat" />
     <None Include="Base.scex" />
+    <None Include="ChildCore.mpp" />
     <None Include="MochModel4.mpp" />
     <None Include="ModelStrings.mpp" />
     <None Include="MotherCore.mpp" />
@@ -114,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actors.cpp" />
+    <ClCompile Include="ChildCore.cpp" />
     <ClCompile Include="MochModel4.cpp" />
     <ClCompile Include="ModelStrings.cpp" />
     <ClCompile Include="MotherCore.cpp" />

@@ -1,0 +1,51 @@
+
+//LABEL(ChildCore, EN) The Child Actor
+
+
+parameters 
+{
+	double GenderChildFemaleProportion; //EN The proportion of children that are female
+};
+
+
+actor_set Child asAllChild; //EN All Child actors
+
+actor Child            //EN Individual
+{
+	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
+	REPORT_TIME report_time;
+	GENDER gender;
+	LIFE integer_age = self_scheduling_int(age);
+	double mother_age_at_birth = {0}; //EN The age of the mother at her child's birth
+
+	void Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses);
+	void Start();
+	void Finish();
+};
+
+void Child::Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses)
+{
+	mother_age_at_birth = m_age;
+	ses = m_ses;
+};
+
+void Child::Start()
+{
+	age = 0;
+	if (RandUniform(16) > GenderChildFemaleProportion){
+		gender = M;
+	} else {
+		gender = F;
+	};
+};
+
+void Child::Finish()
+{
+};
+
+track Child
+	[actor_id % 50 == 0, GetReplicate() == 0 ]
+{
+	all_base_states,
+	all_derived_states
+};
