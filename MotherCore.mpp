@@ -21,7 +21,7 @@ parameters
 		0 corresponds to 1985. Largest allowed value is 40.
 	*/
 
-	double PercentageHighSES; //EN Percentage of Mothers in the High Socioeconomic class
+	double HighSESMotherPercentage; //EN Percentage of Mothers in the High Socioeconomic class
 };
 
 classification GENDER
@@ -190,7 +190,7 @@ void Mother::Start()
 	inf_mortality_draw = RandUniform(3);
 	treatment_chance = RandUniform(12);
 
-	if (RandUniform(13) > PercentageHighSES){
+	if (RandUniform(13) > HighSESMotherPercentage){
 	    ses = LOW;
 	} else {
 	    ses = HIGH;

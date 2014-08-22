@@ -4,11 +4,15 @@ An arbitrarily selected value.
 */
 
 	int	ModelTime = 10; //EN Model Time
-/* NOTE ( PercentageHighSES, EN )
+/* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */
 
-	double	PercentageHighSES = 0.5; //EN Percentage of Mothers in the High Socioeconomic class
+	double	HighSESMotherPercentage = 0.5; //EN Percentage of Mothers in the High Socioeconomic class
+/* NOTE( FertilityMotherSESMultipliers, EN)
+	Arbitrarily chosen
+*/
+	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE] = {1, 1}; //EN effect of socioeconomic state on fertility
 /* NOTE ( StartingPopulationSize, EN )
 An arbitrarily selected value.
 */

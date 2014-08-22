@@ -5,6 +5,12 @@
 	birth at any age, where the provided fertility rates are greater
 	than zero, and from any of the disease states other than the death state.
 */
+parameters 
+{
+	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE]; //EN Effect of socioeconomic state on fertility
+//	double FertilityMotherParityMultipliers[PARITY]; //EN Effect of parity on fertility
+};
+
 
 range PARITY
 {
