@@ -98,6 +98,7 @@
     <None Include="Base(MotherCore).dat" />
     <None Include="Base.scex" />
     <None Include="ChildCore.mpp" />
+    <None Include="ChildTables.mpp" />
     <None Include="MochModel4.mpp" />
     <None Include="ModelStrings.mpp" />
     <None Include="MotherCore.mpp" />
@@ -116,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Actors.cpp" />
     <ClCompile Include="ChildCore.cpp" />
+    <ClCompile Include="ChildTables.cpp" />
     <ClCompile Include="MochModel4.cpp" />
     <ClCompile Include="ModelStrings.cpp" />
     <ClCompile Include="MotherCore.cpp" />

@@ -1,0 +1,7 @@
+table Child MotherAgeAtBirth //EN The age of the mothers at birth of children
+{
+	split(mother_age_at_birth, TEN_YEAR_BINS)+ *
+	{
+		unit //EN Number of Mothers
+	}
+};
