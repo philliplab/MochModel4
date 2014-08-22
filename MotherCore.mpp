@@ -20,6 +20,8 @@ parameters
 		Which time period to use as reference for incidence numbers and mortality?
 		0 corresponds to 1985. Largest allowed value is 40.
 	*/
+
+	double PercentageHighSES; //EN Percentage of Mothers in the High Socioeconomic class
 };
 
 classification GENDER
@@ -33,6 +35,15 @@ range LIFE
 };
 /* NOTE(LIFE, EN)
     Actors are only allowed to live to age 100
+*/
+
+classification SOCIO_ECONOMIC_STATE
+{
+	HIGH, LOW
+};
+
+/* NOTE(SOCIO_ECONOMIC_STATE, EN)
+    The socioeconomic status of the mothers. It is assumed that this state cannot change. 
 */
 
 classification MDEATH_SCHED_STATE
@@ -81,6 +92,8 @@ actor_set Mother asAllMother; //EN All Mother actors
 actor Mother            //EN Individual
 {
 	int model_version = {38};
+
+	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
 
 	/*NOTE(Mother.model_version, EN)
 	    By attaching the model_version to an actor and reporting it with a table
@@ -176,6 +189,12 @@ void Mother::Start()
 
 	inf_mortality_draw = RandUniform(3);
 	treatment_chance = RandUniform(12);
+
+	if (RandUniform(13) > PercentageHighSES){
+	    ses = LOW;
+	} else {
+	    ses = HIGH;
+	};
 
 	// After the code in this function is executed,
 	// Modgen initializes events and tables for the actor.

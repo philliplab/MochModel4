@@ -200,6 +200,14 @@ table Mother MotherTestForTreatmentChance //EN Mother Test for Treatment Chance 
 	}
 };
 
+table Mother MotherSESDistribution //EN The SES distribution of the Mothers
+{
+	ses*
+	{
+		unit //EN Number of mother with given SES
+	}
+};
+
 /* ################################################################################
 Event Details Table
 ################################################################################ */
