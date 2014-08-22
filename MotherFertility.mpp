@@ -48,9 +48,9 @@ TIME Mother::timeBirthSchedEvent()
 	return(tEventTime);
 };
 
-double next_birth_time()
+double next_birth_time(int curr_age, MDETAILED_STATE curr_disease_status, double prev_birth_time_of_year, PARITY number_children, SOCIO_ECONOMIC_STATE ses)
 {
-/*	double x = RandUniform(12);
+	double x = RandUniform(17);
 	double not_birth_prob = 1;
 	double prev_not_birth_prob = 1;
 	double wait_time = pow(10, 10);
@@ -63,7 +63,8 @@ double next_birth_time()
 	{
 		indx++;
 		prev_not_birth_prob = not_birth_prob;
-		double curr_fert = FertilityRates[curr_age + indx]*DiseaseFertMultipliers[curr_disease_status]*ParityFertMultipliers[number_children_internal];
+		double curr_fert = FertilityMotherRates[curr_age + indx] * FertilityMotherDiseaseMultipliers[curr_disease_status] * FertilityMotherParityMultipliers[number_children] * FertilityMotherSESMultipliers[ses];
+		//double curr_fert = FertilityRates[curr_age + indx]*DiseaseFertMultipliers[curr_disease_status]*ParityFertMultipliers[number_children_internal];
 		if (curr_fert > 1){ curr_fert = 1; };
 		if (curr_fert < 0){ curr_fert = 0; };
 		not_birth_prob = not_birth_prob * (1-curr_fert);
@@ -74,15 +75,14 @@ double next_birth_time()
 	    wait_time = indx + interpolation_step_size;
 	};
 	wait_time = wait_time + prev_birth_time_of_year;
-	*/
-	double wait_time = 30;
+//	double wait_time = 30;
 	return(wait_time);
 };
 
 void Mother::BirthSchedEvent()
 {
 	fertile = TRUE;
-	time_to_next_birth = next_birth_time();
+	time_to_next_birth = next_birth_time(integer_age, mdetailed_status, age - integer_age, number_children, ses);
 }
 
 TIME Mother::timeBirthEvent()
