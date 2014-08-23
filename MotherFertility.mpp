@@ -14,8 +14,14 @@ parameters
 	double FertilityMotherParityMultipliers[PARITY]; //EN Effect of parity on fertility
 	double FertilityMotherRates[LIFE]; //EN The base fertility rates
 	double FertilityMotherDiseaseMultipliers[MDETAILED_STATE]; //EN Effect of disease state on fertility
+	double FertilityMotherGestationPeriod; //EN Period of infertility after childbirth.
 };
 
+/* NOTE( FertilityMotherGestationPeriod, EN)
+	The period of time after childbirth that a mother is infertile. Set this to at least 9 months. Note the 
+	slight mismatch with reality in which this should come before childbirth. However, allowing this
+	period to come after childbirth simplifies the implementation.
+*/
 
 range PARITY
 {
@@ -100,7 +106,7 @@ void Mother::BirthEvent()
 	number_children++;
 
 	fertile = FALSE;
-	time_to_next_birth_scheduling = 1;
+	time_to_next_birth_scheduling = FertilityMotherGestationPeriod;
 
 	Child *prChild = new Child();
 	mlChild->Add(prChild);

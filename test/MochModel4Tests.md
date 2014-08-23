@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.14    0.12  126.56
+##    0.02    0.14  127.41
 ```
 
 ```
@@ -523,7 +523,7 @@ A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
 
 Scenario(s): Base
 
-A plot of the fertility rates of the mothers. TODO: Change this into a test
+A plot of the fertility rates of the mothers. Unless the gestation period parameter is set to zero, it is expected that the output rates should be lower than the input rates. TODO: Change this into a test
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
@@ -791,12 +791,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 34 2014-08-22 15:31:32 fa542369f4681acfe3803d2c36098cb6
 ## 35 2014-08-22 15:33:50 fa542369f4681acfe3803d2c36098cb6
 ## 36 2014-08-22 15:43:10 fa542369f4681acfe3803d2c36098cb6
 ## 37 2014-08-22 16:02:36 fa542369f4681acfe3803d2c36098cb6
 ## 38 2014-08-23 21:39:07 fa542369f4681acfe3803d2c36098cb6
 ## 39 2014-08-23 21:49:12 fa542369f4681acfe3803d2c36098cb6
+## 40 2014-08-23 22:00:31 fa542369f4681acfe3803d2c36098cb6
 ```
   
 

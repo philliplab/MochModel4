@@ -28,6 +28,10 @@ An arbitrarily selected value.
 	double FertilityMotherRates[LIFE] = {  //EN The base fertility rates
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0526,0.0702,0.0880,0.1057,0.1226,0.1382,0.1517,0.1623,0.1696,0.1737,0.1747,0.1733,0.1703,0.1663,0.1615,0.1563,0.1506,0.1443,0.1376,0.1305,0.1228,0.1144,0.1052,0.0952,0.0849,0.0741,0.0633,0.0526,0.0425,0.0331,0.0247,0.0174,0.0113,0.0065,0.0039,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 	};
+/* NOTE(FertilityMotherGestationPeriod, EN)
+	Arbitrarily chosen
+*/
+	double FertilityMotherGestationPeriod = 1; //EN Period of infertility after childbirth.
 /* NOTE( FertilityMotherRates, EN)
 	Healthy mothers are exposed to the base rates.
 	Infected mothers have higher fertility due to the fact that HIV infection is an indication of sexual practices
