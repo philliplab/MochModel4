@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.02    0.14  127.41
+##    0.14    0.08  134.74
 ```
 
 ```
@@ -27,7 +27,7 @@ output: html_document
 ```
 
 ```
-## [1] 11
+## [1] 12
 ```
 
 # Tests for Model Version 40
@@ -523,10 +523,23 @@ A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
 
 Scenario(s): Base
 
+ Scenario(s): ZeroGestation
+
 A plot of the fertility rates of the mothers. Unless the gestation period parameter is set to zero, it is expected that the output rates should be lower than the input rates. TODO: Change this into a test
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-39.png) 
+
+```
+## [1] "Base"
+```
+
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-391.png) 
+
+```
+## [1] "ZeroGestation"
+```
+
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-392.png) 
   
 
 **Result: Manual**  
@@ -791,16 +804,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 35 2014-08-22 15:33:50 fa542369f4681acfe3803d2c36098cb6
 ## 36 2014-08-22 15:43:10 fa542369f4681acfe3803d2c36098cb6
 ## 37 2014-08-22 16:02:36 fa542369f4681acfe3803d2c36098cb6
 ## 38 2014-08-23 21:39:07 fa542369f4681acfe3803d2c36098cb6
 ## 39 2014-08-23 21:49:12 fa542369f4681acfe3803d2c36098cb6
 ## 40 2014-08-23 22:00:31 fa542369f4681acfe3803d2c36098cb6
+## 41 2014-08-23 22:06:57 eea17b2e2cdfa998df426002a767a0e7
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -813,9 +826,9 @@ Model Version: 40
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|13|1|14| 
+|1|3|13|14| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -839,7 +852,7 @@ Model Version: 40
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
-|[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base 
+|[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base, ZeroGestation 
 |[Number of Children per Mother](#NumberofChildrenperMother)|Manual|Base 
 |[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
 |[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
@@ -851,4 +864,4 @@ Model Version: 40
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
