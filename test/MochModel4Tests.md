@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.17    0.40  139.78
+##    0.14    0.12  126.56
 ```
 
 ```
@@ -533,6 +533,7 @@ A plot of the fertility rates of the mothers. TODO: Change this into a test
 
 ---
 
+
 #### <a name="NumberofChildrenperMother"></a>Number of Children per Mother
 
 Scenario(s): Base
@@ -790,12 +791,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 32 2014-08-22 14:50:51 fa542369f4681acfe3803d2c36098cb6
-## 33 2014-08-22 15:00:50 fa542369f4681acfe3803d2c36098cb6
 ## 34 2014-08-22 15:31:32 fa542369f4681acfe3803d2c36098cb6
 ## 35 2014-08-22 15:33:50 fa542369f4681acfe3803d2c36098cb6
 ## 36 2014-08-22 15:43:10 fa542369f4681acfe3803d2c36098cb6
 ## 37 2014-08-22 16:02:36 fa542369f4681acfe3803d2c36098cb6
+## 38 2014-08-23 21:39:07 fa542369f4681acfe3803d2c36098cb6
+## 39 2014-08-23 21:49:12 fa542369f4681acfe3803d2c36098cb6
 ```
   
 
