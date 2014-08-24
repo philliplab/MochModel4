@@ -1,0 +1,3 @@
+cd "Documents\Visual Studio 2010\Projects\MochModel4\task_dependancies"
+
+"C:\Program Files (x86)\Graphviz2.38\bin\dot.exe" -Tpng I6_task_dependancies.dot -o I6_task_dependancies.png

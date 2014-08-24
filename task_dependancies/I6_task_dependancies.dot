@@ -1,0 +1,34 @@
+digraph {
+  "Add Child Mortality Stub" -> "Add Full Child Mortality";
+  "Add Child age at death hist tab" -> "Add Child Mortality Stub";
+  "Add Child Gender distribution table" -> "Add Child Gender distribution plot";
+  "Add Child Gender distribution plot" -> "Compare input and output child gender ratio";
+  "Add Child SES distribution table" -> "Add Child SES distribution plot";
+  "Add Child age at death hist tab" -> "Add Child age at death hist plot";
+  "Add Child Mortality Stub" -> "Add Child survival curve";
+  "Add Child survival curve" -> "Overlay input survival curve";
+  "Add scenario with low high SES fertility" -> "Plot to show effect of SES fertility multiplier";
+  "Add Child SES distribution plot" -> "Plot to show effect of SES fertility multiplier";
+  "Add scenario with no child mortality" -> "Test that no children die in no child mort scenario"
+  "Add Child age at death hist plot" -> "Test that no children die in no child mort scenario";
+  "Test that compares number of mothers with number of Children";
+}
+
+/*
+Add Child Gender distribution plot
+Add Child Gender distribution table
+Add Child Mortality Stub
+Add Child SES distribution plot
+Add Child SES distribution table
+Add Child age at death hist plot
+Add Child age at death hist tab
+Add Child survival curve
+Add Full Child Mortality
+Add scenario with low high SES fertility
+Add scenario with no child mortality
+Compare input and output child gender ratio
+Overlay input survival curve
+Plot to show effect of SES fertility multiplier
+Test that compares number of mothers with number of Children
+Test that no children die in no child mort scenario
+*/
