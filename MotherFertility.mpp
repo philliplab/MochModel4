@@ -4,6 +4,42 @@
 	This module schedules and implements births. A mother can give
 	birth at any age, where the provided fertility rates are greater
 	than zero, and from any of the disease states other than the death state.
+
+	- Data requirements
+
+	A vector of fertility rates must be provided specifying the fertility at each age between 0 and 100. 
+	
+	The ferility rates are adjusted for a number of factors. These adjustments are applied by 
+	multiplying the fertility rates by factors specifying the size of the adjustment needed.
+	Factors must be specified for socioeconomic status, disease state, and parity.
+
+	- Implementation Details
+
+	Fertility is implemented in two different events. First a mother must become fertile and then the
+	mother can have a child. After having a child, a mother becomes infertile for a period. This period
+	is controlled by the FertilityMotherGestationPeriod parameter. However, 
+	the mother can give birth immediately upon becoming fertile. This implies that the gestation
+	period is included in the period of 'infertility' immediately after giving birth.
+
+	Upon becoming fertile, a birth event is scheduled. A curve, S(t), depicting the probability of not
+	giving birth is constructed for the subject. The curve is constructed by setting the 
+	probability of not giving birth equal to 1 at the moment of becoming fertile. The value of 
+	the curve  one year later is then set to S(1) = S(0) * (1 - fert[age + 1] * multipliers)
+	where fert is the vector of fertility rates for mothers, age is the age at which the mother
+	became fertile, the multipliers are factors that
+	adjusts a mothers fertility based on various factors.
+	A straight line is then used to connect
+	S(0) to S(1). Similarly S(2) = S(1) * (1 - fert[age + 2] * parity_multiplier * disease_state_multiplier).
+	Again a straight line is used to connect S(1) to S(2). This process is continued until the value of the
+	survival curve reached 0. 
+	
+	To assign a time of the next birth using this curve, the following is done:
+	A random uniform number is drawn for a mother. This random number is
+	placed on the y axis of the curve and the age of the next birth is read off from the x-axis.
+
+	Upon giving birth, a child actor is creator and initialized. A link is created
+	between the mother and child. The mother is made infertile and 'become fertile' event is
+	scheduled for one year later.
 */
 
 link Child.lMother Mother.mlChild[];
@@ -16,6 +52,22 @@ parameters
 	double FertilityMotherDiseaseMultipliers[MDETAILED_STATE]; //EN Effect of disease state on fertility
 	double FertilityMotherGestationPeriod; //EN Period of infertility after childbirth.
 };
+
+/* NOTE( FertilityMotherSESMultipliers, EN)
+	Multipliers that affect a mother's fertility based on her socioeconomic status.
+*/
+
+/* NOTE( FertilityMotherParityMultipliers, EN)
+	Multipliers that affect a mother's fertility based on her parity.
+*/
+
+/* NOTE( FertilityMotherDiseaseMultipliers, EN)
+	Multipliers that affect a mother's fertility based on her disease state.
+*/
+
+/* NOTE( FertilityMotherRates, EN)
+	For each year of life, the probability that a mother will have a child in that year.
+*/
 
 /* NOTE( FertilityMotherGestationPeriod, EN)
 	The period of time after childbirth that a mother is infertile. Set this to at least 9 months. Note the 
