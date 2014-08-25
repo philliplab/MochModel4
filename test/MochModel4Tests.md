@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.20    0.09  167.52
+##    0.15    0.11  173.91
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 14
 ```
 
-# Tests for Model Version 42
+# Tests for Model Version 43
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -804,12 +804,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 55 2014-08-25 11:05:12 121eeb9f8fd66929a35d038cce456e59
 ## 56 2014-08-25 11:14:02 121eeb9f8fd66929a35d038cce456e59
 ## 57 2014-08-25 11:25:37 76aa7994cbefad1163efba5606cb7b89
 ## 58 2014-08-25 11:50:18 76aa7994cbefad1163efba5606cb7b89
 ## 59 2014-08-25 11:56:38 76aa7994cbefad1163efba5606cb7b89
 ## 60 2014-08-25 14:21:14 76aa7994cbefad1163efba5606cb7b89
+## 61 2014-08-25 14:35:24 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -895,8 +895,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-
-![plot of chunk unnamed-chunk-73](figure/unnamed-chunk-73.png) 
+![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72.png) 
   
 
 **Result: Manual**  
@@ -911,7 +910,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-75](figure/unnamed-chunk-75.png) 
+![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-74.png) 
   
 
 **Result: Manual**  
@@ -921,7 +920,7 @@ Plots showing the membership of children's mothers to the different states in th
 
 
 ## Summary of All Tests
-Model Version: 42
+Model Version: 43
 
 #### Summary of the Test Results 
 

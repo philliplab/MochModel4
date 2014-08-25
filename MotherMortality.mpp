@@ -273,7 +273,12 @@ void Mother::MortalityEvent()
 	mother_md_status_at_death = mdetailed_status;
 	mdetailed_status = mdDEAD;
 	alive = FALSE;
-
+	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Die();
+	}
 	// Remove the actor from the simulation.
 	Finish();
 }

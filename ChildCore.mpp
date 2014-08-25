@@ -23,6 +23,7 @@ actor Child            //EN Individual
 	MDETAILED_STATE mdetailed_status = {mdHEALTHY};
 
 	void Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses);
+	void Mother_Die();
 	void Start();
 	void Finish();
 };
@@ -31,6 +32,12 @@ void Child::Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses)
 {
 	mother_age_at_birth = m_age;
 	ses = m_ses;
+};
+
+void Child::Mother_Die()
+{
+	mdeath_sched_status = mdsDEAD;
+	mdetailed_status = mdDEAD;
 };
 
 void Child::Start()
