@@ -1388,6 +1388,32 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+```{r Child Mortality, results='asis'}
+ctest_name <- 'Child Mortality'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = 'Child output mortality must match child input mortality')
+```
+```{r, warning=FALSE, message=FALSE}
+cs <- as.data.frame(new_RTable('ChildSurvival', db_channels[[cscenarios]]))
+cs <- subset(cs, metrics == 'Child Years')[,1:3]
+
+p <- ggplot(cs, aes(x = `Integer Age`, y = `Value`)) +
+            geom_line()
+print(p)
+
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 
 
 ## Summary of All Tests

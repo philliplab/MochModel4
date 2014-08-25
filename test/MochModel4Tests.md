@@ -11,7 +11,7 @@ output: html_document
 
 
 
-
+# WARNING MODELS WERE NOT RERUN 
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.15    0.11  158.72
+##    0.12    0.11    4.32
 ```
 
 ```
@@ -804,12 +804,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 44 2014-08-25 08:58:52 6722bd5290346829332959b7c49a6aff
-## 45 2014-08-25 09:12:53 eea17b2e2cdfa998df426002a767a0e7
-## 46 2014-08-25 09:39:16 eea17b2e2cdfa998df426002a767a0e7
 ## 47 2014-08-25 09:42:36 eea17b2e2cdfa998df426002a767a0e7
 ## 48 2014-08-25 09:57:33 121eeb9f8fd66929a35d038cce456e59
 ## 49 2014-08-25 10:20:17 121eeb9f8fd66929a35d038cce456e59
+## 50 2014-08-25 10:29:53 121eeb9f8fd66929a35d038cce456e59
+## 51 2014-08-25 10:35:20 121eeb9f8fd66929a35d038cce456e59
+## 52 2014-08-25 10:37:43 121eeb9f8fd66929a35d038cce456e59
 ```
   
 
@@ -860,6 +860,21 @@ A plot to show the SES ratios of the children in different circumstances
 ---
 
 
+#### <a name="ChildMortality"></a>Child Mortality
+
+Scenario(s): Base
+
+Child output mortality must match child input mortality
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
 
 
 ## Summary of All Tests
@@ -869,7 +884,7 @@ Model Version: 41
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|14|1|15| 
+|3|15|1|15| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -908,3 +923,4 @@ Model Version: 41
 |[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
+|[Child Mortality](#ChildMortality)|Manual|Base 

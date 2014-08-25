@@ -15,7 +15,7 @@ actor Child            //EN Individual
 	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
 	REPORT_TIME report_time;
 	GENDER gender;
-	LIFE integer_age = self_scheduling_int(age);
+	LIFE integer_age = self_scheduling_int(age); //EN Integer Age
 	logical alive = {TRUE};
 	double mother_age_at_birth = {0}; //EN The age of the mother at her child's birth
 
