@@ -32,3 +32,32 @@ table Child ChildSurvival //EN Number of children alive by age
 		duration() //EN Child Years
 	}
 };
+
+/* ################################################################################
+The State Membership tables
+################################################################################ */
+
+table Child ChildMDSMembershipxAge //EN Membership of children's Mothers in the MDEATH_SCHED_STATE
+{
+	integer_age+ * //EN Age
+	{
+		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in HEALTHY state decimals=2
+		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years in INFECTED state decimals=2
+		duration(mdeath_sched_status, mdsTREATED), //EN Mother years in TREATED state decimals=2
+		duration(mdeath_sched_status, mdsSTOPPED) //EN Mother years in STOPPED state decimals=2
+	} //EN Membership counts
+};
+
+table Child ChildMDMembershipxAge //EN Membership of children's Mothers in the MDETAILED_STATE
+{
+	integer_age+ * //EN Age
+	{
+		duration(mdetailed_status, mdHEALTHY), //EN Mother years in HEALTHY state decimals=2
+		duration(mdetailed_status, mdINFECTED), //EN Mother years in INFECTED state decimals=2
+		duration(mdetailed_status, mdSYMPTOMS), //EN Mother years in SYMPTOMS state decimals=2
+		duration(mdetailed_status, mdDIAGNOSED), //EN Mother years in DIAGNOSED state decimals=2
+		duration(mdetailed_status, mdDIAGSYMP), //EN Mother years in DIAGSYMP state decimals=2
+		duration(mdetailed_status, mdTREATED), //EN Mother years in TREATED state decimals=2
+		duration(mdetailed_status, mdSTOPPED) //EN Mother years in STOPPED state decimals=2
+	} //EN Membership counts
+};
