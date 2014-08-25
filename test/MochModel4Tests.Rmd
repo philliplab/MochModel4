@@ -1307,9 +1307,43 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+## Child - General
+
+```{r Child Gender Ratios, results='asis'}
+ctest_name <- 'Child Gender Ratios'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = 'The input and output gender ratios of the children must be similar. The input ratio over the output ratio must be between 0.975 and 1.025.')
+```
+```{r, warning=FALSE, message=FALSE}
+cgd <- as.data.frame(new_RTable('ChildGenderDistribution', db_channels[[cscenarios]]))
+cgd <- subset(cgd, metrics == 'Number of Children')[,1:3]
+num_female <- subset(cgd, gender == 'F', select = 'Value')
+stopifnot(nrow(num_female) == 1)
+num_female <- num_female[1,1]
+total_children <- sum(cgd$Value)
+output_female_percentage <- num_female / total_children
+
+input_female_percentage <- as.data.frame(new_PTable('GenderChildFemaleProportion', db_channels[[cscenarios]]))
+stopifnot(nrow(input_female_percentage) == 1)
+input_female_percentage <- input_female_percentage[1,1] 
+
+print(list(input_female_percentage = input_female_percentage,
+           output_female_percentage = output_female_percentage))
+
+in_out_ratio <- output_female_percentage / input_female_percentage  
+result <- in_out_ratio > 0.975 & in_out_ratio < 1.025
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
 
 
-## Child
 
 ## Summary of All Tests
 Model Version: `r ModelVersion`
