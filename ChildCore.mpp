@@ -30,6 +30,7 @@ actor Child            //EN Individual
 	void Mother_Treat();
 	void Mother_Stop();
 	void Mother_Symptoms();
+	void Mother_Diagnose();
 	void Start();
 	void Finish();
 };
@@ -74,6 +75,16 @@ void Child::Mother_Symptoms()
 		mdetailed_status = mdSYMPTOMS;
 	};
 	mother_showing_symptoms = TRUE;
+};
+
+void Child::Mother_Diagnose()
+{
+	if (mother_showing_symptoms == TRUE){
+		mdetailed_status = mdDIAGSYMP;
+	} else {
+		mdetailed_status = mdDIAGNOSED;
+	};
+	mother_diagnosed = TRUE;
 };
 
 void Child::Start()
