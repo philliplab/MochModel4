@@ -226,6 +226,15 @@ scenarios_to_create <- list(
              dat_sub = list('1' = list(from = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{1, 1\\}',
                                        to = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{0.5, 1\\}')
                             )
+             ),
+  '16' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'NoChildMortality'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'MortalityChildMultiplier = 1',
+                                       to = 'MortalityChildMultiplier = 0')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -235,7 +244,7 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
 #available_scenarios
-#run_scenario(td, available_scenarios[[6]]$scex, td, 'MochModel4.exe')
+#run_scenario(td, available_scenarios[[7]]$scex, td, 'MochModel4.exe')
 
 all_results <- list_all_results(td)
 
@@ -1390,18 +1399,48 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ```{r Child Mortality, results='asis'}
 ctest_name <- 'Child Mortality'
-cscenarios <- 'Base'
+cscenarios <- c('Base', 'NoChildMortality')
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = 'Child output mortality must match child input mortality')
+                         description = 'Child output mortality must match child input mortality. There is something a little off here. Will come back to it later.')
 ```
 ```{r, warning=FALSE, message=FALSE}
-cs <- as.data.frame(new_RTable('ChildSurvival', db_channels[[cscenarios]]))
-cs <- subset(cs, metrics == 'Child Years')[,1:4]
-p <- ggplot(cs, aes(x = `Integer Age`, y = `Value`, color = gender)) +
-            geom_line()
-print(p)
+# TODO: Debug what the overlaid mortality is not working.
+#healthy_mort_function <- function(ages, gender){
+#  healthy_mortality <- as.data.frame(new_PTable("HIVFreeMortality", db_channels[[cscenario]]))
+#  model_time <- as.data.frame(new_PTable("ModelTime", db_channels[[cscenario]]))[1,1]
+#  stopifnot(nrow(healthy_mortality) >= 90)
+#  healthy_mortality <- subset(healthy_mortality, `ASSA model Time Range` == model_time &
+#                                        GENDER == gender)
+#  all_results <- numeric(0)
+#  for (age in ages){
+#    age_int <- floor(age)
+#    if (age_int <= 0) { age <- 0}
+#    y <- prod(1 - healthy_mortality[healthy_mortality$`Mortality Life Range` <= age_int,]$Value)
+#    all_results <- c(all_results, y)
+#  }
+#  return(all_results)
+#}
+#all_results <- NULL
+#gender <- 'M'
+#age <- 1
+#cscenario <- 'Base'
+#print(all_results)
+for (cscenario in cscenarios){
+  cs <- as.data.frame(new_RTable('ChildSurvival', db_channels[[cscenario]]))
+  cs <- subset(cs, metrics == 'Child Years')[,1:4]
+  cs$Value[cs$gender == 'F'] <- cs$Value[cs$gender == 'F'] / max(cs$Value[cs$gender == 'F'])
+  cs$Value[cs$gender == 'M'] <- cs$Value[cs$gender == 'M'] / max(cs$Value[cs$gender == 'M'])
+  p <- ggplot(cs, aes(x = `Integer Age`, y = `Value`, color = gender)) +
+              geom_line()
+#  p <- p + stat_function(fun = healthy_mort_function, color = 'black', 
+#                         arg = list(gender = 'M'))
+#  p <- p + stat_function(fun = healthy_mort_function, color = 'green', 
+#                         arg = list(gender = 'F'))
+  print(cscenario)
+  print(p)
+}
 
 result <- 'Manual'
 ```

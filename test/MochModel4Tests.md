@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.10    0.12  145.64
+##    0.06    0.19  168.99
 ```
 
 ```
@@ -27,7 +27,7 @@ output: html_document
 ```
 
 ```
-## [1] 13
+## [1] 14
 ```
 
 # Tests for Model Version 42
@@ -804,12 +804,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 51 2014-08-25 10:35:20 121eeb9f8fd66929a35d038cce456e59
-## 52 2014-08-25 10:37:43 121eeb9f8fd66929a35d038cce456e59
-## 53 2014-08-25 10:47:15 121eeb9f8fd66929a35d038cce456e59
 ## 54 2014-08-25 10:57:26 121eeb9f8fd66929a35d038cce456e59
 ## 55 2014-08-25 11:05:12 121eeb9f8fd66929a35d038cce456e59
 ## 56 2014-08-25 11:14:02 121eeb9f8fd66929a35d038cce456e59
+## 57 2014-08-25 11:25:37 76aa7994cbefad1163efba5606cb7b89
+## 58 2014-08-25 11:50:18 76aa7994cbefad1163efba5606cb7b89
+## 59 2014-08-25 11:56:38 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -864,10 +864,23 @@ A plot to show the SES ratios of the children in different circumstances
 
 Scenario(s): Base
 
+ Scenario(s): NoChildMortality
+
 Child output mortality must match child input mortality
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70.png) 
+
+```
+## [1] "Base"
+```
+
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-701.png) 
+
+```
+## [1] "NoChildMortality"
+```
+
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-702.png) 
   
 
 **Result: Manual**  
@@ -923,4 +936,4 @@ Model Version: 42
 |[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
-|[Child Mortality](#ChildMortality)|Manual|Base 
+|[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 

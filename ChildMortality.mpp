@@ -54,6 +54,7 @@ actor Child            //EN Individual
 	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
 };
 
+/*
 double CLifeTableDraw(double x, int time_indx, GENDER gender_internal)
 {
 	int indx = -1;
@@ -72,14 +73,36 @@ double CLifeTableDraw(double x, int time_indx, GENDER gender_internal)
 	};
 	return(indx + ((x - lx) / (prev_lx - lx)));
 };
+*/
+
+double CLifeTableDraw(double x, GENDER gender_internal)
+{
+	if (HealthyMortalityMotherMultiplier <= 0){
+		return(1000*1000);
+	};
+	int indx = -1;
+	double prev_lx = 1;
+	double lx = 1;
+	while (x <= lx)
+	{
+		indx++;
+		prev_lx = lx;
+		lx = prev_lx * (1-HIVFreeMortality[gender_internal][indx][ModelTime] * HealthyMortalityMotherMultiplier);
+	};
+	if (indx == -1){
+		indx = 0;
+	}; // Small correction for when mother dies between ages 0 and 1.
+	return(indx + ((x - lx) / (prev_lx - lx)));
+};
+
 
 TIME Child::timeMortalityEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 	double draw = RandUniform(18);
 	if (MortalityChildMultiplier > 0){
-		tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender) / MortalityChildMultiplier;
-	}
+		tEventTime = CLifeTableDraw(draw, gender) / MortalityChildMultiplier;
+	};
 	tEventTime = WAIT(tEventTime);
 	return tEventTime;
 };
