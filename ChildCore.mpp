@@ -21,10 +21,13 @@ actor Child            //EN Individual
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
 	MDETAILED_STATE mdetailed_status = {mdHEALTHY};
+	logical mother_showing_symptoms = {FALSE};
+	logical mother_diagnosed = {FALSE};
 
 	void Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses);
 	void Mother_Die();
 	void Mother_Infect();
+	void Mother_Treat();
 	void Start();
 	void Finish();
 };
@@ -45,6 +48,13 @@ void Child::Mother_Infect()
 {
 	mdeath_sched_status = mdsINFECTED;
 	mdetailed_status = mdINFECTED;
+};
+
+void Child::Mother_Treat()
+{
+	mdeath_sched_status = mdsTREATED;
+	mdetailed_status = mdTREATED;
+	mother_showing_symptoms = FALSE;
 };
 
 void Child::Start()

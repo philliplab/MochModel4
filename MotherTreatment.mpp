@@ -119,10 +119,10 @@ void Mother::TreatmentEvent()
 	mdeath_sched_status = mdsTREATED;
 	mdetailed_status = mdTREATED;
 	showing_symptoms = FALSE;
-/*	int nIndex = {-1};
+	int nIndex = {-1};
 	Child *prChild = {NULL};
 	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
 	{
 		prChild->Mother_Treat();
-	}*/
+	}
 };
