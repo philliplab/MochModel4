@@ -11,7 +11,7 @@ output: html_document
 
 
 
-
+# WARNING MODELS WERE NOT RERUN 
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.12  145.26
+##    0.04    0.11    4.06
 ```
 
 ```
@@ -804,16 +804,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 40 2014-08-23 22:00:31 fa542369f4681acfe3803d2c36098cb6
-## 41 2014-08-23 22:06:57 eea17b2e2cdfa998df426002a767a0e7
 ## 42 2014-08-24 09:50:11 eea17b2e2cdfa998df426002a767a0e7
 ## 43 2014-08-25 08:39:19 6722bd5290346829332959b7c49a6aff
 ## 44 2014-08-25 08:58:52 6722bd5290346829332959b7c49a6aff
 ## 45 2014-08-25 09:12:53 eea17b2e2cdfa998df426002a767a0e7
+## 46 2014-08-25 09:39:16 eea17b2e2cdfa998df426002a767a0e7
+## 47 2014-08-25 09:42:36 eea17b2e2cdfa998df426002a767a0e7
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -841,15 +841,36 @@ The input and output gender ratios of the children must be similar. The input ra
 ---
 
 
+#### <a name="ChildSESRatios"></a>Child SES Ratios
+
+Scenario(s): Base
+
+Currently the only aspect of mothers that can be affected by SES is fertility. As long as this is true, one can construct simple tests to compare input and output SES fertility rates. However, if for example, the mother mortality is also affected by SES, then this test will have to be rewritten.
+
+[To Summary Table](#summary_tab_link)  
+
+```
+## $input_high_percentage
+## [1] 0.5
+## 
+## $output_high_percentage
+## [1] 0.4937
+```
+  
+
+**Result: TRUE**  
+
+---
+
 
 ## Summary of All Tests
 Model Version: 41
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
+|FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|1|3|13|15| 
+|3|13|1|16| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -885,5 +906,6 @@ Model Version: 41
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
+|[Child SES Ratios](#ChildSESRatios)|TRUE|Base 
