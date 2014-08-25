@@ -8,6 +8,10 @@ An arbitrarily selected value.
 	Arbitrarily chosen
 */
 	double GenderChildFemaleProportion = 0.5; //EN The proportion of children that are female
+/* NOTE (MortalityChildMultiplier, EN)
+	A value of 1 has no effect
+*/
+	double MortalityChildMultiplier = 1; //EN Multiplier to easily change child mortality
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */

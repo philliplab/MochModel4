@@ -44,6 +44,10 @@
 	until the value of the curve reaches the randomly drawn number.
 	*/
 
+parameters
+{
+	double MortalityChildMultiplier; //EN Multiplier to easily change child mortality
+};
 
 actor Child            //EN Individual
 {
@@ -73,8 +77,9 @@ TIME Child::timeMortalityEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 	double draw = RandUniform(18);
-	tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender);
-//	tEventTime = 40;
+	if (MortalityChildMultiplier > 0){
+		tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender) / MortalityChildMultiplier;
+	}
 	tEventTime = WAIT(tEventTime);
 	return tEventTime;
 };
