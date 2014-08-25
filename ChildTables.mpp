@@ -23,3 +23,12 @@ table Child ChildSESDistribution //EN The SES ratio of the children
 		unit //EN Number of Children
 	}
 };
+
+table Child ChildSurvival //EN Number of children alive by age
+[alive == TRUE]
+{
+	integer_age*
+	{
+		duration() //EN Child Years
+	}
+};

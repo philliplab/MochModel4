@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.09    0.14  163.93
+##    0.15    0.11  158.72
 ```
 
 ```
@@ -804,16 +804,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 43 2014-08-25 08:39:19 6722bd5290346829332959b7c49a6aff
 ## 44 2014-08-25 08:58:52 6722bd5290346829332959b7c49a6aff
 ## 45 2014-08-25 09:12:53 eea17b2e2cdfa998df426002a767a0e7
 ## 46 2014-08-25 09:39:16 eea17b2e2cdfa998df426002a767a0e7
 ## 47 2014-08-25 09:42:36 eea17b2e2cdfa998df426002a767a0e7
 ## 48 2014-08-25 09:57:33 121eeb9f8fd66929a35d038cce456e59
+## 49 2014-08-25 10:20:17 121eeb9f8fd66929a35d038cce456e59
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -860,14 +860,16 @@ A plot to show the SES ratios of the children in different circumstances
 ---
 
 
+
+
 ## Summary of All Tests
 Model Version: 41
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
+|FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|1|3|14|15| 
+|3|14|1|15| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -903,6 +905,6 @@ Model Version: 41
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
