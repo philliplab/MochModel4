@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.13    0.12  132.50
+##    0.14    0.12  139.51
 ```
 
 ```
@@ -804,16 +804,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 37 2014-08-22 16:02:36 fa542369f4681acfe3803d2c36098cb6
 ## 38 2014-08-23 21:39:07 fa542369f4681acfe3803d2c36098cb6
 ## 39 2014-08-23 21:49:12 fa542369f4681acfe3803d2c36098cb6
 ## 40 2014-08-23 22:00:31 fa542369f4681acfe3803d2c36098cb6
 ## 41 2014-08-23 22:06:57 eea17b2e2cdfa998df426002a767a0e7
 ## 42 2014-08-24 09:50:11 eea17b2e2cdfa998df426002a767a0e7
+## 43 2014-08-25 08:39:19 6722bd5290346829332959b7c49a6aff
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -826,9 +826,9 @@ Model Version: 41
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|13|1|14| 
+|1|3|13|14| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -864,4 +864,4 @@ Model Version: 41
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 

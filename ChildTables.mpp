@@ -6,3 +6,11 @@ table Child MotherAgeAtBirth //EN The age of the mothers at birth of children
 		unit //EN Number of Mothers
 	}
 };
+
+table Child ChildGenderDistribution //EN The gender ratio of the children
+{
+	gender*
+	{
+		unit //EN Number of Children
+	}
+};
