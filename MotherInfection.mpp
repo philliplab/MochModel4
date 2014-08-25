@@ -148,4 +148,11 @@ void Mother::InfectionEvent()
     infected_death_time = age + infectedMortalityTimeCalc(inf_mortality_draw, InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi[vdp_age_at_infection]);
 
 	infected_symptoms_time = age + infectedSymptomsTimeCalc(inf_mortality_draw, InfectedMortalityMotherPhi[vdp_age_at_infection]);
+
+	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Infect();
+	}
 };

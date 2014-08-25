@@ -24,6 +24,7 @@ actor Child            //EN Individual
 
 	void Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses);
 	void Mother_Die();
+	void Mother_Infect();
 	void Start();
 	void Finish();
 };
@@ -38,6 +39,12 @@ void Child::Mother_Die()
 {
 	mdeath_sched_status = mdsDEAD;
 	mdetailed_status = mdDEAD;
+};
+
+void Child::Mother_Infect()
+{
+	mdeath_sched_status = mdsINFECTED;
+	mdetailed_status = mdINFECTED;
 };
 
 void Child::Start()
