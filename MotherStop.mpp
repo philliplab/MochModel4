@@ -35,10 +35,10 @@ void Mother::StopEvent()
 	mdeath_sched_status = mdsSTOPPED;
 	mdetailed_status = mdSTOPPED;
 	showing_symptoms = FALSE;
-/*	int nIndex = {-1};
+	int nIndex = {-1};
 	Child *prChild = {NULL};
 	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
 	{
-		prChild->Mother_Treat();
-	}*/
+		prChild->Mother_Stop();
+	}
 };

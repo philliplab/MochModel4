@@ -43,15 +43,6 @@ TIME Mother::timeSymptomEvent()
 
 void Mother::SymptomEvent()
 {
-/*	disease_status_detailed = SYMPTOMS_;
-	diagnosed = TRUE;
-	int nIndex = {-1};
-	Child *prChild = {NULL};
-	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
-	{
-		prChild->Mother_Symptoms();
-	}
-*/
 	vdp_age_at_symptoms = vdp_age_int;
 	age_at_symptoms = age;
 	showing_symptoms = TRUE;
@@ -60,4 +51,10 @@ void Mother::SymptomEvent()
 	} else {
 		mdetailed_status = mdSYMPTOMS;
 	};
+	int nIndex = {-1};
+	Child *prChild = {NULL};
+	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
+	{
+		prChild->Mother_Symptoms();
+	}
 };
