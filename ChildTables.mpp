@@ -14,3 +14,12 @@ table Child ChildGenderDistribution //EN The gender ratio of the children
 		unit //EN Number of Children
 	}
 };
+
+table Child ChildSESDistribution //EN The SES ratio of the children
+	[alive == FALSE]
+{
+	ses*
+	{
+		unit //EN Number of Children
+	}
+};
