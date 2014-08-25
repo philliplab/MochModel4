@@ -143,23 +143,6 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	double	StoppedMortalityMotherPhi[VAN_DER_PAAL_INDX] = {
 		1000, 1, 0.8579882, 0.7159763, 0.7159763
 	};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* NOTE (TreatedMortalityMotherb6m, EN)
 	From ASSA model
 */
@@ -212,8 +195,6 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	double TreatmentCoverageMother[MORT_TIME] = {//EN The treatment times over the model time
 		(41) 0.6,
 	};
-
-
 /* NOTE ( SymptomsMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
 		Figure 3 from the Van der Paal article.

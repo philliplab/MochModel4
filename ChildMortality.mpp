@@ -73,8 +73,8 @@ TIME Child::timeMortalityEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 	double draw = RandUniform(18);
-//	tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender);
-	tEventTime = 40;
+	tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender);
+//	tEventTime = 40;
 	tEventTime = WAIT(tEventTime);
 	return tEventTime;
 };

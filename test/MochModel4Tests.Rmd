@@ -1398,9 +1398,8 @@ test_results <- new_test(test_results,
 ```
 ```{r, warning=FALSE, message=FALSE}
 cs <- as.data.frame(new_RTable('ChildSurvival', db_channels[[cscenarios]]))
-cs <- subset(cs, metrics == 'Child Years')[,1:3]
-
-p <- ggplot(cs, aes(x = `Integer Age`, y = `Value`)) +
+cs <- subset(cs, metrics == 'Child Years')[,1:4]
+p <- ggplot(cs, aes(x = `Integer Age`, y = `Value`, color = gender)) +
             geom_line()
 print(p)
 
