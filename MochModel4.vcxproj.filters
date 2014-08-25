@@ -68,6 +68,9 @@
     <None Include="ChildTables.mpp">
       <Filter>Modules %28mpp%29</Filter>
     </None>
+    <None Include="ChildMortality.mpp">
+      <Filter>Modules %28mpp%29</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MochModel4.cpp">
@@ -116,6 +119,9 @@
       <Filter>C++ Files</Filter>
     </ClCompile>
     <ClCompile Include="ChildTables.cpp">
+      <Filter>C++ Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildMortality.cpp">
       <Filter>C++ Files</Filter>
     </ClCompile>
   </ItemGroup>

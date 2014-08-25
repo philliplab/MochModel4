@@ -1,0 +1,87 @@
+
+//LABEL(ChildMortality, EN) Mortality function for Children
+
+/* NOTE(ChildMortality, EN)
+	This module contains all the mortality functions for the children. 
+	Since the model assumes that children connot become infected,
+	this submodel is simpler than the mother's mortality submodel.
+
+	- Data requirements
+
+    The q[x,y] values (probability of dying between ages x and x+1 given that you
+	survived until age x in the year y) by gender and time (model year). These
+	mortality rates must exclude mortality due to HIV. This
+	is the same as for the mothers.
+
+	- Implementation Details
+
+	Using the mortality data, a survival curve S(a) is constructed for each child.
+	The time of the births of the children are not identical as in the case
+	of the mothers. Hence all children will not have the same survival curves.
+	For each child a specific survival curve is constructed based on when
+	the child was born.
+
+	The curve is constructed by setting the survival probability equal to 1
+	at age 0. The value of the survival curve at age 1 is then set to
+	S(1) = S(0) * (1 - q[0,x]) where x is the year in which the child
+	was born. A straight line was then used to connect
+	S(0) to S(1). Similarly S2) = S(1) * (1 - q[1, x+1]). 
+	This process was continued until the value of the
+	survival curve reached 0. 
+
+	Note that the mortality data only covers a 40 year time period. It is assumed
+	that mortality for all times after 40 years is the same as the mortality at time 40 years.
+	For example, S(42) = S(41) * (1 - q[41, 40]) and
+	S(50) = S(49) * (1 - q[49, 40]).
+	
+	To assign a time of death using this curve, the following is done:
+	A random uniform number is drawn for a child. This random number is
+	placed on the y axis of the survival curve and the age of death
+	is read off from the x-axis.
+
+	The actual implementation is a slight optimization of the above process.
+	The random uniform number is draw first and the curve is then constructed
+	until the value of the curve reaches the randomly drawn number.
+	*/
+
+
+actor Child            //EN Individual
+{
+	event timeMortalityEvent, MortalityEvent;	//EN Mortality event
+};
+
+double CLifeTableDraw(double x, int time_indx, GENDER gender_internal)
+{
+	int indx = -1;
+	double prev_lx = 1;
+	double lx = 1;
+	while (x <= lx)
+	{
+		indx++;
+		time_indx++;
+		if (time_indx > 40)
+		{
+			time_indx = 40;
+		};
+		prev_lx = lx;
+		lx = prev_lx * (1 - HIVFreeMortality[gender_internal][indx][time_indx]);
+	};
+	return(indx + ((x - lx) / (prev_lx - lx)));
+};
+
+TIME Child::timeMortalityEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	double draw = RandUniform(18);
+//	tEventTime = CLifeTableDraw(draw, mother_age_at_birth, gender);
+	tEventTime = 40;
+	tEventTime = WAIT(tEventTime);
+	return tEventTime;
+};
+
+// The implement function of MortalityEvent
+void Child::MortalityEvent()
+{
+	alive = FALSE;
+	Finish();
+}

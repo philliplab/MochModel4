@@ -11,7 +11,7 @@ output: html_document
 
 
 
-# WARNING MODELS WERE NOT RERUN 
+
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.12    0.11    4.32
+##    0.14    0.08  117.67
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 13
 ```
 
-# Tests for Model Version 41
+# Tests for Model Version 42
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -804,12 +804,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 47 2014-08-25 09:42:36 eea17b2e2cdfa998df426002a767a0e7
 ## 48 2014-08-25 09:57:33 121eeb9f8fd66929a35d038cce456e59
 ## 49 2014-08-25 10:20:17 121eeb9f8fd66929a35d038cce456e59
 ## 50 2014-08-25 10:29:53 121eeb9f8fd66929a35d038cce456e59
 ## 51 2014-08-25 10:35:20 121eeb9f8fd66929a35d038cce456e59
 ## 52 2014-08-25 10:37:43 121eeb9f8fd66929a35d038cce456e59
+## 53 2014-08-25 10:47:15 121eeb9f8fd66929a35d038cce456e59
 ```
   
 
@@ -878,7 +878,7 @@ Child output mortality must match child input mortality
 
 
 ## Summary of All Tests
-Model Version: 41
+Model Version: 42
 
 #### Summary of the Test Results 
 
