@@ -1452,6 +1452,47 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
+```{r Child MDEATH_SCHED State Membership tracking, results='asis'}
+ctest_name <- 'Child MDEATH_SCHED State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE")
+```
+```{r}
+p <- plot_state_membership("ChildMDSMembershipxAge")
+print(p)
+result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
+```{r Child MDETAILED State Membership tracking, results='asis'}
+ctest_name <- 'Child MDETAILED State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE")
+```
+```{r}
+p <- plot_state_membership("ChildMDMembershipxAge")
+print(p)
+result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
 
 
 ## Summary of All Tests
@@ -1461,3 +1502,4 @@ Model Version: `r ModelVersion`
 print_test_results(test_results)
 odbcCloseAll()
 ```
+

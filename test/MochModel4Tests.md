@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.06    0.19  168.99
+##    0.20    0.09  167.52
 ```
 
 ```
@@ -804,12 +804,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 54 2014-08-25 10:57:26 121eeb9f8fd66929a35d038cce456e59
 ## 55 2014-08-25 11:05:12 121eeb9f8fd66929a35d038cce456e59
 ## 56 2014-08-25 11:14:02 121eeb9f8fd66929a35d038cce456e59
 ## 57 2014-08-25 11:25:37 76aa7994cbefad1163efba5606cb7b89
 ## 58 2014-08-25 11:50:18 76aa7994cbefad1163efba5606cb7b89
 ## 59 2014-08-25 11:56:38 76aa7994cbefad1163efba5606cb7b89
+## 60 2014-08-25 14:21:14 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -866,7 +866,7 @@ Scenario(s): Base
 
  Scenario(s): NoChildMortality
 
-Child output mortality must match child input mortality
+Child output mortality must match child input mortality. There is something a little off here. Will come back to it later.
 
 [To Summary Table](#summary_tab_link)  
 
@@ -888,6 +888,36 @@ Child output mortality must match child input mortality
 ---
 
 
+#### <a name="ChildMDEATH_SCHEDStateMembershiptracking"></a>Child MDEATH_SCHED State Membership tracking
+
+Scenario(s): All
+
+Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
+
+[To Summary Table](#summary_tab_link)  
+
+![plot of chunk unnamed-chunk-73](figure/unnamed-chunk-73.png) 
+  
+
+**Result: Manual**  
+
+---
+
+
+#### <a name="ChildMDETAILEDStateMembershiptracking"></a>Child MDETAILED State Membership tracking
+
+Scenario(s): All
+
+Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-75](figure/unnamed-chunk-75.png) 
+  
+
+**Result: Manual**  
+
+---
+
 
 
 ## Summary of All Tests
@@ -897,7 +927,7 @@ Model Version: 42
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|15|1|15| 
+|3|17|1|15| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -937,3 +967,6 @@ Model Version: 42
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
+|[Child MDEATH_SCHED State Membership tracking](#ChildMDEATH_SCHEDStateMembershiptracking)|Manual|All 
+|[Child MDETAILED State Membership tracking](#ChildMDETAILEDStateMembershiptracking)|Manual|All 
+
