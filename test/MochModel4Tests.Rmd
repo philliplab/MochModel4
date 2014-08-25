@@ -217,6 +217,15 @@ scenarios_to_create <- list(
              dat_sub = list('1' = list(from = 'FertilityMotherGestationPeriod = 1',
                                        to = 'FertilityMotherGestationPeriod = 0')
                             )
+             ),
+  '15' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'LowFertilityInHighSES'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{1, 1\\}',
+                                       to = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{0.5, 1\\}')
+                            )
              )
   )
 for (i in scenarios_to_create){
@@ -226,7 +235,7 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
 #available_scenarios
-#run_scenario(td, available_scenarios[[5]]$scex, td, 'MochModel4.exe')
+#run_scenario(td, available_scenarios[[6]]$scex, td, 'MochModel4.exe')
 
 all_results <- list_all_results(td)
 
@@ -1346,30 +1355,30 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ```{r Child SES Ratios, results='asis'}
 ctest_name <- 'Child SES Ratios'
-cscenarios <- 'Base'
+cscenarios <- c('Base', 'LowFertilityInHighSES', 'NoHIV')
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = 'Currently the only aspect of mothers that can be affected by SES is fertility. As long as this is true, one can construct simple tests to compare input and output SES fertility rates. However, if for example, the mother mortality is also affected by SES, then this test will have to be rewritten.')
+                         description = 'A plot to show the SES ratios of the children in different circumstances')
 ```
 ```{r, warning=FALSE, message=FALSE}
-csd <- as.data.frame(new_RTable('ChildSESDistribution', db_channels[[cscenarios]]))
-csd <- subset(csd, metrics == 'Number of Children')[,1:3]
-num_high <- subset(csd, `Socioeconomic Status` == 'HIGH', select = 'Value')
-stopifnot(nrow(num_high) == 1)
-num_high <- num_high[1,1]
-total_children <- sum(csd$Value)
-output_high_percentage <- num_high / total_children
-
-input_high_percentage <- as.data.frame(new_PTable('HighSESMotherPercentage', db_channels[[cscenarios]]))
-stopifnot(nrow(input_high_percentage) == 1)
-input_high_percentage <- input_high_percentage[1,1] 
-
-print(list(input_high_percentage = input_high_percentage,
-           output_high_percentage = output_high_percentage))
-
-in_out_ratio <- output_high_percentage / input_high_percentage  
-result <- in_out_ratio > 0.975 & in_out_ratio < 1.025
+all_data <- NULL
+for (cscenario in cscenarios){
+  csd <- as.data.frame(new_RTable('ChildSESDistribution', db_channels[[cscenario]]))
+  csd <- subset(csd, metrics == 'Number of Children')[,1:3]
+  num_high <- subset(csd, `Socioeconomic Status` == 'HIGH', select = 'Value')
+  stopifnot(nrow(num_high) == 1)
+  num_high <- num_high[1,1]
+  total_children <- sum(csd$Value)
+  output_high_percentage <- num_high / total_children
+  all_data <- rbind(all_data,
+                    data.frame(scenario = cscenario,
+                               High_SES = output_high_percentage))
+}
+p <- ggplot(all_data, aes(y = High_SES, x = scenario)) +
+  geom_bar(stat = 'identity')
+print(p)
+result <- "Manual" 
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,

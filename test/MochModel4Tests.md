@@ -11,7 +11,7 @@ output: html_document
 
 
 
-# WARNING MODELS WERE NOT RERUN 
+
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.04    0.11    4.06
+##    0.09    0.14  163.93
 ```
 
 ```
@@ -27,7 +27,7 @@ output: html_document
 ```
 
 ```
-## [1] 12
+## [1] 13
 ```
 
 # Tests for Model Version 41
@@ -804,16 +804,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 42 2014-08-24 09:50:11 eea17b2e2cdfa998df426002a767a0e7
 ## 43 2014-08-25 08:39:19 6722bd5290346829332959b7c49a6aff
 ## 44 2014-08-25 08:58:52 6722bd5290346829332959b7c49a6aff
 ## 45 2014-08-25 09:12:53 eea17b2e2cdfa998df426002a767a0e7
 ## 46 2014-08-25 09:39:16 eea17b2e2cdfa998df426002a767a0e7
 ## 47 2014-08-25 09:42:36 eea17b2e2cdfa998df426002a767a0e7
+## 48 2014-08-25 09:57:33 121eeb9f8fd66929a35d038cce456e59
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -845,20 +845,17 @@ The input and output gender ratios of the children must be similar. The input ra
 
 Scenario(s): Base
 
-Currently the only aspect of mothers that can be affected by SES is fertility. As long as this is true, one can construct simple tests to compare input and output SES fertility rates. However, if for example, the mother mortality is also affected by SES, then this test will have to be rewritten.
+ Scenario(s): LowFertilityInHighSES
+
+ Scenario(s): NoHIV
+
+A plot to show the SES ratios of the children in different circumstances
 
 [To Summary Table](#summary_tab_link)  
-
-```
-## $input_high_percentage
-## [1] 0.5
-## 
-## $output_high_percentage
-## [1] 0.4937
-```
+![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68.png) 
   
 
-**Result: TRUE**  
+**Result: Manual**  
 
 ---
 
@@ -868,9 +865,9 @@ Model Version: 41
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|13|1|16| 
+|1|3|14|15| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -906,6 +903,6 @@ Model Version: 41
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
-|[Child SES Ratios](#ChildSESRatios)|TRUE|Base 
+|[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
