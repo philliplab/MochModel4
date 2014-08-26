@@ -943,7 +943,7 @@ test_results <- new_test(test_results,
                          description = "A plot of the Ages at which mothers give birth. TODO: Turn this into a real test")
 ```
 ```{r, warning=FALSE, message=FALSE}
-maab <- as.data.frame(new_RTable("MotherAgeAtBirth", db_channels[[cscenarios]]))
+maab <- as.data.frame(new_RTable("ChildMotherAgeAtBirthDistribution", db_channels[[cscenarios]]))
 maab <- subset(maab, metrics == 'Number of Mothers')[,1:3]
 p <- ggplot(maab, aes(x = `Mother Age`, y = `Value`)) + 
   geom_bar(stat = 'identity') +
@@ -1470,7 +1470,7 @@ test_results <- new_test(test_results,
                          description = "Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE")
 ```
 ```{r}
-p <- plot_state_membership("ChildMDSMembershipxAge")
+p <- plot_state_membership("ChildMotherMDSMembershipxAge")
 print(p)
 result <- "Manual"
 ```
@@ -1491,7 +1491,7 @@ test_results <- new_test(test_results,
                          description = "Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE")
 ```
 ```{r}
-p <- plot_state_membership("ChildMDMembershipxAge")
+p <- plot_state_membership("ChildMotherMDMembershipxAge")
 print(p)
 result <- "Manual"
 ```

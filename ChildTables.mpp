@@ -1,7 +1,12 @@
-table Child MotherAgeAtBirth //EN The age of the mothers at birth of children
+/* ################################################################################
+The child distribution tables
+################################################################################ */
+
+table Child ChildMotherAgeAtBirthDistribution //EN The age of the mothers at birth of children
 	[mother_age_at_birth > 0]
 {
-	split(mother_age_at_birth, TEN_YEAR_BINS)+ * //EN Mother Age
+	split(mother_age_at_birth, TEN_YEAR_BINS)+ //EN Mother Age
+		* 
 	{
 		unit //EN Number of Mothers
 	}
@@ -9,7 +14,8 @@ table Child MotherAgeAtBirth //EN The age of the mothers at birth of children
 
 table Child ChildGenderDistribution //EN The gender ratio of the children
 {
-	gender*
+	gender
+		*
 	{
 		unit //EN Number of Children
 	}
@@ -18,28 +24,49 @@ table Child ChildGenderDistribution //EN The gender ratio of the children
 table Child ChildSESDistribution //EN The SES ratio of the children
 	[alive == FALSE]
 {
-	ses*
+	ses
+		*
 	{
 		unit //EN Number of Children
 	}
 };
 
-table Child ChildSurvival //EN Number of children alive by age
+table_group Child_Attribute_Distribution
+{
+	ChildMotherAgeAtBirthDistribution,
+	ChildGenderDistribution,
+	ChildSESDistribution
+};
+
+/* ################################################################################
+Child General tables
+################################################################################ */
+
+table Child ChildSurvival //EN Number of child years accrued in each age
 [alive == TRUE]
 {
-	gender*integer_age*
+	gender
+		*
+	integer_age
+		*
 	{
 		duration() //EN Child Years
 	}
+};
+
+table_group Child_General
+{
+	ChildSurvival
 };
 
 /* ################################################################################
 The State Membership tables
 ################################################################################ */
 
-table Child ChildMDSMembershipxAge //EN Membership of children's Mothers in the MDEATH_SCHED_STATE
+table Child ChildMotherMDSMembershipxAge //EN Membership of children's Mothers in the MDEATH_SCHED_STATE
 {
-	integer_age+ * //EN Age
+	integer_age+ //EN Age
+		*
 	{
 		duration(mdeath_sched_status, mdsHEALTHY), //EN Mother years in HEALTHY state decimals=2
 		duration(mdeath_sched_status, mdsINFECTED), //EN Mother years in INFECTED state decimals=2
@@ -49,9 +76,10 @@ table Child ChildMDSMembershipxAge //EN Membership of children's Mothers in the 
 	} //EN Membership counts
 };
 
-table Child ChildMDMembershipxAge //EN Membership of children's Mothers in the MDETAILED_STATE
+table Child ChildMotherMDMembershipxAge //EN Membership of children's Mothers in the MDETAILED_STATE
 {
-	integer_age+ * //EN Age
+	integer_age+ //EN Age
+		*
 	{
 		duration(mdetailed_status, mdHEALTHY), //EN Mother years in HEALTHY state decimals=2
 		duration(mdetailed_status, mdINFECTED), //EN Mother years in INFECTED state decimals=2
@@ -63,3 +91,10 @@ table Child ChildMDMembershipxAge //EN Membership of children's Mothers in the M
 		duration(mdetailed_status, mdDEAD) //EN Mother years in DEAD state decimals=2
 	} //EN Membership counts
 };
+
+table_group Child_State_Membership
+{
+	ChildMotherMDSMembershipxAge,
+	ChildMotherMDMembershipxAge
+};
+
