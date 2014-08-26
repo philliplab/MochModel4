@@ -4,7 +4,7 @@ partition TEN_YEAR_BINS
 };
 
 /* ##################################################################
-The Rates Tables
+The Mother Rates Tables
 ################################################################## */
 
 /*NOTE(MotherInfectionRates, EN)
@@ -173,8 +173,13 @@ MotherMortalityRates
 };
 
 /* ################################################################################
-The State Membership tables
+The Mother State Membership tables
 ################################################################################ */
+
+/* NOTE(MotherMDSMembershipxAge, EN)
+	The total number of years the mothers spent in the different states of the variable
+	that is used to schedule the death transition.
+*/
 
 table Mother MotherMDSMembershipxAge //EN Membership of Mothers in the MDEATH_SCHED_STATE
 {
@@ -186,6 +191,11 @@ table Mother MotherMDSMembershipxAge //EN Membership of Mothers in the MDEATH_SC
 		duration(mdeath_sched_status, mdsSTOPPED) //EN Mother years in STOPPED state decimals=2
 	} //EN Membership counts
 };
+
+/* NOTE(MotherMDMembershipxAge, EN)
+	The total number of years the mothers spent in the different states of the variable
+	that tracks the disease states that the mother can move through in detail.
+*/
 
 table Mother MotherMDMembershipxAge //EN Membership of Mothers in the MDETAILED_STATE
 {
@@ -199,6 +209,12 @@ table Mother MotherMDMembershipxAge //EN Membership of Mothers in the MDETAILED_
 		duration(mdetailed_status, mdTREATED), //EN Mother years in TREATED state decimals=2
 		duration(mdetailed_status, mdSTOPPED) //EN Mother years in STOPPED state decimals=2
 	} //EN Membership counts
+};
+
+table_group Mother_State_Membership
+{
+	MotherMDSMembershipxAge,
+	MotherMDMembershipxAge
 };
 
 /* ################################################################################
