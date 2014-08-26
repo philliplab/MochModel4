@@ -218,6 +218,42 @@ table_group Mother_State_Membership
 };
 
 /* ################################################################################
+The mother distribution tables
+################################################################################ */
+
+/* NOTE(MotherSESDistribution, EN)
+	Tracks the ratio of high and low SES mothers
+*/
+
+table Mother MotherSESDistribution //EN The SES distribution of the Mothers
+{
+	ses*
+	{
+		unit //EN Number of mother with given SES
+	}
+};
+
+/* NOTE (MotherParityDistribution, EN)
+	Tracks the number of children each mother had
+*/
+
+table Mother MotherParityDistribution //EN Number of children per mother
+[alive == FALSE]
+{
+	number_children+ //EN Number of Children
+	*
+	{
+		unit //EN Frequency
+	}	//EN Demographic characteristics
+};
+
+table_group Mother_Attribute_Distribution
+{
+	MotherSESDistribution,
+	MotherParityDistribution
+};
+
+/* ################################################################################
 Ungrouped tables
 ################################################################################ */
 
@@ -260,32 +296,6 @@ table Mother MotherTestForTreatmentChance //EN Mother Test for Treatment Chance 
 		value_in(treatment_chance) / value_in(alive) //EN Average Treatment Chance decimals=4
 
 	}
-};
-
-/* NOTE(MotherSESDistribution, EN)
-	Tracks the ratio of high and low SES mothers
-*/
-
-table Mother MotherSESDistribution //EN The SES distribution of the Mothers
-{
-	ses*
-	{
-		unit //EN Number of mother with given SES
-	}
-};
-
-/* NOTE (MotherParity, EN)
-	Tracks the number of children each mother had
-*/
-
-table Mother MotherParity //EN Number of children per mother
-[alive == FALSE]
-{
-	number_children+ //EN Number of Children
-	*
-	{
-		unit //EN Frequency
-	}	//EN Demographic characteristics
 };
 
 /* ################################################################################

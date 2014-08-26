@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.05    0.17  180.18
+##    0.09    0.13  174.47
 ```
 
 ```
@@ -365,7 +365,7 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 ---
 
 
-#### <a name="TreatmentCoverageRateCoverageBasedTransition"></a>Treatment Coverage Rate Coverage Based Transition
+#### <a name="TreatmentCoverageRateMatchesInputRate"></a>Treatment Coverage Rate Matches Input Rate
 
 Scenario(s): AllInfectedNoMortality
 
@@ -794,12 +794,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 63 2014-08-25 14:54:43 76aa7994cbefad1163efba5606cb7b89
 ## 64 2014-08-25 15:02:18 76aa7994cbefad1163efba5606cb7b89
 ## 65 2014-08-25 15:12:05 76aa7994cbefad1163efba5606cb7b89
 ## 66 2014-08-26 11:40:37 76aa7994cbefad1163efba5606cb7b89
 ## 67 2014-08-26 11:58:23 76aa7994cbefad1163efba5606cb7b89
 ## 68 2014-08-26 12:10:20 76aa7994cbefad1163efba5606cb7b89
+## 69 2014-08-26 13:42:44 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -932,7 +932,7 @@ Model Version: 43
 |[Symptomatic Percentage Diagnosis Rates matches inputs](#SymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
-|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
+|[Treatment Coverage Rate Matches Input Rate](#TreatmentCoverageRateMatchesInputRate)|Manual|AllInfectedNoMortality 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 

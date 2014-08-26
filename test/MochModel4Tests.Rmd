@@ -1004,7 +1004,7 @@ test_results <- new_test(test_results,
                          description = "Plot of number of children per mother. TODO: Convert into a real test")
 ```
 ```{r, warning=FALSE, message=FALSE}
-mp <- as.data.frame(new_RTable("MotherParity", db_channels[[cscenarios]]))
+mp <- as.data.frame(new_RTable("MotherParityDistribution", db_channels[[cscenarios]]))
 mp <- subset(mp, metrics == 'Frequency')[,1:3]
 p <- ggplot(mp, aes(x = `Number of Children`, y = `Value`)) + 
   geom_bar(stat = 'identity') +
