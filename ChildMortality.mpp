@@ -23,9 +23,9 @@
 
 	The curve is constructed by setting the survival probability equal to 1
 	at age 0. The value of the survival curve at age 1 is then set to
-	S(1) = S(0) * (1 - q[0,x]) where x is the year in which the child
-	was born. A straight line was then used to connect
-	S(0) to S(1). Similarly S2) = S(1) * (1 - q[1, x+1]). 
+	S(1) = S(0) * (1 - q[0,x]) where x is the model year. 
+	A straight line was then used to connect
+	S(0) to S(1). Similarly S2) = S(1) * (1 - q[1, x]). 
 	This process was continued until the value of the
 	survival curve reached 0. 
 
@@ -47,6 +47,11 @@
 parameters
 {
 	double MortalityChildMultiplier; //EN Multiplier to easily change child mortality
+};
+
+parameter_group Child_Mortality
+{
+	MortalityChildMultiplier 
 };
 
 actor Child            //EN Individual
