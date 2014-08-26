@@ -53,6 +53,15 @@ parameters
 	double FertilityMotherGestationPeriod; //EN Period of infertility after childbirth.
 };
 
+parameter_group Mother_Fertility
+{
+  FertilityMotherSESMultipliers,
+  FertilityMotherParityMultipliers,
+  FertilityMotherRates,
+  FertilityMotherDiseaseMultipliers,
+  FertilityMotherGestationPeriod
+};
+
 /* NOTE( FertilityMotherSESMultipliers, EN)
 	Multipliers that affect a mother's fertility based on her socioeconomic status.
 */
