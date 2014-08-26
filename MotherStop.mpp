@@ -1,8 +1,23 @@
+//LABEL(MotherStop, EN) Functions that control the treatment cessation of the mothers
+
+/* NOTE(MotherStop, EN)
+	The implementation of treatment cessation mimics that of the ASSA model
+	as described in the ASSA model documentation.
+*/
+
+
 parameters
 {
 	double TreatmentCessationMotherb6m; //EN Probability of treatment cessation within 6 months of starting treatment
 	double TreatmentCessationMothera6m; //EN Annual Probability of treatment cessation after 6 months of starting treatment
 	double TreatmentCessationMotherMultiplier; //EN Multiplier for treatment cessation probability of Treated Mothers
+};
+
+parameter_group Mother_Treatment_Cessation
+{
+TreatmentCessationMotherb6m,
+TreatmentCessationMothera6m,
+TreatmentCessationMotherMultiplier
 };
 
 actor Mother
