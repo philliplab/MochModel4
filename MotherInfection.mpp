@@ -13,8 +13,20 @@
 	- Implementation details
 
 	Upon birth, the 'become infectible' event is scheduled 14 years into the future.
-	Once a person becomes infectible, infection is scheduled using the same
-	methodology used to schedule death from the healthy state
+	Once a person becomes infectible, infection is scheduled reading off the current
+	incidence for the mother and scheduling the event from an exponential distribution
+	so that the probability of becoming infectedin the given year matches the
+	incidence.
+
+	If the mother does not become infected within one year, then infection event is rescheduled
+	using the next years rate.
+
+	Because the diagnosis transitions require access to the times at which the
+	transitions from the infected state (either death or becoming symptomatic) will
+	occur, those times are also calculated in this module and set as
+	variables on the mother. The Mortality and Symptoms modules access those
+	values to schedule the relevant events.
+	
 */
 
 range INCIDENCE_LIFE
@@ -25,7 +37,7 @@ range INCIDENCE_LIFE
 /* NOTE (INCIDENCE_LIFE, EN)
     According to the ASSA model someone can only be infected
 	between the ages of 14 and 60. Hence this range is needed
-	to index the incidence rate table
+	to index the incidence rate table.
 */
 
 parameters
