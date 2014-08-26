@@ -191,7 +191,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
 	A value of 1 will cause the treatment coverage rate transition to be used
 */
-	double TreatmentTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use
+	double TreatmentTransitionMotherSwitch = 2; //EN A switch allowing to choose which transition to use
 /* NOTE (TreatmentCoverageMother, EN)
 	Arbitrarily chosen
 */

@@ -50,8 +50,9 @@ parameters
 /* NOTE (TreatmentTransitionMotherSwitch, EN)
 	This switch allows one to choose between scheduling access to treatment based on a weibull 
 	curve from the time since eligibility or based on the coverage rate.
-	Setting this value to zero will use the weibull rate.
+	Setting this value to two will use the weibull rate.
 	Setting this value to one will use the coverage based approach.
+	Setting this value to any other value will cause treatment to not get scheduled.
 */
 
 /* NOTE (TreatmentMotherShape, EN)
@@ -97,7 +98,7 @@ TIME Mother::timeTreatmentEvent()
 	TIME t_event_time = TIME_INFINITE;
 	if (mdetailed_status == mdDIAGSYMP)
 	{
-		if (TreatmentTransitionMotherSwitch == 0)
+		if (TreatmentTransitionMotherSwitch == 2)
 		{
 			if (TreatmentMotherMultiplier > 0){
 				t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;

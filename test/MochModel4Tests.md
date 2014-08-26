@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.14    0.11  174.91
+##    0.16    0.14  175.06
 ```
 
 ```
@@ -315,6 +315,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ## [1] "AllInfectedNoMortality"
+## [1] 1
 ```
 
 ![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
@@ -324,6 +325,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000012. 
 ##   
 ## [1] "WeibullTreatmentTransition"
+## [1] 2
 ```
 
 ![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
@@ -561,8 +563,6 @@ Plot of number of children per mother. TODO: Convert into a real test
 
 ---
 
-
-
 ## Mother - Scenarios
 
 ### Base
@@ -665,7 +665,6 @@ The percentage of mothers who ever became symptomatic in the base case should be
 **Result: TRUE**  
 
 ---
-
 
 ### OnlyInfectedMortality
 
@@ -804,12 +803,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 60 2014-08-25 14:21:14 76aa7994cbefad1163efba5606cb7b89
 ## 61 2014-08-25 14:35:24 76aa7994cbefad1163efba5606cb7b89
 ## 62 2014-08-25 14:45:07 76aa7994cbefad1163efba5606cb7b89
 ## 63 2014-08-25 14:54:43 76aa7994cbefad1163efba5606cb7b89
 ## 64 2014-08-25 15:02:18 76aa7994cbefad1163efba5606cb7b89
 ## 65 2014-08-25 15:12:05 76aa7994cbefad1163efba5606cb7b89
+## 66 2014-08-26 11:40:37 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -916,8 +915,6 @@ Plots showing the membership of children's mothers to the different states in th
 **Result: Manual**  
 
 ---
-
-
 
 ## Summary of All Tests
 Model Version: 43
