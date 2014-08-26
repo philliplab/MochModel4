@@ -8,7 +8,7 @@ The Rates Tables
 ################################################################## */
 
 /*NOTE(MotherInfectionRates, EN)
-	The incidence amongst mothers. Based on the ratio between the number of new infections
+	The incidence amongst mothers reported by age. Based on the ratio between the number of new infections
 	and the total time spent in the Healthy state by mothers of a certain age.
 */
 
@@ -23,7 +23,7 @@ table Mother MotherInfectionRates //EN Infection Rates amongst mothers
 };
 
 /*NOTE(MotherSymptomRates, EN)
-	The symptom development rates amongst mothers. Based on the ratio between the number of new 
+	The symptom development rates amongst mothers reported by age. Based on the ratio between the number of new 
 	mothers showing symptoms
 	and the total time spent in the Infected and Diagnosis states by mothers of a certain age.
 */
@@ -39,7 +39,11 @@ table Mother MotherSymptomRates //EN Symptom Rates amongst mothers
 };
 
 /*NOTE(MotherAsymptomaticDiagnosisRates, EN)
-	The diagnosis rates amongst asymptomatic mothers.
+	The diagnosis rates amongst asymptomatic mothers reported per age. This transition can work in two different ways. It
+	can either be based on a distribution of waiting times since infection, or one can specify the
+	percentage of mothers in this state that get diagnosed. To account for this second type of
+	transition an extra column is added to the rates table that tracks the number of mothers
+	who become infected.
 */
 
 table Mother MotherAsymptomaticDiagnosisRates //EN Diagnosis Rates amongst asymptomatic mothers
@@ -54,7 +58,11 @@ table Mother MotherAsymptomaticDiagnosisRates //EN Diagnosis Rates amongst asymp
 };
 
 /*NOTE(MotherSymptomaticDiagnosisRates, EN)
-	The diagnosis rates amongst symptomatic mothers.
+	The diagnosis rates amongst symptomatic mothers reported per age. This transition can work in two different ways. It
+	can either be based on a distribution of waiting times since becoming symptomatic, or one can specify the
+	percentage of mothers in this state that get diagnosed. To account for this second type of
+	transition an extra column is added to the rates table that tracks the number of mothers
+	who become symptomatic.
 */
 
 table Mother MotherSymptomaticDiagnosisRates //EN Diagnosis Rates amongst symptomatic mothers
@@ -69,8 +77,12 @@ table Mother MotherSymptomaticDiagnosisRates //EN Diagnosis Rates amongst sympto
 };
 
 /*NOTE(MotherTreatmentRates, EN)
-	The treatment rates amongst mothers. Based on the ratio between the number of eligible mothers
-	and the treated mothers.
+	The treatment rates amongst mothers reported by age. Based on the ratio between the number of eligible mothers
+	and the treated mothers. This transition can work in two different ways. It
+	can either be based on a distribution of waiting times since becoming eligible, or one can specify the
+	percentage of mothers in this state that get access to treatment. To account for this second type of
+	transition an extra column is added to the rates table that tracks the number of mothers
+	who become eligible.
 */
 
 table Mother MotherTreatmentRates //EN Treatment Rates amongst mothers
@@ -87,7 +99,7 @@ table Mother MotherTreatmentRates //EN Treatment Rates amongst mothers
 };
 
 /*NOTE(MotherTreatmentCessationRates, EN)
-	The treatment cessation rates amongst mothers. Based on the ratio between the number of treated mothers
+	The treatment cessation rates amongst mothers reported by age. Based on the ratio between the number of treated mothers
 	and the stopped mothers.
 */
 
@@ -103,7 +115,9 @@ table Mother MotherTreatmentCessationRates //EN Treatment Cessation Rates amongs
 
 /*NOTE(MotherFertilityRates, EN)
 	The fertility rates amongst mothers. Based on the ratio between the number of mothers
-	and the number of children born.
+	and the number of children born. Note that after each birth, a mother goes through a
+	period of infertility. This is to simulate the gestation period. This rate will cause
+	the fertility rates reported in this table to diverge from the input fertility rates.
 */
 
 table Mother MotherFertilityRates //EN Fertility Rates amongst Mothers
@@ -144,6 +158,18 @@ table Mother MotherMortalityRates //EN Mother Mortality Rates Table
 		duration(mdeath_sched_status, mdsSTOPPED), //EN Treatment Ceased mother years at risk
 		undergone_transition(mdeath_sched_status, mdsSTOPPED, mdsDEAD) / duration(mdeath_sched_status, mdsSTOPPED) //EN Treatment Ceased Mortality Rate decimals=4
 	} //EN 
+};
+
+table_group Mother_Rates_Tables
+{
+MotherInfectionRates,
+MotherSymptomRates,
+MotherAsymptomaticDiagnosisRates,
+MotherSymptomaticDiagnosisRates,
+MotherTreatmentRates,
+MotherTreatmentCessationRates,
+MotherFertilityRates,
+MotherMortalityRates 
 };
 
 /* ################################################################################
