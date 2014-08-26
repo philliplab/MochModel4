@@ -114,7 +114,7 @@ double infectedMortalityTimeCalc(double y, double kappa, double lambda, double p
 	TIME t_event_time = TIME_INFINITE;
 	if (InfectedMortalityMotherMultiplier > 0){
 		t_event_time = 0;
-		while (t_event_time <= MInfectionImmortalityPeriod){
+		while (t_event_time <= InfectedMortalityMotherImmortalityPeriod){
 			t_event_time = invWeibull_infect(y, kappa, lambda, phi) / InfectedMortalityMotherMultiplier;
 		};
 	};

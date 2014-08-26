@@ -2,7 +2,6 @@ parameters {
 /* NOTE ( ModelTime, EN )
 An arbitrarily selected value.
 */
-
 	int	ModelTime = 10; //EN Model Time
 /* NOTE ( GenderChildFemaleProportion, EN)
 	Arbitrarily chosen
@@ -60,11 +59,11 @@ An arbitrarily selected value.
 */
 
 	double	IncidenceMotherMultiplier = 1; //EN Incidence Multiplier
-/* NOTE(MInfectionImmortalityPeriod, EN)
+/* NOTE(InfectedMortalityMotherImmortalityPeriod, EN)
 	Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 */
 	
-	double MInfectionImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
+	double InfectedMortalityMotherImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
 /* NOTE ( InfectedMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */
@@ -172,7 +171,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 /* NOTE (TreatmentCessationMotherMultiplier, EN)
 	Chose 1 so that there is no deviation from the ASSA model
 */
-	double TreatmentCessationMotherMultiplier = 1; //EN Multiplier for Mortality of Treated Mothers
+	double TreatmentCessationMotherMultiplier = 1; //EN Multiplier to change the rate at which treatment is ceased 
 /* NOTE ( TreatmentMotherShape, EN )
 	Defaults to 1 so that an exponential distribution is used
 */

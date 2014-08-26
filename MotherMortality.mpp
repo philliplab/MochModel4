@@ -160,8 +160,8 @@ parameters
 	double TreatedMortalityMothera6m; //EN Annual Probability of dying after 6 months of starting treatment
 	double TreatedMortalityMotherMultiplier; //EN Multiplier for Mortality of Treated Mothers
 
-	double MInfectionImmortalityPeriod; //EN Length of Period of immortality immediately after infection
-	/* NOTE(MInfectionImmortalityPeriod, EN)
+	double InfectedMortalityMotherImmortalityPeriod; //EN Length of Period of immortality immediately after infection
+	/* NOTE(InfectedMortalityMotherImmortalityPeriod, EN)
 		The number of years a mother is immortal immediately after infection.
 		This is required to make the HealthyMortalityMotherMultiplier work.
 		This should be an extremely small number.
@@ -170,8 +170,21 @@ parameters
 
 
 parameter_group Mother_Mortality
-{ //EN Mothers' Mortality Parameters
-	InfectedMortalityMotherShape, InfectedMortalityMotherScale, InfectedMortalityMotherPhi
+{
+HIVFreeMortality,
+HealthyMortalityMotherMultiplier,
+InfectedMortalityMotherMultiplier,
+InfectedMortalityMotherShape,
+InfectedMortalityMotherScale,
+InfectedMortalityMotherPhi,
+StoppedMortalityMotherMultiplier,
+StoppedMortalityMotherShape,
+StoppedMortalityMotherScale,
+StoppedMortalityMotherPhi,
+TreatedMortalityMotherb6m,
+TreatedMortalityMothera6m,
+TreatedMortalityMotherMultiplier,
+InfectedMortalityMotherImmortalityPeriod
 };
 
 actor Mother            //EN Individual
@@ -243,7 +256,7 @@ double stoppedMortalityTime(double y, double kappa, double lambda, double phi){
 	TIME t_event_time = TIME_INFINITE;
 	if (StoppedMortalityMotherMultiplier > 0){
 		t_event_time = 0;
-		while (t_event_time <= MInfectionImmortalityPeriod){
+		while (t_event_time <= InfectedMortalityMotherImmortalityPeriod){
 			t_event_time = invWeibull(y, kappa, lambda, phi) / StoppedMortalityMotherMultiplier;
 		};
 	};
