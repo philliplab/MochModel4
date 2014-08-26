@@ -72,7 +72,7 @@ get_mother_time_to_event <- function(db_channel,
                                      start_event = 'birth',
                                      end_event = 'Death'){
   med <- as.data.frame(new_RTable("MotherEventDetails", db_channel))[,1:3]
-  med <- dcast(med, `split( actor_id, ACTOR_ID )` ~ metrics)
+  med <- dcast(med, `Actor ID` ~ metrics)
   if (start_event == 'birth'){
     start_times <- rep(0, nrow(med))
   } else {
