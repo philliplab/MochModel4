@@ -1,3 +1,54 @@
+//LABEL(MotherSymptoms, EN) Determines when a mother will start showing symptoms
+
+/* NOTE(MotherSymptoms, EN)
+	This module schedules and implements the event that transitions a mother
+	from the infected or diagnosed states into the symptoms state. It is
+	implemented in a similar fashion to the mortality from the infected
+	state for mothers. Note that this transition is not affected by diagnosis,
+	hence a mother can become infected, transition into diagnosed and then
+	transition into symptoms via the event scheduled upon the mothers entrance
+	into the infected state.
+
+	- Data requirements
+
+	The shape and scale parameters for the curve depicting the probability
+	of not showing symptoms by time since infection. For each age group, the
+	scale parameter is multiplied by a factor. This shifts the curve to the
+	right for younger mothers and to the left for older mothers. Lastly,
+	a parameter that captures the correlation between time to death since
+	infection and the time to symptoms since infection.
+
+	- Implementation details
+
+    The function depicting the probability
+	of not showing symptoms by time since infection is of the form: 
+	S(t) = (lambda) * pow(-log(t), 1/kappa) where
+	lambda is the scale parameter and kappa is the shape parameter 
+	and t is the time since infection.
+	Note that this is just 1 - the CDF of a weibull distribution.
+
+	Furthermore, to accomodate different age groups, the lamba parameter is multiplied by a factor 
+	called phi. Each of the different age groups used in the Van der Paal article must be given
+	a phi value.
+
+	To assign a time of symptoms using this curve, the following is done:
+	A random uniform number is drawn for a mother. This random number is
+	placed on the y axis of the survival curve and the age of death
+	is read off from the x-axis.
+
+	Lastly, to account for the correlation between time to death since
+	infection and the time to symptoms since infection, the following
+	mechanism was build. The random draw used to assign a time of death
+	upon infection is stored. When the transition into symptoms is scheduled,
+	a new random uniform number is drawn. These two random numbers are combined
+	into a new random number using the formula ((1 - MIMort_Symp_Corr) * symp_draw) + (MIMort_Symp_Corr * inf_mortality_draw).
+
+	A special note about the use of the phi factor. The Van der Paal article only provides survival
+	estimates for ages > 13. To ease the implementation, the first entry of the phi parameter corresponds
+	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
+	that will instruct the function to not assign a death date to people younger than 13.
+	Future versions of the model will include a better implemenation of this mechanism.
+*/
 
 parameters
 {
@@ -5,6 +56,14 @@ parameters
 	double SymptomsMotherScale; //EN Infected Mother Time to Symptoms Curve Scale - lambda
 	double SymptomsMotherCorrelation; //EN Correlation between mortality and becoming symptomatic
 	double SymptomsMotherMultiplier; //EN A multiplier to tweak the rate at which mothers develop symptoms
+};
+
+parameter_group Mother_Symptoms
+{
+  SymptomsMotherShape,
+  SymptomsMotherScale,
+  SymptomsMotherCorrelation,
+  SymptomsMotherMultiplier
 };
 
 /* NOTE (SymptomsMotherShape, EN)
