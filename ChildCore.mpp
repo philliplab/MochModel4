@@ -7,6 +7,11 @@ parameters
 	double GenderChildFemaleProportion; //EN The proportion of children that are female
 };
 
+parameter_group Child_Core
+{
+	GenderChildFemaleProportion
+};
+
 
 actor_set Child asAllChild; //EN All Child actors
 
