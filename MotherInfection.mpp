@@ -14,7 +14,7 @@
 
 	Upon birth, the 'become infectible' event is scheduled 14 years into the future.
 	Once a person becomes infectible, infection is scheduled using the same
-	methodology used 
+	methodology used to schedule death from the healthy state
 */
 
 range INCIDENCE_LIFE
@@ -32,6 +32,11 @@ parameters
 {
 	double IncidenceTable[GENDER][INCIDENCE_LIFE][MORT_TIME]; //EN Incidence Rates
 	double IncidenceMotherMultiplier; //EN Incidence Multiplier
+};
+
+parameter_group Mother_Infection
+{
+	IncidenceTable, IncidenceMotherMultiplier 
 };
 
 /* NOTE (IncidenceTable, EN)
