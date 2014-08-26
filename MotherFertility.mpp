@@ -29,7 +29,7 @@
 	became fertile, the multipliers are factors that
 	adjusts a mothers fertility based on various factors.
 	A straight line is then used to connect
-	S(0) to S(1). Similarly S(2) = S(1) * (1 - fert[age + 2] * parity_multiplier * disease_state_multiplier).
+	S(0) to S(1). Similarly S(2) = S(1) * (1 - fert[age + 2] * multipliers).
 	Again a straight line is used to connect S(1) to S(2). This process is continued until the value of the
 	survival curve reached 0. 
 	
@@ -39,7 +39,7 @@
 
 	Upon giving birth, a child actor is creator and initialized. A link is created
 	between the mother and child. The mother is made infertile and 'become fertile' event is
-	scheduled for one year later.
+	scheduled to happen after the value of the FertilityMotherGestationPeriod parameter.
 */
 
 link Child.lMother Mother.mlChild[];
