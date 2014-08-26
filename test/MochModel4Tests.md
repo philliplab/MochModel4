@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.09    0.13  178.00
+##    0.16    0.11  175.16
 ```
 
 ```
@@ -794,12 +794,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 67 2014-08-26 11:58:23 76aa7994cbefad1163efba5606cb7b89
 ## 68 2014-08-26 12:10:20 76aa7994cbefad1163efba5606cb7b89
 ## 69 2014-08-26 13:42:44 76aa7994cbefad1163efba5606cb7b89
 ## 70 2014-08-26 14:07:37 76aa7994cbefad1163efba5606cb7b89
 ## 71 2014-08-26 14:30:12 76aa7994cbefad1163efba5606cb7b89
 ## 72 2014-08-26 15:23:30 76aa7994cbefad1163efba5606cb7b89
+## 73 2014-08-26 15:40:46 76aa7994cbefad1163efba5606cb7b89
 ```
   
 

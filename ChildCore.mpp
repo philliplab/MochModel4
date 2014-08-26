@@ -1,6 +1,14 @@
 
 //LABEL(ChildCore, EN) The Child Actor
 
+/* NOTE(ChildCore, EN)
+	The core functionality of the child actor.
+
+	The main contents of this module is all the functions that the mother's events can call to
+	set attributes on the children. Each transition a mother can go through changes her status.
+	This status is pushed down onto the child actors using the methods defined in this module
+*/
+
 
 parameters 
 {
@@ -108,7 +116,7 @@ void Child::Finish()
 };
 
 track Child
-	[actor_id % 50 == 0, GetReplicate() == 0 ]
+	[actor_id % 500 == 0, GetReplicate() == 0 ]
 {
 	all_base_states,
 	all_derived_states

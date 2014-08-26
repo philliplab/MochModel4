@@ -43,6 +43,15 @@ parameters
 	double TreatmentCoverageMother[MORT_TIME]; //EN The treatment coverage over the model time
 };
 
+parameter_group Mother_Treatment
+{
+TreatmentMotherShape,
+TreatmentMotherScale,
+TreatmentMotherMultiplier,
+TreatmentTransitionMotherSwitch,
+TreatmentCoverageMother
+};
+
 /* NOTE (TreatmentCoverageMother, EN)
 	The treatment coverage for eligible mothers specified for each year that falls under the model time. 
 */

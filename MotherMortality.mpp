@@ -71,8 +71,6 @@
 	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
 	that will instruct the function to not assign a death date to people younger than 13.
 	Future versions of the model should include a better implemenation of this mechanism. 
-
-	- Not implemented yet
 */
 
 range MORT_LIFE //EN Mortality Life Range
