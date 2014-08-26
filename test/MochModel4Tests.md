@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.16    0.14  175.06
+##    0.05    0.17  180.18
 ```
 
 ```
@@ -309,13 +309,12 @@ When the kaplan meier curves of the treatment rates are compared to the input va
 
 When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) 
 
-If the weibull transition is used, then the KM curve should look like a weibull curve.
+If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input paramters.
 
 [To Summary Table](#summary_tab_link)  
 
 ```
 ## [1] "AllInfectedNoMortality"
-## [1] 1
 ```
 
 ![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
@@ -325,7 +324,6 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## Mean time till treatment from Eligibility and diagnosis: 0.0100000000000012. 
 ##   
 ## [1] "WeibullTreatmentTransition"
-## [1] 2
 ```
 
 ![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
@@ -371,15 +369,14 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 
 Scenario(s): AllInfectedNoMortality
 
- Scenario(s): WeibullTreatmentTransition
-
 Plots showing the treatment coverage rates. 
 
 The line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. 
 
-If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. 
-
 If the Treatment coverage rate transition is used, then the line must reflect the treatment coverage rate for the given age. Note that the variability increases drastically as the number of mothers who become eligible decreases.
+
+If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. This is not really meaningful. One should rather look at the 'Treatment Rate of Eligible Mothers' test.
+
 
 [To Summary Table](#summary_tab_link)  
 
@@ -387,13 +384,7 @@ If the Treatment coverage rate transition is used, then the line must reflect th
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-271.png) 
-
-```
-## [1] "WeibullTreatmentTransition"
-```
-
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-272.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
   
 
 **Result: Manual**  
@@ -803,12 +794,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 61 2014-08-25 14:35:24 76aa7994cbefad1163efba5606cb7b89
-## 62 2014-08-25 14:45:07 76aa7994cbefad1163efba5606cb7b89
 ## 63 2014-08-25 14:54:43 76aa7994cbefad1163efba5606cb7b89
 ## 64 2014-08-25 15:02:18 76aa7994cbefad1163efba5606cb7b89
 ## 65 2014-08-25 15:12:05 76aa7994cbefad1163efba5606cb7b89
 ## 66 2014-08-26 11:40:37 76aa7994cbefad1163efba5606cb7b89
+## 67 2014-08-26 11:58:23 76aa7994cbefad1163efba5606cb7b89
+## 68 2014-08-26 12:10:20 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -941,7 +932,7 @@ Model Version: 43
 |[Symptomatic Percentage Diagnosis Rates matches inputs](#SymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
-|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
+|[Treatment Coverage Rate Coverage Based Transition](#TreatmentCoverageRateCoverageBasedTransition)|Manual|AllInfectedNoMortality 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 

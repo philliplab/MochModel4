@@ -667,20 +667,9 @@ test_results <- new_test(test_results,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar. \n
 When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) \n
-If the weibull transition is used, then the KM curve should look like a weibull curve.")
+If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input paramters.")
 ```
 ```{r, warning=FALSE, message=FALSE}
-plot_one_vdp_cat <- function(dat, vdpa_input, phi, shape_input = 2.5, scale_input = 11.1123){
-  vdp_restricted <- subset(dat, vdpa_inf == vdpa_input)
-  p <- autoplot(survfit(Surv(time_to_event) ~ 1, vdp_restricted))$plot
-  p <- p + labs(title = paste0("VDP Age Cat: ", vdpa_input)) +
-    stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input * phi),
-                col = 'green') +
-    scale_colour_discrete(guide = FALSE)
-  return(p)
-}
-#cscenario <- cscenarios[[2]]
-#cscenario <- cscenarios[[1]]
 for (cscenario in cscenarios){
   print(cscenario)
   med <- get_mother_time_to_event(db_channels[[cscenario]],
@@ -689,13 +678,20 @@ for (cscenario in cscenarios){
   med <- subset(med, time_to_event > 0 &
                       `Age at Infection` > 0)
   
-  transition_type <- as.data.frame(new_PTable("TreatmentTransitionMotherSwitch", db_channels[[cscenario]]))[1,1]
-  print(transition_type)
   
   p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
   p <- p + labs(title = NULL) +
-      guides(col = guide_legend(nrow=2)) +
       theme(legend.position = 'bottom')
+
+  transition_type <- as.data.frame(new_PTable("TreatmentTransitionMotherSwitch", db_channels[[cscenario]]))[1,1]
+  if (transition_type == 2){
+    shape_input <- as.data.frame(new_PTable("TreatmentMotherShape", db_channels[[cscenario]]))[1,1]
+    scale_input <- as.data.frame(new_PTable("TreatmentMotherScale", db_channels[[cscenario]]))[1,1]
+    p <- p + stat_function(fun = pweibull1m, arg = list(shape = shape_input, scale = scale_input), 
+                           col = 'red')
+  }
+  p <- p + guides(col = guide_legend(nrow=2))
+
   print(p)
   cat("  \n")
   cat(paste0("Mean time till treatment from Eligibility and diagnosis: ", mean(med$time_to_event), ". \n"))
@@ -746,16 +742,17 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 
-```{r Treatment Coverage Rate Coverage Based Transition, results='asis'}
-ctest_name <- 'Treatment Coverage Rate Coverage Based Transition'
-cscenarios <- c('AllInfectedNoMortality', 'WeibullTreatmentTransition')
+```{r Treatment Coverage Rate Matches Input Rate, results='asis'}
+ctest_name <- 'Treatment Coverage Rate Matches Input Rate'
+cscenarios <- c('AllInfectedNoMortality')
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "Plots showing the treatment coverage rates. \n
 The line shows how many mothers started treatment at a given age vs how many mothers became eligible at a given age. \n
-If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. \n
-If the Treatment coverage rate transition is used, then the line must reflect the treatment coverage rate for the given age. Note that the variability increases drastically as the number of mothers who become eligible decreases.")
+If the Treatment coverage rate transition is used, then the line must reflect the treatment coverage rate for the given age. Note that the variability increases drastically as the number of mothers who become eligible decreases.\n
+If the weibull transition is used, then the line should increase with age since the probability of going on treatment increases with time spent in the eligible state. This is not really meaningful. One should rather look at the 'Treatment Rate of Eligible Mothers' test.
+")
 ```
 ```{r, warning=FALSE, message=FALSE}
 for (cscenario in cscenarios){
