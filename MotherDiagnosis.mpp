@@ -8,7 +8,8 @@
 
 	- Data requirements
 
-	For each of the two transitions, the following must be specified: The value of the switch
+	For each of the two transitions (from either infected or symptomatic), 
+	the following must be specified: The value of the switch
 	that indicates which transition type to use. The exponential rate and the percentage of
 	mothers that becomes diagnosed by the transition.
 
@@ -22,6 +23,10 @@
 	mother will leave the state due to death or becoming symptomatic. A number is then drawn
 	from a random uniform distribution so that a percentage that matches the input parameter
 	will become diagnosed before the mother exits the state.
+
+	Each of these transitions are rescheduled if the mother moves from the infected to the symptomatic
+	stage. The rescheduling will be done using parameters that are specifically designed for the
+	symptomatic state.
 */
 
 parameters

@@ -3,7 +3,8 @@
 /* NOTE(MotherCore, EN)
 	This module contains the basic information which defines the Mother actor.
 
-	Most of this information is used repeatedly by multiple modules.
+	Most of this information is used repeatedly by multiple modules. Examples of this includes
+	the definitions of the disease state classifications, gender, socioeconomic status etc.
 */
 
 parameters 
