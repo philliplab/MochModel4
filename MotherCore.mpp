@@ -24,6 +24,17 @@ parameters
 	double HighSESMotherPercentage; //EN Percentage of Mothers in the High Socioeconomic class
 };
 
+parameter_group Mother_Core
+{
+	HighSESMotherPercentage
+};
+
+parameter_group General
+{
+	ModelTime,
+	StartingPopulationSize
+};
+
 classification GENDER
 {
 	F, M
@@ -206,6 +217,7 @@ void Mother::Start()
 */
 void Mother::Finish()
 {
+	alive = FALSE;
 };
 
 track Mother

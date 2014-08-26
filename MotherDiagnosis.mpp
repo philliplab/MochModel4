@@ -34,6 +34,16 @@ parameters
 	double SymptomaticDiagnosisMotherPercentage[MORT_TIME]; //EN The percentage of symptomatic mothers who become diagnosed
 };
 
+parameter_group Mother_Diagnosis
+{
+InfectedDiagnosisMotherRate,
+SymptomaticDiagnosisMotherRate,
+InfectedDiagnosisTransitionMotherSwitch,
+InfectedDiagnosisMotherPercentage,
+SymptomaticDiagnosisTransitionMotherSwitch,
+SymptomaticDiagnosisMotherPercentage
+};
+
 /* NOTE(InfectedDiagnosisMotherRate, EN)
     An exponential rate at which mothers become diagnosed
 	after becoming infected.
