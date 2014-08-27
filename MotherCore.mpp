@@ -103,7 +103,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {44};
+	int model_version = {45};
 
 	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
 
@@ -116,7 +116,7 @@ actor Mother            //EN Individual
 	double treatment_chance = {0};
 	/* NOTE(Mother.treatment_chance, EN)
 		The chance that a mother will access treatment once she is elible.
-		Used in conjunction with the Treatment Coverage based Treatment schduler
+		Used in conjunction with the Treatment Coverage based Treatment scheduler
 	*/
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};

@@ -31,7 +31,7 @@
 	state, the mother's treatment_chance is compared to the coverage rate. If
 	her treatment chance is smaller than the coverage rate, then she transitions
 	into the treatment state after 0.01 year. The small delay is necessary for
-	the modelling machinery to correctly tabulate the transition
+	the modelling machinery to correctly tabulate the transition.
 */
 
 parameters
