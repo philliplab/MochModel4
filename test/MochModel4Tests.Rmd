@@ -339,7 +339,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Healthy Mortality Match Inputs, results='asis'}
 ctest_name <- 'Healthy Mortality Match Inputs'
 cscenarios <- 'NoHIV'
@@ -382,7 +381,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ### Transition 2 - HIV Infection
 
@@ -573,18 +571,24 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "The percentage of mothers who become diagnosed while asymptomatic must match the input rate. \n
-In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4")
+This test is only for the case where the transition is based on a percentage and not on a exponential curve.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 diagnosis <- as.data.frame(new_RTable("MotherAsymptomaticDiagnosisRates", db_channels[[cscenarios]]))[,1:3]
 diagnosis <- dcast(diagnosis, Age ~ metrics)
 infected_mothers <- sum(diagnosis$`Number of new infected mothers`)
 diagnosed_mothers <- sum(diagnosis$`Number of new diagnosed mothers`)
-ratio <- diagnosed_mothers / infected_mothers
-print(list('infected mothers' = infected_mothers,
-           'diagnosed mothers' = diagnosed_mothers,
-           'ratio' = ratio))
-result <- ratio > 0.38 & ratio < 0.42
+output_percentage <- diagnosed_mothers / infected_mothers
+input_percentage <- as.data.frame(new_PTable("InfectedDiagnosisMotherPercentage", db_channels[[cscenarios]]))$Value
+stopifnot(all(input_percentage == input_percentage[1]))
+input_percentage <- unique(input_percentage)
+in_out_ratio <- input_percentage / output_percentage 
+print(list('output infected mothers' = infected_mothers,
+           'output diagnosed mothers' = diagnosed_mothers,
+           'output percentage' = output_percentage,
+           'input percentage' = input_percentage,
+           'input / output ratio' = in_out_ratio))
+result <- in_out_ratio > 0.975 & in_out_ratio < 1.025
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -636,18 +640,24 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "The percentage of mothers who become diagnosed while asymptomatic must match the input rate. \n
-In the current setup, the ratio from the base scenario mst be between 0.78 and 0.82. The input value is 0.8")
+This test is only for the case where the transition is based on the percentage and not the exponential curve.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 diagnosis <- as.data.frame(new_RTable("MotherSymptomaticDiagnosisRates", db_channels[[cscenarios]]))[,1:3]
 diagnosis <- dcast(diagnosis, Age ~ metrics)
 symptomatic_mothers <- sum(diagnosis$`Number of new symptomatic mothers`)
 diagnosed_mothers <- sum(diagnosis$`Number of new diagnosed mothers`)
-ratio <- diagnosed_mothers / symptomatic_mothers
-print(list('symptomatic mothers' = symptomatic_mothers,
-           'diagnosed mothers' = diagnosed_mothers,
-           'ratio' = ratio))
-result <- ratio > 0.78 & ratio < 0.82
+output_percentage <- diagnosed_mothers / symptomatic_mothers
+input_percentage <- as.data.frame(new_PTable("SymptomaticDiagnosisMotherPercentage", db_channels[[cscenarios]]))$Value
+stopifnot(all(input_percentage == input_percentage[1]))
+input_percentage <- unique(input_percentage)
+in_out_ratio <- input_percentage / output_percentage 
+print(list('output symptomatic mothers' = symptomatic_mothers,
+           'output diagnosed mothers' = diagnosed_mothers,
+           'output percentage' = output_percentage,
+           'input percentage' = input_percentage,
+           'input / output ratio' = in_out_ratio))
+result <- in_out_ratio > 0.975 & in_out_ratio < 1.025
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -666,8 +676,8 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar. \n
-When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) \n
-If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input paramters.")
+When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treatment coverage rate fluctuates) \n
+If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input parameters.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 for (cscenario in cscenarios){
@@ -741,7 +751,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Treatment Coverage Rate Matches Input Rate, results='asis'}
 ctest_name <- 'Treatment Coverage Rate Matches Input Rate'
 cscenarios <- c('AllInfectedNoMortality')
@@ -777,7 +786,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ### Transition 8 - Death of Treated Mothers
 
 ```{r Treated Mortality Match Inputs, results='asis'}
@@ -787,7 +795,7 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. \n
-Something does not look right. The deviation between the lines are too large. Also the spike in mortality in the data centered at age 75 is troublesome.")
+This mortality rate is way too low. It causes mother's to hit the 100 age cap - hence the output is much lower than the input. A censored survival curve should take care of this. However, just fixing the treated mortality to be realistic will also work.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 med <- get_mother_time_to_event(db_channels[[cscenarios]],
@@ -826,7 +834,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r No deaths from Treated in OnlyStoppedMortality, results='asis'}
 ctest_name <- 'No deaths from Treated in OnlyStoppedMortality'
 cscenarios <- 'OnlyStoppedMortality'
@@ -850,7 +857,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ### Transition 9 - Treatment cessation
 
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
@@ -860,7 +866,7 @@ test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
                          description = "When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar. \n
-Something is not right. It needs to be debugged.")
+The same issues as with the treated mortality of the mothers. However, the cessation rates will never be high enough, so this plot will never match the input. To fix it, introduce censoring.")
 ```
 ```{r, warning=FALSE, message=FALSE}
 cease_treat_b6m <- as.data.frame(new_PTable("TreatmentCessationMotherb6m", db_channels[[cscenarios]]))[1,1]
@@ -889,7 +895,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ### Transition 10 - Death of Stopped Mothers
 
@@ -958,7 +963,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Mother Fertility Rates, results='asis'}
 ctest_name <- 'Mother Fertility Rates'
 cscenarios <- c('Base', 'ZeroGestation')
@@ -993,7 +997,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r Number of Children per Mother, results='asis'}
 ctest_name <- 'Number of Children per Mother'
@@ -1047,7 +1050,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Percentage ever infected bounded, results='asis'}
 ctest_name <- 'Percentage ever infected bounded'
 cscenarios <- 'Base'
@@ -1072,7 +1074,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r Infected vs Healthy Mortality, results='asis'}
 ctest_name <- 'Infected vs Healthy Mortality'
@@ -1107,7 +1108,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r Percentage ever symptomatic bounded, results='asis'}
 ctest_name <- 'Percentage ever symptomatic bounded'
@@ -1160,7 +1160,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ## Mother - General
 
 ```{r Input SES matches output SES, results='asis'}
@@ -1189,7 +1188,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Mother Max Age, results='asis'}
 # TODO: Check on all scenarios not just base
 ctest_name <- 'Mother Max Age'
@@ -1214,7 +1212,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Event table rows track exactly one actor, results='asis'}
 ctest_name <- 'Event table rows track exactly one actor'
 cscenarios <- 'Base'
@@ -1236,7 +1233,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r MDEATH_SCHED State Membership tracking, results='asis'}
 ctest_name <- 'MDEATH_SCHED State Membership tracking'
@@ -1281,7 +1277,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r MDETAILED State Membership tracking, results='asis'}
 ctest_name <- 'MDETAILED State Membership tracking'
 cscenarios <- 'All'
@@ -1301,7 +1296,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r No change in Mother from previous, results='asis'}
 ctest_name <- 'No change in Mother from previous'
@@ -1370,7 +1364,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Child SES Ratios, results='asis'}
 ctest_name <- 'Child SES Ratios'
 cscenarios <- c('Base', 'LowFertilityInHighSES', 'NoHIV')
@@ -1404,7 +1397,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r Child Mortality, results='asis'}
 ctest_name <- 'Child Mortality'
@@ -1460,7 +1452,6 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
-
 ```{r Child MDEATH_SCHED State Membership tracking, results='asis'}
 ctest_name <- 'Child MDEATH_SCHED State Membership tracking'
 cscenarios <- 'All'
@@ -1480,7 +1471,6 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
 
 ```{r Child MDETAILED State Membership tracking, results='asis'}
 ctest_name <- 'Child MDETAILED State Membership tracking'
@@ -1509,4 +1499,3 @@ Model Version: `r ModelVersion`
 print_test_results(test_results)
 odbcCloseAll()
 ```
-

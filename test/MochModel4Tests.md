@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.17   69.46
+##    0.13    0.07   63.51
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 14
 ```
 
-# Tests for Model Version 45
+# Tests for Model Version 46
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -74,7 +74,6 @@ No mothers should die from the Healthy state in the OnlyInfectedMortality Scenar
 
 ---
 
-
 #### <a name="HealthyMortalityMatchInputs"></a>Healthy Mortality Match Inputs
 
 Scenario(s): NoHIV
@@ -90,7 +89,6 @@ Note that the input parameters are not perfectly translated into a curve. This c
 **Result: Manual**  
 
 ---
-
 
 ### Transition 2 - HIV Infection
 
@@ -229,19 +227,25 @@ Scenario(s): Base
 
 The percentage of mothers who become diagnosed while asymptomatic must match the input rate. 
 
-In the current setup, the ratio from the base scenario mst be between 0.38 and 0.42. The input value is 0.4
+This test is only for the case where the transition is based on a percentage and not on a exponential curve.
 
 [To Summary Table](#summary_tab_link)  
 
 ```
-## $`infected mothers`
+## $`output infected mothers`
 ## [1] 4498
 ## 
-## $`diagnosed mothers`
+## $`output diagnosed mothers`
 ## [1] 1774
 ## 
-## $ratio
+## $`output percentage`
 ## [1] 0.3944
+## 
+## $`input percentage`
+## [1] 0.4
+## 
+## $`input / output ratio`
+## [1] 1.014
 ```
   
 
@@ -276,19 +280,25 @@ Scenario(s): Base
 
 The percentage of mothers who become diagnosed while asymptomatic must match the input rate. 
 
-In the current setup, the ratio from the base scenario mst be between 0.78 and 0.82. The input value is 0.8
+This test is only for the case where the transition is based on the percentage and not the exponential curve.
 
 [To Summary Table](#summary_tab_link)  
 
 ```
-## $`symptomatic mothers`
+## $`output symptomatic mothers`
 ## [1] 1964
 ## 
-## $`diagnosed mothers`
+## $`output diagnosed mothers`
 ## [1] 1573
 ## 
-## $ratio
+## $`output percentage`
 ## [1] 0.8009
+## 
+## $`input percentage`
+## [1] 0.8
+## 
+## $`input / output ratio`
+## [1] 0.9989
 ```
   
 
@@ -307,9 +317,9 @@ Scenario(s): AllInfectedNoMortality
 
 When the kaplan meier curves of the treatment rates are compared to the input values, they should look similar. 
 
-When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treeatment coverage rate fluctuates) 
+When the treatment coverage rate approach is used to assign treatment, it should be a step function with the majority of the transitions happening at time 0.01. Then much smaller steps at 1.01, 2.01, .... (depending on how the treatment coverage rate fluctuates) 
 
-If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input paramters.
+If the weibull transition is used, then the KM curve should look like a weibull curve. A red line will show the curve constructed from the input parameters.
 
 [To Summary Table](#summary_tab_link)  
 
@@ -364,7 +374,6 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 
 ---
 
-
 #### <a name="TreatmentCoverageRateMatchesInputRate"></a>Treatment Coverage Rate Matches Input Rate
 
 Scenario(s): AllInfectedNoMortality
@@ -391,7 +400,6 @@ If the weibull transition is used, then the line should increase with age since 
 
 ---
 
-
 ### Transition 8 - Death of Treated Mothers
 
 #### <a name="TreatedMortalityMatchInputs"></a>Treated Mortality Match Inputs
@@ -400,7 +408,7 @@ Scenario(s): OnlyTreatedMortality
 
 When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. 
 
-Something does not look right. The deviation between the lines are too large. Also the spike in mortality in the data centered at age 75 is troublesome.
+This mortality rate is way too low. It causes mother's to hit the 100 age cap - hence the output is much lower than the input. A censored survival curve should take care of this. However, just fixing the treated mortality to be realistic will also work.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
@@ -409,7 +417,6 @@ Something does not look right. The deviation between the lines are too large. Al
 **Result: FALSE**  
 
 ---
-
 
 #### <a name="NodeathsfromTreatedinOnlyStoppedMortality"></a>No deaths from Treated in OnlyStoppedMortality
 
@@ -443,7 +450,6 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 
 ---
 
-
 ### Transition 9 - Treatment cessation
 
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
@@ -452,7 +458,7 @@ Scenario(s): AllStopped
 
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar. 
 
-Something is not right. It needs to be debugged.
+The same issues as with the treated mortality of the mothers. However, the cessation rates will never be high enough, so this plot will never match the input. To fix it, introduce censoring.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png)   
@@ -465,7 +471,6 @@ Something is not right. It needs to be debugged.
 **Result: FALSE**  
 
 ---
-
 
 ### Transition 10 - Death of Stopped Mothers
 
@@ -511,7 +516,6 @@ A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
 
 ---
 
-
 #### <a name="MotherFertilityRates"></a>Mother Fertility Rates
 
 Scenario(s): Base
@@ -538,7 +542,6 @@ A plot of the fertility rates of the mothers. Unless the gestation period parame
 **Result: Manual**  
 
 ---
-
 
 #### <a name="NumberofChildrenperMother"></a>Number of Children per Mother
 
@@ -579,7 +582,6 @@ In the case of no sickness, we expect the mother's life expectancy to be between
 
 ---
 
-
 #### <a name="Percentageeverinfectedbounded"></a>Percentage ever infected bounded
 
 Scenario(s): Base
@@ -600,7 +602,6 @@ The percentage of mothers ever infected in the base case should be between 40 an
 **Result: TRUE**  
 
 ---
-
 
 #### <a name="InfectedvsHealthyMortality"></a>Infected vs Healthy Mortality
 
@@ -634,7 +635,6 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 **Result: TRUE**  
 
 ---
-
 
 #### <a name="Percentageeversymptomaticbounded"></a>Percentage ever symptomatic bounded
 
@@ -682,7 +682,6 @@ This test make sure that in the scenario where there is only mortality in the in
 
 ---
 
-
 ## Mother - General
 
 #### <a name="InputSESmatchesoutputSES"></a>Input SES matches output SES
@@ -706,7 +705,6 @@ When the input SES rate is compared to the output SES rate, they should be simil
 
 ---
 
-
 #### <a name="MotherMaxAge"></a>Mother Max Age
 
 Scenario(s): Base
@@ -727,7 +725,6 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 **Result: FALSE**  
 
 ---
-
 
 #### <a name="Eventtablerowstrackexactlyoneactor"></a>Event table rows track exactly one actor
 
@@ -752,7 +749,6 @@ Each row in the events table should track exactly one actor.
 
 ---
 
-
 #### <a name="MDEATH_SCHEDStateMembershiptracking"></a>MDEATH_SCHED State Membership tracking
 
 Scenario(s): All
@@ -768,7 +764,6 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 ---
 
-
 #### <a name="MDETAILEDStateMembershiptracking"></a>MDETAILED State Membership tracking
 
 Scenario(s): All
@@ -783,7 +778,6 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 ---
 
-
 #### <a name="NochangeinMotherfromprevious"></a>No change in Mother from previous
 
 Scenario(s): All
@@ -794,12 +788,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 69 2014-08-26 13:42:44 76aa7994cbefad1163efba5606cb7b89
-## 70 2014-08-26 14:07:37 76aa7994cbefad1163efba5606cb7b89
-## 71 2014-08-26 14:30:12 76aa7994cbefad1163efba5606cb7b89
-## 72 2014-08-26 15:23:30 76aa7994cbefad1163efba5606cb7b89
 ## 73 2014-08-26 15:40:46 76aa7994cbefad1163efba5606cb7b89
 ## 74 2014-08-27 10:46:42 76aa7994cbefad1163efba5606cb7b89
+## 75 2014-08-27 12:10:15 d3ebdbd4eda0e6ba06d39f8138ff8e33
+## 76 2014-08-27 12:53:45 d3ebdbd4eda0e6ba06d39f8138ff8e33
+## 77 2014-08-27 12:56:14 76aa7994cbefad1163efba5606cb7b89
+## 78 2014-08-27 13:01:30 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -830,7 +824,6 @@ The input and output gender ratios of the children must be similar. The input ra
 
 ---
 
-
 #### <a name="ChildSESRatios"></a>Child SES Ratios
 
 Scenario(s): Base
@@ -848,7 +841,6 @@ A plot to show the SES ratios of the children in different circumstances
 **Result: Manual**  
 
 ---
-
 
 #### <a name="ChildMortality"></a>Child Mortality
 
@@ -877,7 +869,6 @@ Child output mortality must match child input mortality. There is something a li
 
 ---
 
-
 #### <a name="ChildMDEATH_SCHEDStateMembershiptracking"></a>Child MDEATH_SCHED State Membership tracking
 
 Scenario(s): All
@@ -891,7 +882,6 @@ Plots showing the membership of children's mothers to the different states in th
 **Result: Manual**  
 
 ---
-
 
 #### <a name="ChildMDETAILEDStateMembershiptracking"></a>Child MDETAILED State Membership tracking
 
@@ -908,7 +898,7 @@ Plots showing the membership of children's mothers to the different states in th
 ---
 
 ## Summary of All Tests
-Model Version: 45
+Model Version: 46
 
 #### Summary of the Test Results 
 
@@ -956,4 +946,3 @@ Model Version: 45
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
 |[Child MDEATH_SCHED State Membership tracking](#ChildMDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[Child MDETAILED State Membership tracking](#ChildMDETAILEDStateMembershiptracking)|Manual|All 
-
