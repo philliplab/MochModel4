@@ -19,6 +19,8 @@
 
 	- Implementation Details
 
+	If the mortality changes over time: (Not currently implemented)
+
 	Using the mortality data, a survival curve S(a) is constructed for each mother.
 	Since death from the healthy state is only scheduled at the birth of the
 	mother, and all the mothers are assumed to be born simultaneously, all
@@ -41,6 +43,12 @@
 	The actual implementation is a slight optimization of the above process.
 	The random uniform number is draw first and the curve is then constructed
 	until the value of the curve reaches the randomly drawn number.
+
+	If the mortality does not change over time (default):
+
+	The same process is used as described above, but only one year is used to
+	look up the mortality rates. In other words, y stays constant at the value
+	of the ModelTime parameter.
 
 	Mortality for Infected Mothers
 
@@ -71,6 +79,31 @@
 	to ages smaller than or equal to 13. This value must always be 1000. This is a special marker
 	that will instruct the function to not assign a death date to people younger than 13.
 	Future versions of the model should include a better implemenation of this mechanism. 
+
+	Mortality for Treated Mothers
+
+	- Data Requirements
+
+	Two percentages. The percentage of mothers who die within 6 months of starting treatment 
+	expressed as an annual death probability and the annual probability of dying after the 
+	first six months of treatment. 
+
+	- Implementation Details
+
+	The survival curve is expressed as S(t) = (1 - mu_1)^t if t < 0.5 and 
+	S(t) = ((1 - mu_1)^0.5)*((1 - mu_2)^(t - 0.5)) if t > 0.5. This relationship
+	can be inverted and that is used to schedule the death events.
+
+	Mortality for Treatment Ceased Mothers
+
+	- Data requirements
+
+	Same as for the Mortality of infected mothers - shape, scale and phi values. Phi is the factor
+	that adjusts the scale according to age groups.
+
+	- Implementation Details
+
+	Identical to the mortality for infected mothers, only the parameters differ.
 */
 
 range MORT_LIFE //EN Mortality Life Range
