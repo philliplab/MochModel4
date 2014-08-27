@@ -3,6 +3,19 @@
 /* NOTE(MotherStop, EN)
 	The implementation of treatment cessation mimics that of the ASSA model
 	as described in the ASSA model documentation.
+
+	- Data Requirements
+
+	Two percentages. The percentage of mothers who stop treatment within 6 months of starting treatment 
+	expressed as an annual probability of stopping treatment and the annual probability of stopping treatment after the 
+	first six months of treatment. 
+
+	- Implementation Details
+
+	The survival curve (of staying on treatment) is expressed as S(t) = (1 - mu_1)^t if t < 0.5 and 
+	S(t) = ((1 - mu_1)^0.5)*((1 - mu_2)^(t - 0.5)) if t > 0.5. This relationship
+	can be inverted and that is used to schedule the treatment cessation events. 
+
 */
 
 

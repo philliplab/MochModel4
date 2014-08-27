@@ -96,7 +96,6 @@ TIME Mother::timeSymptomEvent()
 	if (mdeath_sched_status == mdINFECTED && showing_symptoms == FALSE ){
 		t_event_time = infected_symptoms_time;
 	};
-	//t_event_time = WAIT(t_event_time);
 	return t_event_time;
 };
 
