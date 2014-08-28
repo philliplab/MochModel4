@@ -16,6 +16,7 @@ Base*txt
 Release/*
 *.png
 *(log).txt
+test/MochModel4_*.md
 
 test/AllInfectedNoMortality(log).txt
 test/AllInfectedNoMortality(log).txt

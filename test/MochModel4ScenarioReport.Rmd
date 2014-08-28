@@ -1,0 +1,5 @@
+# Scenario Report
+
+```{r}
+print(scenario)
+```
