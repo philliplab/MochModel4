@@ -202,6 +202,17 @@ print(p)
 
 ## Child Model
 
+### Gender Ratio
+
+```{r, warning=FALSE, message=FALSE}
+cgd <- as.data.frame(new_RTable('ChildGenderDistribution', db_channel))
+cgd <- subset(cgd, metrics == 'Number of Children')[,1:3]
+p <- ggplot(cgd, aes(y = Value, x = gender)) + 
+  geom_bar(stat = 'identity') +
+  xlab("Gender") + ylab("Number of Children")
+print(p)
+```
+
 ```{r}
 odbcCloseAll()
 ```
