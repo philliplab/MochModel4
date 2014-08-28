@@ -1,6 +1,7 @@
 # Scenario Report
 
-```{r}
+
+```r
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
 rerun_models <- TRUE
@@ -28,4 +29,8 @@ db_channel <- access_database(result)
 
 ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channel))$Value[1]
 print(ModelVersion)
+```
+
+```
+## [1] 46
 ```

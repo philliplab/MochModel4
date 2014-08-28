@@ -189,14 +189,36 @@ hr {
 <body>
 <h1>Scenario Report</h1>
 
-<pre><code class="r">print(scenario)
+<pre><code class="r">source(&#39;MochModel4Tests_helpers.R&#39;)
+rerun_models &lt;- FALSE
+rerun_models &lt;- TRUE
+options(scipen=999)
+library(modgenTester)
+library(knitr)
+library(plyr)
+library(survival)
+library(reshape2)
+library(survMisc)
+library(gridExtra)
+library(digest)
+odbcCloseAll()
+opts_chunk$set(echo = FALSE)
+opts_chunk$set(fig.height = 10)
+opts_chunk$set(fig.width = 10)
+sd &lt;- &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4&quot;
+td &lt;- &quot;C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test&quot;
+setwd(td)
+
+scenario_name &lt;- gsub(&quot;.scex&quot;, &quot;&quot;, scenario$scex)
+all_results &lt;- list_all_results(td)
+result &lt;- all_results[[grep(scenario_name, all_results)]]
+db_channel &lt;- access_database(result)
+
+ModelVersion &lt;- as.data.frame(new_RTable(&quot;ModelVersion&quot;, db_channel))$Value[1]
+print(ModelVersion)
 </code></pre>
 
-<pre><code>## $scex
-## [1] &quot;NoHIV.scex&quot;
-## 
-## $dat
-## [1] &quot;NoHIV(MotherCore).dat&quot;
+<pre><code>## [1] 46
 </code></pre>
 
 </body>
