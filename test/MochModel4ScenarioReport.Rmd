@@ -1,6 +1,6 @@
 # Scenario Report
 
-```{r}
+```{r, include=FALSE}
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
 rerun_models <- TRUE
@@ -27,5 +27,22 @@ result <- all_results[[grep(scenario_name, all_results)]]
 db_channel <- access_database(result)
 
 ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channel))$Value[1]
-print(ModelVersion)
 ```
+
+## Model Version: `r ModelVersion`
+## Scenario: `r scenario_name`
+
+```{r}
+total_mother_population <- get_mother_population_size(db_channel)
+
+cgd <- as.data.frame(new_RTable('ChildGenderDistribution', db_channel))
+cgd <- subset(cgd, metrics == 'Number of Children')[,1:3]
+num_female <- subset(cgd, gender == 'F', select = 'Value')
+stopifnot(nrow(num_female) == 1)
+num_female <- num_female[1,1]
+total_child_population <- sum(cgd$Value)
+```
+
+There are `r total_mother_population` Mothers in this scenario.
+
+There are `r total_child_population` Children in this scenario.
