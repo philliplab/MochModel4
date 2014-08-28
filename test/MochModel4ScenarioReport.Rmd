@@ -66,6 +66,21 @@ row.names(state_entrances) <- 1:nrow(state_entrances)
 kable(state_entrances)
 ```
 
+### State Membership
+
+The total time spent by mothers in the various states.
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('MotherMDMembershipxAge', db_channel))[,1:3]
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
 
 ```{r}
 odbcCloseAll()

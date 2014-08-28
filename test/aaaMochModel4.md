@@ -28,5 +28,20 @@ A table of the number of mothers who entered each of the different states.
 |Mother entrances in SYMPTOMS state  |      1964|       19.6|
 |Mother entrances in TREATED state   |      1659|       16.6|
 
+### State Membership
+
+The total time spent by mothers in the various states.
+
+
+|state                           | entrances| percentage|
+|:-------------------------------|---------:|----------:|
+|Mother years in DIAGNOSED state |      5267|        1.0|
+|Mother years in DIAGSYMP state  |      5522|        1.1|
+|Mother years in HEALTHY state   |    452228|       87.4|
+|Mother years in INFECTED state  |     21169|        4.1|
+|Mother years in STOPPED state   |      1164|        0.2|
+|Mother years in SYMPTOMS state  |      7991|        1.5|
+|Mother years in TREATED state   |     24280|        4.7|
+
 
 
