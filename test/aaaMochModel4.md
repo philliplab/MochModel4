@@ -45,6 +45,14 @@ The total time spent by mothers in the various states.
 |Mother years in SYMPTOMS state  |         7991|        1.5|
 |Mother years in TREATED state   |        24280|        4.7|
 
+Plot of the total time spent in the states involved in scheduling the death of a mother.
+
+![plot of chunk unnamed-chunk-6](figure/ZeroGestation/unnamed-chunk-6.png) 
+
+Plot of the total time spent in the detailed states that track mothers disease course.
+
+![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
+
 ### Mother Survival
 
 Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.
@@ -56,7 +64,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/ZeroGestation/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
 
 #### Survival of Mother who never became infected
 
@@ -65,7 +73,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
 
 #### Survival of Mother who became infected
 
@@ -74,7 +82,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
 
 #### Survival of Mother who became treated
 
@@ -83,11 +91,11 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-11](figure/ZeroGestation/unnamed-chunk-11.png) 
 
 ### Number of children per mother
 
-![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-12](figure/ZeroGestation/unnamed-chunk-12.png) 
 
 ## Child Model
 

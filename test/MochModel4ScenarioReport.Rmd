@@ -84,6 +84,41 @@ row.names(state_membership) <- 1:nrow(state_membership)
 kable(state_membership)
 ```
 
+Plot of the total time spent in the states involved in scheduling the death of a mother.
+
+```{r}
+get_state_membership_data <- function(source_table){
+  all_membership <- NULL
+  StateMembership <- as.data.frame(new_RTable(source_table, db_channel))
+  StateMembership$scenario <- scenario_name
+  all_membership <- rbind(all_membership,
+                          StateMembership)
+  return(all_membership)
+}
+plot_state_membership <- function(source_table){
+  all_membership <- get_state_membership_data(source_table) 
+  p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + 
+      geom_line() +
+      guides(col = guide_legend(ncol=2)) +
+      theme(legend.position = 'bottom') + 
+      labs(title = paste0("Scenario: ", scenario_name)) +
+      facet_wrap(~ scenario, ncol = 3)
+  return(p)    
+}
+
+p <- plot_state_membership("MotherMDSMembershipxAge")
+print(p)
+result <- "Manual"
+```
+
+Plot of the total time spent in the detailed states that track mothers disease course.
+
+```{r}
+p <- plot_state_membership("MotherMDMembershipxAge")
+print(p)
+result <- "Manual"
+```
+
 ### Mother Survival
 
 Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.
