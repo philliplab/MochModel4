@@ -19,13 +19,14 @@ library(gridExtra)
 library(digest)
 odbcCloseAll()
 opts_chunk$set(echo = FALSE)
-opts_chunk$set(fig.height = 10)
-opts_chunk$set(fig.width = 10)
+opts_chunk$set(fig.height = 6)
+opts_chunk$set(fig.width = 6)
 sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
 setwd(td)
 
 scenario_name <- gsub(".scex", "", scenario$scex)
+opts_chunk$set(fig.path = paste0('figure/', scenario_name, '/'))
 all_results <- list_all_results(td)
 result <- all_results[[grep(scenario_name, all_results)]]
 db_channel <- access_database(result)
@@ -35,6 +36,8 @@ ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channel))$Value[1]
 
 ## Model Version: `r ModelVersion`
 ## Scenario: `r scenario_name`
+
+## Mother Model
 
 ### Population Stats
 ```{r}
@@ -110,8 +113,6 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
-
-result <- 'Manual'
 ```
 
 #### Survival of Mother who became infected
@@ -125,8 +126,6 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
-
-result <- 'Manual'
 ```
 
 #### Survival of Mother who became treated
@@ -140,9 +139,22 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
+```
 
+### Number of children per mother
+
+```{r, warning=FALSE, message=FALSE}
+mp <- as.data.frame(new_RTable("MotherParityDistribution", db_channel))
+mp <- subset(mp, metrics == 'Frequency')[,1:3]
+p <- ggplot(mp, aes(x = `Number of Children`, y = `Value`)) + 
+  geom_bar(stat = 'identity') +
+  xlab('Number of Children') +
+  ylab('Number of Mothers')
+print(p)
 result <- 'Manual'
 ```
+
+## Child Model
 
 ```{r}
 odbcCloseAll()

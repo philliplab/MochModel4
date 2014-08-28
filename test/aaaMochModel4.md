@@ -6,6 +6,8 @@
 ## Model Version: 46
 ## Scenario: ZeroGestation
 
+## Mother Model
+
 ### Population Stats
 
 
@@ -54,7 +56,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-6](figure/ZeroGestation/unnamed-chunk-6.png) 
 
 #### Survival of Mother who never became infected
 
@@ -63,7 +65,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
 
 #### Survival of Mother who became infected
 
@@ -72,7 +74,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
 
 #### Survival of Mother who became treated
 
@@ -81,6 +83,12 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
+
+### Number of children per mother
+
+![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
+
+## Child Model
 
 
