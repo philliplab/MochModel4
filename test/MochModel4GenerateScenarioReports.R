@@ -51,4 +51,5 @@ print(running_time)
 print("Number of Reports Generated")
 print(length(available_scenarios))
 
-
+odbcCloseAll()
+stopCluster(cl)

@@ -221,10 +221,30 @@ table Mother MotherMDMembershipxAge //EN Membership of Mothers in the MDETAILED_
 	} //EN Membership counts
 };
 
+/* NOTE(MotherMDEntrancesxAge, EN)
+	The total number of mothers who entered certain stages by age.
+*/
+
+table Mother MotherMDEntrancesxAge //EN Entrances of Mothers into the states of MDETAILED_STATE
+{
+	integer_age+ //EN Age
+		*
+	{
+		undergone_entrance(mdetailed_status, mdHEALTHY), //EN Mother entrances in HEALTHY state decimals=2
+		undergone_entrance(mdetailed_status, mdINFECTED), //EN Mother entrances in INFECTED state decimals=2
+		undergone_entrance(mdetailed_status, mdSYMPTOMS), //EN Mother entrances in SYMPTOMS state decimals=2
+		undergone_entrance(mdetailed_status, mdDIAGNOSED), //EN Mother entrances in DIAGNOSED state decimals=2
+		undergone_entrance(mdetailed_status, mdDIAGSYMP), //EN Mother entrances in DIAGSYMP state decimals=2
+		undergone_entrance(mdetailed_status, mdTREATED), //EN Mother entrances in TREATED state decimals=2
+		undergone_entrance(mdetailed_status, mdSTOPPED) //EN Mother entrances in STOPPED state decimals=2
+	} //EN Number of Entrances
+};
+
 table_group Mother_State_Membership
 {
 	MotherMDSMembershipxAge,
-	MotherMDMembershipxAge
+	MotherMDMembershipxAge,
+	MotherMDEntrancesxAge 
 };
 
 /* ################################################################################
