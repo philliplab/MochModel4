@@ -81,6 +81,68 @@ row.names(state_membership) <- 1:nrow(state_membership)
 kable(state_membership)
 ```
 
+### Mother Survival
+
+Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.
+
+#### Survival of all Mothers
+
+```{r}
+med <- get_mother_time_to_event(db_channel)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+result <- 'Manual'
+```
+
+#### Survival of Mother who never became infected
+
+```{r}
+med <- get_mother_time_to_event(db_channel)
+med <- subset(med, `Age at Infection` == 0)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+result <- 'Manual'
+```
+
+#### Survival of Mother who became infected
+
+```{r}
+med <- get_mother_time_to_event(db_channel)
+med <- subset(med, `Age at Infection` > 0)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+result <- 'Manual'
+```
+
+#### Survival of Mother who became treated
+
+```{r}
+med <- get_mother_time_to_event(db_channel)
+med <- subset(med, `Age at Treatment` > 0)
+
+p <- autoplot(survfit(Surv(time_to_event) ~ 1, med))$plot
+p <- p + labs(title = NULL) +
+    guides(col = guide_legend(nrow=2)) +
+    theme(legend.position = 'bottom')
+print(p)
+
+result <- 'Manual'
+```
 
 ```{r}
 odbcCloseAll()
