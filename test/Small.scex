@@ -8,6 +8,6 @@
 		<Label Language='EN'>Small - 1000 Mothers</Label>
 	</Labels>
 	<Notes>
-		<Note Language='EN'>A scenario with only 1000 mothers to see if anything breaks when the numbers are smaller.</Note>
+		<Note Language='EN'>A scenario with only 1000 mothers to see if anything breaks when the numbers are smaller.; Substitude: 'int	StartingPopulationSize = 10000' with 'int	StartingPopulationSize = 1000';</Note>
 	</Notes>
 </Scenario>

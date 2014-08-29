@@ -7,11 +7,19 @@
 ## Scenario: ZeroGestation
 
 ```
-## $scenario_label
+## [1] "Scenario Label"
+```
+
+```
 ## character(0)
-## 
-## $scenario_notes
-## character(0)
+```
+
+```
+## [1] "Scenario Notes"
+```
+
+```
+## list()
 ```
 
 ## Mother Model

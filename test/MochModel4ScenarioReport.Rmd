@@ -50,7 +50,10 @@ ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channel))$Value[1]
 ## Model Version: `r ModelVersion`
 ## Scenario: `r scenario_name`
 ```{r}
-print(scenario_details)
+print("Scenario Label")
+print(scenario_details$scenario_label)
+print("Scenario Notes")
+print(strsplit(scenario_details$scenario_notes, ";")[[1]])
 ```
 
 ## Mother Model
