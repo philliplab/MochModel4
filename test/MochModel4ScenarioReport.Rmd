@@ -108,6 +108,7 @@ plot_state_membership <- function(source_table){
 
 p <- plot_state_membership("MotherMDSMembershipxAge")
 print(p)
+rm(p)
 result <- "Manual"
 ```
 
@@ -116,6 +117,7 @@ Plot of the total time spent in the detailed states that track mothers disease c
 ```{r}
 p <- plot_state_membership("MotherMDMembershipxAge")
 print(p)
+rm(p)
 result <- "Manual"
 ```
 
@@ -133,7 +135,7 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
-
+rm(p)
 result <- 'Manual'
 ```
 
@@ -148,6 +150,7 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
+rm(p)
 ```
 
 #### Survival of Mother who became infected
@@ -161,6 +164,7 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
+rm(p)
 ```
 
 #### Survival of Mother who became treated
@@ -174,6 +178,7 @@ p <- p + labs(title = NULL) +
     guides(col = guide_legend(nrow=2)) +
     theme(legend.position = 'bottom')
 print(p)
+rm(p)
 ```
 
 ### Number of children per mother
@@ -186,6 +191,7 @@ p <- ggplot(mp, aes(x = `Number of Children`, y = `Value`)) +
   xlab('Number of Children') +
   ylab('Number of Mothers')
 print(p)
+rm(p)
 result <- 'Manual'
 ```
 
@@ -198,6 +204,7 @@ p <- ggplot(maab, aes(x = `Mother Age`, y = `Value`)) +
   geom_bar(stat = 'identity') +
   ylab('Number of Births')
 print(p)
+rm(p)
 ```
 
 ## Child Model
@@ -211,8 +218,35 @@ p <- ggplot(cgd, aes(y = Value, x = gender)) +
   geom_bar(stat = 'identity') +
   xlab("Gender") + ylab("Number of Children")
 print(p)
+rm(p)
+```
+
+### State Membership
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherMDMembershipxAge', db_channel))[,1:3]
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+```{r}
+p <- plot_state_membership("ChildMotherMDSMembershipxAge")
+print(p)
+rm(p)
+```
+
+```{r}
+p <- plot_state_membership("ChildMotherMDMembershipxAge")
+print(p)
+rm(p)
 ```
 
 ```{r}
 odbcCloseAll()
 ```
+

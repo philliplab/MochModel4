@@ -107,4 +107,23 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 
 ![plot of chunk unnamed-chunk-14](figure/ZeroGestation/unnamed-chunk-14.png) 
 
+### State Membership
+
+
+|state                           | mother_years| percentage|
+|:-------------------------------|------------:|----------:|
+|Mother years in DEAD state      |       941495|       53.8|
+|Mother years in DIAGNOSED state |         8908|        0.5|
+|Mother years in DIAGSYMP state  |         8670|        0.5|
+|Mother years in HEALTHY state   |       698539|       39.9|
+|Mother years in INFECTED state  |        21437|        1.2|
+|Mother years in STOPPED state   |         3555|        0.2|
+|Mother years in SYMPTOMS state  |        14921|        0.9|
+|Mother years in TREATED state   |        51598|        2.9|
+
+![plot of chunk unnamed-chunk-16](figure/ZeroGestation/unnamed-chunk-16.png) 
+
+![plot of chunk unnamed-chunk-17](figure/ZeroGestation/unnamed-chunk-17.png) 
+
+
 
