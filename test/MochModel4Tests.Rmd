@@ -48,7 +48,9 @@ scenarios_to_create <- list(
              scex_sub = list(), 
              dat_sub = list('1' = list(from = 'int\tStartingPopulationSize = 10000;',
                                        to = 'int\tStartingPopulationSize = 1000;')
-                            )
+                            ),
+             notes = "A scenario with only 1000 mothers to see if anything breaks when the numbers are smaller.",
+             label = "Small - 1000 Mothers"
              ),
   '2' = list(test_folder = td, 
              base_scenario = 'Base.scex', 

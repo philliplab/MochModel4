@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.11   72.05
+##    0.21    0.06   67.55
 ```
 
 ```
@@ -83,7 +83,7 @@ When the kaplan meier curves of the healthy mortalities are compared to the inpu
 Note that the input parameters are not perfectly translated into a curve. This can be optimized in the future, but I believe it is good enough for a quick check.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-4](figure/Base/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
   
 
 **Result: Manual**  
@@ -165,7 +165,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 3441  909  158   20
 ```
 
-![plot of chunk unnamed-chunk-11](figure/Base/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/Base/unnamed-chunk-112.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
   
 
 **Result: Manual**  
@@ -193,7 +193,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 3441  909  158   20
 ```
 
-![plot of chunk unnamed-chunk-13](figure/Base/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/Base/unnamed-chunk-132.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
   
 
 **Result: Manual**  
@@ -209,7 +209,7 @@ Scenario(s): AllInfectedNoSympNoMortExpDiag
 When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-15](figure/Base/unnamed-chunk-15.png)   
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.96599265105437.
@@ -262,7 +262,7 @@ Scenario(s): AllSymptomsNoMortExpDiag
 When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-19](figure/Base/unnamed-chunk-19.png)   
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 2.92839658993833.
@@ -327,7 +327,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-23](figure/Base/unnamed-chunk-231.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
 
 ```
 ##   
@@ -336,7 +336,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## [1] "WeibullTreatmentTransition"
 ```
 
-![plot of chunk unnamed-chunk-23](figure/Base/unnamed-chunk-232.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
 
 ```
 ##   
@@ -393,7 +393,7 @@ If the weibull transition is used, then the line should increase with age since 
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-27](figure/Base/unnamed-chunk-27.png) 
+![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
   
 
 **Result: Manual**  
@@ -411,7 +411,7 @@ When the kaplan meier curves of the treated mortalities are compared to the inpu
 This mortality rate is way too low. It causes mother's to hit the 100 age cap - hence the output is much lower than the input. A censored survival curve should take care of this. However, just fixing the treated mortality to be realistic will also work.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-29](figure/Base/unnamed-chunk-29.png) 
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
   
 
 **Result: FALSE**  
@@ -461,7 +461,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 The same issues as with the treated mortality of the mothers. However, the cessation rates will never be high enough, so this plot will never match the input. To fix it, introduce censoring.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-33](figure/Base/unnamed-chunk-33.png)   
+![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png)   
 
 ```
 ## Mean time till treatment cessarion from treatment: 20.5679632912381.
@@ -492,7 +492,7 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ## 2702  800  152   26
 ```
 
-![plot of chunk unnamed-chunk-35](figure/Base/unnamed-chunk-351.png) ![plot of chunk unnamed-chunk-35](figure/Base/unnamed-chunk-352.png) 
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-351.png) ![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-352.png) 
   
 
 **Result: Manual**  
@@ -509,7 +509,7 @@ Scenario(s): Base
 A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-37](figure/Base/unnamed-chunk-37.png) 
+![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
   
 
 **Result: Manual**  
@@ -530,13 +530,13 @@ A plot of the fertility rates of the mothers. Unless the gestation period parame
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-39](figure/Base/unnamed-chunk-391.png) 
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-391.png) 
 
 ```
 ## [1] "ZeroGestation"
 ```
 
-![plot of chunk unnamed-chunk-39](figure/Base/unnamed-chunk-392.png) 
+![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-392.png) 
   
 
 **Result: Manual**  
@@ -550,7 +550,7 @@ Scenario(s): Base
 Plot of number of children per mother. TODO: Convert into a real test
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-41](figure/Base/unnamed-chunk-41.png) 
+![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
   
 
 **Result: Manual**  
@@ -757,7 +757,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-60](figure/Base/unnamed-chunk-60.png) 
+![plot of chunk unnamed-chunk-60](figure/unnamed-chunk-60.png) 
   
 
 **Result: Manual**  
@@ -771,7 +771,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-62](figure/Base/unnamed-chunk-62.png) 
+![plot of chunk unnamed-chunk-62](figure/unnamed-chunk-62.png) 
   
 
 **Result: Manual**  
@@ -788,12 +788,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 75 2014-08-27 12:10:15 d3ebdbd4eda0e6ba06d39f8138ff8e33
 ## 76 2014-08-27 12:53:45 d3ebdbd4eda0e6ba06d39f8138ff8e33
 ## 77 2014-08-27 12:56:14 76aa7994cbefad1163efba5606cb7b89
 ## 78 2014-08-27 13:01:30 76aa7994cbefad1163efba5606cb7b89
 ## 79 2014-08-28 13:20:55 76aa7994cbefad1163efba5606cb7b89
 ## 80 2014-08-28 15:30:47 76aa7994cbefad1163efba5606cb7b89
+## 81 2014-08-29 14:54:40 76aa7994cbefad1163efba5606cb7b89
 ```
   
 
@@ -835,7 +835,7 @@ Scenario(s): Base
 A plot to show the SES ratios of the children in different circumstances
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-68](figure/Base/unnamed-chunk-68.png) 
+![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68.png) 
   
 
 **Result: Manual**  
@@ -856,13 +856,13 @@ Child output mortality must match child input mortality. There is something a li
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-70](figure/Base/unnamed-chunk-701.png) 
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-701.png) 
 
 ```
 ## [1] "NoChildMortality"
 ```
 
-![plot of chunk unnamed-chunk-70](figure/Base/unnamed-chunk-702.png) 
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-702.png) 
   
 
 **Result: Manual**  
@@ -876,7 +876,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-72](figure/Base/unnamed-chunk-72.png) 
+![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72.png) 
   
 
 **Result: Manual**  
@@ -890,7 +890,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-74](figure/Base/unnamed-chunk-74.png) 
+![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-74.png) 
   
 
 **Result: Manual**  

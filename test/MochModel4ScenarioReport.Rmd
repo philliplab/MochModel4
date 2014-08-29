@@ -1,7 +1,7 @@
 # Scenario Report
 ```{r, include=FALSE,eval=FALSE}
 source('MochModel4GenerateScenarioReports.R')
-scenario <- list(scex = 'Base')
+scenario <- list(scex = 'Small.scex')
 ```
 
 ```{r, include=FALSE}
@@ -25,6 +25,19 @@ sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
 td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
 setwd(td)
 
+get_scenario_details <- function(scenario_scex){
+  scenario_mod <- readLines(scenario_scex)
+  scenario_label <- scenario_mod[grep("<Label Language='EN'>.*</Label>", scenario_mod)]
+  scenario_label <- gsub("^.*'EN'>", "", scenario_label)
+  scenario_label <- gsub("</Label>.*$", "", scenario_label)
+  scenario_notes <- scenario_mod[grep("<Note Language='EN'>.*</Note>", scenario_mod)]
+  scenario_notes <- gsub("^.*'EN'>", "", scenario_notes)
+  scenario_notes <- gsub("</Note>.*$", "", scenario_notes)
+  return(list(scenario_label = scenario_label,
+              scenario_notes = scenario_notes))
+}
+
+scenario_details <- get_scenario_details(scenario$scex)
 scenario_name <- gsub(".scex", "", scenario$scex)
 opts_chunk$set(fig.path = paste0('figure/', scenario_name, '/'))
 all_results <- list_all_results(td)
@@ -36,6 +49,9 @@ ModelVersion <- as.data.frame(new_RTable("ModelVersion", db_channel))$Value[1]
 
 ## Model Version: `r ModelVersion`
 ## Scenario: `r scenario_name`
+```{r}
+print(scenario_details)
+```
 
 ## Mother Model
 

@@ -4,4 +4,10 @@
 	<Inputs>
 		<Input>.\Small(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\test\Small(MotherCore).dat</Input>
 	</Inputs>
+	<Labels>
+		<Label Language='EN'>Small - 1000 Mothers</Label>
+	</Labels>
+	<Notes>
+		<Note Language='EN'>A scenario with only 1000 mothers to see if anything breaks when the numbers are smaller.</Note>
+	</Notes>
 </Scenario>

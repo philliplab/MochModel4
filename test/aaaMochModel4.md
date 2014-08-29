@@ -6,6 +6,14 @@
 ## Model Version: 46
 ## Scenario: ZeroGestation
 
+```
+## $scenario_label
+## character(0)
+## 
+## $scenario_notes
+## character(0)
+```
+
 ## Mother Model
 
 ### Population Stats
@@ -47,11 +55,11 @@ The total time spent by mothers in the various states.
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
-![plot of chunk unnamed-chunk-6](figure/ZeroGestation/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
 
 Plot of the total time spent in the detailed states that track mothers disease course.
 
-![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
 
 ### Mother Survival
 
@@ -64,7 +72,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
 
 #### Survival of Mother who never became infected
 
@@ -73,7 +81,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
 
 #### Survival of Mother who became infected
 
@@ -82,7 +90,7 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-11](figure/ZeroGestation/unnamed-chunk-11.png) 
 
 #### Survival of Mother who became treated
 
@@ -91,21 +99,21 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-11](figure/ZeroGestation/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-12](figure/ZeroGestation/unnamed-chunk-12.png) 
 
 ### Number of children per mother
 
-![plot of chunk unnamed-chunk-12](figure/ZeroGestation/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-13](figure/ZeroGestation/unnamed-chunk-13.png) 
 
 ### Age of mothers at birth of children
 
-![plot of chunk unnamed-chunk-13](figure/ZeroGestation/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-14](figure/ZeroGestation/unnamed-chunk-14.png) 
 
 ## Child Model
 
 ### Gender Ratio
 
-![plot of chunk unnamed-chunk-14](figure/ZeroGestation/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-15](figure/ZeroGestation/unnamed-chunk-15.png) 
 
 ### State Membership
 
@@ -121,9 +129,9 @@ Note: The unrealistic mortality is caused by the issues with the mortality of th
 |Mother years in SYMPTOMS state  |        14921|        0.9|
 |Mother years in TREATED state   |        51598|        2.9|
 
-![plot of chunk unnamed-chunk-16](figure/ZeroGestation/unnamed-chunk-16.png) 
-
 ![plot of chunk unnamed-chunk-17](figure/ZeroGestation/unnamed-chunk-17.png) 
+
+![plot of chunk unnamed-chunk-18](figure/ZeroGestation/unnamed-chunk-18.png) 
 
 
 
