@@ -19,7 +19,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
-rerun_models <- TRUE
+#rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -1387,6 +1387,7 @@ test_results <- new_test(test_results,
                          description = "Histogram of child age at school start. For Base scenario all children start school between 6 and 7 which is reported as age 6. For the SchoolStartStretch scenario Children start school between 5 and 8.")
 ```
 ```{r, warning=FALSE, message=FALSE}
+result <- "Manual"
 for (cscenario in cscenarios){
   cssa <- as.data.frame(new_RTable("ChildSchoolStartAgeDistribution", db_channels[[cscenario]]))
   cssa <- subset(cssa, metrics == 'Number of Children')[,1:3]
@@ -1462,7 +1463,6 @@ test_results <- new_test(test_results,
                          description = "Histogram showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school")
 ```
 ```{r}
-drop_zero = TRUE
 plot_state_membership_histogram <- function(source_table, drop_zero = FALSE){
   all_membership <- get_state_membership_data(source_table, drop_zero = drop_zero) 
   sum_membership <- ddply(all_membership, .(metrics, scenario), summarize, Value = sum(Value))
@@ -1476,11 +1476,18 @@ plot_state_membership_histogram <- function(source_table, drop_zero = FALSE){
       facet_wrap(~ scenario, ncol = 3)
   return(p)    
 }
+result <- "Manual"
 ```
 ```{r}
 p <- plot_state_membership_histogram("SchoolChildMotherMDMembershipxAge", drop_zero = TRUE)
 print(p)
 result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
 ```
 
 ## Child - General
