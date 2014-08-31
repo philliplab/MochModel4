@@ -1403,6 +1403,30 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+```{r Child School Start MD State, results='asis'}
+ctest_name <- 'Child School Start MD State'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Histogram of childrens mother's disease states at school start")
+```
+```{r, warning=FALSE, message=FALSE}
+cssmds <- as.data.frame(new_RTable("ChildSchoolStartMDDistribution", db_channels[[cscenarios]]))
+cssmds <- subset(cssmds, metrics == 'Number of Children')[,1:3]
+p <- ggplot(cssmds, aes(x = `Mother Status`, y = `Value`)) + 
+  geom_bar(stat = 'identity') +
+  ylab('Number of Children Starting School')
+print(p)
+result <- 'Manual'
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
 
 
 ## Child - General

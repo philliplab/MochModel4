@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.08    0.12   73.22
+##    0.11    0.12   73.13
 ```
 
 ```
@@ -788,16 +788,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 80 2014-08-28 15:30:47 76aa7994cbefad1163efba5606cb7b89
 ## 81 2014-08-29 14:54:40 76aa7994cbefad1163efba5606cb7b89
 ## 82 2014-08-31 11:36:47 76aa7994cbefad1163efba5606cb7b89
 ## 83 2014-08-31 18:19:31 76aa7994cbefad1163efba5606cb7b89
 ## 84 2014-08-31 18:34:53 76aa7994cbefad1163efba5606cb7b89
 ## 85 2014-08-31 18:46:44 d79093392615fce3f2e3cc1d701e2177
+## 86 2014-08-31 18:54:08 d79093392615fce3f2e3cc1d701e2177
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -827,6 +827,20 @@ Histogram of child age at school start. For Base scenario all children start sch
   
 
 **Result: TRUE**  
+
+---
+
+#### <a name="ChildSchoolStartMDState"></a>Child School Start MD State
+
+Scenario(s): Base
+
+Histogram of childrens mother's disease states at school start
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68.png) 
+  
+
+**Result: Manual**  
 
 ---
 
@@ -866,7 +880,7 @@ Scenario(s): Base
 A plot to show the SES ratios of the children in different circumstances
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70.png) 
+![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72.png) 
   
 
 **Result: Manual**  
@@ -887,13 +901,13 @@ Child output mortality must match child input mortality. There is something a li
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-721.png) 
+![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-741.png) 
 
 ```
 ## [1] "NoChildMortality"
 ```
 
-![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-722.png) 
+![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-742.png) 
   
 
 **Result: Manual**  
@@ -907,7 +921,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-74.png) 
+![plot of chunk unnamed-chunk-76](figure/unnamed-chunk-76.png) 
   
 
 **Result: Manual**  
@@ -921,7 +935,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-76](figure/unnamed-chunk-76.png) 
+![plot of chunk unnamed-chunk-78](figure/unnamed-chunk-78.png) 
   
 
 **Result: Manual**  
@@ -933,9 +947,9 @@ Model Version: 46
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
+|FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|1|3|17|16| 
+|3|18|1|16| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -971,8 +985,9 @@ Model Version: 46
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
+|[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
