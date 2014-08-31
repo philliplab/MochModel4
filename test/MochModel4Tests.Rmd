@@ -264,6 +264,20 @@ scenarios_to_create <- list(
                             ),
              label = "Immortal children",
              notes = "No mortality for children"
+             ),
+  '17' = list(test_folder = td, 
+             base_scenario = 'Base.scex', 
+             base_scenario_dat = 'Base(MotherCore).dat',
+             scenario_name_sub = list(from = 'Base', to = 'SchoolStartStretch'), 
+             scex_sub = list(), 
+             dat_sub = list('1' = list(from = 'SchoolStartChildMin = 6',
+                                       to = 'SchoolStartChildMin = 5'),
+                            '2' = list(from = 'SchoolStartChildMax = 7',
+                                       to = 'SchoolStartChildMax = 8')
+
+                            ),
+             label = "More diverse school start ages",
+             notes = "Children can start school between 5 and 8 as opposed to 6 and 7 in the base case"
              )
   )
 for (i in scenarios_to_create){
@@ -273,7 +287,7 @@ available_scenarios <- list_all_scenarios(td, FALSE)
 ```
 ```{r Run single scenario for testing, include=FALSE, eval=FALSE}
 #available_scenarios
-#run_scenario(td, available_scenarios[[13]]$scex, td, 'MochModel4.exe')
+#run_scenario(td, available_scenarios[[12]]$scex, td, 'MochModel4.exe')
 
 all_results <- list_all_results(td)
 
@@ -1355,6 +1369,41 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
+
+## Child - Schooling
+
+```{r Child School Start Age, results='asis'}
+ctest_name <- 'Child School Start Age'
+cscenarios <- c('Base', 'SchoolStartStretch')
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Histogram of child age at school start. For Base scenario all children start school between 6 and 7 which is reported as age 6. For the SchoolStartStretch scenario Children start school between 5 and 8.")
+```
+```{r, warning=FALSE, message=FALSE}
+for (cscenario in cscenarios){
+  cssa <- as.data.frame(new_RTable("ChildSchoolStartAgeDistribution", db_channels[[cscenario]]))
+  cssa <- subset(cssa, metrics == 'Number of Children')[,1:3]
+  cssa <- subset(cssa, Value > 0)
+  if (cscenario == 'SchoolStartStretch'){
+    result <- nrow(cssa) == 3
+  } 
+  cssa$`School Start Age` <- as.factor(cssa$`School Start Age`)
+  p <- ggplot(cssa, aes(x = `School Start Age`, y = `Value`)) + 
+    geom_bar(stat = 'identity') +
+    ylab('Number of Children Starting School')
+  print(cscenario)
+  print(p)
+}
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+
 
 ## Child - General
 

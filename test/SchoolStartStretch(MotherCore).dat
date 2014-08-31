@@ -17,11 +17,11 @@ An arbitrarily selected value.
 /* NOTE(SchoolStartChildMin, EN)
 	Arbitrarily Chosen
 */
-	double SchoolStartChildMin = 6; //EN Youngest age at which children can start school
+	double SchoolStartChildMin = 5; //EN Youngest age at which children can start school
 /* NOTE(SchoolStartChildMax, EN)
 	Arbitrarily Chosen
 */
-	double SchoolStartChildMax = 7; //EN Oldest age at which children can start school
+	double SchoolStartChildMax = 8; //EN Oldest age at which children can start school
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */
@@ -58,7 +58,7 @@ An arbitrarily selected value.
 	An arbitrarily selected value.
 */
 
-	int	StartingPopulationSize = 1000; //EN Starting population size
+	int	StartingPopulationSize = 10000; //EN Starting population size
 /* NOTE ( HealthyMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */
