@@ -1,0 +1,36 @@
+//LABEL(ChildSchoolGraduation, EN) Controls when children graduates from school
+
+/* NOTE(ChildSchoolGraduation, EN)
+	This module controls when a child graduates from school
+
+	- Data Requirements
+
+	None - Graduation is hard-coded into the model to be 12 years after starting school
+
+	- Implementation Details
+
+	Upon entry into school, a graduation event is scheduled 12 years later. The graduation
+	event competes with the dropout event. The event simply sets the school_status to
+	GRADUATED.
+*/
+
+actor Child
+{
+	event timeSchoolGraduationEvent, SchoolGraduationEvent;
+};
+
+TIME Child::timeSchoolGraduationEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if (school_status == IN_SCHOOL && ChildModelType == SCHOOLING)
+	{
+		t_event_time = 12;
+	}
+	t_event_time = WAIT(t_event_time);
+	return (t_event_time);
+};
+
+void Child::SchoolGraduationEvent()
+{
+	school_status = GRADUATED;
+};
