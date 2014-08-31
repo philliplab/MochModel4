@@ -2,6 +2,12 @@
 <Scenario ScenarioVersion="1.8">
 	<General SimulationEnd="100" Threads="1" Subsamples="1" PartialReports="0" StartingSeed="16807" ComputationPriority="THREAD_PRIORITY_BELOW_NORMAL" CancelPartialResults="PARTIAL_YES" BackgroundMode="0" SilentMode="0" DistributedExecution="0" DistributedSamples="1" AccessTracking="1" TextTracking="0" CopyParameters="1" MemoryReports="0"></General>
 	<Inputs>
-		<Input>.\AllStopped(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\test\AllStopped(MotherCore).dat</Input>
+		<Input>.\AllStopped(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\AllStopped(MotherCore).dat</Input>
 	</Inputs>
+	<Labels>
+		<Label Language='EN'>Most mothers naturally transition into treatment cessation</Label>
+	</Labels>
+	<Notes>
+		<Note Language='EN'>Most mothers transition into the treatment ceased state without having their treatment cessarion rate altered. Useful for inspecting the rate of treatment cessation; Substitude: 'HealthyMortalityMotherMultiplier = 1' with 'HealthyMortalityMotherMultiplier = 0';Substitude: 'IncidenceMotherMultiplier = 1' with 'IncidenceMotherMultiplier = 3';Substitude: 'SymptomsMotherMultiplier = 1' with 'SymptomsMotherMultiplier = 10';Substitude: 'InfectedDiagnosisMotherMultiplier = 1' with 'InfectedDiagnosisMotherMultiplier = 10';Substitude: 'SymptomsDiagnosisMotherMultiplier = 1' with 'SymptomsDiagnosisMotherMultiplier = 10';Substitude: 'TreatmentMotherMultiplier = 1' with 'TreatmentMotherMultiplier = 1000';Substitude: 'InfectedMortalityMotherMultiplier = 1' with 'InfectedMortalityMotherMultiplier = 0';Substitude: 'TreatedMortalityMotherMultiplier = 1' with 'TreatedMortalityMotherMultiplier = 0';</Note>
+	</Notes>
 </Scenario>

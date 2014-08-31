@@ -142,7 +142,11 @@ result <- "Manual"
 
 ### Mother Survival
 
-Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.
+#### General Notes
+
+The mortality of the the treated mothers is unrealistic
+
+If there is no mortality in the scenario for the population the plot is for then the plot cannot be produced.
 
 #### Survival of all Mothers
 

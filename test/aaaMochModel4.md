@@ -11,7 +11,7 @@
 ```
 
 ```
-## character(0)
+## [1] "No gestation period"
 ```
 
 ```
@@ -19,7 +19,8 @@
 ```
 
 ```
-## list()
+## [1] "No gestation period, useful for matching input and output fertility."                       
+## [2] " Substitude: 'FertilityMotherGestationPeriod = 1' with 'FertilityMotherGestationPeriod = 0'"
 ```
 
 ## Mother Model
@@ -71,7 +72,11 @@ Plot of the total time spent in the detailed states that track mothers disease c
 
 ### Mother Survival
 
-Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.
+#### General Notes
+
+The mortality of the the treated mothers is unrealistic
+
+If there is no mortality in the scenario for the population the plot is for then the plot cannot be produced.
 
 #### Survival of all Mothers
 

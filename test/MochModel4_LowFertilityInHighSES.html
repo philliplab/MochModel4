@@ -7,6 +7,9 @@
 
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <style type="text/css">
@@ -155,10 +158,17 @@ hr {
 
 <h2>Scenario: LowFertilityInHighSES</h2>
 
-<pre><code>## character(0)
+<pre><code>## [1] &quot;Scenario Label&quot;
 </code></pre>
 
-<pre><code>## list()
+<pre><code>## [1] &quot;Decrease fertility of HIGH SES mothers&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;Scenario Notes&quot;
+</code></pre>
+
+<pre><code>## [1] &quot;Decrease fertility of HIGH SES mothers&quot;                                                                                                                           
+## [2] &quot; Substitude: &#39;FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{1, 1\\}&#39; with &#39;FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{0.5, 1\\}&#39;&quot;
 </code></pre>
 
 <h2>Mother Model</h2>
@@ -275,7 +285,11 @@ hr {
 
 <h3>Mother Survival</h3>
 
-<p>Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.</p>
+<h4>General Notes</h4>
+
+<p>The mortality of the the treated mothers is unrealistic</p>
+
+<p>If there is no mortality in the scenario for the population the plot is for then the plot cannot be produced.</p>
 
 <h4>Survival of all Mothers</h4>
 

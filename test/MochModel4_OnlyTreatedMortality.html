@@ -158,13 +158,21 @@ hr {
 <pre><code>## [1] &quot;Scenario Label&quot;
 </code></pre>
 
-<pre><code>## character(0)
+<pre><code>## [1] &quot;Mortality only in the treated state&quot;
 </code></pre>
 
 <pre><code>## [1] &quot;Scenario Notes&quot;
 </code></pre>
 
-<pre><code>## list()
+<pre><code>## [1] &quot;Almost all mothers become treated and are immortal in all states before treatment&quot;                 
+## [2] &quot; Substitude: &#39;HealthyMortalityMotherMultiplier = 1&#39; with &#39;HealthyMortalityMotherMultiplier = 0&#39;&quot;   
+## [3] &quot;Substitude: &#39;IncidenceMotherMultiplier = 1&#39; with &#39;IncidenceMotherMultiplier = 5&#39;&quot;                  
+## [4] &quot;Substitude: &#39;SymptomsMotherMultiplier = 1&#39; with &#39;SymptomsMotherMultiplier = 10&#39;&quot;                   
+## [5] &quot;Substitude: &#39;InfectedDiagnosisMotherMultiplier = 1&#39; with &#39;InfectedDiagnosisMotherMultiplier = 10&#39;&quot; 
+## [6] &quot;Substitude: &#39;SymptomsDiagnosisMotherMultiplier = 1&#39; with &#39;SymptomsDiagnosisMotherMultiplier = 10&#39;&quot; 
+## [7] &quot;Substitude: &#39;TreatmentMotherMultiplier = 1&#39; with &#39;TreatmentMotherMultiplier = 1000&#39;&quot;               
+## [8] &quot;Substitude: &#39;TreatmentCessationMotherMultiplier = 1&#39; with &#39;TreatmentCessationMotherMultiplier = 0&#39;&quot;
+## [9] &quot;Substitude: &#39;InfectedMortalityMotherMultiplier = 1&#39; with &#39;InfectedMortalityMotherMultiplier = 0&#39;&quot;
 </code></pre>
 
 <h2>Mother Model</h2>
@@ -281,7 +289,11 @@ hr {
 
 <h3>Mother Survival</h3>
 
-<p>Note: The unrealistic mortality is caused by the issues with the mortality of the treated mothers.</p>
+<h4>General Notes</h4>
+
+<p>The mortality of the the treated mothers is unrealistic</p>
+
+<p>If there is no mortality in the scenario for the population the plot is for then the plot cannot be produced.</p>
 
 <h4>Survival of all Mothers</h4>
 

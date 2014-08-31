@@ -33,8 +33,9 @@ odbcCloseAll()
 opts_chunk$set(echo = FALSE)
 opts_chunk$set(fig.height = 10)
 opts_chunk$set(fig.width = 10)
-sd <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4"
-td <- "C:/Users/Administrator/Documents/Visual Studio 2010/Projects/MochModel4/test"
+home_dir <- Sys.getenv('HOME')
+sd <- file.path(home_dir, "Visual Studio 2010/Projects/MochModel4")
+td <- file.path(home_dir, "Visual Studio 2010/Projects/MochModel4/test")
 setwd(td)
 
 copy_model(sd, 'MochModel4.exe', td)
@@ -59,7 +60,9 @@ scenarios_to_create <- list(
              scex_sub = list(), 
              dat_sub = list('1' = list(from = 'IncidenceMotherMultiplier = 1',
                                        to = 'IncidenceMotherMultiplier = 0')
-                            )
+                            ),
+             label = "No HIV",
+             notes = "A scenario with no HIV is useful for checking the the non-HIV mortality"
              ),
   '5' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -76,7 +79,9 @@ scenarios_to_create <- list(
                                        to = 'InfectedDiagnosisMotherMultiplier = 0'),
                             '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
                                        to = 'SymptomsDiagnosisMotherMultiplier = 0')
-                            )
+                            ),
+             label = "Mothers can only die in the infected State",
+             notes = "A scenario in which all mothers die from the infected and undiagnosed asymptomatic stage"
              ),
   '6' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -89,7 +94,9 @@ scenarios_to_create <- list(
                                        to = 'IncidenceMotherMultiplier = 3.5'),
                             '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
                                        to = 'InfectedMortalityMotherMultiplier = 0')
-                            )
+                            ),
+             label = "All infected and immortal",
+             notes = "Almost all mothers become infected and they cannot die in the asymptomatic undiagnosed infected state."
              ),
   '8' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -105,7 +112,10 @@ scenarios_to_create <- list(
                             '4' = list(from = 'TreatmentTransitionMotherSwitch = 1',
                                        to = 'TreatmentTransitionMotherSwitch = 2')
 
-                           )
+                           ),
+             label = "Weibull based transition into treatment",
+             notes = "Almost all mothers become infected and transition into treatment based on a weibull distribution"
+
              ),
   '9' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -128,7 +138,9 @@ scenarios_to_create <- list(
                                        to = 'TreatmentCessationMotherMultiplier = 0'),
                             '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
                                        to = 'InfectedMortalityMotherMultiplier = 0')
-                            )
+                            ),
+             label = "Mortality only in the treated state",
+             notes = "Almost all mothers become treated and are immortal in all states before treatment"
              ),
   '10' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -153,7 +165,9 @@ scenarios_to_create <- list(
                                        to = 'InfectedMortalityMotherMultiplier = 0'),
                             '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
                                        to = 'TreatedMortalityMotherMultiplier = 0')
-                            )
+                            ),
+             label = "Mortality only in the stopped state",
+             notes = "Almost all mothers stop treatment and are immortal in all states before treatment cessation. Useful for inspecting mortality in the treatment ceased state."
              ),
   '11' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -176,7 +190,9 @@ scenarios_to_create <- list(
                                        to = 'InfectedMortalityMotherMultiplier = 0'),
                             '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
                                        to = 'TreatedMortalityMotherMultiplier = 0')
-                            )
+                            ),
+             label = "Most mothers naturally transition into treatment cessation",
+             notes = "Most mothers transition into the treatment ceased state without having their treatment cessarion rate altered. Useful for inspecting the rate of treatment cessation"
              ),
   '12' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -193,7 +209,9 @@ scenarios_to_create <- list(
                                        to = 'SymptomsMotherMultiplier = 0'),
                             '5' = list(from = 'InfectedDiagnosisTransitionMotherSwitch = 1',
                                        to = 'InfectedDiagnosisTransitionMotherSwitch = 0')
-                            )
+                            ),
+             label = "Exponential diagnosis of asymptomatic mothers",
+             notes = "Almost all mothers become diagnosed from the asymptomatic state according to an exponential rate"
              ),
   '13' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -210,7 +228,9 @@ scenarios_to_create <- list(
                                        to = 'SymptomsMotherMultiplier = 5'),
                             '5' = list(from = 'SymptomaticDiagnosisTransitionMotherSwitch = 1',
                                        to = 'SymptomaticDiagnosisTransitionMotherSwitch = 0')
-                            )
+                            ),
+             label = "Exponential diagnosis of symptomatic mothers",
+             notes = "Almost all mothers become diagnosed from the symptomatic state according to an exponential rate."
              ),
   '14' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -219,7 +239,9 @@ scenarios_to_create <- list(
              scex_sub = list(), 
              dat_sub = list('1' = list(from = 'FertilityMotherGestationPeriod = 1',
                                        to = 'FertilityMotherGestationPeriod = 0')
-                            )
+                            ),
+             label = "No gestation period",
+             note = "No gestation period, useful for matching input and output fertility."
              ),
   '15' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -228,7 +250,9 @@ scenarios_to_create <- list(
              scex_sub = list(), 
              dat_sub = list('1' = list(from = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{1, 1\\}',
                                        to = 'FertilityMotherSESMultipliers\\[SOCIO_ECONOMIC_STATE\\] = \\{0.5, 1\\}')
-                            )
+                            ),
+             label = "Decrease fertility of HIGH SES mothers",
+             notes = "Decrease fertility of HIGH SES mothers"
              ),
   '16' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
@@ -237,7 +261,9 @@ scenarios_to_create <- list(
              scex_sub = list(), 
              dat_sub = list('1' = list(from = 'MortalityChildMultiplier = 1',
                                        to = 'MortalityChildMultiplier = 0')
-                            )
+                            ),
+             label = "Immortal children",
+             notes = "No mortality for children"
              )
   )
 for (i in scenarios_to_create){

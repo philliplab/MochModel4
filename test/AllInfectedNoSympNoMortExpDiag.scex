@@ -2,6 +2,12 @@
 <Scenario ScenarioVersion="1.8">
 	<General SimulationEnd="100" Threads="1" Subsamples="1" PartialReports="0" StartingSeed="16807" ComputationPriority="THREAD_PRIORITY_BELOW_NORMAL" CancelPartialResults="PARTIAL_YES" BackgroundMode="0" SilentMode="0" DistributedExecution="0" DistributedSamples="1" AccessTracking="1" TextTracking="0" CopyParameters="1" MemoryReports="0"></General>
 	<Inputs>
-		<Input>.\AllInfectedNoSympNoMortExpDiag(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\test\AllInfectedNoSympNoMortExpDiag(MotherCore).dat</Input>
+		<Input>.\AllInfectedNoSympNoMortExpDiag(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\AllInfectedNoSympNoMortExpDiag(MotherCore).dat</Input>
 	</Inputs>
+	<Labels>
+		<Label Language='EN'>Exponential diagnosis of asymptomatic mothers</Label>
+	</Labels>
+	<Notes>
+		<Note Language='EN'>Almost all mothers become diagnosed from the asymptomatic state according to an exponential rate; Substitude: 'HealthyMortalityMotherMultiplier = 1' with 'HealthyMortalityMotherMultiplier = 0';Substitude: 'IncidenceMotherMultiplier = 1' with 'IncidenceMotherMultiplier = 3.5';Substitude: 'InfectedMortalityMotherMultiplier = 1' with 'InfectedMortalityMotherMultiplier = 0';Substitude: 'SymptomsMotherMultiplier = 1' with 'SymptomsMotherMultiplier = 0';Substitude: 'InfectedDiagnosisTransitionMotherSwitch = 1' with 'InfectedDiagnosisTransitionMotherSwitch = 0';</Note>
+	</Notes>
 </Scenario>

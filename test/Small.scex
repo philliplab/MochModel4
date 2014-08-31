@@ -2,7 +2,7 @@
 <Scenario ScenarioVersion="1.8">
 	<General SimulationEnd="100" Threads="1" Subsamples="1" PartialReports="0" StartingSeed="16807" ComputationPriority="THREAD_PRIORITY_BELOW_NORMAL" CancelPartialResults="PARTIAL_YES" BackgroundMode="0" SilentMode="0" DistributedExecution="0" DistributedSamples="1" AccessTracking="1" TextTracking="0" CopyParameters="1" MemoryReports="0"></General>
 	<Inputs>
-		<Input>.\Small(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\test\Small(MotherCore).dat</Input>
+		<Input>.\Small(MotherCore).dat=C:\Users\Administrator\Documents\Visual Studio 2010\Projects\MochModel4\Small(MotherCore).dat</Input>
 	</Inputs>
 	<Labels>
 		<Label Language='EN'>Small - 1000 Mothers</Label>
