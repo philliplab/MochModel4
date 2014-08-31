@@ -31,9 +31,18 @@ table Child ChildSESDistribution //EN The SES ratio of the children
 	}
 };
 
-table Child ChildSchoolStartDistribution //EN The distribution of the school starting ages of the children
+table Child ChildSchoolStartAgeDistribution //EN The distribution of the school starting ages of the children
 {
 	integer_age //EN School Start Age
+		*
+	{
+		undergone_transition(school_status, NOT_IN_SCHOOL, IN_SCHOOL) //EN Number of Children
+	}
+};
+
+table Child ChildSchoolStartMDDistribution //EN The distribution of the childrens mother's disease statuses at school start 
+{
+	mdetailed_status //EN Mother Status
 		*
 	{
 		undergone_transition(school_status, NOT_IN_SCHOOL, IN_SCHOOL) //EN Number of Children
@@ -45,7 +54,8 @@ table_group Child_Attribute_Distribution
 	ChildMotherAgeAtBirthDistribution,
 	ChildGenderDistribution,
 	ChildSESDistribution,
-	ChildSchoolStartDistribution
+	ChildSchoolStartAgeDistribution,
+	ChildSchoolStartMDDistribution
 };
 
 /* ################################################################################
