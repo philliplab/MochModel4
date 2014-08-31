@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.12   73.13
+##    0.08    0.15   73.39
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 15
 ```
 
-# Tests for Model Version 46
+# Tests for Model Version 47
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -787,19 +787,32 @@ Check that the hash of the membership data of the mothers matches those of the p
 [To Summary Table](#summary_tab_link)  
 
 ```
-##              hash_time                             hash
-## 81 2014-08-29 14:54:40 76aa7994cbefad1163efba5606cb7b89
-## 82 2014-08-31 11:36:47 76aa7994cbefad1163efba5606cb7b89
-## 83 2014-08-31 18:19:31 76aa7994cbefad1163efba5606cb7b89
-## 84 2014-08-31 18:34:53 76aa7994cbefad1163efba5606cb7b89
-## 85 2014-08-31 18:46:44 d79093392615fce3f2e3cc1d701e2177
-## 86 2014-08-31 18:54:08 d79093392615fce3f2e3cc1d701e2177
+## Error: argument "drop_zero" is missing, with no default
 ```
-  
 
-**Result: No_Change**  
+```
+## Error: object 'data_hash' not found
+```
 
----
+```
+## Error: object 'new_hash_df' not found
+```
+
+```
+## Error: object 'new_hash_df' not found
+```
+
+```
+## Error: object 'data_hash' not found
+```
+
+```
+## Error: object 'result' not found
+```
+
+```
+## Warning: object 'result' not found
+```
 
 ## Child - Schooling
 
@@ -844,7 +857,29 @@ Histogram of childrens mother's disease states at school start
 
 ---
 
+#### <a name="SchoolChildMDETAILEDStateMembershiptracking"></a>School Child MDETAILED State Membership tracking
 
+Scenario(s): All
+
+Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70.png) 
+  
+
+**Result: Manual**  
+
+---
+
+#### <a name="SchoolChildMDETAILEDStateMembershiphistogram"></a>School Child MDETAILED State Membership histogram
+
+Scenario(s): All
+
+Histogram showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school
+
+[To Summary Table](#summary_tab_link)  
+
+![plot of chunk unnamed-chunk-73](figure/unnamed-chunk-73.png) 
 
 ## Child - General
 
@@ -880,7 +915,7 @@ Scenario(s): Base
 A plot to show the SES ratios of the children in different circumstances
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-72](figure/unnamed-chunk-72.png) 
+![plot of chunk unnamed-chunk-76](figure/unnamed-chunk-76.png) 
   
 
 **Result: Manual**  
@@ -901,13 +936,13 @@ Child output mortality must match child input mortality. There is something a li
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-741.png) 
+![plot of chunk unnamed-chunk-78](figure/unnamed-chunk-781.png) 
 
 ```
 ## [1] "NoChildMortality"
 ```
 
-![plot of chunk unnamed-chunk-74](figure/unnamed-chunk-742.png) 
+![plot of chunk unnamed-chunk-78](figure/unnamed-chunk-782.png) 
   
 
 **Result: Manual**  
@@ -921,7 +956,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-76](figure/unnamed-chunk-76.png) 
+![plot of chunk unnamed-chunk-80](figure/unnamed-chunk-80.png) 
   
 
 **Result: Manual**  
@@ -935,7 +970,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-78](figure/unnamed-chunk-78.png) 
+![plot of chunk unnamed-chunk-82](figure/unnamed-chunk-82.png) 
   
 
 **Result: Manual**  
@@ -943,53 +978,9 @@ Plots showing the membership of children's mothers to the different states in th
 ---
 
 ## Summary of All Tests
-Model Version: 46
+Model Version: 47
 
-#### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
-|:-:|:-:|:-:|:-:|
-|3|18|1|16| 
-
-#### <a name="summary_tab_link"></a>Table of the Test Results
-
-|Name|Result|Scenarios|
-|:-:|:-:|:-:|
-|[No deaths from healthy in OnlyInfectedMortality](#NodeathsfromhealthyinOnlyInfectedMortality)|TRUE|OnlyInfectedMortality 
-|[Healthy Mortality Match Inputs](#HealthyMortalityMatchInputs)|Manual|NoHIV 
-|[Percentage ever infected zero in NoHIV](#PercentageeverinfectedzeroinNoHIV)|TRUE|NoHIV 
-|[No deaths from Infected in OnlyTreatedMortality](#NodeathsfromInfectedinOnlyTreatedMortality)|TRUE|OnlyTreatedMortality 
-|[Infected Mortality Match van der paal](#InfectedMortalityMatchvanderpaal)|Manual|OnlyInfectedMortality 
-|[Symptom Rates Match van der paal](#SymptomRatesMatchvanderpaal)|Manual|AllInfectedNoMortality 
-|[Asymptomatic Exponential Diagnosis Rates matches inputs](#AsymptomaticExponentialDiagnosisRatesmatchesinputs)|Manual|AllInfectedNoSympNoMortExpDiag 
-|[Asymptomatic Percentage Diagnosis Rates matches inputs](#AsymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
-|[Symptomatic Exponential Diagnosis Rates matches inputs](#SymptomaticExponentialDiagnosisRatesmatchesinputs)|Manual|AllSymptomsNoMortExpDiag 
-|[Symptomatic Percentage Diagnosis Rates matches inputs](#SymptomaticPercentageDiagnosisRatesmatchesinputs)|TRUE|Base 
-|[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
-|[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
-|[Treatment Coverage Rate Matches Input Rate](#TreatmentCoverageRateMatchesInputRate)|Manual|AllInfectedNoMortality 
-|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
-|[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
-|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
-|[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
-|[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
-|[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base, ZeroGestation 
-|[Number of Children per Mother](#NumberofChildrenperMother)|Manual|Base 
-|[Life Expectancy Healthy Mother](#LifeExpectancyHealthyMother)|TRUE|NoHIV 
-|[Percentage ever infected bounded](#Percentageeverinfectedbounded)|TRUE|Base 
-|[Infected vs Healthy Mortality](#InfectedvsHealthyMortality)|TRUE|Base 
-|[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
-|[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
-|[Input SES matches output SES](#InputSESmatchesoutputSES)|TRUE|Base 
-|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
-|[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
-|[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
-|[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
-|[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
-|[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
-|[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
-|[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
-|[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
-|[Child MDEATH_SCHED State Membership tracking](#ChildMDEATH_SCHEDStateMembershiptracking)|Manual|All 
-|[Child MDETAILED State Membership tracking](#ChildMDETAILEDStateMembershiptracking)|Manual|All 
+```
+## Error: all arguments must have the same length
+```

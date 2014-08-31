@@ -1286,7 +1286,7 @@ test_results <- new_test(test_results,
 ```
 ```{r}
 #' Produces a plot showing the membership in the different states overtime
-get_state_membership_data <- function(source_table){
+get_state_membership_data <- function(source_table, drop_zero = FALSE){
   all_membership <- NULL
   for (scenario_name in names(db_channels)){
   	StateMembership <- as.data.frame(new_RTable(source_table, db_channels[[scenario_name]]))
@@ -1294,10 +1294,16 @@ get_state_membership_data <- function(source_table){
     all_membership <- rbind(all_membership,
                             StateMembership)
   }
+  if (drop_zero){
+    nz_ages <- subset(all_membership, metrics == "Mother years in HEALTHY state" &
+                                      Value == 0)$Age
+    nz_ages <- unique(nz_ages)
+    all_membership <- subset(all_membership, !(Age %in% nz_ages))
+  }
   return(all_membership)
 }
-plot_state_membership <- function(source_table){
-  all_membership <- get_state_membership_data(source_table) 
+plot_state_membership <- function(source_table, drop_zero = FALSE){
+  all_membership <- get_state_membership_data(source_table, drop_zero) 
   p <- ggplot(all_membership, aes(x = Age, y = Value, colour = metrics)) + 
       geom_line() +
       guides(col = guide_legend(ncol=2)) +
@@ -1427,7 +1433,55 @@ test_results <- new_result(test_results,
 rm('ctest_name', 'cscenarios', 'result')
 ```
 
+```{r School Child MDETAILED State Membership tracking, results='asis'}
+ctest_name <- 'School Child MDETAILED State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school")
+```
+```{r}
+p <- plot_state_membership("SchoolChildMotherMDMembershipxAge", drop_zero = TRUE)
+print(p)
+result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
 
+```{r School Child MDETAILED State Membership histogram, results='asis'}
+ctest_name <- 'School Child MDETAILED State Membership histogram'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Histogram showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school")
+```
+```{r}
+drop_zero = TRUE
+plot_state_membership_histogram <- function(source_table, drop_zero = FALSE){
+  all_membership <- get_state_membership_data(source_table, drop_zero = drop_zero) 
+  sum_membership <- ddply(all_membership, .(metrics, scenario), summarize, Value = sum(Value))
+  sum_membership$metrics <- gsub("Mother years in ", "", gsub(" state", "", sum_membership$metrics))
+  p <- ggplot(sum_membership, aes(x = metrics, y = Value, fill = metrics)) + 
+      geom_bar(stat = 'identity') +
+      guides(fill = guide_legend(ncol=2)) +
+      theme(legend.position = 'bottom') + 
+      theme(axis.text.x = element_text(angle=90, hjust=1)) +
+      labs(title = paste0("Scenario: ", scenario_name)) +
+      facet_wrap(~ scenario, ncol = 3)
+  return(p)    
+}
+```
+```{r}
+p <- plot_state_membership_histogram("SchoolChildMotherMDMembershipxAge", drop_zero = TRUE)
+print(p)
+result <- "Manual"
+```
 
 ## Child - General
 
