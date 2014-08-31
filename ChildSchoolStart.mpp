@@ -20,3 +20,39 @@ parameters
 	double SchoolStartChildMin; //EN Youngest age at which children can start school
 	double SchoolStartChildMax; //EN Oldest age at which children can start school
 };
+
+parameter_group Child_Schooling
+{
+	SchoolStartChildMin,
+	SchoolStartChildMax
+};
+
+classification SCHOOL_STATE
+{
+	NOT_IN_SCHOOL,
+	IN_SCHOOL,
+	DROPOUT,
+	GRADUATED
+};
+
+actor Child
+{
+	SCHOOL_STATE school_status = {NOT_IN_SCHOOL};
+	event timeSchoolStartEvent, SchoolStartEvent;
+};
+
+TIME Child::timeSchoolStartEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if (school_status == NOT_IN_SCHOOL && ChildModelType == SCHOOLING)
+	{
+		t_event_time = SchoolStartChildMin + (RandUniform(19) * (SchoolStartChildMax - SchoolStartChildMin));
+	}
+	t_event_time = WAIT(t_event_time);
+	return (t_event_time);
+};
+
+void Child::SchoolStartEvent()
+{
+	school_status = IN_SCHOOL;
+};

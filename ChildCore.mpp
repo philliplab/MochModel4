@@ -1,4 +1,3 @@
-
 //LABEL(ChildCore, EN) The Child Actor
 
 /* NOTE(ChildCore, EN)
@@ -9,15 +8,22 @@
 	This status is pushed down onto the child actors using the methods defined in this module
 */
 
-
 parameters 
 {
 	double GenderChildFemaleProportion; //EN The proportion of children that are female
+	CHILD_MODEL_TYPE ChildModelType; //EN The Type of Child Model
+};
+
+classification CHILD_MODEL_TYPE
+{
+	SCHOOLING,
+	RISK_FACTORS
 };
 
 parameter_group Child_Core
 {
-	GenderChildFemaleProportion
+	GenderChildFemaleProportion,
+	ChildModelType
 };
 
 
