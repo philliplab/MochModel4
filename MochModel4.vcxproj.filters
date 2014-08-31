@@ -77,6 +77,9 @@
     <None Include="ChildSchoolGraduation.mpp">
       <Filter>Modules %28mpp%29</Filter>
     </None>
+    <None Include="ChildSchoolDropout.mpp">
+      <Filter>Modules %28mpp%29</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MochModel4.cpp">
@@ -134,6 +137,9 @@
       <Filter>C++ Files</Filter>
     </ClCompile>
     <ClCompile Include="ChildSchoolGraduation.cpp">
+      <Filter>C++ Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildSchoolDropout.cpp">
       <Filter>C++ Files</Filter>
     </ClCompile>
   </ItemGroup>

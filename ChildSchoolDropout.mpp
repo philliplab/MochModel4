@@ -1,0 +1,40 @@
+//LABEL(ChildSchoolDropout, EN) Controls when children drops out of school
+
+/* NOTE(ChildSchoolDropout, EN)
+	This module controls when a child drops out of school. The transition is
+	based on the dropout probability of the child in each year and in each
+	disease state of its mother.
+
+	- Data Requirements
+
+	The dropout probabilities for children must be specified by age and by
+	socio_economic class. The effect of the mother's disease and the child's
+	gender must be specified in the form of factors that the probabilities
+	are multiplied by.
+
+	- Implementation Details
+
+	This event is first scheduled the moment when the child enters school. The event is
+	then rescheduled whenever one of the indices of the dropout rates table changes or
+	one of the indices for the multiplicative factors changes (mother's disease state). The
+	child's gender and socioeconomic status cannot change in this model. The event is thus rescheduled 
+	every year when the child ages and everytime the mother's disease state changes.
+
+	The event is simply scheduled by drawing a random number from a uniform distribution
+	and dividing it by the dropout probability of the child.
+
+	In the case where the mother's disease progresses, the child's age will not be an integer.
+	This special case is handled by scheduling the child's dropout using the child's age
+	rounded down to the nearest integer to lookup the child's dropout probability. 
+	The event is then scheduled as previously.
+*/
+
+range SCHOOL_YEARS
+{
+	6, 17
+};
+
+parameters
+{
+	double DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][MDETAILED_STATE][SCHOOL_YEARS]; //EN The dropout probabilities for the various states and ages.
+};
