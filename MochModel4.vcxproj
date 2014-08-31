@@ -99,6 +99,7 @@
     <None Include="Base.scex" />
     <None Include="ChildCore.mpp" />
     <None Include="ChildMortality.mpp" />
+    <None Include="ChildSchoolStart.mpp" />
     <None Include="ChildTables.mpp" />
     <None Include="MochModel4.mpp" />
     <None Include="ModelStrings.mpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="Actors.cpp" />
     <ClCompile Include="ChildCore.cpp" />
     <ClCompile Include="ChildMortality.cpp" />
+    <ClCompile Include="ChildSchoolStart.cpp" />
     <ClCompile Include="ChildTables.cpp" />
     <ClCompile Include="MochModel4.cpp" />
     <ClCompile Include="ModelStrings.cpp" />

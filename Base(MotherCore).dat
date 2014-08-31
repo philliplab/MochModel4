@@ -11,10 +11,17 @@ An arbitrarily selected value.
 	A value of 1 has no effect
 */
 	double MortalityChildMultiplier = 1; //EN Multiplier to easily change child mortality
+/* NOTE(SchoolStartChildMin, EN)
+	Arbitrarily Chosen
+*/
+	double SchoolStartChildMin = 6; //EN Youngest age at which children can start school
+/* NOTE(SchoolStartChildMax, EN)
+	Arbitrarily Chosen
+*/
+	double SchoolStartChildMax = 7; //EN Oldest age at which children can start school
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */
-
 	double	HighSESMotherPercentage = 0.5; //EN Percentage of Mothers in the High Socioeconomic class
 /* NOTE( FertilityMotherSESMultipliers, EN)
 	Arbitrarily chosen

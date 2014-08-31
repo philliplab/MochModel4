@@ -1,0 +1,22 @@
+//LABEL(ChildSchoolStart, EN) Controls when children starts schoold
+
+/* NOTE(ChildSchoolStart, EN)
+	This module implements when children starts school.
+
+	- Data requirements
+
+	Only two parameters must be specified - SchoolStartChildMin and SchoolStartChildMax.
+	These are the minimum and maximum ages at which children start school.
+
+	- Implementation Details
+
+	Upon birth, a child is assigned a school starting data by uniformly
+	sampling between SchoolStartChildMin and SchoolStartChildMax. The event just sets
+	the child's school status to IN_SCHOOL.
+*/
+
+parameters
+{
+	double SchoolStartChildMin; //EN Youngest age at which children can start school
+	double SchoolStartChildMax; //EN Oldest age at which children can start school
+};
