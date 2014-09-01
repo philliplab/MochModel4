@@ -151,13 +151,11 @@ hr {
 <body>
 <h1>Setup and Run Model</h1>
 
-<h1>WARNING MODELS WERE NOT RERUN</h1>
-
 <pre><code>## [1] &quot;Running Time&quot;
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##    0.14    0.10    4.01
+##    0.18    0.14   71.54
 </code></pre>
 
 <pre><code>## [1] &quot;Number of Scenarios&quot;
@@ -853,13 +851,13 @@ hr {
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
-<pre><code>##               hash_time                             hash
-## 95  2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
-## 96  2014-09-01 05:39:59 d79093392615fce3f2e3cc1d701e2177
-## 97  2014-09-01 05:43:59 d79093392615fce3f2e3cc1d701e2177
-## 98  2014-09-01 05:47:21 d79093392615fce3f2e3cc1d701e2177
-## 99  2014-09-01 05:55:31 d79093392615fce3f2e3cc1d701e2177
-## 100 2014-09-01 06:01:40 d79093392615fce3f2e3cc1d701e2177
+<pre><code>##              hash_time                             hash
+## 92 2014-08-31 22:37:46 d79093392615fce3f2e3cc1d701e2177
+## 93 2014-09-01 04:44:27 d79093392615fce3f2e3cc1d701e2177
+## 94 2014-09-01 04:56:59 d79093392615fce3f2e3cc1d701e2177
+## 95 2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
+## 96 2014-09-01 05:39:59 d79093392615fce3f2e3cc1d701e2177
+## 97 2014-09-01 05:43:59 d79093392615fce3f2e3cc1d701e2177
 </code></pre>
 
 <p><strong>Result: No_Change</strong>  </p>
@@ -942,22 +940,29 @@ hr {
 
 <p><a href="#summary_tab_link">To Summary Table</a>  </p>
 
-<pre><code>## $fhh15
-## [1] 0.01842
-## 
-## $flde13
-## [1] 0.1221
-## 
-## $mhsy16
-## [1] 0.03315
-## 
-## $mldst17
-## [1] 0.1888
+<pre><code>## Error: object &#39;MDETAILED_STATE&#39; not found
 </code></pre>
 
-<p><strong>Result: TRUE</strong>  </p>
+<pre><code>## Error: object &#39;MDETAILED_STATE&#39; not found
+</code></pre>
 
-<hr/>
+<pre><code>## Error: object &#39;MDETAILED_STATE&#39; not found
+</code></pre>
+
+<pre><code>## Error: object &#39;MDETAILED_STATE&#39; not found
+</code></pre>
+
+<pre><code>## Error: object &#39;fhh9&#39; not found
+</code></pre>
+
+<pre><code>## Error: object &#39;fhh9&#39; not found
+</code></pre>
+
+<pre><code>## Error: object &#39;result&#39; not found
+</code></pre>
+
+<pre><code>## Warning: object &#39;result&#39; not found
+</code></pre>
 
 <h2>Child - General</h2>
 
@@ -1051,239 +1056,8 @@ hr {
 
 <p>Model Version: 47</p>
 
-<h4>Summary of the Test Results</h4>
-
-<table><thead>
-<tr>
-<th align="center">FALSE</th>
-<th align="center">Manual</th>
-<th align="center">No_Change</th>
-<th align="center">TRUE</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center">3</td>
-<td align="center">20</td>
-<td align="center">1</td>
-<td align="center">17</td>
-</tr>
-</tbody></table>
-
-<h4><a name="summary_tab_link"></a>Table of the Test Results</h4>
-
-<table><thead>
-<tr>
-<th align="center">Name</th>
-<th align="center">Result</th>
-<th align="center">Scenarios</th>
-</tr>
-</thead><tbody>
-<tr>
-<td align="center"><a href="#NodeathsfromhealthyinOnlyInfectedMortality">No deaths from healthy in OnlyInfectedMortality</a></td>
-<td align="center">TRUE</td>
-<td align="center">OnlyInfectedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#HealthyMortalityMatchInputs">Healthy Mortality Match Inputs</a></td>
-<td align="center">Manual</td>
-<td align="center">NoHIV</td>
-</tr>
-<tr>
-<td align="center"><a href="#PercentageeverinfectedzeroinNoHIV">Percentage ever infected zero in NoHIV</a></td>
-<td align="center">TRUE</td>
-<td align="center">NoHIV</td>
-</tr>
-<tr>
-<td align="center"><a href="#NodeathsfromInfectedinOnlyTreatedMortality">No deaths from Infected in OnlyTreatedMortality</a></td>
-<td align="center">TRUE</td>
-<td align="center">OnlyTreatedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#InfectedMortalityMatchvanderpaal">Infected Mortality Match van der paal</a></td>
-<td align="center">Manual</td>
-<td align="center">OnlyInfectedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#SymptomRatesMatchvanderpaal">Symptom Rates Match van der paal</a></td>
-<td align="center">Manual</td>
-<td align="center">AllInfectedNoMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#AsymptomaticExponentialDiagnosisRatesmatchesinputs">Asymptomatic Exponential Diagnosis Rates matches inputs</a></td>
-<td align="center">Manual</td>
-<td align="center">AllInfectedNoSympNoMortExpDiag</td>
-</tr>
-<tr>
-<td align="center"><a href="#AsymptomaticPercentageDiagnosisRatesmatchesinputs">Asymptomatic Percentage Diagnosis Rates matches inputs</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#SymptomaticExponentialDiagnosisRatesmatchesinputs">Symptomatic Exponential Diagnosis Rates matches inputs</a></td>
-<td align="center">Manual</td>
-<td align="center">AllSymptomsNoMortExpDiag</td>
-</tr>
-<tr>
-<td align="center"><a href="#SymptomaticPercentageDiagnosisRatesmatchesinputs">Symptomatic Percentage Diagnosis Rates matches inputs</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#TreatmentRatesmatchesinputs">Treatment Rates matches inputs</a></td>
-<td align="center">Manual</td>
-<td align="center">AllInfectedNoMortality, WeibullTreatmentTransition</td>
-</tr>
-<tr>
-<td align="center"><a href="#Treatmentchanceisassignedasexpected">Treatment chance is assigned as expected</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#TreatmentCoverageRateMatchesInputRate">Treatment Coverage Rate Matches Input Rate</a></td>
-<td align="center">Manual</td>
-<td align="center">AllInfectedNoMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#TreatedMortalityMatchInputs">Treated Mortality Match Inputs</a></td>
-<td align="center">FALSE</td>
-<td align="center">OnlyTreatedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#NodeathsfromTreatedinOnlyStoppedMortality">No deaths from Treated in OnlyStoppedMortality</a></td>
-<td align="center">TRUE</td>
-<td align="center">OnlyStoppedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#TreatmentCessationRatesmatchesinputs">Treatment Cessation Rates matches inputs</a></td>
-<td align="center">FALSE</td>
-<td align="center">AllStopped</td>
-</tr>
-<tr>
-<td align="center"><a href="#StoppedMortalityMatchInputs">Stopped Mortality Match Inputs</a></td>
-<td align="center">Manual</td>
-<td align="center">OnlyStoppedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#MotherAgeatBirthHistogram">Mother Age at Birth Histogram</a></td>
-<td align="center">Manual</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#MotherFertilityRates">Mother Fertility Rates</a></td>
-<td align="center">Manual</td>
-<td align="center">Base, ZeroGestation</td>
-</tr>
-<tr>
-<td align="center"><a href="#NumberofChildrenperMother">Number of Children per Mother</a></td>
-<td align="center">Manual</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#LifeExpectancyHealthyMother">Life Expectancy Healthy Mother</a></td>
-<td align="center">TRUE</td>
-<td align="center">NoHIV</td>
-</tr>
-<tr>
-<td align="center"><a href="#Percentageeverinfectedbounded">Percentage ever infected bounded</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#InfectedvsHealthyMortality">Infected vs Healthy Mortality</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#Percentageeversymptomaticbounded">Percentage ever symptomatic bounded</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate">OnlyInfectedMortality scenario has most people dying from infected state</a></td>
-<td align="center">TRUE</td>
-<td align="center">OnlyInfectedMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#InputSESmatchesoutputSES">Input SES matches output SES</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#MotherMaxAge">Mother Max Age</a></td>
-<td align="center">FALSE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#Eventtablerowstrackexactlyoneactor">Event table rows track exactly one actor</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#MDEATH_SCHEDStateMembershiptracking">MDEATH_SCHED State Membership tracking</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#MDETAILEDStateMembershiptracking">MDETAILED State Membership tracking</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#NochangeinMotherfromprevious">No change in Mother from previous</a></td>
-<td align="center">No_Change</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildSchoolStartAge">Child School Start Age</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base, SchoolStartStretch</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildSchoolStartMDState">Child School Start MD State</a></td>
-<td align="center">Manual</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#SchoolChildMDETAILEDStateMembershiptracking">School Child MDETAILED State Membership tracking</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#SchoolChildMDETAILEDStateMembershiphistogram">School Child MDETAILED State Membership histogram</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#DropoutRatescorrectlyspecified">Dropout Rates correctly specified</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildGenderRatios">Child Gender Ratios</a></td>
-<td align="center">TRUE</td>
-<td align="center">Base</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildSESRatios">Child SES Ratios</a></td>
-<td align="center">Manual</td>
-<td align="center">Base, LowFertilityInHighSES, NoHIV</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildMortality">Child Mortality</a></td>
-<td align="center">Manual</td>
-<td align="center">Base, NoChildMortality</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildMDEATH_SCHEDStateMembershiptracking">Child MDEATH_SCHED State Membership tracking</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-<tr>
-<td align="center"><a href="#ChildMDETAILEDStateMembershiptracking">Child MDETAILED State Membership tracking</a></td>
-<td align="center">Manual</td>
-<td align="center">All</td>
-</tr>
-</tbody></table>
+<pre><code>## Error: all arguments must have the same length
+</code></pre>
 
 <h2>Debugging NOTES</h2>
 
@@ -1783,7 +1557,7 @@ hr {
 ## [1] &quot;Dropout Rates correctly specified&quot;
 ## 
 ## $`Dropout Rates correctly specified`$result
-## [1] TRUE
+## NULL
 ## 
 ## $`Dropout Rates correctly specified`$scenarios
 ## [1] &quot;Base&quot;

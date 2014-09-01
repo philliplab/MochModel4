@@ -11,7 +11,7 @@ output: html_document
 
 
 
-
+# WARNING MODELS WERE NOT RERUN 
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.12    0.12   71.23
+##    0.14    0.10    4.01
 ```
 
 ```
@@ -787,13 +787,13 @@ Check that the hash of the membership data of the mothers matches those of the p
 [To Summary Table](#summary_tab_link)  
 
 ```
-##              hash_time                             hash
-## 90 2014-08-31 22:30:59 d79093392615fce3f2e3cc1d701e2177
-## 91 2014-08-31 22:35:39 d79093392615fce3f2e3cc1d701e2177
-## 92 2014-08-31 22:37:46 d79093392615fce3f2e3cc1d701e2177
-## 93 2014-09-01 04:44:27 d79093392615fce3f2e3cc1d701e2177
-## 94 2014-09-01 04:56:59 d79093392615fce3f2e3cc1d701e2177
-## 95 2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
+##               hash_time                             hash
+## 95  2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
+## 96  2014-09-01 05:39:59 d79093392615fce3f2e3cc1d701e2177
+## 97  2014-09-01 05:43:59 d79093392615fce3f2e3cc1d701e2177
+## 98  2014-09-01 05:47:21 d79093392615fce3f2e3cc1d701e2177
+## 99  2014-09-01 05:55:31 d79093392615fce3f2e3cc1d701e2177
+## 100 2014-09-01 06:01:40 d79093392615fce3f2e3cc1d701e2177
 ```
   
 
@@ -884,17 +884,17 @@ Note that there is an issue with the modgenTester R package. It does not read th
 [To Summary Table](#summary_tab_link)  
 
 ```
-## $fhh9
-## [1] 0.03
+## $fhh15
+## [1] 0.01842
 ## 
-## $flde7
-## [1] 0.03
+## $flde13
+## [1] 0.1221
 ## 
-## $mhsy10
-## [1] 0.03
+## $mhsy16
+## [1] 0.03315
 ## 
-## $mlds11
-## [1] 0.03
+## $mldst17
+## [1] 0.1888
 ```
   
 
@@ -1052,3 +1052,582 @@ Model Version: 47
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
 |[Child MDEATH_SCHED State Membership tracking](#ChildMDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[Child MDETAILED State Membership tracking](#ChildMDETAILEDStateMembershiptracking)|Manual|All 
+
+## Debugging NOTES
+
+
+```
+## $`No deaths from healthy in OnlyInfectedMortality`
+## $`No deaths from healthy in OnlyInfectedMortality`$name
+## [1] "No deaths from healthy in OnlyInfectedMortality"
+## 
+## $`No deaths from healthy in OnlyInfectedMortality`$result
+## [1] TRUE
+## 
+## $`No deaths from healthy in OnlyInfectedMortality`$scenarios
+## [1] "OnlyInfectedMortality"
+## 
+## $`No deaths from healthy in OnlyInfectedMortality`$anchor_link
+## [1] "NodeathsfromhealthyinOnlyInfectedMortality"
+## 
+## 
+## $`Healthy Mortality Match Inputs`
+## $`Healthy Mortality Match Inputs`$name
+## [1] "Healthy Mortality Match Inputs"
+## 
+## $`Healthy Mortality Match Inputs`$result
+## [1] "Manual"
+## 
+## $`Healthy Mortality Match Inputs`$scenarios
+## [1] "NoHIV"
+## 
+## $`Healthy Mortality Match Inputs`$anchor_link
+## [1] "HealthyMortalityMatchInputs"
+## 
+## 
+## $`Percentage ever infected zero in NoHIV`
+## $`Percentage ever infected zero in NoHIV`$name
+## [1] "Percentage ever infected zero in NoHIV"
+## 
+## $`Percentage ever infected zero in NoHIV`$result
+## [1] TRUE
+## 
+## $`Percentage ever infected zero in NoHIV`$scenarios
+## [1] "NoHIV"
+## 
+## $`Percentage ever infected zero in NoHIV`$anchor_link
+## [1] "PercentageeverinfectedzeroinNoHIV"
+## 
+## 
+## $`No deaths from Infected in OnlyTreatedMortality`
+## $`No deaths from Infected in OnlyTreatedMortality`$name
+## [1] "No deaths from Infected in OnlyTreatedMortality"
+## 
+## $`No deaths from Infected in OnlyTreatedMortality`$result
+## [1] TRUE
+## 
+## $`No deaths from Infected in OnlyTreatedMortality`$scenarios
+## [1] "OnlyTreatedMortality"
+## 
+## $`No deaths from Infected in OnlyTreatedMortality`$anchor_link
+## [1] "NodeathsfromInfectedinOnlyTreatedMortality"
+## 
+## 
+## $`Infected Mortality Match van der paal`
+## $`Infected Mortality Match van der paal`$name
+## [1] "Infected Mortality Match van der paal"
+## 
+## $`Infected Mortality Match van der paal`$result
+## [1] "Manual"
+## 
+## $`Infected Mortality Match van der paal`$scenarios
+## [1] "OnlyInfectedMortality"
+## 
+## $`Infected Mortality Match van der paal`$anchor_link
+## [1] "InfectedMortalityMatchvanderpaal"
+## 
+## 
+## $`Symptom Rates Match van der paal`
+## $`Symptom Rates Match van der paal`$name
+## [1] "Symptom Rates Match van der paal"
+## 
+## $`Symptom Rates Match van der paal`$result
+## [1] "Manual"
+## 
+## $`Symptom Rates Match van der paal`$scenarios
+## [1] "AllInfectedNoMortality"
+## 
+## $`Symptom Rates Match van der paal`$anchor_link
+## [1] "SymptomRatesMatchvanderpaal"
+## 
+## 
+## $`Asymptomatic Exponential Diagnosis Rates matches inputs`
+## $`Asymptomatic Exponential Diagnosis Rates matches inputs`$name
+## [1] "Asymptomatic Exponential Diagnosis Rates matches inputs"
+## 
+## $`Asymptomatic Exponential Diagnosis Rates matches inputs`$result
+## [1] "Manual"
+## 
+## $`Asymptomatic Exponential Diagnosis Rates matches inputs`$scenarios
+## [1] "AllInfectedNoSympNoMortExpDiag"
+## 
+## $`Asymptomatic Exponential Diagnosis Rates matches inputs`$anchor_link
+## [1] "AsymptomaticExponentialDiagnosisRatesmatchesinputs"
+## 
+## 
+## $`Asymptomatic Percentage Diagnosis Rates matches inputs`
+## $`Asymptomatic Percentage Diagnosis Rates matches inputs`$name
+## [1] "Asymptomatic Percentage Diagnosis Rates matches inputs"
+## 
+## $`Asymptomatic Percentage Diagnosis Rates matches inputs`$result
+## [1] TRUE
+## 
+## $`Asymptomatic Percentage Diagnosis Rates matches inputs`$scenarios
+## [1] "Base"
+## 
+## $`Asymptomatic Percentage Diagnosis Rates matches inputs`$anchor_link
+## [1] "AsymptomaticPercentageDiagnosisRatesmatchesinputs"
+## 
+## 
+## $`Symptomatic Exponential Diagnosis Rates matches inputs`
+## $`Symptomatic Exponential Diagnosis Rates matches inputs`$name
+## [1] "Symptomatic Exponential Diagnosis Rates matches inputs"
+## 
+## $`Symptomatic Exponential Diagnosis Rates matches inputs`$result
+## [1] "Manual"
+## 
+## $`Symptomatic Exponential Diagnosis Rates matches inputs`$scenarios
+## [1] "AllSymptomsNoMortExpDiag"
+## 
+## $`Symptomatic Exponential Diagnosis Rates matches inputs`$anchor_link
+## [1] "SymptomaticExponentialDiagnosisRatesmatchesinputs"
+## 
+## 
+## $`Symptomatic Percentage Diagnosis Rates matches inputs`
+## $`Symptomatic Percentage Diagnosis Rates matches inputs`$name
+## [1] "Symptomatic Percentage Diagnosis Rates matches inputs"
+## 
+## $`Symptomatic Percentage Diagnosis Rates matches inputs`$result
+## [1] TRUE
+## 
+## $`Symptomatic Percentage Diagnosis Rates matches inputs`$scenarios
+## [1] "Base"
+## 
+## $`Symptomatic Percentage Diagnosis Rates matches inputs`$anchor_link
+## [1] "SymptomaticPercentageDiagnosisRatesmatchesinputs"
+## 
+## 
+## $`Treatment Rates matches inputs`
+## $`Treatment Rates matches inputs`$name
+## [1] "Treatment Rates matches inputs"
+## 
+## $`Treatment Rates matches inputs`$result
+## [1] "Manual"
+## 
+## $`Treatment Rates matches inputs`$scenarios
+## [1] "AllInfectedNoMortality"     "WeibullTreatmentTransition"
+## 
+## $`Treatment Rates matches inputs`$anchor_link
+## [1] "TreatmentRatesmatchesinputs"
+## 
+## 
+## $`Treatment chance is assigned as expected`
+## $`Treatment chance is assigned as expected`$name
+## [1] "Treatment chance is assigned as expected"
+## 
+## $`Treatment chance is assigned as expected`$result
+## [1] TRUE
+## 
+## $`Treatment chance is assigned as expected`$scenarios
+## [1] "Base"
+## 
+## $`Treatment chance is assigned as expected`$anchor_link
+## [1] "Treatmentchanceisassignedasexpected"
+## 
+## 
+## $`Treatment Coverage Rate Matches Input Rate`
+## $`Treatment Coverage Rate Matches Input Rate`$name
+## [1] "Treatment Coverage Rate Matches Input Rate"
+## 
+## $`Treatment Coverage Rate Matches Input Rate`$result
+## [1] "Manual"
+## 
+## $`Treatment Coverage Rate Matches Input Rate`$scenarios
+## [1] "AllInfectedNoMortality"
+## 
+## $`Treatment Coverage Rate Matches Input Rate`$anchor_link
+## [1] "TreatmentCoverageRateMatchesInputRate"
+## 
+## 
+## $`Treated Mortality Match Inputs`
+## $`Treated Mortality Match Inputs`$name
+## [1] "Treated Mortality Match Inputs"
+## 
+## $`Treated Mortality Match Inputs`$result
+## [1] FALSE
+## 
+## $`Treated Mortality Match Inputs`$scenarios
+## [1] "OnlyTreatedMortality"
+## 
+## $`Treated Mortality Match Inputs`$anchor_link
+## [1] "TreatedMortalityMatchInputs"
+## 
+## 
+## $`No deaths from Treated in OnlyStoppedMortality`
+## $`No deaths from Treated in OnlyStoppedMortality`$name
+## [1] "No deaths from Treated in OnlyStoppedMortality"
+## 
+## $`No deaths from Treated in OnlyStoppedMortality`$result
+## [1] TRUE
+## 
+## $`No deaths from Treated in OnlyStoppedMortality`$scenarios
+## [1] "OnlyStoppedMortality"
+## 
+## $`No deaths from Treated in OnlyStoppedMortality`$anchor_link
+## [1] "NodeathsfromTreatedinOnlyStoppedMortality"
+## 
+## 
+## $`Treatment Cessation Rates matches inputs`
+## $`Treatment Cessation Rates matches inputs`$name
+## [1] "Treatment Cessation Rates matches inputs"
+## 
+## $`Treatment Cessation Rates matches inputs`$result
+## [1] FALSE
+## 
+## $`Treatment Cessation Rates matches inputs`$scenarios
+## [1] "AllStopped"
+## 
+## $`Treatment Cessation Rates matches inputs`$anchor_link
+## [1] "TreatmentCessationRatesmatchesinputs"
+## 
+## 
+## $`Stopped Mortality Match Inputs`
+## $`Stopped Mortality Match Inputs`$name
+## [1] "Stopped Mortality Match Inputs"
+## 
+## $`Stopped Mortality Match Inputs`$result
+## [1] "Manual"
+## 
+## $`Stopped Mortality Match Inputs`$scenarios
+## [1] "OnlyStoppedMortality"
+## 
+## $`Stopped Mortality Match Inputs`$anchor_link
+## [1] "StoppedMortalityMatchInputs"
+## 
+## 
+## $`Mother Age at Birth Histogram`
+## $`Mother Age at Birth Histogram`$name
+## [1] "Mother Age at Birth Histogram"
+## 
+## $`Mother Age at Birth Histogram`$result
+## [1] "Manual"
+## 
+## $`Mother Age at Birth Histogram`$scenarios
+## [1] "Base"
+## 
+## $`Mother Age at Birth Histogram`$anchor_link
+## [1] "MotherAgeatBirthHistogram"
+## 
+## 
+## $`Mother Fertility Rates`
+## $`Mother Fertility Rates`$name
+## [1] "Mother Fertility Rates"
+## 
+## $`Mother Fertility Rates`$result
+## [1] "Manual"
+## 
+## $`Mother Fertility Rates`$scenarios
+## [1] "Base"          "ZeroGestation"
+## 
+## $`Mother Fertility Rates`$anchor_link
+## [1] "MotherFertilityRates"
+## 
+## 
+## $`Number of Children per Mother`
+## $`Number of Children per Mother`$name
+## [1] "Number of Children per Mother"
+## 
+## $`Number of Children per Mother`$result
+## [1] "Manual"
+## 
+## $`Number of Children per Mother`$scenarios
+## [1] "Base"
+## 
+## $`Number of Children per Mother`$anchor_link
+## [1] "NumberofChildrenperMother"
+## 
+## 
+## $`Life Expectancy Healthy Mother`
+## $`Life Expectancy Healthy Mother`$name
+## [1] "Life Expectancy Healthy Mother"
+## 
+## $`Life Expectancy Healthy Mother`$result
+## [1] TRUE
+## 
+## $`Life Expectancy Healthy Mother`$scenarios
+## [1] "NoHIV"
+## 
+## $`Life Expectancy Healthy Mother`$anchor_link
+## [1] "LifeExpectancyHealthyMother"
+## 
+## 
+## $`Percentage ever infected bounded`
+## $`Percentage ever infected bounded`$name
+## [1] "Percentage ever infected bounded"
+## 
+## $`Percentage ever infected bounded`$result
+## [1] TRUE
+## 
+## $`Percentage ever infected bounded`$scenarios
+## [1] "Base"
+## 
+## $`Percentage ever infected bounded`$anchor_link
+## [1] "Percentageeverinfectedbounded"
+## 
+## 
+## $`Infected vs Healthy Mortality`
+## $`Infected vs Healthy Mortality`$name
+## [1] "Infected vs Healthy Mortality"
+## 
+## $`Infected vs Healthy Mortality`$result
+## [1] TRUE
+## 
+## $`Infected vs Healthy Mortality`$scenarios
+## [1] "Base"
+## 
+## $`Infected vs Healthy Mortality`$anchor_link
+## [1] "InfectedvsHealthyMortality"
+## 
+## 
+## $`Percentage ever symptomatic bounded`
+## $`Percentage ever symptomatic bounded`$name
+## [1] "Percentage ever symptomatic bounded"
+## 
+## $`Percentage ever symptomatic bounded`$result
+## [1] TRUE
+## 
+## $`Percentage ever symptomatic bounded`$scenarios
+## [1] "Base"
+## 
+## $`Percentage ever symptomatic bounded`$anchor_link
+## [1] "Percentageeversymptomaticbounded"
+## 
+## 
+## $`OnlyInfectedMortality scenario has most people dying from infected state`
+## $`OnlyInfectedMortality scenario has most people dying from infected state`$name
+## [1] "OnlyInfectedMortality scenario has most people dying from infected state"
+## 
+## $`OnlyInfectedMortality scenario has most people dying from infected state`$result
+## [1] TRUE
+## 
+## $`OnlyInfectedMortality scenario has most people dying from infected state`$scenarios
+## [1] "OnlyInfectedMortality"
+## 
+## $`OnlyInfectedMortality scenario has most people dying from infected state`$anchor_link
+## [1] "OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate"
+## 
+## 
+## $`Input SES matches output SES`
+## $`Input SES matches output SES`$name
+## [1] "Input SES matches output SES"
+## 
+## $`Input SES matches output SES`$result
+## [1] TRUE
+## 
+## $`Input SES matches output SES`$scenarios
+## [1] "Base"
+## 
+## $`Input SES matches output SES`$anchor_link
+## [1] "InputSESmatchesoutputSES"
+## 
+## 
+## $`Mother Max Age`
+## $`Mother Max Age`$name
+## [1] "Mother Max Age"
+## 
+## $`Mother Max Age`$result
+##   Value
+## 3 FALSE
+## 
+## $`Mother Max Age`$scenarios
+## [1] "Base"
+## 
+## $`Mother Max Age`$anchor_link
+## [1] "MotherMaxAge"
+## 
+## 
+## $`Event table rows track exactly one actor`
+## $`Event table rows track exactly one actor`$name
+## [1] "Event table rows track exactly one actor"
+## 
+## $`Event table rows track exactly one actor`$result
+## [1] TRUE
+## 
+## $`Event table rows track exactly one actor`$scenarios
+## [1] "Base"
+## 
+## $`Event table rows track exactly one actor`$anchor_link
+## [1] "Eventtablerowstrackexactlyoneactor"
+## 
+## 
+## $`MDEATH_SCHED State Membership tracking`
+## $`MDEATH_SCHED State Membership tracking`$name
+## [1] "MDEATH_SCHED State Membership tracking"
+## 
+## $`MDEATH_SCHED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`MDEATH_SCHED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`MDEATH_SCHED State Membership tracking`$anchor_link
+## [1] "MDEATH_SCHEDStateMembershiptracking"
+## 
+## 
+## $`MDETAILED State Membership tracking`
+## $`MDETAILED State Membership tracking`$name
+## [1] "MDETAILED State Membership tracking"
+## 
+## $`MDETAILED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`MDETAILED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`MDETAILED State Membership tracking`$anchor_link
+## [1] "MDETAILEDStateMembershiptracking"
+## 
+## 
+## $`No change in Mother from previous`
+## $`No change in Mother from previous`$name
+## [1] "No change in Mother from previous"
+## 
+## $`No change in Mother from previous`$result
+## [1] "No_Change"
+## 
+## $`No change in Mother from previous`$scenarios
+## [1] "All"
+## 
+## $`No change in Mother from previous`$anchor_link
+## [1] "NochangeinMotherfromprevious"
+## 
+## 
+## $`Child School Start Age`
+## $`Child School Start Age`$name
+## [1] "Child School Start Age"
+## 
+## $`Child School Start Age`$result
+## [1] TRUE
+## 
+## $`Child School Start Age`$scenarios
+## [1] "Base"               "SchoolStartStretch"
+## 
+## $`Child School Start Age`$anchor_link
+## [1] "ChildSchoolStartAge"
+## 
+## 
+## $`Child School Start MD State`
+## $`Child School Start MD State`$name
+## [1] "Child School Start MD State"
+## 
+## $`Child School Start MD State`$result
+## [1] "Manual"
+## 
+## $`Child School Start MD State`$scenarios
+## [1] "Base"
+## 
+## $`Child School Start MD State`$anchor_link
+## [1] "ChildSchoolStartMDState"
+## 
+## 
+## $`School Child MDETAILED State Membership tracking`
+## $`School Child MDETAILED State Membership tracking`$name
+## [1] "School Child MDETAILED State Membership tracking"
+## 
+## $`School Child MDETAILED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`School Child MDETAILED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`School Child MDETAILED State Membership tracking`$anchor_link
+## [1] "SchoolChildMDETAILEDStateMembershiptracking"
+## 
+## 
+## $`School Child MDETAILED State Membership histogram`
+## $`School Child MDETAILED State Membership histogram`$name
+## [1] "School Child MDETAILED State Membership histogram"
+## 
+## $`School Child MDETAILED State Membership histogram`$result
+## [1] "Manual"
+## 
+## $`School Child MDETAILED State Membership histogram`$scenarios
+## [1] "All"
+## 
+## $`School Child MDETAILED State Membership histogram`$anchor_link
+## [1] "SchoolChildMDETAILEDStateMembershiphistogram"
+## 
+## 
+## $`Dropout Rates correctly specified`
+## $`Dropout Rates correctly specified`$name
+## [1] "Dropout Rates correctly specified"
+## 
+## $`Dropout Rates correctly specified`$result
+## [1] TRUE
+## 
+## $`Dropout Rates correctly specified`$scenarios
+## [1] "Base"
+## 
+## $`Dropout Rates correctly specified`$anchor_link
+## [1] "DropoutRatescorrectlyspecified"
+## 
+## 
+## $`Child Gender Ratios`
+## $`Child Gender Ratios`$name
+## [1] "Child Gender Ratios"
+## 
+## $`Child Gender Ratios`$result
+## [1] TRUE
+## 
+## $`Child Gender Ratios`$scenarios
+## [1] "Base"
+## 
+## $`Child Gender Ratios`$anchor_link
+## [1] "ChildGenderRatios"
+## 
+## 
+## $`Child SES Ratios`
+## $`Child SES Ratios`$name
+## [1] "Child SES Ratios"
+## 
+## $`Child SES Ratios`$result
+## [1] "Manual"
+## 
+## $`Child SES Ratios`$scenarios
+## [1] "Base"                  "LowFertilityInHighSES" "NoHIV"                
+## 
+## $`Child SES Ratios`$anchor_link
+## [1] "ChildSESRatios"
+## 
+## 
+## $`Child Mortality`
+## $`Child Mortality`$name
+## [1] "Child Mortality"
+## 
+## $`Child Mortality`$result
+## [1] "Manual"
+## 
+## $`Child Mortality`$scenarios
+## [1] "Base"             "NoChildMortality"
+## 
+## $`Child Mortality`$anchor_link
+## [1] "ChildMortality"
+## 
+## 
+## $`Child MDEATH_SCHED State Membership tracking`
+## $`Child MDEATH_SCHED State Membership tracking`$name
+## [1] "Child MDEATH_SCHED State Membership tracking"
+## 
+## $`Child MDEATH_SCHED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`Child MDEATH_SCHED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`Child MDEATH_SCHED State Membership tracking`$anchor_link
+## [1] "ChildMDEATH_SCHEDStateMembershiptracking"
+## 
+## 
+## $`Child MDETAILED State Membership tracking`
+## $`Child MDETAILED State Membership tracking`$name
+## [1] "Child MDETAILED State Membership tracking"
+## 
+## $`Child MDETAILED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`Child MDETAILED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`Child MDETAILED State Membership tracking`$anchor_link
+## [1] "ChildMDETAILEDStateMembershiptracking"
+```

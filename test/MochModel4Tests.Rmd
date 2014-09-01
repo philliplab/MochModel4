@@ -19,7 +19,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
-rerun_models <- TRUE
+#rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -1501,27 +1501,27 @@ Note that there is an issue with the modgenTester R package. It does not read th
 ```
 ```{r}
 dropout_prob <- as.data.frame(new_PTable("DropoutProbabilityChild", db_channels[[cscenarios]]))
-fhh9 <- subset(dropout_prob, GENDER == 'F' &
+fhh15 <- subset(dropout_prob, GENDER == 'F' &
                              SOCIO_ECONOMIC_STATE == 'HIGH' &
-                             MDETAILED_STATE == 'mdHEALTHY' &
+                             CHILD_SCHED_STATE == 'cHEALTHY' &
                              SCHOOL_YEARS == 9)$Value
-flde7 <- subset(dropout_prob, GENDER == 'F' &
+flde13 <- subset(dropout_prob, GENDER == 'F' &
                               SOCIO_ECONOMIC_STATE == 'LOW' &
-                              MDETAILED_STATE == 'mdDEAD' &
+                              CHILD_SCHED_STATE == 'cDEAD' &
                               SCHOOL_YEARS == 7)$Value
-mhsy10 <- subset(dropout_prob, GENDER == 'M' &
+mhsy16 <- subset(dropout_prob, GENDER == 'M' &
                               SOCIO_ECONOMIC_STATE == 'HIGH' &
-                              MDETAILED_STATE == 'mdSYMPTOMS' &
+                              CHILD_SCHED_STATE == 'cSYMPTOMS' &
                               SCHOOL_YEARS == 10)$Value
-mldst11 <- subset(dropout_prob, GENDER == 'M' &
+mldst17 <- subset(dropout_prob, GENDER == 'M' &
                                SOCIO_ECONOMIC_STATE == 'LOW' &
-                               MDETAILED_STATE == 'mdSTOPPED' &
+                               CHILD_SCHED_STATE == 'cSTOPPED' &
                                SCHOOL_YEARS == 11)$Value
-print(list(fhh9 = fhh9,
-           flde7 = flde7,
-           mhsy10 = mhsy10,
-           mldst11 = mldst11))
-result <- fhh9 == 0.03 & flde7 == 0.03 & mhsy10 == 0.03 & mldst11 == 0.03 
+print(list(fhh15 = fhh15,
+           flde13 = flde13,
+           mhsy16 = mhsy16,
+           mldst17 = mldst17))
+result <- fhh15 == 0.01842 & flde13 == 0.12207 & mhsy16 == 0.03315 & mldst17 == 0.18882
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -1699,5 +1699,11 @@ Model Version: `r ModelVersion`
 
 ```{r, results='asis'}
 print_test_results(test_results)
+```
+
+## Debugging NOTES
+
+```{r}
+print(test_results)
 odbcCloseAll()
 ```

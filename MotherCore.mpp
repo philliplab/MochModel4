@@ -71,8 +71,8 @@ classification CHILD_SCHED_STATE
 {
 	cHEALTHY,
 	cINFECTED,
-	cTREATED,
 	cSYMPTOMS,
+	cTREATED,
 	cSTOPPED,
 	cDEAD
 };
