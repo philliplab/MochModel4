@@ -8,8 +8,8 @@ An arbitrarily selected value.
 /* NOTE ( DropoutProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
-	double DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][MDETAILED_STATE][SCHOOL_YEARS] = { //EN The dropout probabilities for the various states and ages.
-		(384) 0.03,
+	double DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][SCHOOL_YEARS][CHILD_SCHED_STATE] = { //EN The dropout probabilities for the various states and ages.
+		(288) 0.03,
 	};
 	/* NOTE ( GenderChildFemaleProportion, EN)
 	Arbitrarily chosen

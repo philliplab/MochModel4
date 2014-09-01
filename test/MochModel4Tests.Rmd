@@ -1513,15 +1513,15 @@ mhsy10 <- subset(dropout_prob, GENDER == 'M' &
                               SOCIO_ECONOMIC_STATE == 'HIGH' &
                               MDETAILED_STATE == 'mdSYMPTOMS' &
                               SCHOOL_YEARS == 10)$Value
-mlds11 <- subset(dropout_prob, GENDER == 'M' &
+mldst11 <- subset(dropout_prob, GENDER == 'M' &
                                SOCIO_ECONOMIC_STATE == 'LOW' &
-                               MDETAILED_STATE == 'mdDIAGSYMP' &
+                               MDETAILED_STATE == 'mdSTOPPED' &
                                SCHOOL_YEARS == 11)$Value
 print(list(fhh9 = fhh9,
            flde7 = flde7,
            mhsy10 = mhsy10,
-           mlds11 = mlds11))
-result <- fhh9 == 0.03 & flde7 == 0.03 & mhsy10 == 0.03 & mlds11 == 0.03 
+           mldst11 = mldst11))
+result <- fhh9 == 0.03 & flde7 == 0.03 & mhsy10 == 0.03 & mldst11 == 0.03 
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,

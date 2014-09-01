@@ -67,6 +67,16 @@ classification MDEATH_SCHED_STATE
 	mdsDEAD
 };
 
+classification CHILD_SCHED_STATE
+{
+	cHEALTHY,
+	cINFECTED,
+	cTREATED,
+	cSYMPTOMS,
+	cSTOPPED,
+	cDEAD
+};
+
 classification MDETAILED_STATE
 {
 	mdHEALTHY,

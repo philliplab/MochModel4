@@ -40,6 +40,7 @@ actor Child            //EN Individual
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
 	MDETAILED_STATE mdetailed_status = {mdHEALTHY};
+	CHILD_SCHED_STATE child_sched_status = {cHEALTHY};
 	logical mother_showing_symptoms = {FALSE};
 	logical mother_diagnosed = {FALSE};
 
