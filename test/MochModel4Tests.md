@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.19    0.09   70.43
+##    0.12    0.12   71.23
 ```
 
 ```
@@ -788,12 +788,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##              hash_time                             hash
-## 89 2014-08-31 22:29:18 d79093392615fce3f2e3cc1d701e2177
 ## 90 2014-08-31 22:30:59 d79093392615fce3f2e3cc1d701e2177
 ## 91 2014-08-31 22:35:39 d79093392615fce3f2e3cc1d701e2177
 ## 92 2014-08-31 22:37:46 d79093392615fce3f2e3cc1d701e2177
 ## 93 2014-09-01 04:44:27 d79093392615fce3f2e3cc1d701e2177
 ## 94 2014-09-01 04:56:59 d79093392615fce3f2e3cc1d701e2177
+## 95 2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
 ```
   
 
@@ -877,13 +877,28 @@ Histogram showing the membership of mothers to the different states in the MDEAT
 
 Scenario(s): Base
 
-Just select a couple of dropout rates from the big multidimensional array and make sure they are what you expect them to be.
+Just select a couple of dropout rates from the big multidimensional array and make sure they are what you expect them to be. 
+
+Note that there is an issue with the modgenTester R package. It does not read the Age dimension fully - it chops off the first couple of years. However, this is definitely just an R issue.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-75](figure/unnamed-chunk-75.png) 
+
+```
+## $fhh9
+## [1] 0.03
+## 
+## $flde7
+## [1] 0.03
+## 
+## $mhsy10
+## [1] 0.03
+## 
+## $mlds11
+## [1] 0.03
+```
   
 
-**Result: Manual**  
+**Result: TRUE**  
 
 ---
 
@@ -990,7 +1005,7 @@ Model Version: 47
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|21|1|16| 
+|3|20|1|17| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1031,7 +1046,7 @@ Model Version: 47
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 
 |[School Child MDETAILED State Membership histogram](#SchoolChildMDETAILEDStateMembershiphistogram)|Manual|All 
-|[Dropout Rates correctly specified](#DropoutRatescorrectlyspecified)|Manual|Base 
+|[Dropout Rates correctly specified](#DropoutRatescorrectlyspecified)|TRUE|Base 
 |[Child Gender Ratios](#ChildGenderRatios)|TRUE|Base 
 |[Child SES Ratios](#ChildSESRatios)|Manual|Base, LowFertilityInHighSES, NoHIV 
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
