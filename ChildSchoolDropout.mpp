@@ -38,3 +38,29 @@ parameters
 {
 	double DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][MDETAILED_STATE][SCHOOL_YEARS]; //EN The dropout probabilities for the various states and ages.
 };
+
+actor Child
+{
+	event timeDropOutEvent, DropOutEvent;
+};
+
+TIME Child::timeDropOutEvent()
+{
+	TIME tEventTime = TIME_INFINITE;
+	if (school_status == IN_SCHOOL){
+        double do_rate = DropoutProbabilityChild[F][HIGH][mdHEALTHY][2];
+		if (do_rate < 0.000001){
+			tEventTime = TIME_INFINITE;
+		} else {
+			tEventTime = RandUniform(20) / do_rate;
+		};
+	}
+	tEventTime = WAIT(tEventTime);
+	return(tEventTime);
+};
+
+void Child::DropOutEvent()
+{
+	school_status = DROPOUT;
+	//mother_dsd_at_dropout = mother_disease_status_detailed_fm;
+};

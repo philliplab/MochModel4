@@ -24,7 +24,8 @@ parameters
 parameter_group Child_Schooling
 {
 	SchoolStartChildMin,
-	SchoolStartChildMax
+	SchoolStartChildMax,
+    DropoutProbabilityChild
 };
 
 classification SCHOOL_STATE

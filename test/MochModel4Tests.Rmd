@@ -19,7 +19,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
-#rerun_models <- TRUE
+rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -1481,6 +1481,25 @@ result <- "Manual"
 ```{r}
 p <- plot_state_membership_histogram("SchoolChildMotherMDMembershipxAge", drop_zero = TRUE)
 print(p)
+result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+```{r Dropout Rates correctly specified, results='asis'}
+ctest_name <- 'Dropout Rates correctly specified'
+cscenarios <- 'Base'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Just select a couple of dropout rates from the big multidimensional array and make sure they are what you expect them to be.")
+```
+```{r}
+dropout_prob <- as.data.frame(new_PTable("DropoutProbabilityChild", db_channels[[cscenarios]]))
 result <- "Manual"
 ```
 ```{r, results='asis'}
