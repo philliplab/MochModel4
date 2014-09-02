@@ -239,7 +239,7 @@ double invWeibull(double y, double kappa, double lambda, double phi)
 	return(x);
 };
 
-double lifeTableDraw(double x)
+double lifeTableDraw(double x, logical add_treated_mort = FALSE)
 {
 	if (HealthyMortalityMotherMultiplier <= 0){
 		return(1000*1000);
@@ -249,6 +249,7 @@ double lifeTableDraw(double x)
 	int indx = -1;
 	double prev_lx = 1;
 	double lx = 1;
+	double added_mort = 0;
 	//int time_indx = 0;
 	while (x <= lx)
 	{
@@ -256,6 +257,11 @@ double lifeTableDraw(double x)
 //		time_indx = indx > 40 ? 40 : indx;
 		prev_lx = lx;
 //		lx = prev_lx * (1-HIVFreeMortality[F][indx][time_indx]);
+		if (add_treated_mort == TRUE){
+			added_mort = 0.05;
+		} else {
+			added_mort = 0;
+		};
 		lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime] * HealthyMortalityMotherMultiplier);
 	};
 	if (indx == -1){

@@ -74,9 +74,28 @@ table Child ChildSurvival //EN Number of child years accrued in each age
 	}
 };
 
+table Child ChildMotherStateAtDropout //EN State of mother when Child Drops Out
+{
+	child_sched_status + //EN Child Status
+		*
+	{
+		undergone_transition(school_status, IN_SCHOOL, DROPOUT) //EN Number of Dropouts
+	}
+};
+
+table Child ChildFinalSchoolingStatus //EN Ultimate schooling results for children
+{
+	school_status +
+		*
+	{
+		undergone_transition(alive, TRUE, FALSE) //EN Number of Children
+	}
+};
+
 table_group Child_General
 {
-	ChildSurvival
+	ChildSurvival,
+	ChildMotherStateAtDropout
 };
 
 /* ################################################################################
