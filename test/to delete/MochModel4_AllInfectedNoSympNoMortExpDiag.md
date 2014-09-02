@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 46
+## Model Version: 51
 ## Scenario: AllInfectedNoSympNoMortExpDiag
 
 ```
@@ -203,10 +203,10 @@ If there is no mortality in the scenario for the population the plot is for then
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
 |Mother years in DEAD state      |            0|        0.0|
-|Mother years in DIAGNOSED state |       857625|       33.3|
+|Mother years in DIAGNOSED state |      2252796|       87.5|
 |Mother years in DIAGSYMP state  |            0|        0.0|
-|Mother years in HEALTHY state   |      1681904|       65.3|
-|Mother years in INFECTED state  |        34507|        1.3|
+|Mother years in HEALTHY state   |       257546|       10.0|
+|Mother years in INFECTED state  |        63694|        2.5|
 |Mother years in STOPPED state   |            0|        0.0|
 |Mother years in SYMPTOMS state  |            0|        0.0|
 |Mother years in TREATED state   |            0|        0.0|

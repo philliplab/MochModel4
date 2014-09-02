@@ -113,7 +113,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {48};
+	int model_version = {49};
 
 	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
 
@@ -188,6 +188,7 @@ actor Mother            //EN Individual
 	*/
 	
 	logical showing_symptoms = {FALSE}; //EN Showing Symptoms
+	int int_age_at_treatment = {0};
 
 
 

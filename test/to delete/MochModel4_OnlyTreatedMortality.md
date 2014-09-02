@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 46
+## Model Version: 51
 ## Scenario: OnlyTreatedMortality
 
 ```
@@ -37,7 +37,7 @@
 
 There are 10000 Mothers in this scenario.
 
-There are 30047 Children in this scenario.
+There are 33603 Children in this scenario.
 
 ### State Transitions
 
@@ -63,11 +63,11 @@ The total time spent by mothers in the various states.
 |:-------------------------------|------------:|----------:|
 |Mother years in DIAGNOSED state |      1575.92|        0.2|
 |Mother years in DIAGSYMP state  |        85.21|        0.0|
-|Mother years in HEALTHY state   |    236725.00|       33.7|
-|Mother years in INFECTED state  |      6077.40|        0.9|
+|Mother years in HEALTHY state   |    236725.00|       23.7|
+|Mother years in INFECTED state  |      6077.40|        0.6|
 |Mother years in STOPPED state   |         0.00|        0.0|
-|Mother years in SYMPTOMS state  |    272130.01|       38.7|
-|Mother years in TREATED state   |    186435.37|       26.5|
+|Mother years in SYMPTOMS state  |    272130.01|       27.2|
+|Mother years in TREATED state   |    483406.47|       48.3|
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
@@ -92,7 +92,24 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/OnlyTreatedMortality/unnamed-chunk-9.png) 
+```
+## Error: Type of RHS ('double') must match LHS ('logical'). To check and
+## coerce would impact performance too much for the fastest cases. Either
+## change the type of the target column, or coerce the RHS of := yourself
+## (e.g. by using 1L instead of 1)
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Warning: object 'p' not found
+```
 
 #### Survival of Mother who never became infected
 
@@ -127,7 +144,24 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-11](figure/OnlyTreatedMortality/unnamed-chunk-11.png) 
+```
+## Error: Type of RHS ('double') must match LHS ('logical'). To check and
+## coerce would impact performance too much for the fastest cases. Either
+## change the type of the target column, or coerce the RHS of := yourself
+## (e.g. by using 1L instead of 1)
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Warning: object 'p' not found
+```
 
 #### Survival of Mother who became treated
 
@@ -136,7 +170,24 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-12](figure/OnlyTreatedMortality/unnamed-chunk-12.png) 
+```
+## Error: Type of RHS ('double') must match LHS ('logical'). To check and
+## coerce would impact performance too much for the fastest cases. Either
+## change the type of the target column, or coerce the RHS of := yourself
+## (e.g. by using 1L instead of 1)
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Error: object 'p' not found
+```
+
+```
+## Warning: object 'p' not found
+```
 
 ### Number of children per mother
 
@@ -157,14 +208,14 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |    728210.47|       34.0|
-|Mother years in DIAGNOSED state |      1044.97|        0.0|
-|Mother years in DIAGSYMP state  |        56.48|        0.0|
-|Mother years in HEALTHY state   |    917430.51|       42.9|
-|Mother years in INFECTED state  |      3280.04|        0.2|
+|Mother years in DEAD state      |         0.00|        0.0|
+|Mother years in DIAGNOSED state |      1145.40|        0.0|
+|Mother years in DIAGSYMP state  |        57.15|        0.0|
+|Mother years in HEALTHY state   |     99682.57|        4.2|
+|Mother years in INFECTED state  |      3652.17|        0.2|
 |Mother years in STOPPED state   |         0.00|        0.0|
-|Mother years in SYMPTOMS state  |    177425.19|        8.3|
-|Mother years in TREATED state   |    311261.00|       14.6|
+|Mother years in SYMPTOMS state  |    769122.55|       32.5|
+|Mother years in TREATED state   |   1494812.66|       63.1|
 
 ![plot of chunk unnamed-chunk-17](figure/OnlyTreatedMortality/unnamed-chunk-17.png) 
 

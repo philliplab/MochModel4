@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 46
+## Model Version: 51
 ## Scenario: AllStopped
 
 ```
@@ -158,13 +158,13 @@ If there is no mortality in the scenario for the population the plot is for then
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
 |Mother years in DEAD state      |    613263.18|       27.6|
-|Mother years in DIAGNOSED state |      1122.95|        0.1|
-|Mother years in DIAGSYMP state  |        67.26|        0.0|
-|Mother years in HEALTHY state   |   1038263.70|       46.8|
-|Mother years in INFECTED state  |      3778.51|        0.2|
-|Mother years in STOPPED state   |     25843.37|        1.2|
-|Mother years in SYMPTOMS state  |    203414.91|        9.2|
-|Mother years in TREATED state   |    332847.78|       15.0|
+|Mother years in DIAGNOSED state |      1190.84|        0.1|
+|Mother years in DIAGSYMP state  |        67.28|        0.0|
+|Mother years in HEALTHY state   |    348139.22|       15.7|
+|Mother years in INFECTED state  |      4085.22|        0.2|
+|Mother years in STOPPED state   |     26400.10|        1.2|
+|Mother years in SYMPTOMS state  |    690709.96|       31.1|
+|Mother years in TREATED state   |    534745.84|       24.1|
 
 ![plot of chunk unnamed-chunk-17](figure/AllStopped/unnamed-chunk-17.png) 
 

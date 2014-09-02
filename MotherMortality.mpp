@@ -239,7 +239,8 @@ double invWeibull(double y, double kappa, double lambda, double phi)
 	return(x);
 };
 
-double lifeTableDraw(double x, logical add_treated_mort = FALSE)
+/*
+double lifeTableDraw(double x)
 {
 	if (HealthyMortalityMotherMultiplier <= 0){
 		return(1000*1000);
@@ -249,7 +250,6 @@ double lifeTableDraw(double x, logical add_treated_mort = FALSE)
 	int indx = -1;
 	double prev_lx = 1;
 	double lx = 1;
-	double added_mort = 0;
 	//int time_indx = 0;
 	while (x <= lx)
 	{
@@ -257,11 +257,6 @@ double lifeTableDraw(double x, logical add_treated_mort = FALSE)
 //		time_indx = indx > 40 ? 40 : indx;
 		prev_lx = lx;
 //		lx = prev_lx * (1-HIVFreeMortality[F][indx][time_indx]);
-		if (add_treated_mort == TRUE){
-			added_mort = 0.05;
-		} else {
-			added_mort = 0;
-		};
 		lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime] * HealthyMortalityMotherMultiplier);
 	};
 	if (indx == -1){
@@ -273,7 +268,8 @@ double lifeTableDraw(double x, logical add_treated_mort = FALSE)
 double healthyMortalityTime(double draw){
     return(lifeTableDraw(draw));
 };
-
+*/
+/*
 double treatedMortalityTime(double y){
 	TIME t_event_time = TIME_INFINITE;
 	if (y > (1 - (TreatedMortalityMotherb6m/2))){
@@ -288,7 +284,7 @@ double treatedMortalityTime(double y){
 	}
 	return(t_event_time);
 };
-
+*/
 double stoppedMortalityTime(double y, double kappa, double lambda, double phi){
 	TIME t_event_time = TIME_INFINITE;
 	if (StoppedMortalityMotherMultiplier > 0){
@@ -306,10 +302,57 @@ TIME Mother::timeMortalityEvent()
 	TIME t_event_time = TIME_INFINITE;
 
 	switch(mdeath_sched_status){
-	case mdsHEALTHY: {t_event_time = WAIT(healthyMortalityTime(RandUniform(4)));} break;
+
+	case mdsHEALTHY: {
+		double x = 0;
+		x = RandUniform(4);
+
+		if (HealthyMortalityMotherMultiplier <= 0){
+			return(1000*1000);
+		};
+		int indx = -1;
+		double prev_lx = 1;
+		double lx = 1;
+		while (x <= lx)
+		{
+			indx++;
+			prev_lx = lx;
+			lx = prev_lx * (1-HIVFreeMortality[F][indx][ModelTime] * HealthyMortalityMotherMultiplier);
+		};
+		t_event_time = WAIT(indx + ((x - lx) / (prev_lx - lx)));
+	} break;
+		
 	case mdsINFECTED: {t_event_time = infected_death_time;} break;
-	case mdsTREATED: {t_event_time = WAIT(treatedMortalityTime(RandUniform(8)));} break;
+
+	case mdsTREATED: {
+		double x = 0;
+		x = RandUniform(8);
+
+		if (TreatedMortalityMotherMultiplier <= 0){
+			return(1000*1000);
+		};
+		int indx = -1;
+		double prev_lx = 1;
+		double lx = 1;
+		double added_mort = 0;
+		double curr_mort = 0;
+		while (x <= lx)
+		{
+			indx++;
+			if (indx == 0){
+				added_mort = (TreatedMortalityMothera6m + TreatedMortalityMotherb6m) / 2;
+			} else {
+				added_mort = TreatedMortalityMothera6m;
+			}
+			prev_lx = lx;
+			curr_mort = min(HIVFreeMortality[F][indx + int_age_at_treatment][ModelTime]+added_mort, 1.0);
+			lx = prev_lx * (1 - (curr_mort * TreatedMortalityMotherMultiplier));
+		};
+		t_event_time = WAIT(indx + ((x - lx) / (prev_lx - lx)));
+	} break;
+
 	case mdsSTOPPED: {t_event_time = WAIT(stoppedMortalityTime(RandUniform(11), StoppedMortalityMotherShape, StoppedMortalityMotherScale, StoppedMortalityMotherPhi[vdp_age_at_infection]));} break;
+
 	default: {t_event_time = WAIT(100);} break;
 	}
 	return t_event_time;

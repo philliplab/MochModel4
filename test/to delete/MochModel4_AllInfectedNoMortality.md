@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 46
+## Model Version: 51
 ## Scenario: AllInfectedNoMortality
 
 ```
@@ -32,7 +32,7 @@
 
 There are 10000 Mothers in this scenario.
 
-There are 33521 Children in this scenario.
+There are 34174 Children in this scenario.
 
 ### State Transitions
 
@@ -45,7 +45,7 @@ A table of the number of mothers who entered each of the different states.
 |Mother entrances in DIAGSYMP state  |      7982|       79.8|
 |Mother entrances in HEALTHY state   |         0|        0.0|
 |Mother entrances in INFECTED state  |      9066|       90.7|
-|Mother entrances in STOPPED state   |      1937|       19.4|
+|Mother entrances in STOPPED state   |      3430|       34.3|
 |Mother entrances in SYMPTOMS state  |      5405|       54.0|
 |Mother entrances in TREATED state   |      4755|       47.5|
 
@@ -56,13 +56,13 @@ The total time spent by mothers in the various states.
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DIAGNOSED state |        14238|        1.7|
-|Mother years in DIAGSYMP state  |       163342|       19.8|
-|Mother years in HEALTHY state   |       296732|       36.0|
-|Mother years in INFECTED state  |        55385|        6.7|
-|Mother years in STOPPED state   |         3109|        0.4|
-|Mother years in SYMPTOMS state  |       228821|       27.8|
-|Mother years in TREATED state   |        61613|        7.5|
+|Mother years in DIAGNOSED state |        14238|        1.6|
+|Mother years in DIAGSYMP state  |       163342|       18.7|
+|Mother years in HEALTHY state   |       296732|       34.0|
+|Mother years in INFECTED state  |        55385|        6.3|
+|Mother years in STOPPED state   |         5485|        0.6|
+|Mother years in SYMPTOMS state  |       228821|       26.2|
+|Mother years in TREATED state   |       109114|       12.5|
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
@@ -152,14 +152,14 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       516758|       21.8|
-|Mother years in DIAGNOSED state |       103100|        4.3|
-|Mother years in DIAGSYMP state  |       231022|        9.7|
-|Mother years in HEALTHY state   |       868685|       36.6|
-|Mother years in INFECTED state  |        36302|        1.5|
-|Mother years in STOPPED state   |         9877|        0.4|
-|Mother years in SYMPTOMS state  |       448524|       18.9|
-|Mother years in TREATED state   |       156075|        6.6|
+|Mother years in DEAD state      |       390355|       16.2|
+|Mother years in DIAGNOSED state |       114140|        4.7|
+|Mother years in DIAGSYMP state  |       415333|       17.2|
+|Mother years in HEALTHY state   |       254301|       10.5|
+|Mother years in INFECTED state  |        76867|        3.2|
+|Mother years in STOPPED state   |        17967|        0.7|
+|Mother years in SYMPTOMS state  |       788098|       32.7|
+|Mother years in TREATED state   |       354855|       14.7|
 
 ![plot of chunk unnamed-chunk-17](figure/AllInfectedNoMortality/unnamed-chunk-17.png) 
 

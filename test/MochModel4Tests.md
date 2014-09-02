@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.12   68.37
+##    0.11    0.15   66.86
 ```
 
 ```
@@ -27,10 +27,10 @@ output: html_document
 ```
 
 ```
-## [1] 15
+## [1] 14
 ```
 
-# Tests for Model Version 48
+# Tests for Model Version 49
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -127,15 +127,15 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 ## 2           Healthy mother years at risk 236725
 ## 3                Infected Mortality Rate     NA
 ## 4          Infected mother years at risk 279869
-## 5                   Mother years at risk 703029
+## 5                   Mother years at risk 656687
 ## 6                       Number of deaths  10000
 ## 7    Number of deaths from HEALTHY state      0
 ## 8   Number of deaths from INFECTED state      0
 ## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state   6685
+## 10   Number of deaths from TREATED state   8073
 ## 11                Overall Mortality Rate     NA
 ## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk 186435
+## 13          Treated mother years at risk 140093
 ## 14       Treatment Ceased Mortality Rate     NA
 ## 15 Treatment Ceased mother years at risk      0
 ```
@@ -406,9 +406,7 @@ If the weibull transition is used, then the line should increase with age since 
 
 Scenario(s): OnlyTreatedMortality
 
-When the kaplan meier curves of the treated mortalities are compared to the input ASSA mortalities, then they must be similar. 
-
-This mortality rate is way too low. It causes mother's to hit the 100 age cap - hence the output is much lower than the input. A censored survival curve should take care of this. However, just fixing the treated mortality to be realistic will also work.
+The treated mortality in the mother child model must be much lower than the only treated mortality from the ASSA model since that ASSA models treated mortality excludes non-HIV mortality 
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
@@ -454,17 +452,15 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
 
-Scenario(s): AllStopped
+Scenario(s): Base
 
-When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar. 
-
-The same issues as with the treated mortality of the mothers. However, the cessation rates will never be high enough, so this plot will never match the input. To fix it, introduce censoring.
+When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar.
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png)   
 
 ```
-## Mean time till treatment cessarion from treatment: 20.5679632912381.
+## Mean time till treatment cessarion from treatment: 13.2542007235793.
 ```
   
 
@@ -717,12 +713,12 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 ##                    metrics        Value CV SE
 ## 1          Population size 10000.000000 NA NA
 ## 2 Minimum duration of life     0.001127 NA NA
-## 3 Maximum duration of life   100.000000 NA NA
-## 4          Life expectancy    51.762057 NA NA
+## 3 Maximum duration of life    91.993240 NA NA
+## 4          Life expectancy    51.474878 NA NA
 ```
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -788,16 +784,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 98  2014-09-01 05:47:21 d79093392615fce3f2e3cc1d701e2177
-## 99  2014-09-01 05:55:31 d79093392615fce3f2e3cc1d701e2177
-## 100 2014-09-01 06:01:40 d79093392615fce3f2e3cc1d701e2177
-## 101 2014-09-02 07:35:10 d79093392615fce3f2e3cc1d701e2177
-## 102 2014-09-02 07:37:10 d79093392615fce3f2e3cc1d701e2177
-## 103 2014-09-02 08:25:37 d79093392615fce3f2e3cc1d701e2177
+## 104 2014-09-02 21:32:26 d79093392615fce3f2e3cc1d701e2177
+## 105 2014-09-02 21:42:04 d79093392615fce3f2e3cc1d701e2177
+## 106 2014-09-02 21:44:59 2acf8a2cd32f69686654368e585122f5
+## 107 2014-09-02 22:03:28 97da3556323480f0b47641a358f021fb
+## 108 2014-09-02 22:10:28 e199452fe66c03908daa0853f21725ca
+## 109 2014-09-02 22:31:13 df5092e08a7137d63c7d129c1f347dc4
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -917,7 +913,7 @@ The input and output gender ratios of the children must be similar. The input ra
 ## [1] 0.5
 ## 
 ## $output_female_percentage
-## [1] 0.4974
+## [1] 0.4977
 ```
   
 
@@ -1013,13 +1009,13 @@ Plots showing the membership of children's mothers to the different states in th
 ---
 
 ## Summary of All Tests
-Model Version: 48
+Model Version: 49
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|21|1|17| 
+|1|2|21|18| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1040,7 +1036,7 @@ Model Version: 48
 |[Treatment Coverage Rate Matches Input Rate](#TreatmentCoverageRateMatchesInputRate)|Manual|AllInfectedNoMortality 
 |[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
-|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|AllStopped 
+|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|Base 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
 |[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base, ZeroGestation 
@@ -1051,11 +1047,11 @@ Model Version: 48
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|TRUE|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Input SES matches output SES](#InputSESmatchesoutputSES)|TRUE|Base 
-|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
+|[Mother Max Age](#MotherMaxAge)|TRUE|Base 
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 
@@ -1290,7 +1286,7 @@ Model Version: 48
 ## [1] FALSE
 ## 
 ## $`Treatment Cessation Rates matches inputs`$scenarios
-## [1] "AllStopped"
+## [1] "Base"
 ## 
 ## $`Treatment Cessation Rates matches inputs`$anchor_link
 ## [1] "TreatmentCessationRatesmatchesinputs"
@@ -1442,7 +1438,7 @@ Model Version: 48
 ## 
 ## $`Mother Max Age`$result
 ##   Value
-## 3 FALSE
+## 3  TRUE
 ## 
 ## $`Mother Max Age`$scenarios
 ## [1] "Base"
@@ -1498,7 +1494,7 @@ Model Version: 48
 ## [1] "No change in Mother from previous"
 ## 
 ## $`No change in Mother from previous`$result
-## [1] "No_Change"
+## [1] "Changed"
 ## 
 ## $`No change in Mother from previous`$scenarios
 ## [1] "All"
