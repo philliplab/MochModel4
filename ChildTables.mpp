@@ -112,6 +112,20 @@ table Child ChildMotherMDMembershipxAge //EN Membership of children's Mothers in
 	} //EN Membership counts
 };
 
+table Child ChildMotherCSMembershipxAge //EN Membership of children's Mothers in the CHILD_SCHED_STATE
+{
+	integer_age+ //EN Age
+		*
+	{
+		duration(child_sched_status, cHEALTHY), //EN Mother years in HEALTHY state decimals=2
+		duration(child_sched_status, cINFECTED), //EN Mother years in INFECTED state decimals=2
+		duration(child_sched_status, cSYMPTOMS), //EN Mother years in SYMPTOMS state decimals=2
+		duration(child_sched_status, cTREATED), //EN Mother years in TREATED state decimals=2
+		duration(child_sched_status, cSTOPPED), //EN Mother years in STOPPED state decimals=2
+		duration(child_sched_status, cDEAD) //EN Mother years in DEAD state decimals=2
+	} //EN Membership counts
+};
+
 table Child SchoolChildMotherMDMembershipxAge //EN Membership of school children's Mothers in the MDETAILED_STATE
 	[school_status == IN_SCHOOL]
 {

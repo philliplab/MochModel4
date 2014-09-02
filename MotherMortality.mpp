@@ -316,6 +316,7 @@ void Mother::MortalityEvent()
 	mdeath_sched_status = mdsDEAD;
 	mother_md_status_at_death = mdetailed_status;
 	mdetailed_status = mdDEAD;
+	mchild_sched_status = cDEAD;
 	alive = FALSE;
 	int nIndex = {-1};
 	Child *prChild = {NULL};

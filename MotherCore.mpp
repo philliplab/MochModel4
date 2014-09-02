@@ -131,6 +131,7 @@ actor Mother            //EN Individual
 
 	MDEATH_SCHED_STATE mdeath_sched_status = {mdsHEALTHY};
 	MDETAILED_STATE mdetailed_status = {mdHEALTHY};
+	CHILD_SCHED_STATE mchild_sched_status = {cHEALTHY};
 
 	REPORT_TIME report_time = { 0 };
 

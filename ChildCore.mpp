@@ -44,7 +44,7 @@ actor Child            //EN Individual
 	logical mother_showing_symptoms = {FALSE};
 	logical mother_diagnosed = {FALSE};
 
-	void Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses);
+	void Set_Child_Start_Parameters(double m_age, SOCIO_ECONOMIC_STATE m_ses, MDEATH_SCHED_STATE m_mdeath_sched_status, MDETAILED_STATE m_mdetailed_status, CHILD_SCHED_STATE m_mchild_sched_status);
 	void Mother_Die();
 	void Mother_Infect();
 	void Mother_Treat();
@@ -55,22 +55,27 @@ actor Child            //EN Individual
 	void Finish();
 };
 
-void Child::Set_Mother_Age_And_SES(double m_age, SOCIO_ECONOMIC_STATE m_ses)
+void Child::Set_Child_Start_Parameters(double m_age, SOCIO_ECONOMIC_STATE m_ses, MDEATH_SCHED_STATE m_mdeath_sched_status, MDETAILED_STATE m_mdetailed_status, CHILD_SCHED_STATE m_mchild_sched_status)
 {
 	mother_age_at_birth = m_age;
 	ses = m_ses;
+	mdeath_sched_status = m_mdeath_sched_status;
+	mdetailed_status = m_mdetailed_status;
+	child_sched_status = m_mchild_sched_status;
 };
 
 void Child::Mother_Die()
 {
 	mdeath_sched_status = mdsDEAD;
 	mdetailed_status = mdDEAD;
+	child_sched_status = cDEAD;
 };
 
 void Child::Mother_Infect()
 {
 	mdeath_sched_status = mdsINFECTED;
 	mdetailed_status = mdINFECTED;
+	child_sched_status = cINFECTED;
 };
 
 void Child::Mother_Treat()
@@ -78,6 +83,7 @@ void Child::Mother_Treat()
 	mdeath_sched_status = mdsTREATED;
 	mdetailed_status = mdTREATED;
 	mother_showing_symptoms = FALSE;
+	child_sched_status = cTREATED;
 };
 
 void Child::Mother_Stop()
@@ -85,6 +91,7 @@ void Child::Mother_Stop()
 	mdeath_sched_status = mdsSTOPPED;
 	mdetailed_status = mdSTOPPED;
 	mother_showing_symptoms = TRUE;
+	child_sched_status = cTREATED;
 };
 
 void Child::Mother_Symptoms()
@@ -95,6 +102,7 @@ void Child::Mother_Symptoms()
 		mdetailed_status = mdSYMPTOMS;
 	};
 	mother_showing_symptoms = TRUE;
+	child_sched_status = cSYMPTOMS;
 };
 
 void Child::Mother_Diagnose()

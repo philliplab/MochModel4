@@ -62,6 +62,7 @@ void Mother::StopEvent()
 {
 	mdeath_sched_status = mdsSTOPPED;
 	mdetailed_status = mdSTOPPED;
+	mchild_sched_status = cSTOPPED;
 	showing_symptoms = FALSE;
 	int nIndex = {-1};
 	Child *prChild = {NULL};

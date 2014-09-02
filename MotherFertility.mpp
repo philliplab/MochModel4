@@ -172,7 +172,7 @@ void Mother::BirthEvent()
 	Child *prChild = new Child();
 	mlChild->Add(prChild);
 	prChild->Start();
-	prChild->Set_Mother_Age_And_SES(age, ses);
+	prChild->Set_Child_Start_Parameters(age, ses, mdeath_sched_status, mdetailed_status, mchild_sched_status);
 //	if (disease_status == INFECTED){
 //		prChild->Mother_Infect();
 //	}

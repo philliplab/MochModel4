@@ -48,7 +48,7 @@ TIME Child::timeDropOutEvent()
 {
 	TIME tEventTime = TIME_INFINITE;
 	if (school_status == IN_SCHOOL){
-        double do_rate = DropoutProbabilityChild[F][HIGH][mdHEALTHY][2];
+        double do_rate = DropoutProbabilityChild[F][HIGH][cHEALTHY][2];
 		if (do_rate < 0.000001){
 			tEventTime = TIME_INFINITE;
 		} else {

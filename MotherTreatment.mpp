@@ -128,6 +128,7 @@ void Mother::TreatmentEvent()
 {
 	mdeath_sched_status = mdsTREATED;
 	mdetailed_status = mdTREATED;
+	mchild_sched_status = cTREATED;
 	showing_symptoms = FALSE;
 	int nIndex = {-1};
 	Child *prChild = {NULL};
