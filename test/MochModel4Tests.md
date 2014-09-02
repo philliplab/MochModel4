@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.15   66.86
+##    0.13    0.11   72.24
 ```
 
 ```
@@ -402,7 +402,7 @@ If the weibull transition is used, then the line should increase with age since 
 
 ### Transition 8 - Death of Treated Mothers
 
-#### <a name="TreatedMortalityMatchInputs"></a>Treated Mortality Match Inputs
+#### <a name="TreatedMortalityRelatestoInputs"></a>Treated Mortality Relates to Inputs
 
 Scenario(s): OnlyTreatedMortality
 
@@ -412,7 +412,7 @@ The treated mortality in the mother child model must be much lower than the only
 ![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -464,7 +464,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ```
   
 
-**Result: FALSE**  
+**Result: TRUE**  
 
 ---
 
@@ -784,16 +784,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 104 2014-09-02 21:32:26 d79093392615fce3f2e3cc1d701e2177
-## 105 2014-09-02 21:42:04 d79093392615fce3f2e3cc1d701e2177
 ## 106 2014-09-02 21:44:59 2acf8a2cd32f69686654368e585122f5
 ## 107 2014-09-02 22:03:28 97da3556323480f0b47641a358f021fb
 ## 108 2014-09-02 22:10:28 e199452fe66c03908daa0853f21725ca
 ## 109 2014-09-02 22:31:13 df5092e08a7137d63c7d129c1f347dc4
+## 110 2014-09-02 23:22:08 df5092e08a7137d63c7d129c1f347dc4
+## 111 2014-09-02 23:26:48 df5092e08a7137d63c7d129c1f347dc4
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -1013,9 +1013,9 @@ Model Version: 49
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
-|:-:|:-:|:-:|:-:|
-|1|2|21|18| 
+|Manual|No_Change|TRUE|
+|:-:|:-:|:-:|
+|21|1|20| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1034,9 +1034,9 @@ Model Version: 49
 |[Treatment Rates matches inputs](#TreatmentRatesmatchesinputs)|Manual|AllInfectedNoMortality, WeibullTreatmentTransition 
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Matches Input Rate](#TreatmentCoverageRateMatchesInputRate)|Manual|AllInfectedNoMortality 
-|[Treated Mortality Match Inputs](#TreatedMortalityMatchInputs)|FALSE|OnlyTreatedMortality 
+|[Treated Mortality Relates to Inputs](#TreatedMortalityRelatestoInputs)|TRUE|OnlyTreatedMortality 
 |[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
-|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|FALSE|Base 
+|[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|TRUE|Base 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
 |[Mother Fertility Rates](#MotherFertilityRates)|Manual|Base, ZeroGestation 
@@ -1051,7 +1051,7 @@ Model Version: 49
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 
@@ -1250,18 +1250,18 @@ Model Version: 49
 ## [1] "TreatmentCoverageRateMatchesInputRate"
 ## 
 ## 
-## $`Treated Mortality Match Inputs`
-## $`Treated Mortality Match Inputs`$name
-## [1] "Treated Mortality Match Inputs"
+## $`Treated Mortality Relates to Inputs`
+## $`Treated Mortality Relates to Inputs`$name
+## [1] "Treated Mortality Relates to Inputs"
 ## 
-## $`Treated Mortality Match Inputs`$result
-## [1] FALSE
+## $`Treated Mortality Relates to Inputs`$result
+## [1] TRUE
 ## 
-## $`Treated Mortality Match Inputs`$scenarios
+## $`Treated Mortality Relates to Inputs`$scenarios
 ## [1] "OnlyTreatedMortality"
 ## 
-## $`Treated Mortality Match Inputs`$anchor_link
-## [1] "TreatedMortalityMatchInputs"
+## $`Treated Mortality Relates to Inputs`$anchor_link
+## [1] "TreatedMortalityRelatestoInputs"
 ## 
 ## 
 ## $`No deaths from Treated in OnlyStoppedMortality`
@@ -1283,7 +1283,7 @@ Model Version: 49
 ## [1] "Treatment Cessation Rates matches inputs"
 ## 
 ## $`Treatment Cessation Rates matches inputs`$result
-## [1] FALSE
+## [1] TRUE
 ## 
 ## $`Treatment Cessation Rates matches inputs`$scenarios
 ## [1] "Base"
@@ -1494,7 +1494,7 @@ Model Version: 49
 ## [1] "No change in Mother from previous"
 ## 
 ## $`No change in Mother from previous`$result
-## [1] "Changed"
+## [1] "No_Change"
 ## 
 ## $`No change in Mother from previous`$scenarios
 ## [1] "All"

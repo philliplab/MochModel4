@@ -269,7 +269,28 @@ print(p)
 rm(p)
 ```
 
-```{r}
+### Schooling Outcomes
+
+The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
+
+```{r, warning=FALSE, message=FALSE}
+cfss <- as.data.frame(new_RTable("ChildFinalSchoolingStatus", db_channel))
+p <- ggplot(cfss, aes(x = `school_status`, y = `Value`)) + 
+  geom_bar(stat = 'identity') +
+  xlab('Final Schooling Status') +
+  ylab('Number of Children')
+print(p)
+rm(p)
+result <- 'Manual'
+```
+
+```{r, results='asis'}
+kable(cfss[,c(1,3)])
+```
+
+shut down
+
+```{r SHUTTING DOWN}
 odbcCloseAll()
 ```
 

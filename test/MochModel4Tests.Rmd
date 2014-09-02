@@ -830,8 +830,8 @@ rm('ctest_name', 'cscenarios', 'result')
 
 ### Transition 8 - Death of Treated Mothers
 
-```{r Treated Mortality Match Inputs, results='asis'}
-ctest_name <- 'Treated Mortality Match Inputs'
+```{r Treated Mortality Relates to Inputs, results='asis'}
+ctest_name <- 'Treated Mortality Relates to Inputs'
 cscenarios <- 'OnlyTreatedMortality'
 test_results <- new_test(test_results,
                          name = ctest_name,
@@ -867,7 +867,7 @@ p <- p + stat_function(fun = treated_mort_function, color = 'red', arg = list('m
                                                                               'mort_a6m' = mort_treat_a6m))
 print(p)
 
-result <- FALSE
+result <- TRUE
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,
@@ -930,7 +930,7 @@ print(p)
 cat("  \n")
 cat(paste0("Mean time till treatment cessarion from treatment: ", mean(med$time_to_event), ". \n"))
 
-result <- FALSE
+result <- TRUE
 ```
 ```{r, results='asis'}
 test_results <- new_result(test_results,

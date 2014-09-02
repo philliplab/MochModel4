@@ -92,11 +92,51 @@ table Child ChildFinalSchoolingStatus //EN Ultimate schooling results for childr
 	}
 };
 
+table Child ChildSchoolingUndergone //EN Number of child years spent in school
+{
+	integer_age +
+		*
+	{
+		duration(school_status, IN_SCHOOL), //EN Number of school years
+			duration() //EN Number of child years
+	}
+};
+
 table_group Child_General
 {
 	ChildSurvival,
-	ChildMotherStateAtDropout
+	ChildMotherStateAtDropout,
+	ChildFinalSchoolingStatus,
+	ChildSchoolingUndergone
 };
+
+/* ################################################################################
+The Child Rates tables
+################################################################################ */
+
+table Child ChildDropoutRates //EN Dropout Rates of Children
+{
+	gender +
+		*
+	ses +
+	    *
+	child_sched_status +
+		*
+	integer_age +
+	*
+	{
+		unit, //EN Number of Children who entered the state
+		duration(), //EN Number of Child years spent in state
+		undergone_transition(school_status, IN_SCHOOL, DROPOUT), //EN Dropouts from state
+		undergone_transition(school_status, IN_SCHOOL, DROPOUT) / duration() //EN Dropout Rate decimals=4
+	}
+};
+
+table_group Child_Rates
+{
+	ChildDropoutRates
+};
+
 
 /* ################################################################################
 The State Membership tables
