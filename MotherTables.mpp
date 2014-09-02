@@ -258,7 +258,8 @@ table_group Mother_State_Membership
 {
 	MotherMDSMembershipxAge,
 	MotherMDMembershipxAge,
-	MotherMDEntrancesxAge 
+	MotherMDEntrancesxAge,
+	MotherCSMembershipxAge
 };
 
 /* ################################################################################

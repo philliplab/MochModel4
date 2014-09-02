@@ -11,7 +11,7 @@ output: html_document
 
 
 
-# WARNING MODELS WERE NOT RERUN 
+
 
 ```
 ## [1] "Running Time"
@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.14    0.10    4.01
+##    0.14    0.20   73.96
 ```
 
 ```
@@ -30,7 +30,7 @@ output: html_document
 ## [1] 15
 ```
 
-# Tests for Model Version 47
+# Tests for Model Version 48
 
 Notes on the organization of the tests:
 - If a test involves a child in any way, it goes in the child section.
@@ -788,12 +788,12 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 95  2014-09-01 05:16:01 d79093392615fce3f2e3cc1d701e2177
-## 96  2014-09-01 05:39:59 d79093392615fce3f2e3cc1d701e2177
 ## 97  2014-09-01 05:43:59 d79093392615fce3f2e3cc1d701e2177
 ## 98  2014-09-01 05:47:21 d79093392615fce3f2e3cc1d701e2177
 ## 99  2014-09-01 05:55:31 d79093392615fce3f2e3cc1d701e2177
 ## 100 2014-09-01 06:01:40 d79093392615fce3f2e3cc1d701e2177
+## 101 2014-09-02 07:35:10 d79093392615fce3f2e3cc1d701e2177
+## 102 2014-09-02 07:37:10 d79093392615fce3f2e3cc1d701e2177
 ```
   
 
@@ -988,7 +988,7 @@ Plots showing the membership of children's mothers to the different states in th
 
 Scenario(s): All
 
-Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
+Plots showing the membership of children's mothers to the different states in the MDETAILED_STATE
 
 [To Summary Table](#summary_tab_link)  
 ![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85.png) 
@@ -998,14 +998,28 @@ Plots showing the membership of children's mothers to the different states in th
 
 ---
 
+#### <a name="ChildCHILD_SCHEDStateMembershiptracking"></a>Child CHILD_SCHED State Membership tracking
+
+Scenario(s): All
+
+Plots showing the membership of children's mothers to the different states in the CHILD_SCHED_STATE
+
+[To Summary Table](#summary_tab_link)  
+![plot of chunk unnamed-chunk-87](figure/unnamed-chunk-87.png) 
+  
+
+**Result: Manual**  
+
+---
+
 ## Summary of All Tests
-Model Version: 47
+Model Version: 48
 
 #### Summary of the Test Results 
 
 |FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|3|20|1|17| 
+|3|21|1|17| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1052,6 +1066,7 @@ Model Version: 47
 |[Child Mortality](#ChildMortality)|Manual|Base, NoChildMortality 
 |[Child MDEATH_SCHED State Membership tracking](#ChildMDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[Child MDETAILED State Membership tracking](#ChildMDETAILEDStateMembershiptracking)|Manual|All 
+|[Child CHILD_SCHED State Membership tracking](#ChildCHILD_SCHEDStateMembershiptracking)|Manual|All 
 
 ## Debugging NOTES
 
@@ -1630,4 +1645,18 @@ Model Version: 47
 ## 
 ## $`Child MDETAILED State Membership tracking`$anchor_link
 ## [1] "ChildMDETAILEDStateMembershiptracking"
+## 
+## 
+## $`Child CHILD_SCHED State Membership tracking`
+## $`Child CHILD_SCHED State Membership tracking`$name
+## [1] "Child CHILD_SCHED State Membership tracking"
+## 
+## $`Child CHILD_SCHED State Membership tracking`$result
+## [1] "Manual"
+## 
+## $`Child CHILD_SCHED State Membership tracking`$scenarios
+## [1] "All"
+## 
+## $`Child CHILD_SCHED State Membership tracking`$anchor_link
+## [1] "ChildCHILD_SCHEDStateMembershiptracking"
 ```

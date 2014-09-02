@@ -147,5 +147,6 @@ table_group Child_State_Membership
 {
 	ChildMotherMDSMembershipxAge,
 	ChildMotherMDMembershipxAge,
-	SchoolChildMotherMDMembershipxAge
+	SchoolChildMotherMDMembershipxAge,
+	ChildMotherCSMembershipxAge
 };

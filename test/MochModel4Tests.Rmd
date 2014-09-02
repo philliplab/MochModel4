@@ -19,7 +19,7 @@ browseURL(paste('file://', file.path(getwd(),'MochModel4Tests.html'), sep='')) #
 rm(list = ls())
 source('MochModel4Tests_helpers.R')
 rerun_models <- FALSE
-#rerun_models <- TRUE
+rerun_models <- TRUE
 options(scipen=999)
 library(modgenTester)
 library(knitr)
@@ -1680,7 +1680,27 @@ cscenarios <- 'All'
 test_results <- new_test(test_results,
                          name = ctest_name,
                          scenarios = cscenarios,
-                         description = "Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE")
+                         description = "Plots showing the membership of children's mothers to the different states in the MDETAILED_STATE")
+```
+```{r}
+p <- plot_state_membership("ChildMotherCSMembershipxAge")
+print(p)
+result <- "Manual"
+```
+```{r, results='asis'}
+test_results <- new_result(test_results,
+                         name = ctest_name,
+                         result = result)
+rm('ctest_name', 'cscenarios', 'result')
+```
+
+```{r Child CHILD_SCHED State Membership tracking, results='asis'}
+ctest_name <- 'Child CHILD_SCHED State Membership tracking'
+cscenarios <- 'All'
+test_results <- new_test(test_results,
+                         name = ctest_name,
+                         scenarios = cscenarios,
+                         description = "Plots showing the membership of children's mothers to the different states in the CHILD_SCHED_STATE")
 ```
 ```{r}
 p <- plot_state_membership("ChildMotherMDMembershipxAge")

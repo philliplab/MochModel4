@@ -113,7 +113,7 @@ actor_set Mother asAllMother; //EN All Mother actors
 
 actor Mother            //EN Individual
 {
-	int model_version = {47};
+	int model_version = {48};
 
 	SOCIO_ECONOMIC_STATE ses = {LOW}; //EN Socioeconomic Status
 
