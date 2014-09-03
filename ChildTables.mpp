@@ -132,11 +132,29 @@ table Child ChildDropoutRates //EN Dropout Rates of Children
 	}
 };
 
-table_group Child_Rates
+table Child ChildAbuseRates //EN Abuse Rates of Children
 {
-	ChildDropoutRates
+	gender +
+		*
+	ses +
+	    *
+	child_sched_status +
+		*
+	integer_age +
+	*
+	{
+		unit, //EN Number of Children who entered the state
+		duration(), //EN Number of Child years spent in state
+		undergone_transition(abused, FALSE, TRUE), //EN Number of children who entered abused state
+		undergone_transition(abused, FALSE, TRUE) / duration() //EN Abuse state entrace rate decimals=4
+	}
 };
 
+table_group Child_Rates
+{
+	ChildDropoutRates,
+	ChildAbuseRates
+};
 
 /* ################################################################################
 The State Membership tables
