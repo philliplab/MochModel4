@@ -102,12 +102,26 @@ table Child ChildSchoolingUndergone //EN Number of child years spent in school
 	}
 };
 
+table Child ChildAbuseOutcomes //EN Abuse statistics
+	[integer_age >= 12 && integer_age <= 18]
+{
+//	integer_age +
+	//	*
+	{
+		unit, //EN Susceptible Children
+		undergone_transition(abused, FALSE, TRUE), //EN Abused Children
+		duration(), //EN Susceptible Child Years
+		duration(abused, TRUE) //EN Abused Child Years
+	}
+};
+
 table_group Child_General
 {
 	ChildSurvival,
 	ChildMotherStateAtDropout,
 	ChildFinalSchoolingStatus,
-	ChildSchoolingUndergone
+	ChildSchoolingUndergone,
+	ChildAbuseOutcomes
 };
 
 /* ################################################################################
@@ -126,9 +140,10 @@ table Child ChildDropoutRates //EN Dropout Rates of Children
 	*
 	{
 		unit, //EN Number of Children who entered the state
-		duration(), //EN Number of Child years spent in state
+		duration(), //EN Total Number of Child years
+		duration(school_status, IN_SCHOOL), //EN Total number of Child years spent IN_SCHOOL
 		undergone_transition(school_status, IN_SCHOOL, DROPOUT), //EN Dropouts from state
-		undergone_transition(school_status, IN_SCHOOL, DROPOUT) / duration() //EN Dropout Rate decimals=4
+		undergone_transition(school_status, IN_SCHOOL, DROPOUT) / duration(school_status, IN_SCHOOL) //EN Dropout Rate decimals=4
 	}
 };
 
@@ -144,9 +159,11 @@ table Child ChildAbuseRates //EN Abuse Rates of Children
 	*
 	{
 		unit, //EN Number of Children who entered the state
-		duration(), //EN Number of Child years spent in state
+		duration(), //EN Total number of Child years spent in state
+		duration(abused, FALSE), //EN Number of unabused Child years spent in state
+		duration(abused, TRUE), //EN Number of abused Child years spent in state
 		undergone_transition(abused, FALSE, TRUE), //EN Number of children who entered abused state
-		undergone_transition(abused, FALSE, TRUE) / duration() //EN Abuse state entrace rate decimals=4
+		undergone_transition(abused, FALSE, TRUE) / duration(abused, FALSE) //EN Abuse state entrace rate decimals=4
 	}
 };
 
