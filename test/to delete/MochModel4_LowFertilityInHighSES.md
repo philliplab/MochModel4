@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 51
+## Model Version: 49
 ## Scenario: LowFertilityInHighSES
 
 ```
@@ -30,7 +30,7 @@
 
 There are 10000 Mothers in this scenario.
 
-There are 20579 Children in this scenario.
+There are 20604 Children in this scenario.
 
 ### State Transitions
 
@@ -43,7 +43,7 @@ A table of the number of mothers who entered each of the different states.
 |Mother entrances in DIAGSYMP state  |      2811|       28.1|
 |Mother entrances in HEALTHY state   |         0|        0.0|
 |Mother entrances in INFECTED state  |      4498|       45.0|
-|Mother entrances in STOPPED state   |       715|        7.1|
+|Mother entrances in STOPPED state   |       677|        6.8|
 |Mother entrances in SYMPTOMS state  |      1964|       19.6|
 |Mother entrances in TREATED state   |      1659|       16.6|
 
@@ -56,11 +56,11 @@ The total time spent by mothers in the various states.
 |:-------------------------------|------------:|----------:|
 |Mother years in DIAGNOSED state |         5267|        1.0|
 |Mother years in DIAGSYMP state  |         5522|        1.1|
-|Mother years in HEALTHY state   |       452228|       87.7|
+|Mother years in HEALTHY state   |       452228|       87.9|
 |Mother years in INFECTED state  |        21169|        4.1|
-|Mother years in STOPPED state   |         1084|        0.2|
-|Mother years in SYMPTOMS state  |         7991|        1.5|
-|Mother years in TREATED state   |        22523|        4.4|
+|Mother years in STOPPED state   |         1031|        0.2|
+|Mother years in SYMPTOMS state  |         7991|        1.6|
+|Mother years in TREATED state   |        21541|        4.2|
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
@@ -133,18 +133,34 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       626329|       53.5|
-|Mother years in DIAGNOSED state |         7526|        0.6|
-|Mother years in DIAGSYMP state  |         8101|        0.7|
-|Mother years in HEALTHY state   |       444314|       38.0|
-|Mother years in INFECTED state  |        22149|        1.9|
-|Mother years in STOPPED state   |         2266|        0.2|
-|Mother years in SYMPTOMS state  |        13294|        1.1|
-|Mother years in TREATED state   |        46279|        4.0|
+|Mother years in DEAD state      |       630696|       53.8|
+|Mother years in DIAGNOSED state |         7428|        0.6|
+|Mother years in DIAGSYMP state  |         8200|        0.7|
+|Mother years in HEALTHY state   |       444845|       38.0|
+|Mother years in INFECTED state  |        22489|        1.9|
+|Mother years in STOPPED state   |         2124|        0.2|
+|Mother years in SYMPTOMS state  |        13184|        1.1|
+|Mother years in TREATED state   |        42882|        3.7|
 
 ![plot of chunk unnamed-chunk-17](figure/LowFertilityInHighSES/unnamed-chunk-17.png) 
 
 ![plot of chunk unnamed-chunk-18](figure/LowFertilityInHighSES/unnamed-chunk-18.png) 
+
+### Schooling Outcomes
+
+The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
+
+![plot of chunk unnamed-chunk-19](figure/LowFertilityInHighSES/unnamed-chunk-19.png) 
+
+
+|school_status | Value|
+|:-------------|-----:|
+|NOT_IN_SCHOOL |  1373|
+|IN_SCHOOL     |   122|
+|DROPOUT       | 12540|
+|GRADUATED     |  6569|
+
+shut down
 
 
 

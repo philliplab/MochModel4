@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 51
+## Model Version: 49
 ## Scenario: AllSymptomsNoMortExpDiag
 
 ```
@@ -34,7 +34,7 @@
 
 There are 10000 Mothers in this scenario.
 
-There are 31085 Children in this scenario.
+There are 28673 Children in this scenario.
 
 ### State Transitions
 
@@ -47,7 +47,7 @@ A table of the number of mothers who entered each of the different states.
 |Mother entrances in DIAGSYMP state  |      9066|       90.7|
 |Mother entrances in HEALTHY state   |         0|        0.0|
 |Mother entrances in INFECTED state  |      9066|       90.7|
-|Mother entrances in STOPPED state   |      4859|       48.6|
+|Mother entrances in STOPPED state   |      2276|       22.8|
 |Mother entrances in SYMPTOMS state  |      5405|       54.0|
 |Mother entrances in TREATED state   |      5408|       54.1|
 
@@ -59,12 +59,12 @@ The total time spent by mothers in the various states.
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
 |Mother years in DIAGNOSED state |         2848|        0.4|
-|Mother years in DIAGSYMP state  |       271117|       35.6|
-|Mother years in HEALTHY state   |       296732|       39.0|
-|Mother years in INFECTED state  |        11077|        1.5|
-|Mother years in STOPPED state   |         7893|        1.0|
-|Mother years in SYMPTOMS state  |        16253|        2.1|
-|Mother years in TREATED state   |       155363|       20.4|
+|Mother years in DIAGSYMP state  |       271117|       40.2|
+|Mother years in HEALTHY state   |       296732|       44.0|
+|Mother years in INFECTED state  |        11077|        1.6|
+|Mother years in STOPPED state   |         3727|        0.6|
+|Mother years in SYMPTOMS state  |        16253|        2.4|
+|Mother years in TREATED state   |        72586|       10.8|
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
@@ -154,18 +154,34 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       623130|       28.2|
-|Mother years in DIAGNOSED state |        61543|        2.8|
-|Mother years in DIAGSYMP state  |       776724|       35.2|
-|Mother years in HEALTHY state   |       254757|       11.5|
-|Mother years in INFECTED state  |         8610|        0.4|
-|Mother years in STOPPED state   |        22386|        1.0|
-|Mother years in SYMPTOMS state  |        32939|        1.5|
-|Mother years in TREATED state   |       429160|       19.4|
+|Mother years in DEAD state      |       732913|       35.7|
+|Mother years in DIAGNOSED state |        61977|        3.0|
+|Mother years in DIAGSYMP state  |       774859|       37.8|
+|Mother years in HEALTHY state   |       261151|       12.7|
+|Mother years in INFECTED state  |         8614|        0.4|
+|Mother years in STOPPED state   |         9073|        0.4|
+|Mother years in SYMPTOMS state  |        32083|        1.6|
+|Mother years in TREATED state   |       171386|        8.4|
 
 ![plot of chunk unnamed-chunk-17](figure/AllSymptomsNoMortExpDiag/unnamed-chunk-17.png) 
 
 ![plot of chunk unnamed-chunk-18](figure/AllSymptomsNoMortExpDiag/unnamed-chunk-18.png) 
+
+### Schooling Outcomes
+
+The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
+
+![plot of chunk unnamed-chunk-19](figure/AllSymptomsNoMortExpDiag/unnamed-chunk-19.png) 
+
+
+|school_status | Value|
+|:-------------|-----:|
+|NOT_IN_SCHOOL |     0|
+|IN_SCHOOL     |     0|
+|DROPOUT       | 15271|
+|GRADUATED     | 13402|
+
+shut down
 
 
 

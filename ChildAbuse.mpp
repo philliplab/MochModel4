@@ -1,0 +1,84 @@
+
+//LABEL(ChildAbuse, EN) Implementation of Child Abuse
+
+/* NOTE(ChildAbuse, EN)
+	Sets a child's abuse status.
+
+	- Data Requirements
+
+	The annual probabilities of becoming abused is given by the AbuseProbabilityChild 
+	parameter. A child's probability of becoming abused is affected by:
+	- Gender
+	- Socio_economic_state
+	- The child's mother's disease state
+	- Age
+
+	A child can only become abused from the day the child turns 12 until the day
+	before the child turns 19.
+
+	- Implementation Details
+
+	This event is first scheduled the moment when the child becomes 12. The event is
+	then rescheduled whenever one of the indices of the abuse rates table changes. The
+	child's gender and socioeconomic status cannot change in this model. The event is thus rescheduled 
+	every year when the child ages and everytime the mother's disease state changes.
+
+	The event is simply scheduled by drawing a random number from a uniform distribution
+	and dividing it by the abuse probability of the child.
+
+	In the case where the mother's disease progresses, the child's age will not be an integer.
+	This special case is handled by scheduling the child's abuse event using the child's age
+	rounded down to the nearest integer to lookup the child's abuse probability. 
+	The event is then scheduled as previously.
+*/
+
+parameters
+{
+	double AbuseProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE]; //EN Abuse Probabilities
+};
+
+/* NOTE(AbuseProbabilityChild, EN)
+    The probability of a child to become abused based on his/her gender, socio economic status,
+	mother's disease state and age.
+*/
+
+actor Child
+{
+	logical abused = {FALSE};
+	event timeAbuseEvent, AbuseEvent;
+};
+
+double abuseTime(DEPRESSION_YEARS curr_age, 
+	GENDER gender_internal, 
+	CHILD_SCHED_STATE mother_disease_status_detailed_fm_internal, 
+	SOCIO_ECONOMIC_STATE c_ses)
+{
+	double abuse_time = pow(10,10);
+	int depression_age_indx = curr_age - 12;
+	if (depression_age_indx < 0) {depression_age_indx = 0;};
+	if (depression_age_indx > 6) {depression_age_indx = 6;};
+	double curr_abuse_rate = AbuseProbabilityChild[gender_internal][c_ses]
+	    [depression_age_indx][mother_disease_status_detailed_fm_internal];	
+	abuse_time = RandUniform(21) / curr_abuse_rate;
+    if (abuse_time > 1){
+	  abuse_time = pow(10, 10);
+	};
+	return(abuse_time);
+};
+
+TIME Child::timeAbuseEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if ((integer_age >= 12) && (integer_age <= 19) && (ChildModelType == RISK_FACTORS) && (abused == FALSE)){
+		t_event_time = abuseTime(integer_age, gender, child_sched_status, ses);
+	}
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Child::AbuseEvent()
+{
+	if ((age >= 12) && (age < 19)){
+		abused = TRUE;
+	};
+};

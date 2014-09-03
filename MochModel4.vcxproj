@@ -97,6 +97,7 @@
     <None Include="app.ico" />
     <None Include="Base(MotherCore).dat" />
     <None Include="Base.scex" />
+    <None Include="ChildAbuse.mpp" />
     <None Include="ChildCore.mpp" />
     <None Include="ChildMortality.mpp" />
     <None Include="ChildSchoolDropout.mpp" />
@@ -120,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actors.cpp" />
+    <ClCompile Include="ChildAbuse.cpp" />
     <ClCompile Include="ChildCore.cpp" />
     <ClCompile Include="ChildMortality.cpp" />
     <ClCompile Include="ChildSchoolDropout.cpp" />

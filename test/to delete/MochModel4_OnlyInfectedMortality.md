@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 51
+## Model Version: 49
 ## Scenario: OnlyInfectedMortality
 
 ```
@@ -180,6 +180,22 @@ If there is no mortality in the scenario for the population the plot is for then
 ![plot of chunk unnamed-chunk-17](figure/OnlyInfectedMortality/unnamed-chunk-17.png) 
 
 ![plot of chunk unnamed-chunk-18](figure/OnlyInfectedMortality/unnamed-chunk-18.png) 
+
+### Schooling Outcomes
+
+The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
+
+![plot of chunk unnamed-chunk-19](figure/OnlyInfectedMortality/unnamed-chunk-19.png) 
+
+
+|school_status | Value|
+|:-------------|-----:|
+|NOT_IN_SCHOOL |     0|
+|IN_SCHOOL     |     0|
+|DROPOUT       | 13078|
+|GRADUATED     | 11277|
+
+shut down
 
 
 

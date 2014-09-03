@@ -3,7 +3,7 @@
 
 
 
-## Model Version: 51
+## Model Version: 49
 ## Scenario: NoHIV
 
 ```
@@ -173,6 +173,22 @@ If there is no mortality in the scenario for the population the plot is for then
 ![plot of chunk unnamed-chunk-17](figure/NoHIV/unnamed-chunk-17.png) 
 
 ![plot of chunk unnamed-chunk-18](figure/NoHIV/unnamed-chunk-18.png) 
+
+### Schooling Outcomes
+
+The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
+
+![plot of chunk unnamed-chunk-19](figure/NoHIV/unnamed-chunk-19.png) 
+
+
+|school_status | Value|
+|:-------------|-----:|
+|NOT_IN_SCHOOL |  1970|
+|IN_SCHOOL     |   188|
+|DROPOUT       | 17541|
+|GRADUATED     | 10048|
+
+shut down
 
 
 

@@ -27,6 +27,16 @@ parameter_group Child_Core
 };
 
 
+range DEPRESSION_YEARS
+{
+	12, 18
+};
+
+/* NOTE( DEPRESSION_YEARS, EN)
+    A child can only become depressed and/or abused from the day the child 
+	turns 12 until the day before the child turns 19.
+*/
+
 actor_set Child asAllChild; //EN All Child actors
 
 actor Child            //EN Individual
