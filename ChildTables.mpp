@@ -115,13 +115,27 @@ table Child ChildAbuseOutcomes //EN Abuse statistics
 	}
 };
 
+table Child ChildDepressionOutcomes //EN Depression statistics
+	[integer_age >= 12 && integer_age <= 18]
+{
+//	integer_age +
+	//	*
+	{
+		unit, //EN Susceptible Children
+		undergone_transition(depressed, FALSE, TRUE), //EN Depressed Children
+		duration(), //EN Susceptible Child Years
+		duration(depressed, TRUE) //EN Depressed Child Years
+	}
+};
+
 table_group Child_General
 {
 	ChildSurvival,
 	ChildMotherStateAtDropout,
 	ChildFinalSchoolingStatus,
 	ChildSchoolingUndergone,
-	ChildAbuseOutcomes
+	ChildAbuseOutcomes,
+	ChildDepressionOutcomes
 };
 
 /* ################################################################################
@@ -178,7 +192,7 @@ table Child ChildDepressionRates //EN Depression Rates of Children
 	child_sched_status +
 		*
 	integer_age +
-	*
+		*
 	{
 		unit, //EN Number of Children who entered the state
 		duration(), //EN Total number of Child years spent in state
