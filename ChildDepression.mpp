@@ -50,7 +50,7 @@ parameters
 	mother's disease state and age if the child is not abused.
 */
 
-parameter_group ChildAbuseDepression
+parameter_group Child_Abuse_And_Depression
 { //EN Child's Abuse and Depression Parameters
 	AbuseProbabilityChild, AbusedDepressionProbabilityChild, NotAbusedDepressionProbabilityChild
 };
