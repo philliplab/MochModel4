@@ -8,11 +8,28 @@ An arbitrarily selected value.
 /* NOTE ( NotAbusedDepressionProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */
-	double AbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {(24) 0.05, }; //EN Consistent Condom Usage Probabilities in Presence of Abuse
-/* NOTE ( NotAbusedDepressionProbabilityChild , EN )
+	 //EN Consistent Condom Usage Probabilities in Absence of Abuse
+	double	NotAbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {
+		// F
+		(6) 0.387220, 
+		(6) 0.465310, 
+		// M
+		(6) 0.424820, 
+		(6) 0.504250, 
+	};
+
+/* NOTE ( AbusedDepressionProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */
-	double NotAbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {(24) 0.05, }; //EN Consistent Condom Usage Probabilities in Absence of Abuse
+	 //EN Consistent Condom Usage Probabilities in Presence of Abuse
+	double	AbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {
+		// F
+		(6) 0.272500, 
+		(6) 0.340290, 
+		// M
+		(6) 0.304490, 
+		(6) 0.376130, 
+	};
 /* NOTE ( NotAbusedDepressionProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */
