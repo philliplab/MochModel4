@@ -1,7 +1,7 @@
 
-//LABEL(ChildCondomUsage, EN) Determines whether or not a child consistently uses condoms
+//LABEL(ChildCondomUse, EN) Determines whether or not a child consistently uses condoms
 
-/* NOTE(ChildCondomUsage, EN)
+/* NOTE(ChildCondomUse, EN)
     Determines whether or not a child consistently uses condoms
 
 	- Data Requirements
@@ -34,8 +34,8 @@ parameters
 	mother's disease state if the child is not abused.
 */
 
-parameter_group ChildCondomUsage
-{ //EN Child's Condom Usage Parameters
+parameter_group Child_Condom_Usage
+{
 	AbusedCondomUsageProbabilitiesChild, NotAbusedCondomUsageProbabilitiesChild
 };
 
