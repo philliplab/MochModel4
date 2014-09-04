@@ -167,10 +167,33 @@ table Child ChildAbuseRates //EN Abuse Rates of Children
 	}
 };
 
+table Child ChildDepressionRates //EN Depression Rates of Children
+{
+	abused +
+		*
+	gender +
+		*
+	ses +
+	    *
+	child_sched_status +
+		*
+	integer_age +
+	*
+	{
+		unit, //EN Number of Children who entered the state
+		duration(), //EN Total number of Child years spent in state
+		duration(depressed, FALSE), //EN Number of undepressed Child years spent in state
+		duration(depressed, TRUE), //EN Number of depressed Child years spent in state
+		undergone_transition(depressed, FALSE, TRUE), //EN Number of children who entered depressed state
+		undergone_transition(depressed, FALSE, TRUE) / duration(depressed, FALSE) //EN Depressed state entrace rate decimals=4
+	}
+};
+
 table_group Child_Rates
 {
 	ChildDropoutRates,
-	ChildAbuseRates
+	ChildAbuseRates,
+	ChildDepressionRates
 };
 
 /* ################################################################################
