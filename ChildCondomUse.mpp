@@ -1,0 +1,88 @@
+
+//LABEL(ChildCondomUsage, EN) Determines whether or not a child consistently uses condoms
+
+/* NOTE(ChildCondomUsage, EN)
+    Determines whether or not a child consistently uses condoms
+
+	- Data Requirements
+
+	Probability of being a consistent condom user stratified by Gender, 
+	Socioeconomic status, mother's disease status and the child's
+	abuse status.
+
+	- Implementation Details
+
+	At birth, a child's condom usage is set by drawing a random number
+	and comparing it to the child's probability of being a consistent
+	condom user. Whenever one of the risk factors change, another number is
+	drawn and the comparison is made again.
+*/
+
+parameters
+{
+	double AbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE]; //EN Consistent Condom Usage Probabilities in Presence of Abuse
+	double NotAbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE]; //EN Consistent Condom Usage Probabilities in Absence of Abuse
+};
+
+/* NOTE(AbusedCondomUsageProbabilitiesChild, EN)
+    The probability of a child to consistently use condoms based on his/her gender, socio economic status and
+	mother's disease state if the child is abused.
+*/
+
+/* NOTE(NotAbusedCondomUsageProbabilitiesChild, EN)
+    The probability of a child to consistently use condoms based on his/her gender, socio economic status and
+	mother's disease state if the child is not abused.
+*/
+
+parameter_group ChildCondomUsage
+{ //EN Child's Condom Usage Parameters
+	AbusedCondomUsageProbabilitiesChild, NotAbusedCondomUsageProbabilitiesChild
+};
+
+actor Child
+{
+	double prev_ccu_prob = {-1};
+	logical consistent_condom_user = {FALSE};
+	event timeCondomEvent, CondomEvent;
+};
+
+double CondomUsageProb(logical abused_internal,
+	GENDER gender_internal,
+	SOCIO_ECONOMIC_STATE ses_internal, 
+	CHILD_SCHED_STATE mother_disease_status_detailed_fm_internal)
+{
+	double curr_ccu_prob = 0;
+	if (abused_internal == TRUE){
+		curr_ccu_prob = AbusedCondomUsageProbabilitiesChild[gender_internal][ses_internal][mother_disease_status_detailed_fm_internal];
+	} else {
+		curr_ccu_prob = NotAbusedCondomUsageProbabilitiesChild[gender_internal][ses_internal][mother_disease_status_detailed_fm_internal];
+	}
+	return(curr_ccu_prob);
+}
+
+TIME Child::timeCondomEvent()
+{
+	// Just tricks to ensure rescheduling if ANY risk factor changes
+	TIME t_event_time = TIME_INFINITE;
+	if (ChildModelType == RISK_FACTORS){
+		double curr_ccu_prob = 0;
+		curr_ccu_prob = CondomUsageProb(abused, gender, ses, child_sched_status);
+		if (curr_ccu_prob != prev_ccu_prob){
+			t_event_time = 0;
+		};
+	};
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Child::CondomEvent()
+{
+	double curr_ccu_prob = 0;
+	curr_ccu_prob = CondomUsageProb(abused, gender, ses, child_sched_status);
+	if (RandUniform(23) > curr_ccu_prob){
+	    consistent_condom_user = FALSE;
+	} else {
+		consistent_condom_user = TRUE;
+	};
+	prev_ccu_prob = curr_ccu_prob;
+};
