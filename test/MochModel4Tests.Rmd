@@ -1725,6 +1725,6 @@ print_test_results(test_results)
 ## Debugging NOTES
 
 ```{r}
-print(test_results)
+#print(test_results)
 odbcCloseAll()
 ```
