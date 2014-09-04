@@ -154,10 +154,30 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |school_status | Value|
 |:-------------|-----:|
-|NOT_IN_SCHOOL |  1804|
-|IN_SCHOOL     |   163|
-|DROPOUT       | 14712|
-|GRADUATED     | 10350|
+|NOT_IN_SCHOOL | 27029|
+|IN_SCHOOL     |     0|
+|DROPOUT       |     0|
+|GRADUATED     |     0|
+
+### Abuse Outcomes
+
+
+|metrics                 |  Value|
+|:-----------------------|------:|
+|Susceptible Children    |  25141|
+|Abused Children         |  12903|
+|Susceptible Child Years | 175325|
+|Abused Child Years      |  53712|
+
+### Depression Outcomes
+
+
+|metrics                 |  Value|
+|:-----------------------|------:|
+|Susceptible Children    |  25141|
+|Depressed Children      |  16973|
+|Susceptible Child Years | 175325|
+|Depressed Child Years   |  60754|
 
 shut down
 

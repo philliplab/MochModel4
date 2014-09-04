@@ -128,6 +128,17 @@ table Child ChildDepressionOutcomes //EN Depression statistics
 	}
 };
 
+table Child ChildCondomUsageOutcomes //EN Condom Usage statistics
+	[integer_age >= 13 && integer_age <= 18]
+{
+//	integer_age +
+	//	*
+	{
+		duration(consistent_condom_user, FALSE), //EN Inconsistent Condom Usage Child Years
+		duration(consistent_condom_user, TRUE) //EN Consistent Condom Usage Child Years
+	}
+};
+
 table_group Child_General
 {
 	ChildSurvival,
@@ -135,7 +146,8 @@ table_group Child_General
 	ChildFinalSchoolingStatus,
 	ChildSchoolingUndergone,
 	ChildAbuseOutcomes,
-	ChildDepressionOutcomes
+	ChildDepressionOutcomes,
+	ChildCondomUsageOutcomes
 };
 
 /* ################################################################################
@@ -203,11 +215,32 @@ table Child ChildDepressionRates //EN Depression Rates of Children
 	}
 };
 
+/* NOTE (ChildCondomUsageRates, EN)
+This table is really hard to interpret. The values in the Number of Children column for age 0 constains double counted children. 
+subsequent ages are more accurate. The Number of Child Years Column is also more accurate
+*/
+
+table Child ChildCondomUsageRates //EN Condom Usage Rates of Children
+{
+	integer_age +
+	*
+	gender +
+	*
+	consistent_condom_user +
+	*
+	{
+		unit, //EN Number of Children
+		duration() //EN Number of Child years
+	}
+};
+
+
 table_group Child_Rates
 {
 	ChildDropoutRates,
 	ChildAbuseRates,
-	ChildDepressionRates
+	ChildDepressionRates,
+	ChildCondomUsageRates
 };
 
 /* ################################################################################

@@ -302,6 +302,13 @@ cdo <- as.data.frame(new_RTable("ChildDepressionOutcomes", db_channel))
 kable(cdo[,c(1,2)])
 ```
 
+### Condom Usage Outcomes
+
+```{r, warning=FALSE, message=FALSE, results = 'asis'}
+ccuo <- as.data.frame(new_RTable("ChildCondomUsageOutcomes", db_channel))
+kable(ccuo[,c(1,2)])
+```
+
 shut down
 
 ```{r SHUTTING DOWN}
