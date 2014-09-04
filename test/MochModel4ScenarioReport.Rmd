@@ -295,6 +295,13 @@ cao <- as.data.frame(new_RTable("ChildAbuseOutcomes", db_channel))
 kable(cao[,c(1,2)])
 ```
 
+### Depression Outcomes
+
+```{r, warning=FALSE, message=FALSE, results = 'asis'}
+cdo <- as.data.frame(new_RTable("ChildDepressionOutcomes", db_channel))
+kable(cdo[,c(1,2)])
+```
+
 shut down
 
 ```{r SHUTTING DOWN}

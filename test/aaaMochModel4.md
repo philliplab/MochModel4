@@ -170,6 +170,16 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |Susceptible Child Years | 199541|
 |Abused Child Years      |  61355|
 
+### Depression Outcomes
+
+
+|metrics                 |  Value|
+|:-----------------------|------:|
+|Susceptible Children    |  28620|
+|Depressed Children      |  19314|
+|Susceptible Child Years | 199541|
+|Depressed Child Years   |  69568|
+
 shut down
 
 
