@@ -5,15 +5,54 @@ An arbitrarily selected value.
 	int	ModelTime = 10; //EN Model Time
 
 	CHILD_MODEL_TYPE ChildModelType = RISK_FACTORS; //EN The Type of Child Model
-/* NOTE ( NotAbusedDebutProbabilityChild , EN )
+/* NOTE ( AbusedDebutProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */
-	double AbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = { (72) 0.05, }; //EN Early Sexual Debut Probabilities in Presence of Abuse
-/* NOTE ( NotAbusedDebutProbabilityChild , EN )
+	 //EN Early Sexual Debut Probabilities in Presence of Abuse
+	double	AbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = {
+		// F, HIGH
+		(2) 0.053403, 0.035945, 0.014378, 0.071891, 0.154074, 
+		(2) 0.018155, 0.011902, 0.004761, 0.023804, 0.045174, 
+		(2) 0.023705, 0.015307, 0.006123, 0.030613, 0.054447, 
+		// F, LOW
+		(2) 0.053403, 0.031932, 0.012773, 0.063864, 0.054372, 
+		(2) 0.018155, 0.010695, 0.004278, 0.021391, 0.018459, 
+		(2) 0.023705, 0.013845, 0.005538, 0.027691, 0.024083, 
+		// M, HIGH
+		(2) 0.151614, 0.088851, 0.035540, 0.177701, 0.154074, 
+		(2) 0.044620, 0.025118, 0.010047, 0.050235, 0.045174, 
+		(2) 0.053881, 0.029736, 0.011895, 0.059473, 0.054447, 
+		// M, LOW
+		(2) 0.135990, 0.079948, 0.031979, 0.159896, 0.138238, 
+		(2) 0.040981, 0.023232, 0.009293, 0.046465, 0.041518, 
+		(2) 0.050086, 0.027877, 0.011151, 0.055755, 0.050653, 
+	};
+/* NOTE ( NotAbusedDebutProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
-	double NotAbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = { (72) 0.05, }; //EN Early Sexual Debut Probabilities in Absence of Abuse
-/* NOTE ( NotAbusedDepressionProbabilityChild , EN )
+
+
+	 //EN Early Sexual Debut Probabilities in Absence of Abuse
+	double	NotAbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = {
+		// F, HIGH
+		(2) 0.038530, 0.023110, 0.009240, 0.046220, 0.039240, 
+		(2) 0.013380, 0.007940, 0.003170, 0.015870, 0.013610, 
+		(2) 0.017680, 0.010430, 0.004170, 0.020850, 0.017980, 
+		// F, LOW
+		(2) 0.034090, 0.020470, 0.008190, 0.040930, 0.034720, 
+		(2) 0.011910, 0.007080, 0.002830, 0.014160, 0.012120, 
+		(2) 0.015800, 0.009340, 0.003740, 0.018690, 0.016070, 
+		// M, HIGH
+		(2) 0.100560, 0.059550, 0.023820, 0.119100, 0.102290, 
+		(2) 0.031940, 0.018400, 0.007360, 0.036810, 0.032410, 
+		(2) 0.040140, 0.022790, 0.009120, 0.045580, 0.040670, 
+		// M, LOW
+		(2) 0.089640, 0.053200, 0.021280, 0.106410, 0.091210, 
+		(2) 0.028930, 0.016750, 0.006700, 0.033510, 0.029370, 
+		(2) 0.036680, 0.020960, 0.008380, 0.041920, 0.037180, 
+	};
+
+/* NOTE ( NotAbusedCondomUsageProbabilitiesChild , EN )
 	From Chris' child outcomes spreadsheet
 */
 	 //EN Consistent Condom Usage Probabilities in Absence of Abuse
@@ -26,7 +65,7 @@ An arbitrarily selected value.
 		(6) 0.504250, 
 	};
 
-/* NOTE ( AbusedDepressionProbabilityChild , EN )
+/* NOTE ( AbusedCondomUsageProbabilitiesChild , EN )
 	From Chris' child outcomes spreadsheet
 */
 	 //EN Consistent Condom Usage Probabilities in Presence of Abuse
