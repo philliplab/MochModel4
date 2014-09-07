@@ -5,6 +5,14 @@ An arbitrarily selected value.
 	int	ModelTime = 10; //EN Model Time
 
 	CHILD_MODEL_TYPE ChildModelType = RISK_FACTORS; //EN The Type of Child Model
+/* NOTE ( NotAbusedDebutProbabilityChild , EN )
+	From Chris' child outcomes spreadsheet
+*/
+	double AbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = { (72) 0.05, }; //EN Early Sexual Debut Probabilities in Presence of Abuse
+/* NOTE ( NotAbusedDebutProbabilityChild , EN )
+	From Chris' child outcomes spreadsheet
+*/
+	double NotAbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = { (72) 0.05, }; //EN Early Sexual Debut Probabilities in Absence of Abuse
 /* NOTE ( NotAbusedDepressionProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */

@@ -110,7 +110,7 @@ table Child ChildAbuseOutcomes //EN Abuse statistics
 	{
 		unit, //EN Susceptible Children
 		undergone_transition(abused, FALSE, TRUE), //EN Abused Children
-		duration(), //EN Susceptible Child Years
+		duration(abused, FALSE), //EN Susceptible Child Years
 		duration(abused, TRUE) //EN Abused Child Years
 	}
 };
@@ -123,8 +123,24 @@ table Child ChildDepressionOutcomes //EN Depression statistics
 	{
 		unit, //EN Susceptible Children
 		undergone_transition(depressed, FALSE, TRUE), //EN Depressed Children
-		duration(), //EN Susceptible Child Years
+		duration(depressed, FALSE), //EN Susceptible Child Years
 		duration(depressed, TRUE) //EN Depressed Child Years
+	}
+};
+
+partition DEBUT_YEARS_PARTITION { 14, 15 };
+
+table Child ChildDebutOutcomes //EN Debut statistics
+{
+	integer_age +
+		*
+	{
+		unit, //EN Number of Children who entered the state
+		duration(), //EN Total number of Child years spent in state
+		duration(sexually_experienced, FALSE), //EN Number of sexually inactive Child years spent in state
+		duration(sexually_experienced, TRUE), //EN Number of sexually active Child years spent in state
+		undergone_transition(sexually_experienced, FALSE, TRUE), //EN Number of children who debuted
+		undergone_transition(sexually_experienced, FALSE, TRUE) / duration(sexually_experienced, FALSE) //EN Sexually active state entrace rate decimals=4
 	}
 };
 
@@ -147,7 +163,8 @@ table_group Child_General
 	ChildSchoolingUndergone,
 	ChildAbuseOutcomes,
 	ChildDepressionOutcomes,
-	ChildCondomUsageOutcomes
+	ChildCondomUsageOutcomes,
+	ChildDebutOutcomes
 };
 
 /* ################################################################################
@@ -215,6 +232,28 @@ table Child ChildDepressionRates //EN Depression Rates of Children
 	}
 };
 
+table Child ChildDebutRates //EN Debut Rates of Children
+{
+	abused +
+		*
+	gender +
+		*
+	ses +
+	    *
+	child_sched_status +
+		*
+	integer_age +
+		*
+	{
+		unit, //EN Number of Children who entered the state
+		duration(), //EN Total number of Child years spent in state
+		duration(sexually_experienced, FALSE), //EN Number of sexually inactive Child years spent in state
+		duration(sexually_experienced, TRUE), //EN Number of sexually active Child years spent in state
+		undergone_transition(sexually_experienced, FALSE, TRUE), //EN Number of children who debuted
+		undergone_transition(sexually_experienced, FALSE, TRUE) / duration(sexually_experienced, FALSE) //EN Sexually active state entrace rate decimals=4
+	}
+};
+
 /* NOTE (ChildCondomUsageRates, EN)
 This table is really hard to interpret. The values in the Number of Children column for age 0 constains double counted children. 
 subsequent ages are more accurate. The Number of Child Years Column is also more accurate
@@ -240,7 +279,8 @@ table_group Child_Rates
 	ChildDropoutRates,
 	ChildAbuseRates,
 	ChildDepressionRates,
-	ChildCondomUsageRates
+	ChildCondomUsageRates,
+	ChildDebutRates
 };
 
 /* ################################################################################

@@ -1,0 +1,87 @@
+//LABEL(ChildDebut, EN) Implementation of Early Sexual Debut for Children
+
+/* NOTE(ChildDebut, EN)
+	To be written up. Very similar to Depression
+*/
+
+range DEBUT_YEARS
+{
+	13, 15
+};
+
+/* NOTE( DEBUT_YEARS, EN)
+    Early sexual debut is seen as debut before age 16, 
+	hence only debut before 16 is considered. 
+	No data is available before the age of 13.
+*/
+
+parameters
+{
+	double AbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE]; //EN Early Sexual Debut Probabilities in Presence of Abuse
+	double NotAbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE]; //EN Early Sexual Debut Probabilities in Absence of Abuse
+};
+
+/* NOTE(AbusedDebutProbabilityChild, EN)
+    The probability of a child to become sexually experienced based on his/her gender, socio economic status,
+	mother's disease state and age if the child is abused.
+*/
+
+/* NOTE(NotAbusedDebutProbabilityChild, EN)
+    The probability of a child to become sexually experienced based on his/her gender, socio economic status,
+	mother's disease state and age if the child is not abused.
+*/
+
+parameter_group Child_Debut_Parameters
+{
+	AbusedDebutProbabilityChild, NotAbusedDebutProbabilityChild
+};
+
+actor Child
+{
+	logical sexually_experienced = {FALSE};
+	double debut_age = {0};
+	event timeDebutEvent, DebutEvent;
+};
+
+double debutTime(DEBUT_YEARS curr_age, 
+	GENDER gender_internal,
+	SOCIO_ECONOMIC_STATE ses_internal,
+	CHILD_SCHED_STATE mother_disease_status_detailed_fm_internal, 
+	logical abused_internal)
+{	
+	int debut_age_indx = curr_age - 13;
+	if (debut_age_indx < 0) {debut_age_indx = 0;};
+	if (debut_age_indx > 3) {debut_age_indx = 3;};
+	
+	double debut_rate;
+	if (abused_internal == TRUE){
+		debut_rate = AbusedDebutProbabilityChild[gender_internal]
+		    [ses_internal][debut_age_indx][mother_disease_status_detailed_fm_internal];
+	} else {
+		debut_rate = NotAbusedDebutProbabilityChild[gender_internal]
+		    [ses_internal][debut_age_indx][mother_disease_status_detailed_fm_internal];
+	};
+
+	double debut_time = pow(10,10);
+	debut_time = RandUniform(24) / debut_rate;
+
+	return(debut_time);
+};
+
+TIME Child::timeDebutEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if ((integer_age >= 13) && (integer_age <= 15) && (sexually_experienced == FALSE) && (ChildModelType == RISK_FACTORS)){
+		t_event_time = debutTime(integer_age, gender, ses, child_sched_status, abused);
+	};
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Child::DebutEvent()
+{
+	if ((age >= 13) && (age < 16) && (sexually_experienced == FALSE)){
+		sexually_experienced = TRUE;
+		debut_age = age;
+	};
+};

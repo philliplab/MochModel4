@@ -89,6 +89,9 @@
     <None Include="ChildCondomUse.mpp">
       <Filter>Modules %28mpp%29</Filter>
     </None>
+    <None Include="ChildDebut.mpp">
+      <Filter>Modules %28mpp%29</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MochModel4.cpp">
@@ -158,6 +161,9 @@
       <Filter>C++ Files</Filter>
     </ClCompile>
     <ClCompile Include="ChildCondomUse.cpp">
+      <Filter>C++ Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildDebut.cpp">
       <Filter>C++ Files</Filter>
     </ClCompile>
   </ItemGroup>

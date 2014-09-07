@@ -100,6 +100,7 @@
     <None Include="ChildAbuse.mpp" />
     <None Include="ChildCondomUse.mpp" />
     <None Include="ChildCore.mpp" />
+    <None Include="ChildDebut.mpp" />
     <None Include="ChildDepression.mpp" />
     <None Include="ChildMortality.mpp" />
     <None Include="ChildSchoolDropout.mpp" />
@@ -126,6 +127,7 @@
     <ClCompile Include="ChildAbuse.cpp" />
     <ClCompile Include="ChildCondomUse.cpp" />
     <ClCompile Include="ChildCore.cpp" />
+    <ClCompile Include="ChildDebut.cpp" />
     <ClCompile Include="ChildDepression.cpp" />
     <ClCompile Include="ChildMortality.cpp" />
     <ClCompile Include="ChildSchoolDropout.cpp" />
