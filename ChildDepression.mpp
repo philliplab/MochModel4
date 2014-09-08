@@ -61,7 +61,7 @@ parameter_group Child_Abuse_And_Depression
 actor Child
 {
 	logical depressed = {FALSE};
-	LIFE depression_episode = {0};
+	EPISODE_COUNT depression_episode = {0};
 	event timeDepressionEvent, DepressionEvent;
 	event timeDepressionRecoverEvent, DepressionRecoverEvent;
 };

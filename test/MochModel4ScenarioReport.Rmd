@@ -295,11 +295,23 @@ cao <- as.data.frame(new_RTable("ChildAbuseOutcomes", db_channel))
 kable(cao[,c(1,2)])
 ```
 
+```{r, warning=FALSE, message=FALSE, results = 'asis'}
+cae <- as.data.frame(new_RTable("ChildAbuseEpisodes", db_channel))
+cae <- cae[,c(1,3)]
+kable(cae)
+```
+
 ### Depression Outcomes
 
 ```{r, warning=FALSE, message=FALSE, results = 'asis'}
 cdo <- as.data.frame(new_RTable("ChildDepressionOutcomes", db_channel))
 kable(cdo[,c(1,2)])
+```
+
+```{r, warning=FALSE, message=FALSE, results = 'asis'}
+cde <- as.data.frame(new_RTable("ChildDepressionEpisodes", db_channel))
+cde <- cde[,c(1,3)]
+kable(cde)
 ```
 
 ### Condom Usage Outcomes

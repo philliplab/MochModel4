@@ -166,9 +166,24 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |metrics                 |  Value|
 |:-----------------------|------:|
 |Susceptible Children    |  28620|
-|Abused Children         |  14600|
-|Susceptible Child Years | 138186|
-|Abused Child Years      |  61355|
+|Abused Children         |  14615|
+|Susceptible Child Years | 180828|
+|Abused Child Years      |  18713|
+
+
+| Number of abuse episodes| Value|
+|------------------------:|-----:|
+|                        0| 14005|
+|                        1| 10669|
+|                        2|  3368|
+|                        3|   532|
+|                        4|    45|
+|                        5|     1|
+|                        6|     0|
+|                        7|     0|
+|                        8|     0|
+|                        9|     0|
+|                       10|     0|
 
 ### Depression Outcomes
 
@@ -176,17 +191,32 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |metrics                 |  Value|
 |:-----------------------|------:|
 |Susceptible Children    |  28620|
-|Depressed Children      |  19314|
-|Susceptible Child Years | 129973|
-|Depressed Child Years   |  69568|
+|Depressed Children      |  17595|
+|Susceptible Child Years | 175117|
+|Depressed Child Years   |  24424|
+
+
+| Number of depressive episodes| Value|
+|-----------------------------:|-----:|
+|                             0| 11025|
+|                             1| 10768|
+|                             2|  5274|
+|                             3|  1348|
+|                             4|   196|
+|                             5|     9|
+|                             6|     0|
+|                             7|     0|
+|                             8|     0|
+|                             9|     0|
+|                            10|     0|
 
 ### Condom Usage Outcomes
 
 
-|metrics                               |  Value|
-|:-------------------------------------|------:|
-|Inconsistent Condom Usage Child Years | 101750|
-|Consistent Condom Usage Child Years   |  69182|
+|metrics                               | Value|
+|:-------------------------------------|-----:|
+|Inconsistent Condom Usage Child Years | 96677|
+|Consistent Condom Usage Child Years   | 74255|
 
 ### Debut Outcomes
 
@@ -194,11 +224,11 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |                                                       |        14|        15|        16|
 |:------------------------------------------------------|---------:|---------:|---------:|
 |Integer Age                                            |    13.000|    14.000|    15.000|
-|Number of children who debuted                         |  1947.000|   570.000|   665.000|
+|Number of children who debuted                         |  1850.000|   521.000|   665.000|
 |Number of Children who entered the state               | 28598.000| 28566.000| 28529.000|
-|Number of sexually active Child years spent in state   |   968.301|  2222.392|  2853.357|
-|Number of sexually inactive Child years spent in state | 27612.016| 26328.243| 25663.695|
-|Sexually active state entrace rate                     |     0.071|     0.022|     0.026|
+|Number of sexually active Child years spent in state   |   928.627|  2102.008|  2699.021|
+|Number of sexually inactive Child years spent in state | 27651.691| 26448.627| 25818.031|
+|Sexually active state entrace rate                     |     0.067|     0.020|     0.026|
 |Total number of Child years spent in state             | 28580.317| 28550.635| 28517.052|
 
 shut down

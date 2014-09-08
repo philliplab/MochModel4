@@ -47,7 +47,7 @@ parameters
 actor Child
 {
 	logical abused = {FALSE};
-	LIFE abuse_episode = {0};
+	EPISODE_COUNT abuse_episode = {0};
 	event timeAbuseEvent, AbuseEvent;
 	event timeAbuseRecoverEvent, AbuseRecoverEvent;
 };

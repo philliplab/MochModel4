@@ -9,7 +9,7 @@ An arbitrarily selected value.
 	Minimum duration of an abusive episode in years
 */
 
-	double	MinAbuseDurationChild = 100; //EN Minimum Duration of a Abusive Episode
+	double	MinAbuseDurationChild = 1; //EN Minimum Duration of a Abusive Episode
 /* NOTE ( AbuseRecoverChildProbability, EN )
 	The annual probability of recovering from abuse
 */
