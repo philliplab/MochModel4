@@ -54,7 +54,8 @@ parameters
 
 parameter_group Child_Abuse_And_Depression
 { //EN Child's Abuse and Depression Parameters
-	AbuseProbabilityChild, AbusedDepressionProbabilityChild, NotAbusedDepressionProbabilityChild
+	AbuseProbabilityChild, AbusedDepressionProbabilityChild, NotAbusedDepressionProbabilityChild, AbuseRecoverChildProbability, 
+	MinAbuseDurationChild, DepressionRecoverChildProbability, MinDepressionDurationChild
 };
 
 actor Child

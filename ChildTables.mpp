@@ -184,7 +184,9 @@ table_group Child_General
 	ChildAbuseOutcomes,
 	ChildDepressionOutcomes,
 	ChildCondomUsageOutcomes,
-	ChildDebutOutcomes
+	ChildDebutOutcomes,
+	ChildDepressionEpisodes,
+	ChildAbuseEpisodes
 };
 
 /* ################################################################################
