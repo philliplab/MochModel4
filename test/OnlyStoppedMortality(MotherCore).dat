@@ -2,12 +2,34 @@ parameters {
 /* NOTE ( ModelTime, EN )
 An arbitrarily selected value.
 */
-	int	ModelTime = 10; //EN Model Time
 
-	CHILD_MODEL_TYPE ChildModelType = BOTH; //EN The Type of Child Model
-/* NOTE ( AbusedDebutProbabilityChild , EN )
+	int	ModelTime = 10; //EN Model Time
+	CHILD_MODEL_TYPE	ChildModelType = BOTH; //EN The Type of Child Model
+/* NOTE ( MinAbuseDurationChild, EN )
+	Minimum duration of an abusive episode in years
+*/
+
+	double	MinAbuseDurationChild = 100; //EN Minimum Duration of a Abusive Episode
+/* NOTE ( AbuseRecoverChildProbability, EN )
+	The annual probability of recovering from abuse
+*/
+
+	double	AbuseRecoverChildProbability = 0.9; //EN Annual Rate of recovery from Abuse
+/* NOTE ( MinDepressionDurationChild, EN )
+	Minimum duration of a depressive episode in years
+*/
+
+	double	MinDepressionDurationChild = 1; //EN Minimum Duration of a Depressive Episode
+/* NOTE ( DepressionRecoverChildProbability, EN )
+	The annual probability of recovering from Depression
+*/
+
+	double	DepressionRecoverChildProbability = 0.9; //EN Annual Rate of recovery from Depression
+/* NOTE ( AbusedDebutProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
 	 //EN Early Sexual Debut Probabilities in Presence of Abuse
 	double	AbusedDebutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEBUT_YEARS][CHILD_SCHED_STATE] = {
 		// F, HIGH
@@ -51,10 +73,11 @@ An arbitrarily selected value.
 		(2) 0.028930, 0.016750, 0.006700, 0.033510, 0.029370, 
 		(2) 0.036680, 0.020960, 0.008380, 0.041920, 0.037180, 
 	};
-
-/* NOTE ( NotAbusedCondomUsageProbabilitiesChild , EN )
+/* NOTE ( NotAbusedCondomUsageProbabilitiesChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
 	 //EN Consistent Condom Usage Probabilities in Absence of Abuse
 	double	NotAbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {
 		// F
@@ -64,10 +87,11 @@ An arbitrarily selected value.
 		(6) 0.424820, 
 		(6) 0.504250, 
 	};
-
-/* NOTE ( AbusedCondomUsageProbabilitiesChild , EN )
+/* NOTE ( AbusedCondomUsageProbabilitiesChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
 	 //EN Consistent Condom Usage Probabilities in Presence of Abuse
 	double	AbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {
 		// F
@@ -77,9 +101,12 @@ An arbitrarily selected value.
 		(6) 0.304490, 
 		(6) 0.376130, 
 	};
-/* NOTE ( NotAbusedDepressionProbabilityChild , EN )
+/* NOTE ( NotAbusedDepressionProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
+	 //EN Depression Probabilities in Absence of Abuse
 	double	NotAbusedDepressionProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE] = {
 		// F, HIGH
 		(2) 0.059640, 0.041290, 0.016520, 0.082590, 0.090280, 
@@ -114,9 +141,12 @@ An arbitrarily selected value.
 		(2) 0.168350, 0.108780, 0.043510, 0.217570, 0.233110, 
 		(2) 0.189700, 0.121550, 0.048620, 0.243090, 0.259770, 
 	};
-/* NOTE ( AbusedDepressionProbabilityChild , EN )
+/* NOTE ( AbusedDepressionProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
+	 //EN Depression Probabilities in Presence of Abuse
 	double	AbusedDepressionProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE] = {
 		// F, HIGH
 		(2) 0.151150, 0.099610, 0.039840, 0.199210, 0.214610, 
@@ -151,10 +181,11 @@ An arbitrarily selected value.
 		(2) 0.341950, 0.206640, 0.082650, 0.413270, 0.433910, 
 		(2) 0.374070, 0.223370, 0.089350, 0.446740, 0.467440, 
 	};
-
 /* NOTE ( AbuseProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
+
+
 	 //EN Abuse Probabilities
 	double	AbuseProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE] = {
 		// F, HIGH
@@ -193,7 +224,10 @@ An arbitrarily selected value.
 /* NOTE ( DropoutProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
 */
-    double	DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][SCHOOL_YEARS][CHILD_SCHED_STATE] = {
+
+
+	 //EN The dropout probabilities for the various states and ages.
+	double	DropoutProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][SCHOOL_YEARS][CHILD_SCHED_STATE] = {
 		// F, HIGH
 		(2) 0.04604, 0.05525, 0.05065, 0.06907, 0.09209, 
 		(6) {
@@ -239,47 +273,50 @@ An arbitrarily selected value.
 			(2) 0.11444, 0.13733, 0.12588, 0.18882, 0.22888, 
 		},
 	};
-	/* NOTE ( GenderChildFemaleProportion, EN)
+/* NOTE ( GenderChildFemaleProportion, EN )
 	Arbitrarily chosen
 */
 
-	double GenderChildFemaleProportion = 0.5; //EN The proportion of children that are female
-/* NOTE (MortalityChildMultiplier, EN)
+	double	GenderChildFemaleProportion = 0.5; //EN The proportion of children that are female
+/* NOTE ( MortalityChildMultiplier, EN )
 	A value of 1 has no effect
 */
-	double MortalityChildMultiplier = 1; //EN Multiplier to easily change child mortality
-/* NOTE(SchoolStartChildMin, EN)
+
+	double	MortalityChildMultiplier = 1; //EN Multiplier to easily change child mortality
+/* NOTE ( SchoolStartChildMin, EN )
 	Arbitrarily Chosen
 */
-	double SchoolStartChildMin = 6; //EN Youngest age at which children can start school
-/* NOTE(SchoolStartChildMax, EN)
+
+	double	SchoolStartChildMin = 6; //EN Youngest age at which children can start school
+/* NOTE ( SchoolStartChildMax, EN )
 	Arbitrarily Chosen
 */
-	double SchoolStartChildMax = 7; //EN Oldest age at which children can start school
+
+	double	SchoolStartChildMax = 7; //EN Oldest age at which children can start school
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */
+
 	double	HighSESMotherPercentage = 0.5; //EN Percentage of Mothers in the High Socioeconomic class
-/* NOTE( FertilityMotherSESMultipliers, EN)
+/* NOTE ( FertilityMotherSESMultipliers, EN )
 	Arbitrarily chosen
-*/
-	double FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE] = {1, 1}; //EN effect of socioeconomic state on fertility
-/* NOTE( FertilityMotherParityMultipliers, EN)
-	Arbitrarily chosen
-*/
-	double FertilityMotherParityMultipliers[PARITY] = { (16) 1, }; //EN Effect of parity on fertility
-/* NOTE( FertilityMotherRates, EN)
-	The 1995 base fertility rates from the ASSA model
 */
 
-	double FertilityMotherRates[LIFE] = {  //EN The base fertility rates
-	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0526,0.0702,0.0880,0.1057,0.1226,0.1382,0.1517,0.1623,0.1696,0.1737,0.1747,0.1733,0.1703,0.1663,0.1615,0.1563,0.1506,0.1443,0.1376,0.1305,0.1228,0.1144,0.1052,0.0952,0.0849,0.0741,0.0633,0.0526,0.0425,0.0331,0.0247,0.0174,0.0113,0.0065,0.0039,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	 //EN Effect of socioeconomic state on fertility
+	double	FertilityMotherSESMultipliers[SOCIO_ECONOMIC_STATE] = {
+		(2) 1, 
 	};
-/* NOTE(FertilityMotherGestationPeriod, EN)
+/* NOTE ( FertilityMotherParityMultipliers, EN )
 	Arbitrarily chosen
 */
-	double FertilityMotherGestationPeriod = 1; //EN Period of infertility after childbirth.
-/* NOTE( FertilityMotherRates, EN)
+
+
+	 //EN Effect of parity on fertility
+	double	FertilityMotherParityMultipliers[PARITY] = {
+		(16) 1, 
+	};
+/* NOTE ( FertilityMotherRates, EN )
 	Healthy mothers are exposed to the base rates.
 	Infected mothers have higher fertility due to the fact that HIV infection is an indication of sexual practices
 	Diagnosed mothers have the same fertility as infected mothers due to lack of data
@@ -287,7 +324,22 @@ An arbitrarily selected value.
 	Diagnosed and symptomatic mothers have the same fertility as symptomatic mothers due to lack of data
 	Treated and treatment stopped mothers have the same fertility as healthy mothers mainly due to lack of data
 */
-	double FertilityMotherDiseaseMultipliers[MDETAILED_STATE] = { 1, 1.3, 1.08, 1.3, 1.08, 1, 1, 0}; //EN Effect of disease state on fertility
+
+
+	 //EN The base fertility rates
+	double	FertilityMotherRates[LIFE] = {
+		(15) 0, 0.0526, 0.0702, 0.0880, 0.1057, 0.1226, 0.1382, 0.1517, 0.1623, 0.1696, 0.1737, 0.1747, 0.1733, 0.1703, 0.1663, 0.1615, 0.1563, 0.1506, 0.1443, 0.1376, 0.1305, 0.1228, 0.1144, 0.1052, 0.0952, 0.0849, 0.0741, 0.0633, 0.0526, 0.0425, 0.0331, 0.0247, 0.0174, 0.0113, 0.0065, 0.0039, (51) 0, 
+	};
+/* NOTE ( FertilityMotherGestationPeriod, EN )
+	Arbitrarily chosen
+*/
+
+	double	FertilityMotherGestationPeriod = 1; //EN Period of infertility after childbirth.
+
+	 //EN Effect of disease state on fertility
+	double	FertilityMotherDiseaseMultipliers[MDETAILED_STATE] = {
+		1, 1.3, 1.08, 1.3, 1.08, (2) 1, 0, 
+	};
 /* NOTE ( StartingPopulationSize, EN )
 	An arbitrarily selected value.
 */
@@ -303,11 +355,11 @@ An arbitrarily selected value.
 */
 
 	double	IncidenceMotherMultiplier = 3; //EN Incidence Multiplier
-/* NOTE(InfectedMortalityMotherImmortalityPeriod, EN)
+/* NOTE ( InfectedMortalityMotherImmortalityPeriod, EN )
 	Arbitrarily chosen. Ensures that a mother cannot die within 0.0001 of a year after infection.
 */
-	
-	double InfectedMortalityMotherImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
+
+	double	InfectedMortalityMotherImmortalityPeriod = 0.0001; //EN Length of Period of immortality immediately after infection
 /* NOTE ( InfectedMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */
@@ -351,6 +403,7 @@ An arbitrarily selected value.
 	Note that the last entry is used for all ages above 44.
 */
 
+
 	 //EN Infected Mother Survival Curve Age Modifier - phi
 	double	InfectedMortalityMotherPhi[VAN_DER_PAAL_INDX] = {
 		1000, 1.22398, 0.95143, 0.58661, 0.52447, 
@@ -386,61 +439,69 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	Note that the last entry is used for all ages above 44.
 */
 
+
 	 //EN Stopped Mother Survival Curve Age Modifier - phi
 	double	StoppedMortalityMotherPhi[VAN_DER_PAAL_INDX] = {
-		1000, 1, 0.8579882, 0.7159763, 0.7159763
+		1000, 1, 0.8579882, (2) 0.7159763, 
 	};
-/* NOTE (TreatedMortalityMotherb6m, EN)
+/* NOTE ( TreatedMortalityMotherb6m, EN )
 	From ASSA model
 */
 
-	double TreatedMortalityMotherb6m = 0.0663; //EN Probability of dying within 6 months of starting treatment
-/* NOTE (TreatedMortalityMothera6m, EN)
-	From ASSA model
-*/
-	double TreatedMortalityMothera6m = 0.0355; //EN Annual Probability of dying after 6 months of starting treatment
-/* NOTE (TreatedMortalityMotherMultiplier, EN)
-	Chose 1 so that there is no deviation from the ASSA model
-*/
-	double TreatedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Treated Mothers
-/* NOTE (TreatmentCessationMotherb6m, EN)
+	double	TreatedMortalityMotherb6m = 0.0663; //EN Probability of dying within 6 months of starting treatment
+/* NOTE ( TreatedMortalityMothera6m, EN )
 	From ASSA model
 */
 
-	double TreatmentCessationMotherb6m = 0.0413; //EN Probability of dying within 6 months of starting treatment
-/* NOTE (TreatmentCessationMothera6m, EN)
-	From ASSA model
-*/
-	double TreatmentCessationMothera6m = 0.0305; //EN Annual Probability of dying after 6 months of starting treatment
-/* NOTE (TreatmentCessationMotherMultiplier, EN)
+	double	TreatedMortalityMothera6m = 0.0355; //EN Annual Probability of dying after 6 months of starting treatment
+/* NOTE ( TreatedMortalityMotherMultiplier, EN )
 	Chose 1 so that there is no deviation from the ASSA model
 */
-	double TreatmentCessationMotherMultiplier = 10; //EN Multiplier to change the rate at which treatment is ceased 
+
+	double	TreatedMortalityMotherMultiplier = 0; //EN Multiplier for Mortality of Treated Mothers
+/* NOTE ( TreatmentCessationMotherb6m, EN )
+	From ASSA model
+*/
+
+	double	TreatmentCessationMotherb6m = 0.0413; //EN Probability of treatment cessation within 6 months of starting treatment
+/* NOTE ( TreatmentCessationMothera6m, EN )
+	From ASSA model
+*/
+
+	double	TreatmentCessationMothera6m = 0.0305; //EN Annual Probability of treatment cessation after 6 months of starting treatment
+/* NOTE ( TreatmentCessationMotherMultiplier, EN )
+	Chose 1 so that there is no deviation from the ASSA model
+*/
+
+	double	TreatmentCessationMotherMultiplier = 10; //EN Multiplier for treatment cessation probability of Treated Mothers
 /* NOTE ( TreatmentMotherShape, EN )
 	Defaults to 1 so that an exponential distribution is used
 */
 
-	double	TreatmentMotherShape = 1; //EN Infected Mother Time to Treatment Curve Shape - kappa
+	double	TreatmentMotherShape = 1; //EN Eligilble Mother Time to Treatment Curve Shape - kappa
 /* NOTE ( TreatmentMotherScale, EN )
 	Arbitrarily chosen; Equivalent to an exponential rate of 0.2
 */
 
-	double	TreatmentMotherScale = 5; //EN Infected Mother Time to Treatment Curve Scale - lambda
+	double	TreatmentMotherScale = 5; //EN Eligilble Mother Time to Treatment Curve Scale - lambda
 /* NOTE ( TreatmentMotherMultiplier, EN )
 	Arbitrarily chosen. A value of 1 will have no effect
 */
 
-	double TreatmentMotherMultiplier = 1000; //EN Multiplier for Treatment Access Speed of Infected Mothers
-/* NOTE (TreatmentTransitionMotherSwitch, EN)
+	double	TreatmentMotherMultiplier = 1000; //EN A multiplier to tweak the rate at which mothers develop symptoms
+/* NOTE ( TreatmentTransitionMotherSwitch, EN )
 	A value of 1 will cause the treatment coverage rate transition to be used
 */
-	double TreatmentTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use
-/* NOTE (TreatmentCoverageMother, EN)
+
+	double	TreatmentTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for treatment
+/* NOTE ( TreatmentCoverageMother, EN )
 	Arbitrarily chosen
 */
 
-	double TreatmentCoverageMother[MORT_TIME] = {//EN The treatment times over the model time
-		(41) 0.6,
+
+	 //EN The treatment coverage over the model time
+	double	TreatmentCoverageMother[MORT_TIME] = {
+		(41) 0.6, 
 	};
 /* NOTE ( SymptomsMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 
@@ -466,53 +527,58 @@ Choose 1 to prevent any deviations from the ASSA model values.
 	    TODO - estimate this correlation
 */
 
-	double SymptomsMotherCorrelation = 0; //EN Correlation between mortality and becoming symptomatic
+	double	SymptomsMotherCorrelation = 0; //EN Correlation between mortality and becoming symptomatic
 /* NOTE ( SymptomsMotherMultiplier, EN )
 Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
-	double SymptomsMotherMultiplier = 10; //EN Multiplier for Symptom Development Speed of Infected Mothers
+	double	SymptomsMotherMultiplier = 10; //EN A multiplier to tweak the rate at which mothers develop symptoms
 /* NOTE ( InfectedDiagnosisMotherRate, EN )
     Arbitrarily chosen. Should yield an average time to diagnosis of 5 years.
 */
 
-	double InfectedDiagnosisMotherRate = 0.2; //EN Diagnosis Rate of Infected Mothers
+	double	InfectedDiagnosisMotherRate = 0.2; //EN Diagnosis Rate of Infected Mothers
 /* NOTE ( SymptomaticDiagnosisMotherRate, EN )
     Arbitrarily chosen. Should yield an average time to diagnosis of 3 years.
 */
 
-	double SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
-/* NOTE (InfectedDiagnosisTransitionMotherSwitch, EN)
+	double	SymptomaticDiagnosisMotherRate = 0.333; //EN Diagnosis Rate of Symptomatic Mothers
+/* NOTE ( InfectedDiagnosisTransitionMotherSwitch, EN )
 	Set to 1 so that the percentage based transition is used.
 */
-	double InfectedDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of infected by asymptomatic mothers
-/* NOTE ( InfectedDiagnosisMotherPercentage, EN)
-	Arbitrarily Chosen
-	*/
 
-	double InfectedDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of asymptomatic mothers who become diagnosed
-		(41) 0.4,
+	double	InfectedDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of asymptomatic mothers
+/* NOTE ( InfectedDiagnosisMotherPercentage, EN )
+	Arbitrarily Chosen
+*/
+
+
+	 //EN The percentage of asymptomatic mothers who become diagnosed
+	double	InfectedDiagnosisMotherPercentage[MORT_TIME] = {
+		(41) 0.4, 
 	};
-/* NOTE (SymptomaticDiagnosisTransitionMotherSwitch, EN)
+/* NOTE ( SymptomaticDiagnosisTransitionMotherSwitch, EN )
 	Set to 1 so that the percentage based transition is used.
 */
-	
-	double SymptomaticDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
-/* NOTE ( SymptomaticDiagnosisMotherPercentage, EN)
+
+	double	SymptomaticDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
+/* NOTE ( SymptomaticDiagnosisMotherPercentage, EN )
 	Arbitrarily Chosen
-	*/
+*/
 
-	double SymptomaticDiagnosisMotherPercentage[MORT_TIME] = { //EN The percentage of symptomatic mothers who become diagnosed
-		(41) 0.8,
+
+	 //EN The percentage of symptomatic mothers who become diagnosed
+	double	SymptomaticDiagnosisMotherPercentage[MORT_TIME] = {
+		(41) 0.8, 
 	};
-
-	/* NOTE ( IncidenceTable, EN )
+/* NOTE ( IncidenceTable, EN )
 	    These incidence rates were obtained from the 2008 ASSA model.
 		They are the ratio of infections that happened in the year to
 		the number of HIV-FREE people there were at the start of the year.
 		(The ASSA model's years run from 1 of June). These rates are for the
 		black population only
 */
+
 
 	 //EN Incidence Rates
 	double	IncidenceTable[GENDER][INCIDENCE_LIFE][MORT_TIME] = {
