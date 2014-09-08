@@ -154,6 +154,16 @@ table Child ChildDepressionEpisodes //EN Number of Depression Episodes per Child
 	}
 };
 
+table Child ChildAbuseEpisodes //EN Number of Abuse Episodes per Child
+	[integer_age >= 12 && alive == FALSE]
+{
+	abuse_episode + //EN Number of abuse episodes
+		*
+	{
+		unit //EN Number of Children
+	}
+};
+
 table Child ChildCondomUsageOutcomes //EN Condom Usage statistics
 	[integer_age >= 13 && integer_age <= 18]
 {

@@ -35,6 +35,8 @@
 parameters
 {
 	double AbuseProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE]; //EN Abuse Probabilities
+	double AbuseRecoverChildProbability; //EN Annual Rate of recovery from Abuse
+	double MinAbuseDurationChild; //EN Minimum Duration of a Abusive Episode 
 };
 
 /* NOTE(AbuseProbabilityChild, EN)
@@ -45,7 +47,9 @@ parameters
 actor Child
 {
 	logical abused = {FALSE};
+	LIFE abuse_episode = {0};
 	event timeAbuseEvent, AbuseEvent;
+	event timeAbuseRecoverEvent, AbuseRecoverEvent;
 };
 
 double abuseTime(DEPRESSION_YEARS curr_age, 
@@ -80,5 +84,24 @@ void Child::AbuseEvent()
 {
 	if ((age >= 12) && (age < 19)){
 		abused = TRUE;
+		abuse_episode = abuse_episode + 1;
 	};
+};
+
+TIME Child::timeAbuseRecoverEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if ((ChildModelType == RISK_FACTORS || ChildModelType == BOTH) && (abused == TRUE)){
+		t_event_time = log(RandUniform(26)) / log(1 - AbuseRecoverChildProbability);
+		if (t_event_time < MinAbuseDurationChild ){
+			t_event_time = MinAbuseDurationChild;
+		};
+	};
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Child::AbuseRecoverEvent()
+{
+	abused = FALSE;
 };
