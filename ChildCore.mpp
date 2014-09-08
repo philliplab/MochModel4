@@ -17,7 +17,8 @@ parameters
 classification CHILD_MODEL_TYPE
 {
 	SCHOOLING,
-	RISK_FACTORS
+	RISK_FACTORS,
+	BOTH
 };
 
 parameter_group Child_Core

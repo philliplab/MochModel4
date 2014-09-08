@@ -155,10 +155,10 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |school_status | Value|
 |:-------------|-----:|
-|NOT_IN_SCHOOL | 30748|
-|IN_SCHOOL     |     0|
-|DROPOUT       |     0|
-|GRADUATED     |     0|
+|NOT_IN_SCHOOL |  2036|
+|IN_SCHOOL     |   193|
+|DROPOUT       | 16775|
+|GRADUATED     | 11744|
 
 ### Abuse Outcomes
 

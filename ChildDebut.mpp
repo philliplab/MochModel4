@@ -71,7 +71,7 @@ double debutTime(DEBUT_YEARS curr_age,
 TIME Child::timeDebutEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if ((integer_age >= 13) && (integer_age <= 15) && (sexually_experienced == FALSE) && (ChildModelType == RISK_FACTORS)){
+	if ((integer_age >= 13) && (integer_age <= 15) && (sexually_experienced == FALSE) && (ChildModelType == RISK_FACTORS || ChildModelType == BOTH)){
 		t_event_time = debutTime(integer_age, gender, ses, child_sched_status, abused);
 	};
 	t_event_time = WAIT(t_event_time);

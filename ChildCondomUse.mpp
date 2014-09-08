@@ -64,7 +64,7 @@ TIME Child::timeCondomEvent()
 {
 	// Just tricks to ensure rescheduling if ANY risk factor changes
 	TIME t_event_time = TIME_INFINITE;
-	if (ChildModelType == RISK_FACTORS){
+	if (ChildModelType == RISK_FACTORS || ChildModelType == BOTH){
 		double curr_ccu_prob = 0;
 		curr_ccu_prob = CondomUsageProb(abused, gender, ses, child_sched_status);
 		if (curr_ccu_prob != prev_ccu_prob){

@@ -69,7 +69,7 @@ double abuseTime(DEPRESSION_YEARS curr_age,
 TIME Child::timeAbuseEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if ((integer_age >= 12) && (integer_age <= 19) && (ChildModelType == RISK_FACTORS) && (abused == FALSE)){
+	if ((integer_age >= 12) && (integer_age <= 19) && (ChildModelType == RISK_FACTORS || ChildModelType == BOTH) && (abused == FALSE)){
 		t_event_time = abuseTime(integer_age, gender, child_sched_status, ses);
 	}
 	t_event_time = WAIT(t_event_time);

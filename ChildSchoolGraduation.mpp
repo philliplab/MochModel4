@@ -22,7 +22,7 @@ actor Child
 TIME Child::timeSchoolGraduationEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if (school_status == IN_SCHOOL && ChildModelType == SCHOOLING)
+	if (school_status == IN_SCHOOL && (ChildModelType == SCHOOLING || ChildModelType == BOTH))
 	{
 		t_event_time = 12;
 	}

@@ -38,6 +38,8 @@ parameters
 {
 	double AbusedDepressionProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE]; //EN Depression Probabilities in Presence of Abuse
 	double NotAbusedDepressionProbabilityChild[GENDER][SOCIO_ECONOMIC_STATE][DEPRESSION_YEARS][CHILD_SCHED_STATE]; //EN Depression Probabilities in Absence of Abuse
+	double DepressionRecoverChildProbability; //EN Annual Rate of recovery from Depression
+	double MinDepressionDurationChild; //EN Minimum Duration of a Depressive Episode 
 };
 
 /* NOTE(AbusedDepressionProbabilityChild, EN)
@@ -58,7 +60,9 @@ parameter_group Child_Abuse_And_Depression
 actor Child
 {
 	logical depressed = {FALSE};
+	LIFE depression_episode = {0};
 	event timeDepressionEvent, DepressionEvent;
+	event timeDepressionRecoverEvent, DepressionRecoverEvent;
 };
 
 double depressionTime(DEPRESSION_YEARS curr_age, 
@@ -89,7 +93,7 @@ double depressionTime(DEPRESSION_YEARS curr_age,
 TIME Child::timeDepressionEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if ((integer_age >= 12) && (integer_age <= 19) && (ChildModelType == RISK_FACTORS) && (depressed == FALSE)){
+	if ((integer_age >= 12) && (integer_age <= 19) && (ChildModelType == RISK_FACTORS || ChildModelType == BOTH) && (depressed == FALSE)){
 		t_event_time = depressionTime(integer_age, gender, child_sched_status, abused, ses);
 	};
 	t_event_time = WAIT(t_event_time);
@@ -100,5 +104,24 @@ void Child::DepressionEvent()
 {
 	if ((age >= 12) && (age < 19)){
 		depressed = TRUE;
+		depression_episode = depression_episode + 1;
 	};
+};
+
+TIME Child::timeDepressionRecoverEvent()
+{
+	TIME t_event_time = TIME_INFINITE;
+	if ((ChildModelType == RISK_FACTORS || ChildModelType == BOTH) && (depressed == TRUE)){
+		t_event_time = log(RandUniform(25)) / log(1 - DepressionRecoverChildProbability);
+		if (t_event_time < MinDepressionDurationChild ){
+			t_event_time = MinDepressionDurationChild;
+		};
+	};
+	t_event_time = WAIT(t_event_time);
+	return(t_event_time);
+};
+
+void Child::DepressionRecoverEvent()
+{
+	depressed = FALSE;
 };

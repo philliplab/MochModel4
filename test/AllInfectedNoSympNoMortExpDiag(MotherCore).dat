@@ -4,7 +4,7 @@ An arbitrarily selected value.
 */
 	int	ModelTime = 10; //EN Model Time
 
-	CHILD_MODEL_TYPE ChildModelType = RISK_FACTORS; //EN The Type of Child Model
+	CHILD_MODEL_TYPE ChildModelType = BOTH; //EN The Type of Child Model
 /* NOTE ( AbusedDebutProbabilityChild , EN )
 	From Chris' child outcomes spreadsheet
 */

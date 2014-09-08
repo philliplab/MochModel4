@@ -45,7 +45,7 @@ actor Child
 TIME Child::timeSchoolStartEvent()
 {
 	TIME t_event_time = TIME_INFINITE;
-	if (school_status == NOT_IN_SCHOOL && ChildModelType == SCHOOLING)
+	if (school_status == NOT_IN_SCHOOL && (ChildModelType == SCHOOLING || ChildModelType == BOTH))
 	{
 		t_event_time = SchoolStartChildMin + (RandUniform(19) * (SchoolStartChildMax - SchoolStartChildMin));
 	}
