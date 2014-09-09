@@ -92,9 +92,19 @@ double mInfectionTime(LIFE v_integer_age){
 		capped_age = 59 - 14;
 	} else {
 		capped_age = v_integer_age - 14;
-	}
+	};
 
-	double prob_infection = IncidenceTable[F][capped_age][ModelTime] * IncidenceMotherMultiplier;
+	int time_indx = 0;
+	if (ModelTimeMode == PROGRESSING){
+		time_indx = ModelTime + v_integer_age;
+		if (time_indx > 40){
+			time_indx = 40;
+		};
+	} else {
+		time_indx = ModelTime;
+	};
+
+	double prob_infection = IncidenceTable[F][capped_age][time_indx] * IncidenceMotherMultiplier;
 
 	// Draw a random waiting time to death from an exponential distribution
 	// based on the probability of infection in the next year

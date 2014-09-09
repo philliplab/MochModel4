@@ -23,6 +23,7 @@ parameters
 	*/
 
 	double HighSESMotherPercentage; //EN Percentage of Mothers in the High Socioeconomic class
+	MODEL_TIME_MODE ModelTimeMode; //EN Should Time progress or be frozen
 };
 
 parameter_group Mother_Core
@@ -39,6 +40,12 @@ parameter_group General
 classification GENDER
 {
 	F, M
+};
+
+classification MODEL_TIME_MODE
+{
+	PROGRESSING,
+	FROZEN
 };
 
 range LIFE
