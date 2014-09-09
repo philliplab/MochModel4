@@ -3,7 +3,7 @@ parameters {
 An arbitrarily selected value.
 */
 
-	int	ModelTime = 10; //EN Model Time
+	int	ModelTime = 0; //EN Model Time
 	CHILD_MODEL_TYPE	ChildModelType = BOTH; //EN The Type of Child Model
 	MODEL_TIME_MODE	ModelTimeMode = PROGRESSING; //EN Should Time progress or be frozen
 /* NOTE ( MinAbuseDurationChild, EN )
@@ -502,7 +502,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 
 	 //EN The treatment coverage over the model time
 	double	TreatmentCoverageMother[MORT_TIME] = {
-		(41) 0.6, 
+		(15) 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, (18) 0.9,
 	};
 /* NOTE ( SymptomsMotherShape, EN )
 	    The R package nls was used to obtain the following fit to 

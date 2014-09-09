@@ -110,12 +110,22 @@ TIME Mother::timeTreatmentEvent()
 		if (TreatmentTransitionMotherSwitch == 2)
 		{
 			if (TreatmentMotherMultiplier > 0){
-				t_event_time = InvWeibull3(RandUniform(7), TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
+				t_event_time = InvWeibull3(treatment_chance, TreatmentMotherShape, TreatmentMotherScale, 1) / TreatmentMotherMultiplier;
 			};
 		};
 
 		if (TreatmentTransitionMotherSwitch == 1){
-			if (treatment_chance / TreatmentMotherMultiplier < TreatmentCoverageMother[ModelTime]){
+			int time_indx = 0;
+			if (ModelTimeMode == PROGRESSING){
+				time_indx = ModelTime + integer_age;
+				if (time_indx > 40){
+					time_indx = 40;
+				};
+			} else {
+				time_indx = ModelTime;
+			};
+
+			if (treatment_chance / TreatmentMotherMultiplier < TreatmentCoverageMother[time_indx]){
 				t_event_time = 0.01;
 			};
 		};
