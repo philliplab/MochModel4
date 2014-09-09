@@ -147,7 +147,7 @@ void Child::Finish()
 };
 
 track Child
-	[actor_id % 1 == 0, GetReplicate() == 0 ]
+	[actor_id % 500 == 0, GetReplicate() == 0 ]
 {
 	all_base_states,
 	all_derived_states
