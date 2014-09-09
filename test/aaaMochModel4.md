@@ -30,7 +30,7 @@
 
 There are 10000 Mothers in this scenario.
 
-There are 31008 Children in this scenario.
+There are 29893 Children in this scenario.
 
 ### State Transitions
 
@@ -39,13 +39,13 @@ A table of the number of mothers who entered each of the different states.
 
 |state                               | entrances| percentage|
 |:-----------------------------------|---------:|----------:|
-|Mother entrances in DIAGNOSED state |      1367|       13.7|
-|Mother entrances in DIAGSYMP state  |      2147|       21.5|
+|Mother entrances in DIAGNOSED state |      1555|       15.6|
+|Mother entrances in DIAGSYMP state  |      2433|       24.3|
 |Mother entrances in HEALTHY state   |         0|        0.0|
-|Mother entrances in INFECTED state  |      3472|       34.7|
-|Mother entrances in STOPPED state   |       521|        5.2|
-|Mother entrances in SYMPTOMS state  |      1491|       14.9|
-|Mother entrances in TREATED state   |      1281|       12.8|
+|Mother entrances in INFECTED state  |      3927|       39.3|
+|Mother entrances in STOPPED state   |       900|        9.0|
+|Mother entrances in SYMPTOMS state  |      1679|       16.8|
+|Mother entrances in TREATED state   |      2160|       21.6|
 
 ### State Membership
 
@@ -54,13 +54,13 @@ The total time spent by mothers in the various states.
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DIAGNOSED state |         4340|        0.8|
-|Mother years in DIAGSYMP state  |         4525|        0.8|
-|Mother years in HEALTHY state   |       493471|       90.7|
-|Mother years in INFECTED state  |        17507|        3.2|
-|Mother years in STOPPED state   |          805|        0.1|
-|Mother years in SYMPTOMS state  |         6404|        1.2|
-|Mother years in TREATED state   |        16875|        3.1|
+|Mother years in DIAGNOSED state |         5027|        1.0|
+|Mother years in DIAGSYMP state  |         1512|        0.3|
+|Mother years in HEALTHY state   |       454760|       87.6|
+|Mother years in INFECTED state  |        20243|        3.9|
+|Mother years in STOPPED state   |         1447|        0.3|
+|Mother years in SYMPTOMS state  |         7468|        1.4|
+|Mother years in TREATED state   |        28502|        5.5|
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
@@ -133,14 +133,14 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       869487|       49.4|
-|Mother years in DIAGNOSED state |         8709|        0.5|
-|Mother years in DIAGSYMP state  |         8699|        0.5|
-|Mother years in HEALTHY state   |       778012|       44.2|
-|Mother years in INFECTED state  |        24290|        1.4|
-|Mother years in STOPPED state   |         2654|        0.2|
-|Mother years in SYMPTOMS state  |        15031|        0.9|
-|Mother years in TREATED state   |        52679|        3.0|
+|Mother years in DEAD state      |       862894|       51.4|
+|Mother years in DIAGNOSED state |         7733|        0.5|
+|Mother years in DIAGSYMP state  |         2438|        0.1|
+|Mother years in HEALTHY state   |       678939|       40.5|
+|Mother years in INFECTED state  |        22726|        1.4|
+|Mother years in STOPPED state   |         4601|        0.3|
+|Mother years in SYMPTOMS state  |        14183|        0.8|
+|Mother years in TREATED state   |        83776|        5.0|
 
 ![plot of chunk unnamed-chunk-17](figure/ZeroGestation/unnamed-chunk-17.png) 
 
@@ -155,30 +155,30 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |school_status | Value|
 |:-------------|-----:|
-|NOT_IN_SCHOOL |  2055|
-|IN_SCHOOL     |   191|
-|DROPOUT       | 17305|
-|GRADUATED     | 11457|
+|NOT_IN_SCHOOL |  2551|
+|IN_SCHOOL     |   198|
+|DROPOUT       | 16115|
+|GRADUATED     | 11029|
 
 ### Abuse Outcomes
 
 
 |metrics                 |  Value|
 |:-----------------------|------:|
-|Susceptible Children    |  28859|
-|Abused Children         |  15014|
-|Susceptible Child Years | 182033|
-|Abused Child Years      |  19165|
+|Susceptible Children    |  27257|
+|Abused Children         |  14882|
+|Susceptible Child Years | 170534|
+|Abused Child Years      |  19408|
 
 
 | Number of abuse episodes| Value|
 |------------------------:|-----:|
-|                        0| 13845|
-|                        1| 11047|
-|                        2|  3382|
-|                        3|   540|
-|                        4|    43|
-|                        5|     2|
+|                        0| 12375|
+|                        1| 10567|
+|                        2|  3664|
+|                        3|   610|
+|                        4|    40|
+|                        5|     1|
 |                        6|     0|
 |                        7|     0|
 |                        8|     0|
@@ -190,19 +190,19 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |metrics                 |  Value|
 |:-----------------------|------:|
-|Susceptible Children    |  28859|
-|Depressed Children      |  17787|
-|Susceptible Child Years | 176576|
-|Depressed Child Years   |  24621|
+|Susceptible Children    |  27257|
+|Depressed Children      |  17747|
+|Susceptible Child Years | 164956|
+|Depressed Child Years   |  24986|
 
 
 | Number of depressive episodes| Value|
 |-----------------------------:|-----:|
-|                             0| 11072|
-|                             1| 10904|
-|                             2|  5283|
-|                             3|  1411|
-|                             4|   176|
+|                             0|  9510|
+|                             1| 10619|
+|                             2|  5429|
+|                             3|  1491|
+|                             4|   195|
 |                             5|    13|
 |                             6|     0|
 |                             7|     0|
@@ -215,8 +215,8 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |metrics                               | Value|
 |:-------------------------------------|-----:|
-|Inconsistent Condom Usage Child Years | 97570|
-|Consistent Condom Usage Child Years   | 74780|
+|Inconsistent Condom Usage Child Years | 89470|
+|Consistent Condom Usage Child Years   | 73232|
 
 ### Debut Outcomes
 
@@ -224,12 +224,12 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |                                                       |        14|        15|        16|
 |:------------------------------------------------------|---------:|---------:|---------:|
 |Integer Age                                            |    13.000|    14.000|    15.000|
-|Number of children who debuted                         |  1885.000|   552.000|   650.000|
-|Number of Children who entered the state               | 28836.000| 28804.000| 28766.000|
-|Number of sexually active Child years spent in state   |   960.855|  2163.517|  2771.253|
-|Number of sexually inactive Child years spent in state | 27857.463| 26625.023| 25982.463|
-|Sexually active state entrace rate                     |     0.068|     0.021|     0.025|
-|Total number of Child years spent in state             | 28818.317| 28788.540| 28753.716|
+|Number of children who debuted                         |  1913.000|   545.000|   698.000|
+|Number of Children who entered the state               | 27224.000| 27195.000| 27164.000|
+|Number of sexually active Child years spent in state   |   962.209|  2181.509|  2792.678|
+|Number of sexually inactive Child years spent in state | 26247.565| 24996.717| 24351.317|
+|Sexually active state entrace rate                     |     0.073|     0.022|     0.029|
+|Total number of Child years spent in state             | 27209.774| 27178.226| 27143.995|
 
 shut down
 

@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.17    0.09  125.77
+##    0.11    0.11  127.12
 ```
 
 ```
@@ -789,16 +789,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 121 2014-09-08 20:06:01 df5092e08a7137d63c7d129c1f347dc4
 ## 122 2014-09-09 07:43:20 df5092e08a7137d63c7d129c1f347dc4
 ## 123 2014-09-09 07:59:20 7868bec47f2d5eb298df9a7fd0bf544b
 ## 124 2014-09-09 20:26:47 7868bec47f2d5eb298df9a7fd0bf544b
 ## 125 2014-09-09 21:13:02 89859d516521a7d964fa5bc53695529a
 ## 126 2014-09-09 21:21:21 3577a6774b8899c45f86fb9945c8e3ef
+## 127 2014-09-09 22:07:46 3577a6774b8899c45f86fb9945c8e3ef
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -1018,9 +1018,9 @@ Model Version: 49
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
+|FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|1|2|21|18| 
+|2|21|1|18| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1056,7 +1056,7 @@ Model Version: 49
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 

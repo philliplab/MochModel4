@@ -220,7 +220,7 @@ An arbitrarily selected value.
 		(2) 0.12640, 0.15156, 0.13646, 0.17672, 0.13353, 
 		(2) 0.11945, 0.14372, 0.12916, 0.16799, 0.12630, 
 		(2) 0.11280, 0.13616, 0.12214, 0.15953, 0.11936, 
-		(2) 0.10643, 0.12889, 0.11541, 0.15134, 0.00000, 
+		(2) 0.10643, 0.12889, 0.11541, 0.15134, 0.11271, 
 	};
 /* NOTE ( DropoutProbabilityChild, EN )
 	From Chris' child outcomes spreadsheet
@@ -345,7 +345,7 @@ An arbitrarily selected value.
 	An arbitrarily selected value.
 */
 
-	int	StartingPopulationSize = 10000; //EN Starting population size
+	int	StartingPopulationSize = 1000; //EN Starting population size
 /* NOTE ( HealthyMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */
