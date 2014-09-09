@@ -82,11 +82,11 @@ An arbitrarily selected value.
 	 //EN Consistent Condom Usage Probabilities in Absence of Abuse
 	double	NotAbusedCondomUsageProbabilitiesChild[GENDER][SOCIO_ECONOMIC_STATE][CHILD_SCHED_STATE] = {
 		// F
-		(6) 0.387220, 
-		(6) 0.465310, 
+		(6) 0.272500, 
+		(6) 0.340290, 
 		// M
-		(6) 0.424820, 
-		(6) 0.504250, 
+		(6) 0.304490, 
+		(6) 0.376130, 
 	};
 /* NOTE ( AbusedCondomUsageProbabilitiesChild, EN )
 	From Chris' child outcomes spreadsheet
