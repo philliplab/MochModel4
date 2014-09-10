@@ -345,7 +345,7 @@ An arbitrarily selected value.
 	An arbitrarily selected value.
 */
 
-	int	StartingPopulationSize = 10000; //EN Starting population size
+	int	StartingPopulationSize = 100000; //EN Starting population size
 /* NOTE ( HealthyMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */
@@ -533,7 +533,7 @@ Choose 1 to prevent any deviations from the ASSA model values.
 Choose 1 to prevent any deviations from the Van der Paal article.
 */
 
-	double	SymptomsMotherMultiplier = 5; //EN A multiplier to tweak the rate at which mothers develop symptoms
+	double	SymptomsMotherMultiplier = 0; //EN A multiplier to tweak the rate at which mothers develop symptoms
 /* NOTE ( InfectedDiagnosisMotherRate, EN )
     Arbitrarily chosen. Should yield an average time to diagnosis of 5 years.
 */
@@ -548,7 +548,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	Set to 1 so that the percentage based transition is used.
 */
 
-	double	InfectedDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of asymptomatic mothers
+	double	InfectedDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of asymptomatic mothers
 /* NOTE ( InfectedDiagnosisMotherPercentage, EN )
 	Arbitrarily Chosen
 */
@@ -562,7 +562,7 @@ Choose 1 to prevent any deviations from the Van der Paal article.
 	Set to 1 so that the percentage based transition is used.
 */
 
-	double	SymptomaticDiagnosisTransitionMotherSwitch = 0; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
+	double	SymptomaticDiagnosisTransitionMotherSwitch = 1; //EN A switch allowing to choose which transition to use for diagnosis of symptomatic mothers
 /* NOTE ( SymptomaticDiagnosisMotherPercentage, EN )
 	Arbitrarily Chosen
 */

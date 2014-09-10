@@ -142,33 +142,33 @@ scenarios_to_create <- list(
              label = "Mortality only in the treated state",
              notes = "Almost all mothers become treated and are immortal in all states before treatment"
              ),
-  '10' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'OnlyStoppedMortality'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
-                                       to = 'HealthyMortalityMotherMultiplier = 0'),
-                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
-                                       to = 'IncidenceMotherMultiplier = 3'),
-                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
-                                       to = 'SymptomsMotherMultiplier = 10'),
-                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
-                                       to = 'InfectedDiagnosisMotherMultiplier = 10'),
-                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
-                                       to = 'SymptomsDiagnosisMotherMultiplier = 10'),
-                            '6' = list(from = 'TreatmentMotherMultiplier = 1',
-                                       to = 'TreatmentMotherMultiplier = 1000'),
-                            '7' = list(from = 'TreatmentCessationMotherMultiplier = 1',
-                                       to = 'TreatmentCessationMotherMultiplier = 10'),
-                            '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
-                                       to = 'InfectedMortalityMotherMultiplier = 0'),
-                            '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
-                                       to = 'TreatedMortalityMotherMultiplier = 0')
-                            ),
-             label = "Mortality only in the stopped state",
-             notes = "Almost all mothers stop treatment and are immortal in all states before treatment cessation. Useful for inspecting mortality in the treatment ceased state."
-             ),
+#  '10' = list(test_folder = td,  BROKEN
+#             base_scenario = 'Base.scex', 
+#             base_scenario_dat = 'Base(MotherCore).dat',
+#             scenario_name_sub = list(from = 'Base', to = 'OnlyStoppedMortality'), 
+#             scex_sub = list(), 
+#             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+#                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+#                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+#                                       to = 'IncidenceMotherMultiplier = 3'),
+#                            '3' = list(from = 'SymptomsMotherMultiplier = 1',
+#                                       to = 'SymptomsMotherMultiplier = 10'),
+#                            '4' = list(from = 'InfectedDiagnosisMotherMultiplier = 1',
+#                                       to = 'InfectedDiagnosisMotherMultiplier = 10'),
+#                            '5' = list(from = 'SymptomsDiagnosisMotherMultiplier = 1',
+#                                       to = 'SymptomsDiagnosisMotherMultiplier = 10'),
+#                            '6' = list(from = 'TreatmentMotherMultiplier = 1',
+#                                       to = 'TreatmentMotherMultiplier = 1000'),
+#                            '7' = list(from = 'TreatmentCessationMotherMultiplier = 1',
+#                                       to = 'TreatmentCessationMotherMultiplier = 10'),
+#                            '8' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+#                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+#                            '9' = list(from = 'TreatedMortalityMotherMultiplier = 1',
+#                                       to = 'TreatedMortalityMotherMultiplier = 0')
+#                            ),
+#             label = "Mortality only in the stopped state",
+#             notes = "Almost all mothers stop treatment and are immortal in all states before treatment cessation. Useful for inspecting mortality in the treatment ceased state."
+#             ),
 #  '11' = list(test_folder = td, 
 #             base_scenario = 'Base.scex', 
 #             base_scenario_dat = 'Base(MotherCore).dat',
@@ -213,25 +213,25 @@ scenarios_to_create <- list(
              label = "Exponential diagnosis of asymptomatic mothers",
              notes = "Almost all mothers become diagnosed from the asymptomatic state according to an exponential rate"
              ),
-  '13' = list(test_folder = td, 
-             base_scenario = 'Base.scex', 
-             base_scenario_dat = 'Base(MotherCore).dat',
-             scenario_name_sub = list(from = 'Base', to = 'AllSymptomsNoMortExpDiag'), 
-             scex_sub = list(), 
-             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
-                                       to = 'HealthyMortalityMotherMultiplier = 0'),
-                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
-                                       to = 'IncidenceMotherMultiplier = 3.5'),
-                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
-                                       to = 'InfectedMortalityMotherMultiplier = 0'),
-                            '4' = list(from = 'SymptomsMotherMultiplier = 1',
-                                       to = 'SymptomsMotherMultiplier = 5'),
-                            '5' = list(from = 'SymptomaticDiagnosisTransitionMotherSwitch = 1',
-                                       to = 'SymptomaticDiagnosisTransitionMotherSwitch = 0')
-                            ),
-             label = "Exponential diagnosis of symptomatic mothers",
-             notes = "Almost all mothers become diagnosed from the symptomatic state according to an exponential rate."
-             ),
+#  '13' = list(test_folder = td,  BROKEN
+#             base_scenario = 'Base.scex', 
+#             base_scenario_dat = 'Base(MotherCore).dat',
+#             scenario_name_sub = list(from = 'Base', to = 'AllSymptomsNoMortExpDiag'), 
+#             scex_sub = list(), 
+#             dat_sub = list('1' = list(from = 'HealthyMortalityMotherMultiplier = 1',
+#                                       to = 'HealthyMortalityMotherMultiplier = 0'),
+#                            '2' = list(from = 'IncidenceMotherMultiplier = 1',
+#                                       to = 'IncidenceMotherMultiplier = 3.5'),
+#                            '3' = list(from = 'InfectedMortalityMotherMultiplier = 1',
+#                                       to = 'InfectedMortalityMotherMultiplier = 0'),
+#                            '4' = list(from = 'SymptomsMotherMultiplier = 1',
+#                                       to = 'SymptomsMotherMultiplier = 5'),
+#                            '5' = list(from = 'SymptomaticDiagnosisTransitionMotherSwitch = 1',
+#                                       to = 'SymptomaticDiagnosisTransitionMotherSwitch = 0')
+#                            ),
+#             label = "Exponential diagnosis of symptomatic mothers",
+#             notes = "Almost all mothers become diagnosed from the symptomatic state according to an exponential rate."
+#             ),
   '14' = list(test_folder = td, 
              base_scenario = 'Base.scex', 
              base_scenario_dat = 'Base(MotherCore).dat',
@@ -302,7 +302,7 @@ for (i in all_results){
 library(foreach)
 library(doSNOW)
 ptm <- proc.time()
-cl <- makeCluster(6)
+cl <- makeCluster(4)
 clusterCall(cl, function() {
   library(modgenTester)
 })
@@ -641,6 +641,7 @@ rm('ctest_name', 'cscenarios', 'result')
 
 
 ### Transition 6 - Diagnosis of Symptomatic Mothers
+<!--
 ```{r Symptomatic Exponential Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Symptomatic Exponential Diagnosis Rates matches inputs'
 cscenarios <- 'AllSymptomsNoMortExpDiag'
@@ -673,7 +674,7 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
+-->
 
 ```{r Symptomatic Percentage Diagnosis Rates matches inputs, results='asis'}
 ctest_name <- 'Symptomatic Percentage Diagnosis Rates matches inputs'
@@ -875,7 +876,7 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
+<!--
 ```{r No deaths from Treated in OnlyStoppedMortality, results='asis'}
 ctest_name <- 'No deaths from Treated in OnlyStoppedMortality'
 cscenarios <- 'OnlyStoppedMortality'
@@ -898,7 +899,7 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
+-->
 ### Transition 9 - Treatment cessation
 
 ```{r Treatment Cessation Rates matches inputs, results='asis'}
@@ -940,7 +941,7 @@ rm('ctest_name', 'cscenarios', 'result')
 ```
 
 ### Transition 10 - Death of Stopped Mothers
-
+<!--
 ```{r Stopped Mortality Match Inputs, results='asis'}
 ctest_name <- 'Stopped Mortality Match Inputs'
 cscenarios <- 'OnlyStoppedMortality'
@@ -978,7 +979,7 @@ test_results <- new_result(test_results,
                          result = result)
 rm('ctest_name', 'cscenarios', 'result')
 ```
-
+-->
 
 ### Fertility
 

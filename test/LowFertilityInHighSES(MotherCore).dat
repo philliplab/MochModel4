@@ -345,7 +345,7 @@ An arbitrarily selected value.
 	An arbitrarily selected value.
 */
 
-	int	StartingPopulationSize = 10000; //EN Starting population size
+	int	StartingPopulationSize = 100000; //EN Starting population size
 /* NOTE ( HealthyMortalityMotherMultiplier, EN )
 	Choose 1 to prevent any deviations from the ASSA model values.
 */

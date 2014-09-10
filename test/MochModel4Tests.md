@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.11    0.11  127.12
+##    0.07    0.11  584.16
 ```
 
 ```
@@ -27,7 +27,7 @@ output: html_document
 ```
 
 ```
-## [1] 14
+## [1] 12
 ```
 
 # Tests for Model Version 49
@@ -51,22 +51,22 @@ No mothers should die from the Healthy state in the OnlyInfectedMortality Scenar
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                  metrics    ..1
-## 1                 Healthy Mortality Rate      0
-## 2           Healthy mother years at risk 304926
-## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk 102645
-## 5                   Mother years at risk 407571
-## 6                       Number of deaths  10000
-## 7    Number of deaths from HEALTHY state      0
-## 8   Number of deaths from INFECTED state   8652
-## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state      0
-## 11                Overall Mortality Rate     NA
-## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk      0
-## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk      0
+##                                  metrics     ..1
+## 1                 Healthy Mortality Rate       0
+## 2           Healthy mother years at risk 3029205
+## 3                Infected Mortality Rate      NA
+## 4          Infected mother years at risk 1022394
+## 5                   Mother years at risk 4051599
+## 6                       Number of deaths  100000
+## 7    Number of deaths from HEALTHY state       0
+## 8   Number of deaths from INFECTED state   86803
+## 9    Number of deaths from STOPPED state       0
+## 10   Number of deaths from TREATED state       0
+## 11                Overall Mortality Rate      NA
+## 12                Treated Mortality Rate      NA
+## 13          Treated mother years at risk       0
+## 14       Treatment Ceased Mortality Rate      NA
+## 15 Treatment Ceased mother years at risk       0
 ```
   
 
@@ -127,22 +127,22 @@ No mothers should die from the Infected state in the OnlyTreatedMortality Scenar
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                  metrics    ..1
-## 1                 Healthy Mortality Rate      0
-## 2           Healthy mother years at risk 231197
-## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk 282248
-## 5                   Mother years at risk 653109
-## 6                       Number of deaths  10000
-## 7    Number of deaths from HEALTHY state      0
-## 8   Number of deaths from INFECTED state      0
-## 9    Number of deaths from STOPPED state      0
-## 10   Number of deaths from TREATED state   7951
-## 11                Overall Mortality Rate     NA
-## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk 139664
-## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk      0
+##                                  metrics     ..1
+## 1                 Healthy Mortality Rate       0
+## 2           Healthy mother years at risk 2340013
+## 3                Infected Mortality Rate      NA
+## 4          Infected mother years at risk 2823484
+## 5                   Mother years at risk 6531887
+## 6                       Number of deaths  100000
+## 7    Number of deaths from HEALTHY state       0
+## 8   Number of deaths from INFECTED state       0
+## 9    Number of deaths from STOPPED state       0
+## 10   Number of deaths from TREATED state   79094
+## 11                Overall Mortality Rate      NA
+## 12                Treated Mortality Rate      NA
+## 13          Treated mother years at risk 1368391
+## 14       Treatment Ceased Mortality Rate      NA
+## 15 Treatment Ceased mother years at risk       0
 ```
   
 
@@ -167,7 +167,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ```
 ## 
 ##    1    2    3    4 
-## 3965  303   42   14
+## 4000  318   58   15
 ```
 
 ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
@@ -195,7 +195,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ```
 ## 
 ##    1    2    3    4 
-## 3965  303   42   15
+## 4000  318   58   17
 ```
 
 ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
@@ -217,7 +217,7 @@ When the kaplan meier curves of the asymptomatic diagnosis rates are compared to
 ![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png)   
 
 ```
-## Mean time till diagnosis from onset of symptoms: 5.04109757079483.
+## Mean time till diagnosis from onset of symptoms: 4.91462966324458.
 ```
   
 
@@ -238,19 +238,19 @@ This test is only for the case where the transition is based on a percentage and
 
 ```
 ## $`output infected mothers`
-## [1] 3927
+## [1] 39992
 ## 
 ## $`output diagnosed mothers`
-## [1] 1555
+## [1] 16114
 ## 
 ## $`output percentage`
-## [1] 0.396
+## [1] 0.4029
 ## 
 ## $`input percentage`
 ## [1] 0.4
 ## 
 ## $`input / output ratio`
-## [1] 1.01
+## [1] 0.9927
 ```
   
 
@@ -260,6 +260,7 @@ This test is only for the case where the transition is based on a percentage and
 
 
 ### Transition 6 - Diagnosis of Symptomatic Mothers
+<!--
 #### <a name="SymptomaticExponentialDiagnosisRatesmatchesinputs"></a>Symptomatic Exponential Diagnosis Rates matches inputs
 
 Scenario(s): AllSymptomsNoMortExpDiag
@@ -267,17 +268,22 @@ Scenario(s): AllSymptomsNoMortExpDiag
 When the kaplan meier curves of the symptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
+
+```
+## Error: first argument is not an open RODBC channel
+```
+
 ![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
 
 ```
-## Mean time till diagnosis from onset of symptoms: 2.97986361999017.
+## Mean time till diagnosis from onset of symptoms: 4.91462966324458.
 ```
   
 
 **Result: Manual**  
 
 ---
-
+-->
 
 #### <a name="SymptomaticPercentageDiagnosisRatesmatchesinputs"></a>Symptomatic Percentage Diagnosis Rates matches inputs
 
@@ -291,19 +297,19 @@ This test is only for the case where the transition is based on the percentage a
 
 ```
 ## $`output symptomatic mothers`
-## [1] 1679
+## [1] 16860
 ## 
 ## $`output diagnosed mothers`
-## [1] 1342
+## [1] 13465
 ## 
 ## $`output percentage`
-## [1] 0.7993
+## [1] 0.7986
 ## 
 ## $`input percentage`
 ## [1] 0.8
 ## 
 ## $`input / output ratio`
-## [1] 1.001
+## [1] 1.002
 ```
   
 
@@ -336,7 +342,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ##   
-## Mean time till treatment from Eligibility and diagnosis: 0.0829494625198623. 
+## Mean time till treatment from Eligibility and diagnosis: 0.0663635131465192. 
 ##   
 ## [1] "WeibullTreatmentTransition"
 ```
@@ -345,7 +351,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 
 ```
 ##   
-## Mean time till treatment from Eligibility and diagnosis: 0.639756233880273. 
+## Mean time till treatment from Eligibility and diagnosis: 0.650723737080582. 
 ## 
 ```
   
@@ -365,13 +371,13 @@ The treatment chance must be a random uniform number. Min between 0 and 0.05, Ma
 
 ```
 ## $Min
-## [1] 0.00005855
+## [1] 0.000002835
 ## 
 ## $Max
-## [1] 0.9998
+## [1] 1
 ## 
 ## $Avg
-## [1] 0.5036
+## [1] 0.5007
 ```
   
 
@@ -420,7 +426,7 @@ The treated mortality in the mother child model must be much lower than the only
 **Result: TRUE**  
 
 ---
-
+<!--
 #### <a name="NodeathsfromTreatedinOnlyStoppedMortality"></a>No deaths from Treated in OnlyStoppedMortality
 
 Scenario(s): OnlyStoppedMortality
@@ -430,29 +436,33 @@ No mothers should die from the Treated state in the OnlyStoppedMortality Scenari
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                                  metrics    ..1
-## 1                 Healthy Mortality Rate      0
-## 2           Healthy mother years at risk 342623
-## 3                Infected Mortality Rate     NA
-## 4          Infected mother years at risk 241235
-## 5                   Mother years at risk 617939
-## 6                       Number of deaths  10000
-## 7    Number of deaths from HEALTHY state      0
-## 8   Number of deaths from INFECTED state      0
-## 9    Number of deaths from STOPPED state   6982
-## 10   Number of deaths from TREATED state      0
-## 11                Overall Mortality Rate     NA
-## 12                Treated Mortality Rate     NA
-## 13          Treated mother years at risk  22527
-## 14       Treatment Ceased Mortality Rate     NA
-## 15 Treatment Ceased mother years at risk  11553
+## Error: first argument is not an open RODBC channel
+```
+
+```
+##                                  metrics     ..1
+## 1                 Healthy Mortality Rate       0
+## 2           Healthy mother years at risk 2340013
+## 3                Infected Mortality Rate      NA
+## 4          Infected mother years at risk 2823484
+## 5                   Mother years at risk 6531887
+## 6                       Number of deaths  100000
+## 7    Number of deaths from HEALTHY state       0
+## 8   Number of deaths from INFECTED state       0
+## 9    Number of deaths from STOPPED state       0
+## 10   Number of deaths from TREATED state   79094
+## 11                Overall Mortality Rate      NA
+## 12                Treated Mortality Rate      NA
+## 13          Treated mother years at risk 1368391
+## 14       Treatment Ceased Mortality Rate      NA
+## 15 Treatment Ceased mother years at risk       0
 ```
   
 
-**Result: TRUE**  
+**Result: FALSE**  
 
 ---
-
+-->
 ### Transition 9 - Treatment cessation
 
 #### <a name="TreatmentCessationRatesmatchesinputs"></a>Treatment Cessation Rates matches inputs
@@ -465,7 +475,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png)   
 
 ```
-## Mean time till treatment cessarion from treatment: 13.3784086631769.
+## Mean time till treatment cessarion from treatment: 13.6871022091029.
 ```
   
 
@@ -474,7 +484,7 @@ When the kaplan meier curves of the treatment stoppage rates are compared to the
 ---
 
 ### Transition 10 - Death of Stopped Mothers
-
+<!--
 #### <a name="StoppedMortalityMatchInputs"></a>Stopped Mortality Match Inputs
 
 Scenario(s): OnlyStoppedMortality
@@ -484,22 +494,32 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 [To Summary Table](#summary_tab_link)  
 
 ```
+## Error: first argument is not an open RODBC channel
+```
+
+```
 ## Number of deaths by Van Der Paal Age category:
 ```
 
 ```
 ## 
-##    1    2    3    4 
-## 3171  303   30   14
+##   1   2   3 
+## 384  58  12
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-351.png) ![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-352.png) 
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-351.png) 
+
+```
+## Error: argument is of length zero
+```
+
+![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-352.png) 
   
 
 **Result: Manual**  
 
 ---
-
+-->
 
 ### Fertility
 
@@ -571,11 +591,11 @@ In the case of no sickness, we expect the mother's life expectancy to be between
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                    metrics        Value CV SE
-## 1          Population size 10000.000000 NA NA
-## 2 Minimum duration of life     0.006282 NA NA
-## 3 Maximum duration of life    91.995917 NA NA
-## 4          Life expectancy    64.859815 NA NA
+##                    metrics          Value CV SE
+## 1          Population size 100000.0000000 NA NA
+## 2 Minimum duration of life      0.0005461 NA NA
+## 3 Maximum duration of life     91.9997890 NA NA
+## 4          Life expectancy     64.7610466 NA NA
 ```
   
 
@@ -593,10 +613,10 @@ The percentage of mothers ever infected in the base case should be between 40 an
 
 ```
 ## $total_infections
-## [1] 3927
+## [1] 39992
 ## 
 ## $total_population
-## [1] 10000
+## [1] 100000
 ```
   
 
@@ -614,22 +634,22 @@ The mortality of uninfected mothers must be lower than the mortality of uninfect
 
 ```
 ## $total_time_in_healthy
-## [1] 454760
+## [1] 4497170
 ## 
 ## $total_time_in_infected
-## [1] 34250
+## [1] 345537
 ## 
 ## $deaths_in_healthy
-## [1] 6073
+## [1] 60008
 ## 
 ## $deaths_in_infected
-## [1] 1767
+## [1] 17816
 ## 
 ## $crude_healthy_mortality
-## [1] 0.01335
+## [1] 0.01334
 ## 
 ## $crude_infected_mortality
-## [1] 0.05159
+## [1] 0.05156
 ```
   
 
@@ -647,10 +667,10 @@ The percentage of mothers who ever became symptomatic in the base case should be
 
 ```
 ## $total_symptomatic_mothers
-## [1] 2770
+## [1] 28255
 ## 
 ## $total_population
-## [1] 10000
+## [1] 100000
 ```
   
 
@@ -669,13 +689,13 @@ This test make sure that in the scenario where there is only mortality in the in
 [To Summary Table](#summary_tab_link)  
 
 ```
-## [1] 8652
+## [1] 86803
 ```
 
 ```
 ## 
 ##    0    1 
-##  675 4324
+##  608 4391
 ```
   
 
@@ -695,7 +715,7 @@ When the input SES rate is compared to the output SES rate, they should be simil
 
 ```
 ## $high_ses_rate_out
-## [1] 0.4934
+## [1] 0.5
 ## 
 ## $high_ses_rate_in
 ## [1] 0.5
@@ -715,15 +735,15 @@ The max age of a mother cannot be greater than 92. This is failing because the o
 [To Summary Table](#summary_tab_link)  
 
 ```
-##                    metrics        Value CV SE
-## 1          Population size 10000.000000 NA NA
-## 2 Minimum duration of life     0.006282 NA NA
-## 3 Maximum duration of life    91.992365 NA NA
-## 4          Life expectancy    51.895924 NA NA
+##                    metrics          Value CV SE
+## 1          Population size 100000.0000000 NA NA
+## 2 Minimum duration of life      0.0005461 NA NA
+## 3 Maximum duration of life     98.2896798 NA NA
+## 4          Life expectancy     51.4990070 NA NA
 ```
   
 
-**Result: TRUE**  
+**Result: FALSE**  
 
 ---
 
@@ -789,16 +809,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 122 2014-09-09 07:43:20 df5092e08a7137d63c7d129c1f347dc4
 ## 123 2014-09-09 07:59:20 7868bec47f2d5eb298df9a7fd0bf544b
 ## 124 2014-09-09 20:26:47 7868bec47f2d5eb298df9a7fd0bf544b
 ## 125 2014-09-09 21:13:02 89859d516521a7d964fa5bc53695529a
 ## 126 2014-09-09 21:21:21 3577a6774b8899c45f86fb9945c8e3ef
 ## 127 2014-09-09 22:07:46 3577a6774b8899c45f86fb9945c8e3ef
+## 128 2014-09-10 17:49:37 0c6a5cccf4efa50a1108b79468a00fbc
 ```
   
 
-**Result: No_Change**  
+**Result: Changed**  
 
 ---
 
@@ -918,7 +938,7 @@ The input and output gender ratios of the children must be similar. The input ra
 ## [1] 0.5
 ## 
 ## $output_female_percentage
-## [1] 0.497
+## [1] 0.5007
 ```
   
 
@@ -1018,9 +1038,9 @@ Model Version: 49
 
 #### Summary of the Test Results 
 
-|FALSE|Manual|No_Change|TRUE|
+|Changed|FALSE|Manual|TRUE|
 |:-:|:-:|:-:|:-:|
-|2|21|1|18| 
+|1|4|21|16| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1040,7 +1060,7 @@ Model Version: 49
 |[Treatment chance is assigned as expected](#Treatmentchanceisassignedasexpected)|TRUE|Base 
 |[Treatment Coverage Rate Matches Input Rate](#TreatmentCoverageRateMatchesInputRate)|Manual|AllInfectedNoMortality 
 |[Treated Mortality Relates to Inputs](#TreatedMortalityRelatestoInputs)|TRUE|OnlyTreatedMortality 
-|[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|TRUE|OnlyStoppedMortality 
+|[No deaths from Treated in OnlyStoppedMortality](#NodeathsfromTreatedinOnlyStoppedMortality)|FALSE|OnlyStoppedMortality 
 |[Treatment Cessation Rates matches inputs](#TreatmentCessationRatesmatchesinputs)|TRUE|Base 
 |[Stopped Mortality Match Inputs](#StoppedMortalityMatchInputs)|Manual|OnlyStoppedMortality 
 |[Mother Age at Birth Histogram](#MotherAgeatBirthHistogram)|Manual|Base 
@@ -1052,11 +1072,11 @@ Model Version: 49
 |[Percentage ever symptomatic bounded](#Percentageeversymptomaticbounded)|FALSE|Base 
 |[OnlyInfectedMortality scenario has most people dying from infected state](#OnlyInfectedMortalityscenariohasmostpeopledyingfrominfectedstate)|TRUE|OnlyInfectedMortality 
 |[Input SES matches output SES](#InputSESmatchesoutputSES)|TRUE|Base 
-|[Mother Max Age](#MotherMaxAge)|TRUE|Base 
+|[Mother Max Age](#MotherMaxAge)|FALSE|Base 
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 

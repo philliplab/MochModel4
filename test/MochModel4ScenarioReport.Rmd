@@ -334,6 +334,26 @@ kable(round(cdo, 3))
 
 shut down
 
+```{r Produce Faikahs Files}
+ccuo <- as.data.frame(new_RTable("ChildCondomUsageOutcomes", db_channel))
+kable(ccuo[,c(1,2)])
+total_condom_years <- sum(ccuo$Value)
+consistent <- subset(ccuo, metrics == 'Consistent Condom Usage Child Years')$Value
+inconsistent <- subset(ccuo, metrics == 'Inconsistent Condom Usage Child Years')$Value
+x <- data.frame(consistent = consistent / total_condom_years,
+           inconsistent = inconsistent / total_condom_years)
+write.csv(x, paste0(scenario_name, '_condom.csv'), row.names = FALSE)
+
+cdo <- as.data.frame(new_RTable("ChildDebutOutcomes", db_channel))
+cdo <- cdo[,1:3]
+cdo <- dcast(cdo, `Integer Age` ~ metrics)
+cdo <- subset(cdo, `Number of children who debuted` > 0)
+debut_rates <- cdo$`Number of children who debuted` / cdo$`Number of sexually inactive Child years spent in state`
+y <- data.frame(age = cdo$`Integer Age`,
+                percentage = debut_rates)
+write.csv(x, paste0(scenario_name, '_debut.csv'), row.names = FALSE)
+```
+
 ```{r SHUTTING DOWN}
 odbcCloseAll()
 ```
