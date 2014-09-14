@@ -15,7 +15,7 @@ An arbitrarily selected value.
 	The annual probability of recovering from abuse
 */
 
-	double	AbuseRecoverChildProbability = 0.9; //EN Annual Rate of recovery from Abuse
+	double	AbuseRecoverChildProbability = 0.6; //EN Annual Rate of recovery from Abuse
 /* NOTE ( MinDepressionDurationChild, EN )
 	Minimum duration of a depressive episode in years
 */

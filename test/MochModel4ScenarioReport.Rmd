@@ -247,8 +247,73 @@ rm(p)
 
 ### State Membership
 
+#### All Ages
+
 ```{r, results='asis'}
 mmma <- as.data.frame(new_RTable('ChildMotherMDMembershipxAge', db_channel))[,1:3]
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherCSMembershipxAge', db_channel))[,1:3]
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+#### Below 18 (inclusive)
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherMDMembershipxAge', db_channel))[,1:3]
+mmma <- subset(mmma, Age <= 18)
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherCSMembershipxAge', db_channel))[,1:3]
+mmma <- subset(mmma, Age <= 18)
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+#### Between 12 and 18 (inclusive)
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherMDMembershipxAge', db_channel))[,1:3]
+mmma <- subset(mmma, Age >= 12 & Age <= 18)
+state_membership <- tapply(mmma$Value, mmma$metrics, sum)
+total_mother_years <- sum(state_membership)
+state_membership <- data.frame(state = names(state_membership),
+                               mother_years = state_membership,
+                               percentage = round((state_membership / total_mother_years) * 100,1))
+row.names(state_membership) <- 1:nrow(state_membership)
+kable(state_membership)
+```
+
+```{r, results='asis'}
+mmma <- as.data.frame(new_RTable('ChildMotherCSMembershipxAge', db_channel))[,1:3]
+mmma <- subset(mmma, Age >= 12 & Age <= 18)
 state_membership <- tapply(mmma$Value, mmma$metrics, sum)
 total_mother_years <- sum(state_membership)
 state_membership <- data.frame(state = names(state_membership),
@@ -352,7 +417,7 @@ cdo <- subset(cdo, `Number of children who debuted` > 0)
 debut_rates <- cdo$`Number of children who debuted` / cdo$`Number of sexually inactive Child years spent in state`
 y <- data.frame(age = cdo$`Integer Age`,
                 percentage = debut_rates)
-write.csv(x, paste0(scenario_name, '_debut.csv'), row.names = FALSE)
+write.csv(y, paste0(scenario_name, '_debut.csv'), row.names = FALSE)
 ```
 
 ```{r SHUTTING DOWN}
