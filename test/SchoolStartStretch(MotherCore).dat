@@ -10,7 +10,7 @@ An arbitrarily selected value.
 	Minimum duration of an abusive episode in years
 */
 
-	double	MinAbuseDurationChild = 1; //EN Minimum Duration of a Abusive Episode
+	double	MinAbuseDurationChild = 50; //EN Minimum Duration of a Abusive Episode
 /* NOTE ( AbuseRecoverChildProbability, EN )
 	The annual probability of recovering from abuse
 */
@@ -20,7 +20,7 @@ An arbitrarily selected value.
 	Minimum duration of a depressive episode in years
 */
 
-	double	MinDepressionDurationChild = 1; //EN Minimum Duration of a Depressive Episode
+	double	MinDepressionDurationChild = 50; //EN Minimum Duration of a Depressive Episode
 /* NOTE ( DepressionRecoverChildProbability, EN )
 	The annual probability of recovering from Depression
 */
@@ -293,7 +293,7 @@ An arbitrarily selected value.
 	Arbitrarily Chosen
 */
 
-	double	SchoolStartChildMax = 8; //EN Oldest age at which children can start school
+	double	SchoolStartChildMax = 6; //EN Oldest age at which children can start school
 /* NOTE ( HighSESMotherPercentage, EN )
     Arbitrarily chosen
 */

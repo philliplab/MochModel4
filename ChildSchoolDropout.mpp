@@ -49,12 +49,17 @@ TIME Child::timeDropOutEvent()
 	TIME tEventTime = TIME_INFINITE;
 	if (school_status == IN_SCHOOL){
         double do_rate = 0;
-		do_rate = DropoutProbabilityChild[gender][ses][child_sched_status][integer_age - 6];
+		int child_int_age = 0;
+		child_int_age = integer_age;
+		int child_age_indx = child_int_age - 6;
+		do_rate = DropoutProbabilityChild[gender][ses][child_age_indx][child_sched_status];
+		double draw = RandUniform(20);
 		if (do_rate < 0.000001){
 			tEventTime = TIME_INFINITE;
 		} else {
-			tEventTime = RandUniform(20) / do_rate;
+			tEventTime = draw / do_rate;
 		};
+		double xtest = 0;
 	}
 	tEventTime = WAIT(tEventTime);
 	return(tEventTime);

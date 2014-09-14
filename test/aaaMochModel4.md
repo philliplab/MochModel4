@@ -4,14 +4,14 @@
 
 
 ## Model Version: 49
-## Scenario: ZeroGestation
+## Scenario: SchoolStartStretch
 
 ```
 ## [1] "Scenario Label"
 ```
 
 ```
-## [1] "No gestation period"
+## [1] "More diverse school start ages"
 ```
 
 ```
@@ -19,8 +19,9 @@
 ```
 
 ```
-## [1] "No gestation period, useful for matching input and output fertility."                       
-## [2] " Substitude: 'FertilityMotherGestationPeriod = 1' with 'FertilityMotherGestationPeriod = 0'"
+## [1] "Children can start school between 5 and 8 as opposed to 6 and 7 in the base case"
+## [2] " Substitude: 'SchoolStartChildMin = 6' with 'SchoolStartChildMin = 5'"           
+## [3] "Substitude: 'SchoolStartChildMax = 7' with 'SchoolStartChildMax = 8'"
 ```
 
 ## Mother Model
@@ -30,7 +31,7 @@
 
 There are 100000 Mothers in this scenario.
 
-There are 298719 Children in this scenario.
+There are 262470 Children in this scenario.
 
 ### State Transitions
 
@@ -64,11 +65,11 @@ The total time spent by mothers in the various states.
 
 Plot of the total time spent in the states involved in scheduling the death of a mother.
 
-![plot of chunk unnamed-chunk-7](figure/ZeroGestation/unnamed-chunk-7.png) 
+![plot of chunk unnamed-chunk-7](figure/SchoolStartStretch/unnamed-chunk-7.png) 
 
 Plot of the total time spent in the detailed states that track mothers disease course.
 
-![plot of chunk unnamed-chunk-8](figure/ZeroGestation/unnamed-chunk-8.png) 
+![plot of chunk unnamed-chunk-8](figure/SchoolStartStretch/unnamed-chunk-8.png) 
 
 ### Mother Survival
 
@@ -85,7 +86,7 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-9](figure/ZeroGestation/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](figure/SchoolStartStretch/unnamed-chunk-9.png) 
 
 #### Survival of Mother who never became infected
 
@@ -94,7 +95,7 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-10](figure/ZeroGestation/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-10](figure/SchoolStartStretch/unnamed-chunk-10.png) 
 
 #### Survival of Mother who became infected
 
@@ -103,7 +104,7 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-11](figure/ZeroGestation/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-11](figure/SchoolStartStretch/unnamed-chunk-11.png) 
 
 #### Survival of Mother who became treated
 
@@ -112,21 +113,21 @@ If there is no mortality in the scenario for the population the plot is for then
 ## Using Value as value column: use value.var to override.
 ```
 
-![plot of chunk unnamed-chunk-12](figure/ZeroGestation/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-12](figure/SchoolStartStretch/unnamed-chunk-12.png) 
 
 ### Number of children per mother
 
-![plot of chunk unnamed-chunk-13](figure/ZeroGestation/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-13](figure/SchoolStartStretch/unnamed-chunk-13.png) 
 
 ### Age of mothers at birth of children
 
-![plot of chunk unnamed-chunk-14](figure/ZeroGestation/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-14](figure/SchoolStartStretch/unnamed-chunk-14.png) 
 
 ## Child Model
 
 ### Gender Ratio
 
-![plot of chunk unnamed-chunk-15](figure/ZeroGestation/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-15](figure/SchoolStartStretch/unnamed-chunk-15.png) 
 
 ### State Membership
 
@@ -135,110 +136,110 @@ If there is no mortality in the scenario for the population the plot is for then
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |      8701705|       51.9|
-|Mother years in DIAGNOSED state |        81553|        0.5|
-|Mother years in DIAGSYMP state  |        26716|        0.2|
-|Mother years in HEALTHY state   |      6686029|       39.8|
-|Mother years in INFECTED state  |       243165|        1.4|
-|Mother years in STOPPED state   |        47694|        0.3|
-|Mother years in SYMPTOMS state  |       145621|        0.9|
-|Mother years in TREATED state   |       847694|        5.1|
+|Mother years in DEAD state      |      7595584|       51.5|
+|Mother years in DIAGNOSED state |        71279|        0.5|
+|Mother years in DIAGSYMP state  |        23268|        0.2|
+|Mother years in HEALTHY state   |      5931646|       40.3|
+|Mother years in INFECTED state  |       214174|        1.5|
+|Mother years in STOPPED state   |        41713|        0.3|
+|Mother years in SYMPTOMS state  |       125114|        0.8|
+|Mother years in TREATED state   |       733499|        5.0|
 
 
 |state                          | mother_years| percentage|
 |:------------------------------|------------:|----------:|
-|Mother years in DEAD state     |      8702191|       51.9|
-|Mother years in HEALTHY state  |      6687194|       39.9|
-|Mother years in INFECTED state |       320438|        1.9|
-|Mother years in STOPPED state  |        47711|        0.3|
-|Mother years in SYMPTOMS state |       174636|        1.0|
-|Mother years in TREATED state  |       848007|        5.1|
+|Mother years in DEAD state     |      7595953|       51.5|
+|Mother years in HEALTHY state  |      5932710|       40.3|
+|Mother years in INFECTED state |       281814|        1.9|
+|Mother years in STOPPED state  |        41719|        0.3|
+|Mother years in SYMPTOMS state |       150316|        1.0|
+|Mother years in TREATED state  |       733765|        5.0|
 
 #### Below 18 (inclusive)
 
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       976971|       18.8|
-|Mother years in DIAGNOSED state |        79914|        1.5|
-|Mother years in DIAGSYMP state  |        24712|        0.5|
-|Mother years in HEALTHY state   |      3150188|       60.5|
-|Mother years in INFECTED state  |       238600|        4.6|
-|Mother years in STOPPED state   |        30325|        0.6|
-|Mother years in SYMPTOMS state  |       140421|        2.7|
-|Mother years in TREATED state   |       563885|       10.8|
+|Mother years in DEAD state      |       841939|       18.4|
+|Mother years in DIAGNOSED state |        69841|        1.5|
+|Mother years in DIAGSYMP state  |        21402|        0.5|
+|Mother years in HEALTHY state   |      2797307|       61.2|
+|Mother years in INFECTED state  |       209816|        4.6|
+|Mother years in STOPPED state   |        26668|        0.6|
+|Mother years in SYMPTOMS state  |       120470|        2.6|
+|Mother years in TREATED state   |       486087|       10.6|
 
 
 |state                          | mother_years| percentage|
 |:------------------------------|------------:|----------:|
-|Mother years in DEAD state     |       977432|       18.8|
-|Mother years in HEALTHY state  |      3151352|       60.5|
-|Mother years in INFECTED state |       314242|        6.0|
-|Mother years in STOPPED state  |        30343|        0.6|
-|Mother years in SYMPTOMS state |       167451|        3.2|
-|Mother years in TREATED state  |       564195|       10.8|
+|Mother years in DEAD state     |       842271|       18.4|
+|Mother years in HEALTHY state  |      2798370|       61.2|
+|Mother years in INFECTED state |       276039|        6.0|
+|Mother years in STOPPED state  |        26673|        0.6|
+|Mother years in SYMPTOMS state |       143825|        3.1|
+|Mother years in TREATED state  |       486351|       10.6|
 
 #### Between 12 and 18 (inclusive)
 
 
 |state                           | mother_years| percentage|
 |:-------------------------------|------------:|----------:|
-|Mother years in DEAD state      |       571249|       30.1|
-|Mother years in DIAGNOSED state |         8820|        0.5|
-|Mother years in DIAGSYMP state  |         5792|        0.3|
-|Mother years in HEALTHY state   |      1065302|       56.0|
-|Mother years in INFECTED state  |        21988|        1.2|
-|Mother years in STOPPED state   |        10854|        0.6|
-|Mother years in SYMPTOMS state  |        22837|        1.2|
-|Mother years in TREATED state   |       193972|       10.2|
+|Mother years in DEAD state      |       494171|       29.6|
+|Mother years in DIAGNOSED state |         7979|        0.5|
+|Mother years in DIAGSYMP state  |         5145|        0.3|
+|Mother years in HEALTHY state   |       945171|       56.6|
+|Mother years in INFECTED state  |        20014|        1.2|
+|Mother years in STOPPED state   |         9667|        0.6|
+|Mother years in SYMPTOMS state  |        20075|        1.2|
+|Mother years in TREATED state   |       167978|       10.1|
 
 
 |state                          | mother_years| percentage|
 |:------------------------------|------------:|----------:|
-|Mother years in DEAD state     |       571371|       30.1|
-|Mother years in HEALTHY state  |      1065348|       56.0|
-|Mother years in INFECTED state |        30459|        1.6|
-|Mother years in STOPPED state  |        10859|        0.6|
-|Mother years in SYMPTOMS state |        28758|        1.5|
-|Mother years in TREATED state  |       194018|       10.2|
+|Mother years in DEAD state     |       494261|       29.6|
+|Mother years in HEALTHY state  |       945216|       56.6|
+|Mother years in INFECTED state |        27667|        1.7|
+|Mother years in STOPPED state  |         9668|        0.6|
+|Mother years in SYMPTOMS state |        25375|        1.5|
+|Mother years in TREATED state  |       168014|       10.1|
 
-![plot of chunk unnamed-chunk-22](figure/ZeroGestation/unnamed-chunk-22.png) 
+![plot of chunk unnamed-chunk-22](figure/SchoolStartStretch/unnamed-chunk-22.png) 
 
-![plot of chunk unnamed-chunk-23](figure/ZeroGestation/unnamed-chunk-23.png) 
+![plot of chunk unnamed-chunk-23](figure/SchoolStartStretch/unnamed-chunk-23.png) 
 
 ### Schooling Outcomes
 
 The number of children in the IN SCHOOL category in the figure below are the number of children who died during school years. The number of children in the NOT IN SCHOOL category in the figure below are the number of children who died before starting school. 
 
-![plot of chunk unnamed-chunk-24](figure/ZeroGestation/unnamed-chunk-24.png) 
+![plot of chunk unnamed-chunk-24](figure/SchoolStartStretch/unnamed-chunk-24.png) 
 
 
 |school_status |  Value|
 |:-------------|------:|
-|NOT_IN_SCHOOL |  25227|
-|IN_SCHOOL     |   1801|
-|DROPOUT       | 160436|
-|GRADUATED     | 111255|
+|NOT_IN_SCHOOL |  21948|
+|IN_SCHOOL     |   1618|
+|DROPOUT       | 128040|
+|GRADUATED     | 110864|
 
 ### Abuse Outcomes
 
 
 |metrics                 |   Value|
 |:-----------------------|-------:|
-|Susceptible Children    |  272526|
-|Abused Children         |  148982|
-|Susceptible Child Years | 1658309|
-|Abused Child Years      |  242505|
+|Susceptible Children    |  239465|
+|Abused Children         |  130778|
+|Susceptible Child Years | 1118345|
+|Abused Child Years      |  551855|
 
 
 | Number of abuse episodes|  Value|
 |------------------------:|------:|
-|                        0| 123544|
-|                        1| 110603|
-|                        2|  33881|
-|                        3|   4280|
-|                        4|    216|
-|                        5|      2|
+|                        0| 108687|
+|                        1| 130778|
+|                        2|      0|
+|                        3|      0|
+|                        4|      0|
+|                        5|      0|
 |                        6|      0|
 |                        7|      0|
 |                        8|      0|
@@ -250,21 +251,21 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |metrics                 |   Value|
 |:-----------------------|-------:|
-|Susceptible Children    |  272526|
-|Depressed Children      |  178700|
-|Susceptible Child Years | 1647972|
-|Depressed Child Years   |  252843|
+|Susceptible Children    |  239465|
+|Depressed Children      |  170633|
+|Susceptible Child Years | 1052207|
+|Depressed Child Years   |  617993|
 
 
 | Number of depressive episodes|  Value|
 |-----------------------------:|------:|
-|                             0|  93826|
-|                             1| 105992|
-|                             2|  55354|
-|                             3|  15200|
-|                             4|   2045|
-|                             5|    108|
-|                             6|      1|
+|                             0|  68832|
+|                             1| 170633|
+|                             2|      0|
+|                             3|      0|
+|                             4|      0|
+|                             5|      0|
+|                             6|      0|
 |                             7|      0|
 |                             8|      0|
 |                             9|      0|
@@ -275,8 +276,8 @@ The number of children in the IN SCHOOL category in the figure below are the num
 
 |metrics                               |  Value|
 |:-------------------------------------|------:|
-|Inconsistent Condom Usage Child Years | 905682|
-|Consistent Condom Usage Child Years   | 722700|
+|Inconsistent Condom Usage Child Years | 844196|
+|Consistent Condom Usage Child Years   | 586623|
 
 ### Debut Outcomes
 
@@ -284,12 +285,12 @@ The number of children in the IN SCHOOL category in the figure below are the num
 |                                                       |         14|         15|         16|
 |:------------------------------------------------------|----------:|----------:|----------:|
 |Integer Age                                            |     13.000|     14.000|     15.000|
-|Number of children who debuted                         |  19477.000|   5878.000|   7090.000|
-|Number of Children who entered the state               | 272328.000| 272117.000| 271863.000|
-|Number of sexually active Child years spent in state   |   9733.371|  22409.625|  28857.219|
-|Number of sexually inactive Child years spent in state | 262483.085| 249572.512| 242833.100|
-|Sexually active state entrace rate                     |      0.074|      0.024|      0.029|
-|Total number of Child years spent in state             | 272216.456| 271982.137| 271690.319|
+|Number of children who debuted                         |  17414.000|   5335.000|   6843.000|
+|Number of Children who entered the state               | 239292.000| 239097.000| 238873.000|
+|Number of sexually active Child years spent in state   |   8635.155|  20043.705|  26127.745|
+|Number of sexually inactive Child years spent in state | 230555.186| 218935.687| 212597.098|
+|Sexually active state entrace rate                     |      0.076|      0.024|      0.032|
+|Total number of Child years spent in state             | 239190.341| 238979.391| 238724.843|
 
 shut down
 
@@ -299,8 +300,8 @@ shut down
 ## 
 ## |metrics                               |  Value|
 ## |:-------------------------------------|------:|
-## |Inconsistent Condom Usage Child Years | 905682|
-## |Consistent Condom Usage Child Years   | 722700|
+## |Inconsistent Condom Usage Child Years | 844196|
+## |Consistent Condom Usage Child Years   | 586623|
 ```
 
 ```
