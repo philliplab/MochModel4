@@ -19,7 +19,7 @@ output: html_document
 
 ```
 ##    user  system elapsed 
-##    0.07    0.11  584.16
+##    0.08    0.12  602.93
 ```
 
 ```
@@ -88,7 +88,7 @@ Note that the input parameters are not perfectly translated into a curve. This c
 ## Error: nrow(healthy_mort) >= 90 is not TRUE
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](figure/Base/unnamed-chunk-4.png) 
   
 
 **Result: Manual**  
@@ -170,7 +170,7 @@ When the kaplan meier curves of the infected mortalities are fitted with Weibull
 ## 4000  318   58   15
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-112.png) 
+![plot of chunk unnamed-chunk-11](figure/Base/unnamed-chunk-111.png) ![plot of chunk unnamed-chunk-11](figure/Base/unnamed-chunk-112.png) 
   
 
 **Result: Manual**  
@@ -198,7 +198,7 @@ When the kaplan meier curves of the symptom rates are fitted with Weibull curves
 ## 4000  318   58   17
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-132.png) 
+![plot of chunk unnamed-chunk-13](figure/Base/unnamed-chunk-131.png) ![plot of chunk unnamed-chunk-13](figure/Base/unnamed-chunk-132.png) 
   
 
 **Result: Manual**  
@@ -214,7 +214,7 @@ Scenario(s): AllInfectedNoSympNoMortExpDiag
 When the kaplan meier curves of the asymptomatic diagnosis rates are compared to the input values, they should look similar. This is only for the case where the transition is based on the exponential distribution
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png)   
+![plot of chunk unnamed-chunk-15](figure/Base/unnamed-chunk-15.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.91462966324458.
@@ -273,7 +273,7 @@ When the kaplan meier curves of the symptomatic diagnosis rates are compared to 
 ## Error: first argument is not an open RODBC channel
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png)   
+![plot of chunk unnamed-chunk-19](figure/Base/unnamed-chunk-19.png)   
 
 ```
 ## Mean time till diagnosis from onset of symptoms: 4.91462966324458.
@@ -338,7 +338,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-231.png) 
+![plot of chunk unnamed-chunk-23](figure/Base/unnamed-chunk-231.png) 
 
 ```
 ##   
@@ -347,7 +347,7 @@ If the weibull transition is used, then the KM curve should look like a weibull 
 ## [1] "WeibullTreatmentTransition"
 ```
 
-![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-232.png) 
+![plot of chunk unnamed-chunk-23](figure/Base/unnamed-chunk-232.png) 
 
 ```
 ##   
@@ -404,7 +404,7 @@ If the weibull transition is used, then the line should increase with age since 
 ## [1] "AllInfectedNoMortality"
 ```
 
-![plot of chunk unnamed-chunk-27](figure/unnamed-chunk-27.png) 
+![plot of chunk unnamed-chunk-27](figure/Base/unnamed-chunk-27.png) 
   
 
 **Result: Manual**  
@@ -420,7 +420,7 @@ Scenario(s): OnlyTreatedMortality
 The treated mortality in the mother child model must be much lower than the only treated mortality from the ASSA model since that ASSA models treated mortality excludes non-HIV mortality 
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29.png) 
+![plot of chunk unnamed-chunk-29](figure/Base/unnamed-chunk-29.png) 
   
 
 **Result: TRUE**  
@@ -472,7 +472,7 @@ Scenario(s): Base
 When the kaplan meier curves of the treatment stoppage rates are compared to the input values, they should look similar.
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-33](figure/unnamed-chunk-33.png)   
+![plot of chunk unnamed-chunk-33](figure/Base/unnamed-chunk-33.png)   
 
 ```
 ## Mean time till treatment cessarion from treatment: 13.6871022091029.
@@ -507,13 +507,13 @@ When the kaplan meier curves of the stopped mortalities are compared to the inpu
 ## 384  58  12
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-351.png) 
+![plot of chunk unnamed-chunk-35](figure/Base/unnamed-chunk-351.png) 
 
 ```
 ## Error: argument is of length zero
 ```
 
-![plot of chunk unnamed-chunk-35](figure/unnamed-chunk-352.png) 
+![plot of chunk unnamed-chunk-35](figure/Base/unnamed-chunk-352.png) 
   
 
 **Result: Manual**  
@@ -530,7 +530,7 @@ Scenario(s): Base
 A plot of the Ages at which mothers give birth. TODO: Turn this into a real test
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-37](figure/unnamed-chunk-37.png) 
+![plot of chunk unnamed-chunk-37](figure/Base/unnamed-chunk-37.png) 
   
 
 **Result: Manual**  
@@ -551,13 +551,13 @@ A plot of the fertility rates of the mothers. Unless the gestation period parame
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-391.png) 
+![plot of chunk unnamed-chunk-39](figure/Base/unnamed-chunk-391.png) 
 
 ```
 ## [1] "ZeroGestation"
 ```
 
-![plot of chunk unnamed-chunk-39](figure/unnamed-chunk-392.png) 
+![plot of chunk unnamed-chunk-39](figure/Base/unnamed-chunk-392.png) 
   
 
 **Result: Manual**  
@@ -571,7 +571,7 @@ Scenario(s): Base
 Plot of number of children per mother. TODO: Convert into a real test
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-41](figure/unnamed-chunk-41.png) 
+![plot of chunk unnamed-chunk-41](figure/Base/unnamed-chunk-41.png) 
   
 
 **Result: Manual**  
@@ -778,7 +778,7 @@ Plots showing the membership of mothers to the different states in the MDEATH_SC
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-60](figure/unnamed-chunk-60.png) 
+![plot of chunk unnamed-chunk-60](figure/Base/unnamed-chunk-60.png) 
   
 
 **Result: Manual**  
@@ -792,7 +792,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-62](figure/unnamed-chunk-62.png) 
+![plot of chunk unnamed-chunk-62](figure/Base/unnamed-chunk-62.png) 
   
 
 **Result: Manual**  
@@ -809,16 +809,16 @@ Check that the hash of the membership data of the mothers matches those of the p
 
 ```
 ##               hash_time                             hash
-## 123 2014-09-09 07:59:20 7868bec47f2d5eb298df9a7fd0bf544b
 ## 124 2014-09-09 20:26:47 7868bec47f2d5eb298df9a7fd0bf544b
 ## 125 2014-09-09 21:13:02 89859d516521a7d964fa5bc53695529a
 ## 126 2014-09-09 21:21:21 3577a6774b8899c45f86fb9945c8e3ef
 ## 127 2014-09-09 22:07:46 3577a6774b8899c45f86fb9945c8e3ef
 ## 128 2014-09-10 17:49:37 0c6a5cccf4efa50a1108b79468a00fbc
+## 129 2014-09-10 20:34:16 0c6a5cccf4efa50a1108b79468a00fbc
 ```
   
 
-**Result: Changed**  
+**Result: No_Change**  
 
 ---
 
@@ -838,13 +838,13 @@ Histogram of child age at school start. For Base scenario all children start sch
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-661.png) 
+![plot of chunk unnamed-chunk-66](figure/Base/unnamed-chunk-661.png) 
 
 ```
 ## [1] "SchoolStartStretch"
 ```
 
-![plot of chunk unnamed-chunk-66](figure/unnamed-chunk-662.png) 
+![plot of chunk unnamed-chunk-66](figure/Base/unnamed-chunk-662.png) 
   
 
 **Result: TRUE**  
@@ -858,7 +858,7 @@ Scenario(s): Base
 Histogram of childrens mother's disease states at school start
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-68](figure/unnamed-chunk-68.png) 
+![plot of chunk unnamed-chunk-68](figure/Base/unnamed-chunk-68.png) 
   
 
 **Result: Manual**  
@@ -872,7 +872,7 @@ Scenario(s): All
 Plots showing the membership of mothers to the different states in the MDEATH_SCHED_STATE during the time children were at school
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-70](figure/unnamed-chunk-70.png) 
+![plot of chunk unnamed-chunk-70](figure/Base/unnamed-chunk-70.png) 
   
 
 **Result: Manual**  
@@ -887,7 +887,7 @@ Histogram showing the membership of mothers to the different states in the MDEAT
 
 [To Summary Table](#summary_tab_link)  
 
-![plot of chunk unnamed-chunk-73](figure/unnamed-chunk-73.png) 
+![plot of chunk unnamed-chunk-73](figure/Base/unnamed-chunk-73.png) 
   
 
 **Result: Manual**  
@@ -957,7 +957,7 @@ Scenario(s): Base
 A plot to show the SES ratios of the children in different circumstances
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-79](figure/unnamed-chunk-79.png) 
+![plot of chunk unnamed-chunk-79](figure/Base/unnamed-chunk-79.png) 
   
 
 **Result: Manual**  
@@ -978,13 +978,13 @@ Child output mortality must match child input mortality. There is something a li
 ## [1] "Base"
 ```
 
-![plot of chunk unnamed-chunk-81](figure/unnamed-chunk-811.png) 
+![plot of chunk unnamed-chunk-81](figure/Base/unnamed-chunk-811.png) 
 
 ```
 ## [1] "NoChildMortality"
 ```
 
-![plot of chunk unnamed-chunk-81](figure/unnamed-chunk-812.png) 
+![plot of chunk unnamed-chunk-81](figure/Base/unnamed-chunk-812.png) 
   
 
 **Result: Manual**  
@@ -998,7 +998,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDEATH_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-83](figure/unnamed-chunk-83.png) 
+![plot of chunk unnamed-chunk-83](figure/Base/unnamed-chunk-83.png) 
   
 
 **Result: Manual**  
@@ -1012,7 +1012,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the MDETAILED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-85](figure/unnamed-chunk-85.png) 
+![plot of chunk unnamed-chunk-85](figure/Base/unnamed-chunk-85.png) 
   
 
 **Result: Manual**  
@@ -1026,7 +1026,7 @@ Scenario(s): All
 Plots showing the membership of children's mothers to the different states in the CHILD_SCHED_STATE
 
 [To Summary Table](#summary_tab_link)  
-![plot of chunk unnamed-chunk-87](figure/unnamed-chunk-87.png) 
+![plot of chunk unnamed-chunk-87](figure/Base/unnamed-chunk-87.png) 
   
 
 **Result: Manual**  
@@ -1038,9 +1038,9 @@ Model Version: 49
 
 #### Summary of the Test Results 
 
-|Changed|FALSE|Manual|TRUE|
+|FALSE|Manual|No_Change|TRUE|
 |:-:|:-:|:-:|:-:|
-|1|4|21|16| 
+|4|21|1|16| 
 
 #### <a name="summary_tab_link"></a>Table of the Test Results
 
@@ -1076,7 +1076,7 @@ Model Version: 49
 |[Event table rows track exactly one actor](#Eventtablerowstrackexactlyoneactor)|TRUE|Base 
 |[MDEATH_SCHED State Membership tracking](#MDEATH_SCHEDStateMembershiptracking)|Manual|All 
 |[MDETAILED State Membership tracking](#MDETAILEDStateMembershiptracking)|Manual|All 
-|[No change in Mother from previous](#NochangeinMotherfromprevious)|Changed|All 
+|[No change in Mother from previous](#NochangeinMotherfromprevious)|No_Change|All 
 |[Child School Start Age](#ChildSchoolStartAge)|TRUE|Base, SchoolStartStretch 
 |[Child School Start MD State](#ChildSchoolStartMDState)|Manual|Base 
 |[School Child MDETAILED State Membership tracking](#SchoolChildMDETAILEDStateMembershiptracking)|Manual|All 

@@ -1,7 +1,8 @@
 # Scenario Report
 ```{r, include=FALSE,eval=FALSE}
 source('MochModel4GenerateScenarioReports.R')
-scenario <- list(scex = 'Small.scex')
+#scenario <- list(scex = 'Small.scex')
+scenario <- list(scex = 'Base.scex')
 ```
 
 ```{r, include=FALSE}
