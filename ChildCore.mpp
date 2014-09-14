@@ -107,7 +107,7 @@ void Child::Mother_Stop()
 	mdeath_sched_status = mdsSTOPPED;
 	mdetailed_status = mdSTOPPED;
 	mother_showing_symptoms = TRUE;
-	child_sched_status = cTREATED;
+	child_sched_status = cSTOPPED;
 };
 
 void Child::Mother_Symptoms()

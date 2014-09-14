@@ -104,12 +104,12 @@ void Mother::SymptomEvent()
 	vdp_age_at_symptoms = vdp_age_int;
 	age_at_symptoms = age;
 	showing_symptoms = TRUE;
+	mchild_sched_status = cSYMPTOMS;
 	if (mdetailed_status == mdDIAGNOSED){
 		mdetailed_status = mdDIAGSYMP;
 	} else {
 		mdetailed_status = mdSYMPTOMS;
 	};
-	mchild_sched_status = cSYMPTOMS;
 	int nIndex = {-1};
 	Child *prChild = {NULL};
 	while (prChild = mlChild->GetNext(nIndex+1, &nIndex))
